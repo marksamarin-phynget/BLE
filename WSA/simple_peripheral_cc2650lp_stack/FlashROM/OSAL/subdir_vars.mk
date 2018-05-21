@@ -6,14 +6,14 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal.c \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_bufmgr.c \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_cbtimer.c \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_clock.c \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_memory_icall.c \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_pwrmgr.c \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/mcu/cc26xx/osal_snv_wrapper.c \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_timers.c 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal.c \
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_bufmgr.c \
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_cbtimer.c \
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_clock.c \
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_memory_icall.c \
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_pwrmgr.c \
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/mcu/cc26xx/osal_snv_wrapper.c \
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_timers.c 
 
 C_DEPS += \
 ./OSAL/osal.d \
@@ -56,13 +56,13 @@ C_DEPS__QUOTED += \
 "OSAL\osal_timers.d" 
 
 C_SRCS__QUOTED += \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal.c" \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_bufmgr.c" \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_cbtimer.c" \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_clock.c" \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_memory_icall.c" \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_pwrmgr.c" \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/mcu/cc26xx/osal_snv_wrapper.c" \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_timers.c" 
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal.c" \
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_bufmgr.c" \
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_cbtimer.c" \
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_clock.c" \
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_memory_icall.c" \
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_pwrmgr.c" \
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/mcu/cc26xx/osal_snv_wrapper.c" \
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_timers.c" 
 
 

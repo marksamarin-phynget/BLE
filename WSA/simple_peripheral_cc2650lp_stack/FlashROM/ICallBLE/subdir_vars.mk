@@ -6,7 +6,7 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/icall/stack/ble_dispatch.c 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/icall/stack/ble_dispatch.c 
 
 C_DEPS += \
 ./ICallBLE/ble_dispatch.d 
@@ -21,6 +21,6 @@ C_DEPS__QUOTED += \
 "ICallBLE\ble_dispatch.d" 
 
 C_SRCS__QUOTED += \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/icall/stack/ble_dispatch.c" 
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/icall/stack/ble_dispatch.c" 
 
 

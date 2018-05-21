@@ -1,6 +1,6 @@
 # FIXED
 
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.c
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.c
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/linkage.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h
@@ -184,59 +184,59 @@ PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Event__epilogue.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Queue.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/ioc.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/ioc.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_types.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_chip_def.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_memmap.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ioc.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ints.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/interrupt.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_nvic.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/debug.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/cpu.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_cpu_scs.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/rom.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/gpio.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_gpio.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/gap.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/bcomdef.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/comdef.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/../_common/cc26xx/_hal_types.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/inc/hal_defs.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/osal.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_types.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_chip_def.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_memmap.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ioc.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ints.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/interrupt.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_nvic.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/debug.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/cpu.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_cpu_scs.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/rom.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/gpio.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_gpio.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/gap.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/bcomdef.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/comdef.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/../_common/cc26xx/_hal_types.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/inc/hal_defs.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/osal.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/limits.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/OSAL_Memory.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/OSAL_Timers.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/icall/src/inc/ICall.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/OSAL_Memory.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/OSAL_Timers.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/icall/src/inc/ICall.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdlib.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/inc/hal_assert.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/sm.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/controller/cc26xx/inc/ll.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/gatt.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/att.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/l2cap.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci_tl.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci_data.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci_event.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci_tl.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/linkdb.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/util.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/inc/hal_assert.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/sm.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/controller/cc26xx/inc/ll.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/gatt.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/att.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/l2cap.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci_tl.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci_data.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci_event.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci_tl.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/linkdb.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/util.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Clock.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Queue.h
 PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Semaphore.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/gattservapp.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/profiles/roles/gapbondmgr.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/osal_snv.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/icall/inc/icall_apimsg.h
-PROFILES/peripheral.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/gapgattserver.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/gattservapp.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/gapbondmgr.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/osal_snv.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/icall/inc/icall_apimsg.h
+PROFILES/peripheral.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/gapgattserver.h
 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.c: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.c: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/linkage.h: 
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h: 
@@ -420,54 +420,54 @@ D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Event__epilogue.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Queue.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/ioc.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/ioc.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_types.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_chip_def.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_memmap.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ioc.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ints.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/interrupt.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_nvic.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/debug.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/cpu.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_cpu_scs.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/rom.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/gpio.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_gpio.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/gap.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/bcomdef.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/comdef.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/../_common/cc26xx/_hal_types.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/inc/hal_defs.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/osal.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_types.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_chip_def.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_memmap.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ioc.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ints.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/interrupt.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_nvic.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/debug.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/cpu.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_cpu_scs.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/rom.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/gpio.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_gpio.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/gap.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/bcomdef.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/comdef.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/../_common/cc26xx/_hal_types.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/inc/hal_defs.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/osal.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/limits.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/OSAL_Memory.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/OSAL_Timers.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/icall/src/inc/ICall.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/OSAL_Memory.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/OSAL_Timers.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/icall/src/inc/ICall.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdlib.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/inc/hal_assert.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/sm.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/controller/cc26xx/inc/ll.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/gatt.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/att.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/l2cap.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci_tl.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci_data.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci_event.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/hci_tl.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/linkdb.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/util.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/inc/hal_assert.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/sm.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/controller/cc26xx/inc/ll.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/gatt.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/att.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/l2cap.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci_tl.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci_data.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci_event.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/hci_tl.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/linkdb.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/util.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Clock.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Queue.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Semaphore.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/gattservapp.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/profiles/roles/gapbondmgr.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/inc/osal_snv.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/icall/inc/icall_apimsg.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/inc/gapgattserver.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/gattservapp.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/gapbondmgr.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc/osal_snv.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_types.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/icall/inc/icall_apimsg.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/inc/gapgattserver.h: 

@@ -1,6 +1,6 @@
 # FIXED
 
-Drivers/Display/DisplayDogm1286.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/DisplayDogm1286.c
+Drivers/Display/DisplayDogm1286.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/DisplayDogm1286.c
 Drivers/Display/DisplayDogm1286.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/BIOS.h
 Drivers/Display/DisplayDogm1286.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h
 Drivers/Display/DisplayDogm1286.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
@@ -205,7 +205,7 @@ Drivers/Display/DisplayDogm1286.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_
 Drivers/Display/DisplayDogm1286.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/family/arm/m3/Hwi__epilogue.h
 Drivers/Display/DisplayDogm1286.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/Semaphore.h
 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/DisplayDogm1286.c: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/DisplayDogm1286.c: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/BIOS.h: 
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 

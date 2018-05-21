@@ -6,7 +6,7 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c 
 
 C_DEPS += \
 ./HAL/Common/hal_assert.d 
@@ -21,6 +21,6 @@ C_DEPS__QUOTED += \
 "HAL\Common\hal_assert.d" 
 
 C_SRCS__QUOTED += \
-"D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c" 
+"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c" 
 
 

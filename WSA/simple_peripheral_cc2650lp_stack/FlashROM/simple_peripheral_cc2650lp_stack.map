@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v16.9.7                     
 ******************************************************************************
->> Linked Mon May 21 09:07:03 2018
+>> Linked Mon May 21 16:19:35 2018
 
 OUTPUT FILE NAME:   <simple_peripheral_cc2650lp_stack.out>
 ENTRY POINT SYMBOL: "startup_entry"  address: 0000f001
@@ -407,16 +407,16 @@ MODULE SUMMARY
        Total:                                   2       0         0      
                                                                          
     C:\Users\niram\AppData\Local\Temp\
-       {2FF7C978-D973-4E7B-9F50-1D2F27385D8C}   104     0         4      
+       {5E2C6AD0-F820-45DF-AD45-8775D6FEE45A}   104     0         4      
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   104     0         4      
                                                                          
-    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\src\rom\ble_rom_releases\04242014\
+    D:\GitHub\BLE_Reload\BLE\ti\ble_sdk_2_02_01_18\src\rom\ble_rom_releases\04242014\
        ble_rom_patch.symbols                    920     0         0      
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   920     0         0      
                                                                          
-    D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib
+    D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib
        interrupt.obj                            196     0         0      
        flash.obj                                56      0         0      
        cpu.obj                                  24      0         0      
@@ -438,7 +438,7 @@ MODULE SUMMARY
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   1130    0         0      
                                                                          
-    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\blelib\ctrl\cc2640\cc2640_ctrl_pxxx.a
+    D:\GitHub\BLE_Reload\BLE\ti\ble_sdk_2_02_01_18\blelib\ctrl\cc2640\cc2640_ctrl_pxxx.a
        ll_patch.o                               5924    2         256    
        ll_common_patch.o                        3080    0         12     
        ll_slave_end_causes_patch.o              1790    0         2      
@@ -457,12 +457,12 @@ MODULE SUMMARY
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   17378   94        318    
                                                                          
-    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\blelib\hci_tl\cc26xx\cc26xx_hci_tl_none.a
+    D:\GitHub\BLE_Reload\BLE\ti\ble_sdk_2_02_01_18\blelib\hci_tl\cc26xx\cc26xx_hci_tl_none.a
        hci_tl.o                                 176     0         6      
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   176     0         6      
                                                                          
-    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\blelib\host\host_pxxx.a
+    D:\GitHub\BLE_Reload\BLE\ti\ble_sdk_2_02_01_18\blelib\host\host_pxxx.a
        gattservapp.o                            4052    8         57     
        gatt_server.o                            2838    0         13     
        gap_linkmgr.o                            2488    0         32     

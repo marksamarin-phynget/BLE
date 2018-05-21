@@ -1,6 +1,6 @@
 # FIXED
 
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/TRNGCC26XX.c
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/TRNGCC26XX.c
 Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdint.h
 Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/family/arm/m3/Hwi.h
 Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h
@@ -140,21 +140,21 @@ Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/pac
 Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h
 Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/interfaces/ITimer.h
 Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/package/Clock_TimerProxy.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/trng.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_types.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_chip_def.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_trng.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_memmap.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ints.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/debug.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/interrupt.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_nvic.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/cpu.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_cpu_scs.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/rom.h
-Drivers/TRNG/TRNGCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/TRNGCC26XX.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/trng.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_types.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_chip_def.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_trng.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_memmap.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ints.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/debug.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/interrupt.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_nvic.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/cpu.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_cpu_scs.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/rom.h
+Drivers/TRNG/TRNGCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/TRNGCC26XX.h
 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/TRNGCC26XX.c: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/TRNGCC26XX.c: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdint.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/family/arm/m3/Hwi.h: 
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h: 
@@ -294,16 +294,16 @@ D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h:
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/interfaces/ITimer.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/knl/package/Clock_TimerProxy.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/trng.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_types.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_chip_def.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_trng.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_memmap.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ints.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/debug.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/interrupt.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_nvic.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/cpu.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_cpu_scs.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/rom.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/TRNGCC26XX.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/trng.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_types.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_chip_def.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_trng.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_memmap.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_ints.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/debug.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/interrupt.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_nvic.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/cpu.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/inc/hw_cpu_scs.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/rom.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/TRNGCC26XX.h: 

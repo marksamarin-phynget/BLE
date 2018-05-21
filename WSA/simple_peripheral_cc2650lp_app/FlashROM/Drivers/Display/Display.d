@@ -1,6 +1,6 @@
 # FIXED
 
-Drivers/Display/Display.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/Display.c
+Drivers/Display/Display.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/Display.c
 Drivers/Display/Display.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Log.h
 Drivers/Display/Display.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h
 Drivers/Display/Display.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
@@ -69,7 +69,7 @@ Drivers/Display/Display.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/pac
 Drivers/Display/Display.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/Display.h
 Drivers/Display/Display.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stddef.h
 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/Display.c: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/Display.c: 
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Log.h: 
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 

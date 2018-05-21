@@ -43,7 +43,7 @@
 // Necessary for Internal LF Oscillator
 #ifdef USE_RCOSC
     //#include "C:\BLE\ti\simplelink\ble_sdk_2_02_01_18\src\common\cc26xx\rcosc\rcosc_calibration.h"
-    #include "D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\src\common\cc26xx\rcosc\rcosc_calibration.h"
+    #include "rcosc_calibration.h"
 #endif
 
 #include <ti/mw/display/Display.h>

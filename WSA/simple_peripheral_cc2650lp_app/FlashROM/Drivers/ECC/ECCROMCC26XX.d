@@ -1,6 +1,6 @@
 # FIXED
 
-Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/ecc/ECCROMCC26XX.c
+Drivers/ECC/ECCROMCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/ecc/ECCROMCC26XX.c
 Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h
 Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/linkage.h
 Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdint.h
@@ -177,9 +177,9 @@ Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/pa
 Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Error.h
 Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h
 Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/family/arm/m3/Hwi__epilogue.h
-Drivers/ECC/ECCROMCC26XX.obj: D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/ecc/ECCROMCC26XX.h
+Drivers/ECC/ECCROMCC26XX.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/ecc/ECCROMCC26XX.h
 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/ecc/ECCROMCC26XX.c: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/ecc/ECCROMCC26XX.c: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/linkage.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdint.h: 
@@ -356,4 +356,4 @@ D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Error.h: 
 D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h: 
 D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/family/arm/m3/Hwi__epilogue.h: 
-D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/ecc/ECCROMCC26XX.h: 
+D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/ecc/ECCROMCC26XX.h: 

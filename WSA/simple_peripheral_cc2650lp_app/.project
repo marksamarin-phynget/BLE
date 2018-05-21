@@ -74,7 +74,7 @@
 		<link>
 			<name>Application/hal_assert.c</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/ti/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ti/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c</locationURI>
 		</link>
 		<link>
 			<name>Application/simple_peripheral.c</name>
@@ -227,24 +227,19 @@
 			<locationURI>SRC_COMMON/osal/src/inc/osal_snv.h</locationURI>
 		</link>
 		<link>
-			<name>LF_Oscillator/ccfg_app_ble.c</name>
+			<name>LF_OSC/ccfg_app_ble_rcosc.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-ORG_PROJ_DIR/config/ccfg_app_ble.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ti/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc/ccfg_app_ble_rcosc.c</locationURI>
 		</link>
 		<link>
-			<name>LF_Oscillator/ccfg_app_ble_rcosc.c</name>
+			<name>LF_OSC/rcosc_calibration.c</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/ti/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc/ccfg_app_ble_rcosc.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ti/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc/rcosc_calibration.c</locationURI>
 		</link>
 		<link>
-			<name>LF_Oscillator/rcosc_calibration.c</name>
+			<name>LF_OSC/rcosc_calibration.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/ti/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc/rcosc_calibration.c</locationURI>
-		</link>
-		<link>
-			<name>LF_Oscillator/rcosc_calibration.h</name>
-			<type>1</type>
-			<locationURI>SRC_EX/common/cc26xx/rcosc/rcosc_calibration.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ti/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc/rcosc_calibration.h</locationURI>
 		</link>
 		<link>
 			<name>Middleware/extflash</name>
@@ -499,8 +494,12 @@
 	</linkedResources>
 	<variableList>
 		<variable>
+			<name>BLE_ROOT</name>
+			<value>$%7BPARENT-1-WORKSPACE_LOC%7D/ti/ble_sdk_2_02_01_18</value>
+		</variable>
+		<variable>
 			<name>CC26XXWARE</name>
-			<value>file:/D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393</value>
+			<value>$%7BPARENT-1-WORKSPACE_LOC%7D/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393</value>
 		</variable>
 		<variable>
 			<name>ORG_PROJ_DIR</name>
@@ -508,7 +507,7 @@
 		</variable>
 		<variable>
 			<name>ORIGINAL_PROJECT_ROOT</name>
-			<value>file:/D:/Dropbox/Phyn/BLE/ti/simplelink/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/app</value>
+			<value>$%7BPARENT-1-WORKSPACE_LOC%7D/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/app</value>
 		</variable>
 		<variable>
 			<name>ROM</name>
@@ -527,8 +526,16 @@
 			<value>$%7BPARENT-5-ORG_PROJ_DIR%7D/src</value>
 		</variable>
 		<variable>
+			<name>TI</name>
+			<value>file:/D:/GitHub/BLE_Reload/BLE/ti</value>
+		</variable>
+		<variable>
+			<name>TI_RTOS_BASE</name>
+			<value>$%7BPARENT-1-WORKSPACE_LOC%7D/ti/tirtos_cc13xx_cc26xx_2_20_01_08</value>
+		</variable>
+		<variable>
 			<name>TI_RTOS_DRIVERS_BASE</name>
-			<value>file:/D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages</value>
+			<value>$%7BPARENT-1-WORKSPACE_LOC%7D/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages</value>
 		</variable>
 		<variable>
 			<name>TOOLS_BLE</name>
