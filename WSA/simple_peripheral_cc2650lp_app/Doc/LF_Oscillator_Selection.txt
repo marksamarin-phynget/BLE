@@ -1,0 +1,25 @@
+Notes for LF Oscillator Selection
+
+The internal LF oscillator may be used in place of the external 32Khz crystail with some software additions.
+The procedure requires constant recalibratoinof the internal oscillator since it is sensitive to temperature changes.
+The BLE stack will do the heavy lifting for this when set up correctly.
+
+Note that this should pnly be used of silicon revisions 'D' and greater as the internal clock has a glitch bug in earlier ones.
+
+(Detailed instructions for this procedure are in TI doc swra499b)
+
+
+Internal LF oscillator selection:
+
+1) Include ccfg_app_bl_rcosc.c in build
+2) Exclude cfg_app_ble.c from build
+3) Use USE_RCOSC compiler predefine 
+4) Set SET_CCFG_MODE_CONF_SCLK_LF_OPTION to '3' in cfg_app_ble_rcosc.c
+ 
+External LF oscillator selection:
+
+1) Exclude ccfg_app_bl_rcosc.c from build
+2) Include cfg_app_ble.c in build
+3) Remove USE_RCOSC compiler predefine 
+* Not necessary - 4) Set SET_CCFG_MODE_CONF_SCLK_LF_OPTION to '2' in cfg_app_ble_rcosc.c
+ 

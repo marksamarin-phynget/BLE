@@ -1,0 +1,41 @@
+
+**** Build of configuration Debug for project spp_ble_client_cc2650lp_stack ****
+
+"C:\\BLE\\App\\ccsv7\\utils\\bin\\gmake" -k -j 8 all -O 
+ 
+"C:/TI/simplelink/ble_sdk_2_02_01_18/tools/lib_search/lib_search.exe" C:/BLE/ti/simplelink/ble_examples-ble_examples-2.2/examples/cc2650lp/spp_ble_client/ccs/stack/../../iar/stack/build_config.opt "C:/TI/simplelink/ble_sdk_2_02_01_18/tools/lib_search/params_split_cc2640.xml" C:/TI/simplelink/ble_sdk_2_02_01_18/src/../blelib "C:/BLE/ti/simplelink/ble_examples-ble_examples-2.2/examples/cc2650lp/spp_ble_client/ccs/stack/../config/lib_linker.cmd"
+makefile:217: recipe for target 'pre-build' failed
+process_begin: CreateProcess(NULL, C:/TI/simplelink/ble_sdk_2_02_01_18/tools/lib_search/lib_search.exe C:/BLE/ti/simplelink/ble_examples-ble_examples-2.2/examples/cc2650lp/spp_ble_client/ccs/stack/../../iar/stack/build_config.opt C:/TI/simplelink/ble_sdk_2_02_01_18/tools/lib_search/params_split_cc2640.xml C:/TI/simplelink/ble_sdk_2_02_01_18/src/../blelib C:/BLE/ti/simplelink/ble_examples-ble_examples-2.2/examples/cc2650lp/spp_ble_client/ccs/stack/../config/lib_linker.cmd, ...) failed.
+make (e=2): The system cannot find the file specified.
+
+gmake[1]: [pre-build] Error 2 (ignored)
+ 
+makefile:184: recipe for target 'all' failed
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c', needed by 'HAL/Common/hal_assert.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_flash_wrapper.c', needed by 'HAL/Target/CC2650/Drivers/hal_flash_wrapper.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_rtc_wrapper.c', needed by 'HAL/Target/CC2650/Drivers/hal_rtc_wrapper.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_trng_wrapper.c', needed by 'HAL/Target/CC2650/Drivers/hal_trng_wrapper.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/cc26xx/mb_patch.c', needed by 'HAL/Target/CC2650/_common/mb_patch.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/icall/stack/ble_dispatch.c', needed by 'ICallBLE/ble_dispatch.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/npi/stack/npi.c', needed by 'NPI/npi.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal.c', needed by 'OSAL/osal.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_bufmgr.c', needed by 'OSAL/osal_bufmgr.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_cbtimer.c', needed by 'OSAL/osal_cbtimer.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_clock.c', needed by 'OSAL/osal_clock.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_memory_icall.c', needed by 'OSAL/osal_memory_icall.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_pwrmgr.c', needed by 'OSAL/osal_pwrmgr.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/mcu/cc26xx/osal_snv_wrapper.c', needed by 'OSAL/osal_snv_wrapper.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/components/osal/src/common/osal_timers.c', needed by 'OSAL/osal_timers.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/profiles/roles/gap.c', needed by 'PROFILES/gap.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/profiles/roles/gapbondmgr.c', needed by 'PROFILES/gapbondmgr.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/host/gattservapp_util.c', needed by 'PROFILES/gattservapp_util.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/host/sm_ecc.c', needed by 'PROFILES/sm_ecc.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/icall/stack/ble_user_config.c', needed by 'Startup/ble_user_config.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/icall_startup.c', needed by 'Startup/icall_startup.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/examples/simple_central/cc26xx/stack/osal_icall_ble.c', needed by 'Startup/osal_icall_ble.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/rom/rom_jt.c', needed by 'Startup/rom_jt.obj'.
+gmake[1]: *** No rule to make target 'C:/TI/simplelink/ble_sdk_2_02_01_18/src/common/cc26xx/onboard.c', needed by 'TOOLS/onboard.obj'.
+gmake[1]: Target 'main-build' not remade because of errors.
+gmake: *** [all] Error 2
+
+**** Build Finished ****

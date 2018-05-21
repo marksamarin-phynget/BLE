@@ -1,0 +1,25 @@
+Directories and Linkage
+
+SRC_EX                  ${ORG_PROJ_DIR}\..\..\..\..\..\src =        D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\src
+ORG_PROJ_DIR            ${ORIGINAL_PROJECT_ROOT}\..\..\iar\stack =  D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\examples\cc2650lp\simple_peripheral\iar\stack
+ORIGINAL_PROJECT_ROOT   D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\examples\cc2650lp\simple_peripheral\ccs\app
+SRC_COMMON              ${ORG_PROJ_DIR}\..\..\..\..\..\src\components  =  D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\src\components
+TI_RTOS_DRIVERS_BASE    D:\Dropbox\Phyn\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\tidrivers_cc13xx_cc26xx_2_20_01_10\packages
+TOOLS_BLE               ${ORG_PROJ_DIR}\..\..\..\..\..\tools    = D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\tools
+PROJECT_LOC             D:\Dropbox\Phyn\BLE\WSA\simple_peripheral_cc2650lp_app
+
+Using  D:\Dropbox\Phyn\BLE\WSA\simple_peripheral_cc2650lp_app\.project
+
+PARENT-2-ORG_PROJ_DIR/ccs/config/app_ble.cfg
+
+
+D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\examples\cc2650lp\simple_peripheral\ccs\app
+
+
+D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\examples\cc2650lp\simple_peripheral\ccs\config\app_ble.cfg:
+
+    utils.importFile("../../../../../src/common/cc26xx/kernel/cc2640/config/cc2640.cfg");
+
+
+Linking not controlled by link file but by:
+    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\src\common\cc26xx\kernel\cc2640\config\cc2640.cfg

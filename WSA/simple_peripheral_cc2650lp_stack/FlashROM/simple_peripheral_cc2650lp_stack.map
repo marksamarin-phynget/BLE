@@ -1,0 +1,3186 @@
+******************************************************************************
+                  TI ARM Linker PC v16.9.7                     
+******************************************************************************
+>> Linked Mon May 21 09:07:03 2018
+
+OUTPUT FILE NAME:   <simple_peripheral_cc2650lp_stack.out>
+ENTRY POINT SYMBOL: "startup_entry"  address: 0000f001
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   0001f000  0000fd90  0000f270  R  X
+  SRAM                  20000000   000048e7  00000594  00004353  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+0000f000    0000f000    0000ed90   0000ed90    r-x
+  0000f000    0000f000    00000358   00000358    r-x EntrySection
+  0000f358    0000f358    0000de50   0000de50    r-x .text
+  0001d1a8    0001d1a8    000006f8   000006f8    r-- .const
+  0001d8a0    0001d8a0    0000006e   0000006e    r-- .rodata
+  0001d910    0001d910    00000480   00000480    r-- .cinit
+0001e000    0001e000    00001000   00001000    r--
+  0001e000    0001e000    00001000   00001000    r-- .TI.bound:NV_FLASH
+20004348    20004348    00000598   00000000    rw-
+  20004348    20004348    00000144   00000000    rw- .bss
+  20004490    20004490    00000450   00000000    rw- .data
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+EntrySection 
+*          0    0000f000    00000358     
+                  0000f000    000002a0     icall_startup.obj (EntrySection)
+                  0000f2a0    00000008     rtsv7M3_T_le_eabi.lib : autoinit.obj (.tramp.__TI_auto_init.1)
+                  0000f2a8    00000008     host_pxxx.a : l2cap_if.o (.tramp.L2CAP_SetUserConfig.1)
+                  0000f2b0    00000008     <whole-program> (.tramp.ICall_enrollService$21.1)
+                  0000f2b8    00000008     <whole-program> (.tramp.halAssertHandlerExt.1)
+                  0000f2c0    00000008     <whole-program> (.tramp.HalFlashRead.1)
+                  0000f2c8    00000008     <whole-program> (.tramp.findOffset$13.1)
+                  0000f2d0    00000008     <whole-program> (.tramp.compactPage$13.1)
+                  0000f2d8    00000008     <whole-program> (.tramp.erasePage$13.1)
+                  0000f2e0    00000008     <whole-program> (.tramp.setActivePage$13.1)
+                  0000f2e8    00000008     <whole-program> (.tramp.ICall_getTicks$14.1)
+                  0000f2f0    00000008     <whole-program> (.tramp.osal_mem_alloc.1)
+                  0000f2f8    00000008     <whole-program> (.tramp.osal_memset.1)
+                  0000f300    00000008     cc2640_ctrl_pxxx.a : ll_patch.o (.tramp.LL_Init.1)
+                  0000f308    00000008     cc26xx_hci_tl_none.a : hci_tl.o (.tramp.HCI_Init.1)
+                  0000f310    00000008     host_pxxx.a : l2cap_task.o (.tramp.L2CAP_Init.1)
+                  0000f318    00000008                 : gap_task.o (.tramp.GAP_Init.1)
+                  0000f320    00000008                 : sm_task.o (.tramp.SM_Init.1)
+                  0000f328    00000008                 : gatt_task.o (.tramp.GATT_Init.1)
+                  0000f330    00000008                 : gattservapp.o (.tramp.GATTServApp_Init.1)
+                  0000f338    00000008                 : gap_task.o (.tramp.GAP_RegisterBondMgrCBs.1)
+                  0000f340    00000008     <whole-program> (.tramp.gapBondMgrReadBonds$16.1)
+                  0000f348    00000008     <whole-program> (.tramp.osal_snv_read.1)
+                  0000f350    00000008     <whole-program> (.tramp.osal_start_system.1)
+
+.text      0    0000f358    0000de50     
+                  0000f358    000001ec     host_pxxx.a : att_server.o (.text)
+                  0000f544    000005cc                 : att_util.o (.text)
+                  0000fb10    00000348                 : gap_configmgr.o (.text)
+                  0000fe58    000000b0                 : gap_devmgr.o (.text)
+                  0000ff08    000009b8                 : gap_linkmgr.o (.text)
+                  000108c0    00000624                 : gap_peridevmgr.o (.text)
+                  00010ee4    00000110                 : gap_perilinkmgr.o (.text)
+                  00010ff4    000002ec                 : gap_task.o (.text)
+                  000112e0    0000032c                 : gapgattserver.o (.text)
+                  0001160c    00000b16                 : gatt_server.o (.text)
+                  00012122    00000002     onboard.obj (.text)
+                  00012124    000002f6     host_pxxx.a : gatt_task.o (.text)
+                  0001241a    00000002     rtsv7M3_T_le_eabi.lib : startup.obj (.text)
+                  0001241c    0000013e     host_pxxx.a : gatt_uuid.o (.text)
+                  0001255a    00000002     --HOLE-- [fill = 0]
+                  0001255c    00000fcc                 : gattservapp.o (.text)
+                  00013528    0000017e                 : l2cap_if.o (.text)
+                  000136a6    00000002     --HOLE-- [fill = 0]
+                  000136a8    000002b0                 : l2cap_task.o (.text)
+                  00013958    0000068c                 : l2cap_util.o (.text)
+                  00013fe4    000002ec                 : linkdb.o (.text)
+                  000142d0    000006a0                 : sm_mgr.o (.text)
+                  00014970    000007e4                 : sm_pairing.o (.text)
+                  00015154    00000570                 : sm_rsppairing.o (.text)
+                  000156c4    000000e8                 : sm_task.o (.text)
+                  000157ac    0000039c                 : smp.o (.text)
+                  00015b48    000004f4     cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+                  0001603c    000000a8                        : hci_data_patch.o (.text)
+                  000160e4    0000052c                        : hci_event_patch.o (.text)
+                  00016610    00000308                        : hci_patch.o (.text)
+                  00016918    00000428                        : ll_adv_end_causes_patch.o (.text)
+                  00016d40    00000c08                        : ll_common_patch.o (.text)
+                  00017948    0000014c                        : ll_enc_patch.o (.text)
+                  00017a94    0000171c                        : ll_patch.o (.text)
+                  000191b0    00000010                        : ll_rat_patch.o (.text)
+                  000191c0    000001a8                        : ll_scheduler_patch.o (.text)
+                  00019368    000006fe                        : ll_slave_end_causes_patch.o (.text)
+                  00019a66    00000002     --HOLE-- [fill = 0]
+                  00019a68    00000046                        : ll_sleep.o (.text)
+                  00019aae    000000ae                        : ll_wl_patch.o (.text)
+                  00019b5c    000003c8                        : ll_isr.o (.text)
+                  00019f24    000000a8     cc26xx_hci_tl_none.a : hci_tl.o (.text)
+                  00019fcc    00000070     rtsv7M3_T_le_eabi.lib : autoinit.obj (.text)
+                  0001a03c    00000018                           : ll_mul_t2.obj (.text)
+                  0001a054    0000009c                           : memcpy_t2.obj (.text)
+                  0001a0f0    0000007a                           : memset_t2.obj (.text)
+                  0001a16a    000001f4                           : ull_div_t2.obj (.text)
+                  0001a35e    0000000c     driverlib.lib : cpu.obj (.text:NOROM_CPUcpsie)
+                  0001a36a    0000000c                   : cpu.obj (.text:NOROM_CPUcpsid)
+                  0001a376    00000002     --HOLE-- [fill = 0]
+                  0001a378    000002f0     osal_timers.obj (.text)
+                  0001a668    00000036     rom_jt.obj (.text)
+                  0001a69e    00000002     --HOLE-- [fill = 0]
+                  0001a6a0    00000078     hal_trng_wrapper.obj (.text)
+                  0001a718    00000020     hal_assert.obj (.text)
+                  0001a738    00000068     driverlib.lib : interrupt.obj (.text:NOROM_IntDisable)
+                  0001a7a0    0000005c                   : interrupt.obj (.text:NOROM_IntEnable)
+                  0001a7fc    000000c8     osal_bufmgr.obj (.text)
+                  0001a8c4    0000065c     osal.obj (.text)
+                  0001af20    00000058     hal_flash_wrapper.obj (.text)
+                  0001af78    00000188     osal_cbtimer.obj (.text)
+                  0001b100    000003ec     osal_snv_wrapper.obj (.text)
+                  0001b4ec    00000af4     gapbondmgr.obj (.text)
+                  0001bfe0    00000014     driverlib.lib : vims.obj (.text:NOROM_VIMSModeGet)
+                  0001bff4    0000001c                   : flash.obj (.text:NOROM_FlashProgram)
+                  0001c010    0000001c                   : flash.obj (.text:NOROM_FlashSectorErase)
+                  0001c02c    00000bac     ble_dispatch.obj (.text)
+                  0001cbd8    00000090     osal_pwrmgr.obj (.text)
+                  0001cc68    00000040     osal_memory_icall.obj (.text)
+                  0001cca8    00000038     osal_icall_ble.obj (.text)
+                  0001cce0    0000004c     rtsv7M3_T_le_eabi.lib : cpy_tbl.obj (.text)
+                  0001cd2c    0000000c                           : copy_zero_init.obj (.text:decompress:ZI)
+                  0001cd38    0000000e                           : copy_decompress_none.obj (.text:decompress:none)
+                  0001cd46    00000068                           : copy_decompress_lzss.obj (.text:decompress:lzss)
+                  0001cdae    00000002     --HOLE-- [fill = 0]
+                  0001cdb0    00000060     gattservapp_util.obj (.text)
+                  0001ce10    00000008     ble_rom_patch.symbols (.tramp.HCI_ReadBDADDRCmd.1)
+                  0001ce18    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_SetRandomAddressCmd.1)
+                  0001ce20    00000008     ble_rom_patch.symbols (.tramp.LL_ReadBDADDR.1)
+                  0001ce28    00000008     ble_rom_patch.symbols (.tramp.HCI_DisconnectCmd.1)
+                  0001ce30    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_SetAdvDataCmd.1)
+                  0001ce38    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_SetScanRspDataCmd.1)
+                  0001ce40    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_SetAdvEnableCmd.1)
+                  0001ce48    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_SetAdvParamCmd.1)
+                  0001ce50    00000008     ble_rom_patch.symbols (.tramp.HCI_SetControllerToHostFlowCtrlCmd.1)
+                  0001ce58    00000008     ble_rom_patch.symbols (.tramp.HCI_HostBufferSizeCmd.1)
+                  0001ce60    00000008     ble_rom_patch.symbols (.tramp.HCI_HostNumCompletedPktCmd.1)
+                  0001ce68    00000008     ble_rom_patch.symbols (.tramp.HCI_SendDataPkt.1)
+                  0001ce70    00000008     ble_rom_patch.symbols (.tramp.HCI_bm_alloc.1)
+                  0001ce78    00000008     ble_rom_patch.symbols (.tramp.LL_Encrypt.1)
+                  0001ce80    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_LtkReqReplyCmd.1)
+                  0001ce88    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_LtkReqNegReplyCmd.1)
+                  0001ce90    00000008     ble_rom_patch.symbols (.tramp.llMemCopySrc.1)
+                  0001ce98    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_ReverseBytes.1)
+                  0001cea0    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_GenDeviceSKD.1)
+                  0001cea8    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_GenDeviceIV.1)
+                  0001ceb0    00000008     ble_rom_patch.symbols (.tramp.llEnqueueCtrlPkt.1)
+                  0001ceb8    00000008     ble_rom_patch.symbols (.tramp.llSetupUnknownRsp.1)
+                  0001cec0    00000008     ble_rom_patch.symbols (.tramp.LL_RX_bm_alloc.1)
+                  0001cec8    00000008     ble_rom_patch.symbols (.tramp.llPatchCM0.1)
+                  0001ced0    00000008     ble_rom_patch.symbols (.tramp.RFHAL_AllocRatChan.1)
+                  0001ced8    00000008     ble_rom_patch.symbols (.tramp.RFHAL_RegisterRatChanCallback.1)
+                  0001cee0    00000008     ble_rom_patch.symbols (.tramp.LL_CtrlToHostFlowControl.1)
+                  0001cee8    00000008     ble_rom_patch.symbols (.tramp.HCI_SendCommandCompleteEvent.1)
+                  0001cef0    00000008     ble_rom_patch.symbols (.tramp.HCI_CommandCompleteEvent.1)
+                  0001cef8    00000008     ble_rom_patch.symbols (.tramp.HCI_CommandStatusEvent.1)
+                  0001cf00    00000008     ble_rom_patch.symbols (.tramp.LL_EXT_ResetSystem.1)
+                  0001cf08    00000008     ble_rom_patch.symbols (.tramp.LL_ReadLocalVersionInfo.1)
+                  0001cf10    00000008     ble_rom_patch.symbols (.tramp.llFreeTask.1)
+                  0001cf18    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_GeneratePseudoRandNum.1)
+                  0001cf20    00000008     ble_rom_patch.symbols (.tramp.llScheduler.1)
+                  0001cf28    00000008     ble_rom_patch.symbols (.tramp.llConvertLstoToEvent.1)
+                  0001cf30    00000008     ble_rom_patch.symbols (.tramp.llConvertCtrlProcTimeoutToEvent.1)
+                  0001cf38    00000008     ble_rom_patch.symbols (.tramp.llCalcScaFactor.1)
+                  0001cf40    00000008     ble_rom_patch.symbols (.tramp.llConnTerminate.1)
+                  0001cf48    00000008     ble_rom_patch.symbols (.tramp.RFHAL_InitDataQueue.1)
+                  0001cf50    00000008     ble_rom_patch.symbols (.tramp.llEventDelta.1)
+                  0001cf58    00000008     ble_rom_patch.symbols (.tramp.LL_TX_bm_alloc.1)
+                  0001cf60    00000008     ble_rom_patch.symbols (.tramp.RFHAL_FreeNextTxDataEntry.1)
+                  0001cf68    00000008     ble_rom_patch.symbols (.tramp.RFHAL_GetNextDataEntry.1)
+                  0001cf70    00000008     ble_rom_patch.symbols (.tramp.RFHAL_GetTempDataEntry.1)
+                  0001cf78    00000008     ble_rom_patch.symbols (.tramp.llReleaseConnId.1)
+                  0001cf80    00000008     ble_rom_patch.symbols (.tramp.llTimeCompare.1)
+                  0001cf88    00000008     ble_rom_patch.symbols (.tramp.HCI_HardwareErrorEvent.1)
+                  0001cf90    00000008     ble_rom_patch.symbols (.tramp.llGetCurrentTask.1)
+                  0001cf98    00000008     ble_rom_patch.symbols (.tramp.llTimeDelta.1)
+                  0001cfa0    00000008     ble_rom_patch.symbols (.tramp.llSetupRejectInd.1)
+                  0001cfa8    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_Init.1)
+                  0001cfb0    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_LoadKey.1)
+                  0001cfb8    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_GenerateNonce.1)
+                  0001cfc0    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_EncryptMsg.1)
+                  0001cfc8    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_DecryptMsg.1)
+                  0001cfd0    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_GenerateTrueRandNum.1)
+                  0001cfd8    00000008     ble_rom_patch.symbols (.tramp.WL_Init.1)
+                  0001cfe0    00000008     ble_rom_patch.symbols (.tramp.LL_ClearWhiteList.1)
+                  0001cfe8    00000008     ble_rom_patch.symbols (.tramp.llReleaseAllConnId.1)
+                  0001cff0    00000008     ble_rom_patch.symbols (.tramp.LL_ConnActive.1)
+                  0001cff8    00000008     ble_rom_patch.symbols (.tramp.HCI_DataBufferOverflowEvent.1)
+                  0001d000    00000008     ble_rom_patch.symbols (.tramp.LL_DirectTestEndDoneCback.1)
+                  0001d008    00000008     ble_rom_patch.symbols (.tramp.llGetActiveTasks.1)
+                  0001d010    00000008     ble_rom_patch.symbols (.tramp.llSetupAdv.1)
+                  0001d018    00000008     ble_rom_patch.symbols (.tramp.llGetNumTasks.1)
+                  0001d020    00000008     ble_rom_patch.symbols (.tramp.llCheckForLstoDuringSL.1)
+                  0001d028    00000008     ble_rom_patch.symbols (.tramp.llEventInRange.1)
+                  0001d030    00000008     ble_rom_patch.symbols (.tramp.LL_EncLtkReqCback.1)
+                  0001d038    00000008     ble_rom_patch.symbols (.tramp.llSetupEncRsp.1)
+                  0001d040    00000008     ble_rom_patch.symbols (.tramp.LL_ENC_AES128_Encrypt.1)
+                  0001d048    00000008     ble_rom_patch.symbols (.tramp.LL_EncKeyRefreshCback.1)
+                  0001d050    00000008     ble_rom_patch.symbols (.tramp.LL_EncChangeCback.1)
+                  0001d058    00000008     ble_rom_patch.symbols (.tramp.llSetupStartEncRsp.1)
+                  0001d060    00000008     ble_rom_patch.symbols (.tramp.llSetupPauseEncRsp.1)
+                  0001d068    00000008     ble_rom_patch.symbols (.tramp.LL_ReadRemoteVersionInfoCback.1)
+                  0001d070    00000008     ble_rom_patch.symbols (.tramp.llSetupVersionIndReq.1)
+                  0001d078    00000008     ble_rom_patch.symbols (.tramp.llMoveTempTxDataEntries.1)
+                  0001d080    00000008     ble_rom_patch.symbols (.tramp.WL_ClearEntry.1)
+                  0001d088    00000008     ble_rom_patch.symbols (.tramp.RFHAL_NextDataEntryDone.1)
+                  0001d090    00000008     ble_rom_patch.symbols (.tramp.LL_PseudoRand.1)
+                  0001d098    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_ClearWhiteListCmd.1)
+                  0001d0a0    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_AddWhiteListCmd.1)
+                  0001d0a8    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_TestEndCmd.1)
+                  0001d0b0    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_SetFastTxResponseTimeCmd.1)
+                  0001d0b8    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_NumComplPktsLimitCmd.1)
+                  0001d0c0    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_BuildRevisionCmd.1)
+                  0001d0c8    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_SetSlaveLatencyOverrideCmd.1)
+                  0001d0d0    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_AdvEventNoticeCmd.1)
+                  0001d0d8    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_PERbyChanCmd.1)
+                  0001d0e0    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_PacketErrorRateCmd.1)
+                  0001d0e8    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_DisconnectImmedCmd.1)
+                  0001d0f0    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_SetMaxDtmTxPowerCmd.1)
+                  0001d0f8    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_EnablePTMCmd.1)
+                  0001d100    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_SetSCACmd.1)
+                  0001d108    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_SetBDADDRCmd.1)
+                  0001d110    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_EndModemTestCmd.1)
+                  0001d118    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_ModemTestRxCmd.1)
+                  0001d120    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_ModemHopTestTxCmd.1)
+                  0001d128    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_ModemTestTxCmd.1)
+                  0001d130    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_SetLocalSupportedFeaturesCmd.1)
+                  0001d138    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_DecryptCmd.1)
+                  0001d140    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_OnePktPerEvtCmd.1)
+                  0001d148    00000008     ble_rom_patch.symbols (.tramp.HCI_EXT_SetTxPowerCmd.1)
+                  0001d150    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_ReadSupportedStatesCmd.1)
+                  0001d158    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_EncryptCmd.1)
+                  0001d160    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_ReadChannelMapCmd.1)
+                  0001d168    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_RemoveWhiteListCmd.1)
+                  0001d170    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_ReadWhiteListSizeCmd.1)
+                  0001d178    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_ReadAdvChanTxPowerCmd.1)
+                  0001d180    00000008     ble_rom_patch.symbols (.tramp.HCI_LE_ReadLocalSupportedFeaturesCmd.1)
+                  0001d188    00000008     ble_rom_patch.symbols (.tramp.HCI_ReadLocalSupportedFeaturesCmd.1)
+                  0001d190    00000008     ble_rom_patch.symbols (.tramp.HCI_ReadTransmitPowerLevelCmd.1)
+                  0001d198    00000008     ble_rom_patch.symbols (.tramp.HCI_SetEventMaskCmd.1)
+                  0001d1a0    00000008     ble_rom_patch.symbols (.tramp.HCI_ReadRemoteVersionInfoCmd.1)
+
+.const     0    0001d1a8    000006f8     
+                  0001d1a8    00000028     osal_icall_ble.obj (.const:tasksArr)
+                  0001d1d0    000006d0     rom_jt.obj (.const:$O12$$)
+
+.constdata 
+*          0    0001d8a0    00000000     UNINITIALIZED
+
+.rodata    0    0001d8a0    0000006e     
+                  0001d8a0    00000008     host_pxxx.a : gapgattserver.o (.rodata)
+                  0001d8a8    00000008                 : gattservapp.o (.rodata)
+                  0001d8b0    0000005c     cc2640_ctrl_pxxx.a : ll_config.o (.rodata)
+                  0001d90c    00000002                        : ll_patch.o (.rodata)
+
+.cinit     0    0001d910    00000480     
+                  0001d910    0000000c     (__TI_handler_table)
+                  0001d91c    00000010     (__TI_cinit_table)
+                  0001d92c    00000004     --HOLE-- [fill = 0]
+                  0001d930    00000458     (.cinit..data.load) [load image]
+                  0001dd88    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+
+.pinit     0    0001dd90    00000000     UNINITIALIZED
+
+.init_array 
+*          0    0001dd90    00000000     UNINITIALIZED
+
+.emb_text 
+*          0    0001dd90    00000000     UNINITIALIZED
+
+.TI.bound:NV_FLASH 
+*          0    0001e000    00001000     
+                  0001e000    00001000     osal_snv_wrapper.obj (.TI.bound:NV_FLASH)
+
+.bss       0    20004348    00000144     UNINITIALIZED
+                  20004348    00000004     host_pxxx.a : att_server.o (.bss)
+                  2000434c    00000004                 : gap_devmgr.o (.bss)
+                  20004350    00000004                 : gap_devmgr.o (.bss)
+                  20004354    00000001                 : gap_devmgr.o (.bss)
+                  20004355    00000002                 : gatt_task.o (.bss)
+                  20004357    00000001                 : l2cap_if.o (.bss)
+                  20004358    00000004                 : gap_linkmgr.o (.bss)
+                  2000435c    00000004                 : gap_task.o (.bss)
+                  20004360    00000004                 : gapgattserver.o (.bss)
+                  20004364    00000004                 : gatt_server.o (.bss)
+                  20004368    00000008                 : gatt_task.o (.bss)
+                  20004370    00000024                 : gattservapp.o (.bss)
+                  20004394    00000004                 : gattservapp.o (.bss)
+                  20004398    00000030                 : l2cap_task.o (.bss)
+                  200043c8    00000001                 : l2cap_util.o (.bss)
+                  200043c9    00000001                 : sm_task.o (.bss)
+                  200043ca    00000002     cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.bss)
+                  200043cc    00000038     host_pxxx.a : linkdb.o (.bss)
+                  20004404    0000000c                 : sm_pairing.o (.bss)
+                  20004410    00000010     cc2640_ctrl_pxxx.a : hci_event_patch.o (.bss)
+                  20004420    00000008                        : ll_patch.o (.bss)
+                  20004428    00000001     cc26xx_hci_tl_none.a : hci_tl.o (.bss)
+                  20004429    00000001                          : hci_tl.o (.bss)
+                  2000442a    00000001                          : hci_tl.o (.bss)
+                  2000442b    00000001                          : hci_tl.o (.bss)
+                  2000442c    00000001                          : hci_tl.o (.bss)
+                  2000442d    00000001                          : hci_tl.o (.bss)
+                  2000442e    00000002     --HOLE--
+                  20004430    00000004     hal_trng_wrapper.obj (.bss)
+                  20004434    0000003c     ble_dispatch.obj (.bss:$O3$$)
+                  20004470    0000000c     osal_timers.obj (.bss:$O9$$)
+                  2000447c    0000000c     icall_startup.obj (.bss:$O11$$)
+                  20004488    00000004     (.common:tasksEvents)
+
+.data      0    20004490    00000450     UNINITIALIZED
+                  20004490    0000002c     host_pxxx.a : gap_configmgr.o (.data)
+                  200044bc    00000050                 : gap_configmgr.o (.data)
+                  2000450c    0000001c                 : gap_linkmgr.o (.data)
+                  20004528    0000001c                 : gap_peridevmgr.o (.data)
+                  20004544    00000004                 : gap_perilinkmgr.o (.data)
+                  20004548    0000000c                 : gap_task.o (.data)
+                  20004554    00000001                 : gapgattserver.o (.data)
+                  20004555    00000001                 : gapgattserver.o (.data)
+                  20004556    00000001                 : gapgattserver.o (.data)
+                  20004557    00000001                 : gatt_server.o (.data)
+                  20004558    00000024                 : gapgattserver.o (.data)
+                  2000457c    00000070                 : gapgattserver.o (.data)
+                  200045ec    00000008                 : gatt_server.o (.data)
+                  200045f4    00000001                 : gatt_task.o (.data)
+                  200045f5    00000001                 : gattservapp.o (.data)
+                  200045f6    00000002                 : l2cap_task.o (.data)
+                  200045f8    00000010                 : gattservapp.o (.data)
+                  20004608    00000008                 : l2cap_task.o (.data)
+                  20004610    00000010                 : sm_rsppairing.o (.data)
+                  20004620    0000000c     cc2640_ctrl_pxxx.a : ll_common_patch.o (.data)
+                  2000462c    00000020                        : ll_config.o (.data)
+                  2000464c    00000004     osal_bufmgr.obj (.data)
+                  20004650    000000f8     cc2640_ctrl_pxxx.a : ll_patch.o (.data)
+                  20004748    00000008     hal_assert.obj (.data:$O1$$)
+                  20004750    00000028     osal.obj (.data:$O4$$)
+                  20004778    0000007c     osal_cbtimer.obj (.data:$O5$$)
+                  200047f4    00000008     osal_clock.obj (.data:$O6$$)
+                  200047fc    00000004     osal_pwrmgr.obj (.data:$O7$$)
+                  20004800    00000004     osal_snv_wrapper.obj (.data:$O8$$)
+                  20004804    000000dc     gapbondmgr.obj (.data:$O10$$)
+
+MODULE SUMMARY
+
+       Module                                   code    ro data   rw data
+       ------                                   ----    -------   -------
+    .\HAL\Common\
+       hal_assert.obj                           32      0         8      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   32      0         8      
+                                                                         
+    .\HAL\Target\CC2650\Drivers\
+       hal_trng_wrapper.obj                     120     0         4      
+       hal_flash_wrapper.obj                    88      0         0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   208     0         4      
+                                                                         
+    .\ICallBLE\
+       ble_dispatch.obj                         2988    0         60     
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   2988    0         60     
+                                                                         
+    .\OSAL\
+       osal_snv_wrapper.obj                     1004    4096      4      
+       osal.obj                                 1628    0         40     
+       osal_timers.obj                          752     0         12     
+       osal_cbtimer.obj                         392     0         124    
+       osal_bufmgr.obj                          200     0         4      
+       osal_pwrmgr.obj                          144     0         4      
+       osal_memory_icall.obj                    64      0         0      
+       osal_clock.obj                           0       0         8      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   4184    4096      196    
+                                                                         
+    .\PROFILES\
+       gapbondmgr.obj                           2804    0         220    
+       gattservapp_util.obj                     96      0         0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   2900    0         220    
+                                                                         
+    .\Startup\
+       rom_jt.obj                               54      1744      0      
+       icall_startup.obj                        672     0         12     
+       osal_icall_ble.obj                       56      40        0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   782     1784      12     
+                                                                         
+    .\TOOLS\
+       onboard.obj                              2       0         0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   2       0         0      
+                                                                         
+    C:\Users\niram\AppData\Local\Temp\
+       {2FF7C978-D973-4E7B-9F50-1D2F27385D8C}   104     0         4      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   104     0         4      
+                                                                         
+    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\src\rom\ble_rom_releases\04242014\
+       ble_rom_patch.symbols                    920     0         0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   920     0         0      
+                                                                         
+    D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib
+       interrupt.obj                            196     0         0      
+       flash.obj                                56      0         0      
+       cpu.obj                                  24      0         0      
+       vims.obj                                 20      0         0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   296     0         0      
+                                                                         
+    D:\Dropbox\Phyn\BLE\App\ccsv7\tools\compiler\ti-cgt-arm_16.9.7.LTS\lib\rtsv7M3_T_le_eabi.lib
+       ull_div_t2.obj                           500     0         0      
+       memcpy_t2.obj                            156     0         0      
+       memset_t2.obj                            122     0         0      
+       autoinit.obj                             120     0         0      
+       copy_decompress_lzss.obj                 104     0         0      
+       cpy_tbl.obj                              76      0         0      
+       ll_mul_t2.obj                            24      0         0      
+       copy_decompress_none.obj                 14      0         0      
+       copy_zero_init.obj                       12      0         0      
+       startup.obj                              2       0         0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   1130    0         0      
+                                                                         
+    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\blelib\ctrl\cc2640\cc2640_ctrl_pxxx.a
+       ll_patch.o                               5924    2         256    
+       ll_common_patch.o                        3080    0         12     
+       ll_slave_end_causes_patch.o              1790    0         2      
+       hci_event_patch.o                        1324    0         16     
+       ble_patch.o                              1268    0         0      
+       ll_adv_end_causes_patch.o                1064    0         0      
+       ll_isr.o                                 968     0         0      
+       hci_patch.o                              776     0         0      
+       ll_scheduler_patch.o                     424     0         0      
+       ll_enc_patch.o                           332     0         0      
+       ll_wl_patch.o                            174     0         0      
+       hci_data_patch.o                         168     0         0      
+       ll_config.o                              0       92        32     
+       ll_sleep.o                               70      0         0      
+       ll_rat_patch.o                           16      0         0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   17378   94        318    
+                                                                         
+    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\blelib\hci_tl\cc26xx\cc26xx_hci_tl_none.a
+       hci_tl.o                                 176     0         6      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   176     0         6      
+                                                                         
+    D:\Dropbox\Phyn\BLE\ti\simplelink\ble_sdk_2_02_01_18\blelib\host\host_pxxx.a
+       gattservapp.o                            4052    8         57     
+       gatt_server.o                            2838    0         13     
+       gap_linkmgr.o                            2488    0         32     
+       sm_pairing.o                             2020    0         12     
+       sm_mgr.o                                 1696    0         0      
+       l2cap_util.o                             1676    0         1      
+       gap_peridevmgr.o                         1572    0         28     
+       att_util.o                               1484    0         0      
+       sm_rsppairing.o                          1392    0         16     
+       gapgattserver.o                          812     8         155    
+       gap_configmgr.o                          840     0         124    
+       smp.o                                    924     0         0      
+       linkdb.o                                 748     0         56     
+       gap_task.o                               764     0         16     
+       gatt_task.o                              766     0         11     
+       l2cap_task.o                             696     0         58     
+       att_server.o                             492     0         4      
+       l2cap_if.o                               390     0         1      
+       gatt_uuid.o                              318     0         0      
+       gap_perilinkmgr.o                        272     0         4      
+       sm_task.o                                240     0         1      
+       gap_devmgr.o                             176     0         9      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   26656   16        598    
+                                                                         
+       Linker Generated:                        0       1148      0      
+    +--+----------------------------------------+-------+---------+---------+
+       Grand Total:                             57756   7138      1426   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 0001d91c records: 2, size/record: 8, table size: 16
+	.data: load addr=0001d930, load size=00000458 bytes, run addr=20004490, run size=00000450 bytes, compression=copy
+	.bss: load addr=0001dd88, load size=00000008 bytes, run addr=20004348, run size=00000144 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 0001d910 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+FAR CALL TRAMPOLINES
+
+callee name               trampoline name
+   callee addr  tramp addr   call addr  call info
+--------------  -----------  ---------  ----------------
+__TI_auto_init            $Tramp$TT$S$$__TI_auto_init
+   00019fcd     0000f2a0     0000f00c   icall_startup.obj (EntrySection)
+L2CAP_SetUserConfig       $Tramp$TT$S$$L2CAP_SetUserConfig
+   000136a5     0000f2a8     0000f06c   icall_startup.obj (EntrySection)
+ICall_enrollService$21    $Tramp$TT$S$$ICall_enrollService$21
+   0001cca9     0000f2b0     0000f0c6   icall_startup.obj (EntrySection)
+                             0000f1f4   icall_startup.obj (EntrySection)
+halAssertHandlerExt       $Tramp$TT$S$$halAssertHandlerExt
+   0001a71d     0000f2b8     0000f0d8   icall_startup.obj (EntrySection)
+HalFlashRead              $Tramp$TT$S$$HalFlashRead
+   0001af3b     0000f2c0     0000f100   icall_startup.obj (EntrySection)
+findOffset$13             $Tramp$TT$S$$findOffset$13
+   0001b4b9     0000f2c8     0000f112   icall_startup.obj (EntrySection)
+                             0000f12a   icall_startup.obj (EntrySection)
+compactPage$13            $Tramp$TT$S$$compactPage$13
+   0001b27f     0000f2d0     0000f116   icall_startup.obj (EntrySection)
+erasePage$13              $Tramp$TT$S$$erasePage$13
+   0001b235     0000f2d8     0000f11c   icall_startup.obj (EntrySection)
+setActivePage$13          $Tramp$TT$S$$setActivePage$13
+   0001b26b     0000f2e0     0000f120   icall_startup.obj (EntrySection)
+ICall_getTicks$14         $Tramp$TT$S$$ICall_getTicks$14
+   0001a401     0000f2e8     0000f138   icall_startup.obj (EntrySection)
+osal_mem_alloc            $Tramp$TT$S$$osal_mem_alloc
+   0001cc69     0000f2f0     0000f148   icall_startup.obj (EntrySection)
+                             0000f162   icall_startup.obj (EntrySection)
+osal_memset               $Tramp$TT$S$$osal_memset
+   0001a8c5     0000f2f8     0000f152   icall_startup.obj (EntrySection)
+                             0000f15c   icall_startup.obj (EntrySection)
+                             0000f170   icall_startup.obj (EntrySection)
+                             0000f192   icall_startup.obj (EntrySection)
+LL_Init                   $Tramp$TT$S$$LL_Init
+   00018149     0000f300     0000f176   icall_startup.obj (EntrySection)
+HCI_Init                  $Tramp$TT$S$$HCI_Init
+   00019f25     0000f308     0000f17c   icall_startup.obj (EntrySection)
+L2CAP_Init                $Tramp$TT$S$$L2CAP_Init
+   000136a9     0000f310     0000f198   icall_startup.obj (EntrySection)
+GAP_Init                  $Tramp$TT$S$$GAP_Init
+   00010ffb     0000f318     0000f19e   icall_startup.obj (EntrySection)
+SM_Init                   $Tramp$TT$S$$SM_Init
+   000156c5     0000f320     0000f1a4   icall_startup.obj (EntrySection)
+GATT_Init                 $Tramp$TT$S$$GATT_Init
+   0001216b     0000f328     0000f1aa   icall_startup.obj (EntrySection)
+GATTServApp_Init          $Tramp$TT$S$$GATTServApp_Init
+   00012565     0000f330     0000f1b0   icall_startup.obj (EntrySection)
+GAP_RegisterBondMgrCBs    $Tramp$TT$S$$GAP_RegisterBondMgrCBs
+   000112b9     0000f338     0000f1be   icall_startup.obj (EntrySection)
+gapBondMgrReadBonds$16    $Tramp$TT$S$$gapBondMgrReadBonds$16
+   0001bb09     0000f340     0000f1c2   icall_startup.obj (EntrySection)
+osal_snv_read             $Tramp$TT$S$$osal_snv_read
+   0001b153     0000f348     0000f1ce   icall_startup.obj (EntrySection)
+osal_start_system         $Tramp$TT$S$$osal_start_system
+   0001ad1d     0000f350     0000f244   icall_startup.obj (EntrySection)
+HCI_ReadBDADDRCmd         $Tramp$TT$L$PI$$HCI_ReadBDADDRCmd
+   10009765     0001ce10     0000fb52   host_pxxx.a : gap_configmgr.o (.text)
+                             0001c2e4   ble_dispatch.obj (.text)
+HCI_LE_SetRandomAddressCmd  $Tramp$TT$L$PI$$HCI_LE_SetRandomAddressCmd
+   10009849     0001ce18     0000fd22   host_pxxx.a : gap_configmgr.o (.text)
+LL_ReadBDADDR             $Tramp$TT$L$PI$$LL_ReadBDADDR
+   100056c9     0001ce20     0000fdf0   host_pxxx.a : gap_configmgr.o (.text)
+HCI_DisconnectCmd         $Tramp$TT$L$PI$$HCI_DisconnectCmd
+   10009525     0001ce28     0000ff72   host_pxxx.a : gap_linkmgr.o (.text)
+                             0001051e               : gap_linkmgr.o (.text)
+HCI_LE_SetAdvDataCmd      $Tramp$TT$L$PI$$HCI_LE_SetAdvDataCmd
+   100098a1     0001ce30     000109a8   host_pxxx.a : gap_peridevmgr.o (.text)
+                             00010e40               : gap_peridevmgr.o (.text)
+HCI_LE_SetScanRspDataCmd  $Tramp$TT$L$PI$$HCI_LE_SetScanRspDataCmd
+   100098bd     0001ce38     000109b2   host_pxxx.a : gap_peridevmgr.o (.text)
+                             00010e4a               : gap_peridevmgr.o (.text)
+HCI_LE_SetAdvEnableCmd    $Tramp$TT$L$PI$$HCI_LE_SetAdvEnableCmd
+   100098d9     0001ce40     00010a02   host_pxxx.a : gap_peridevmgr.o (.text)
+                             00010bd0               : gap_peridevmgr.o (.text)
+HCI_LE_SetAdvParamCmd     $Tramp$TT$L$PI$$HCI_LE_SetAdvParamCmd
+   1000986d     0001ce48     00010d18   host_pxxx.a : gap_peridevmgr.o (.text)
+HCI_SetControllerToHostFlowCtrlCmd  $Tramp$TT$L$PI$$HCI_SetControllerToHostFlowCtrlCmd
+   100095f5     0001ce50     00013638   host_pxxx.a : l2cap_if.o (.text)
+                             00013658               : l2cap_if.o (.text)
+HCI_HostBufferSizeCmd     $Tramp$TT$L$PI$$HCI_HostBufferSizeCmd
+   10009631     0001ce58     0001364e   host_pxxx.a : l2cap_if.o (.text)
+HCI_HostNumCompletedPktCmd  $Tramp$TT$L$PI$$HCI_HostNumCompletedPktCmd
+   1000965d     0001ce60     0001366c   host_pxxx.a : l2cap_if.o (.text)
+HCI_SendDataPkt           $Tramp$TT$L$PI$$HCI_SendDataPkt
+   100094e9     0001ce68     00013b48   host_pxxx.a : l2cap_util.o (.text)
+HCI_bm_alloc              $Tramp$TT$L$PI$$HCI_bm_alloc
+   100094a1     0001ce70     00013fca   host_pxxx.a : l2cap_util.o (.text)
+                             00017258   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+LL_Encrypt                $Tramp$TT$L$PI$$LL_Encrypt
+   100057d5     0001ce78     000145f4   host_pxxx.a : sm_mgr.o (.text)
+HCI_LE_LtkReqReplyCmd     $Tramp$TT$L$PI$$HCI_LE_LtkReqReplyCmd
+   10009bc5     0001ce80     0001520c   host_pxxx.a : sm_rsppairing.o (.text)
+HCI_LE_LtkReqNegReplyCmd  $Tramp$TT$L$PI$$HCI_LE_LtkReqNegReplyCmd
+   10009be1     0001ce88     00015226   host_pxxx.a : sm_rsppairing.o (.text)
+llMemCopySrc              $Tramp$TT$L$PI$$llMemCopySrc
+   100089d9     0001ce90     00015bb0   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+                             00015bbc                      : ble_patch.o (.text)
+                             00015bc8                      : ble_patch.o (.text)
+                             00015bd4                      : ble_patch.o (.text)
+                             00015bf8                      : ble_patch.o (.text)
+                             00015c38                      : ble_patch.o (.text)
+                             00015c44                      : ble_patch.o (.text)
+                             00015c98                      : ble_patch.o (.text)
+                             00015ca4                      : ble_patch.o (.text)
+                             00015cb2                      : ble_patch.o (.text)
+                             00015cca                      : ble_patch.o (.text)
+                             00015d78                      : ble_patch.o (.text)
+                             00015d86                      : ble_patch.o (.text)
+LL_ENC_ReverseBytes       $Tramp$TT$L$PI$$LL_ENC_ReverseBytes
+   1000b4ed     0001ce98     00015cbc   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+                             00015cd2                      : ble_patch.o (.text)
+LL_ENC_GenDeviceSKD       $Tramp$TT$L$PI$$LL_ENC_GenDeviceSKD
+   1000b541     0001cea0     00015cda   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+LL_ENC_GenDeviceIV        $Tramp$TT$L$PI$$LL_ENC_GenDeviceIV
+   1000b555     0001cea8     00015ce2   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+llEnqueueCtrlPkt          $Tramp$TT$L$PI$$llEnqueueCtrlPkt
+   100080bd     0001ceb0     00015d18   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+                             00015d9a                      : ble_patch.o (.text)
+                             00018730                      : ll_patch.o (.text)
+llSetupUnknownRsp         $Tramp$TT$L$PI$$llSetupUnknownRsp
+   10008069     0001ceb8     00015dae   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+                             00019804                      : ll_slave_end_causes_patch.o (.text)
+LL_RX_bm_alloc            $Tramp$TT$L$PI$$LL_RX_bm_alloc
+   1000556d     0001cec0     00015e3c   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+                             00015e7e                      : ble_patch.o (.text)
+                             0001734c                      : ll_common_patch.o (.text)
+llPatchCM0                $Tramp$TT$L$PI$$llPatchCM0
+   1000adb1     0001cec8     00015ef6   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+RFHAL_AllocRatChan        $Tramp$TT$L$PI$$RFHAL_AllocRatChan
+   10018315     0001ced0     00015efa   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+RFHAL_RegisterRatChanCallback  $Tramp$TT$L$PI$$RFHAL_RegisterRatChanCallback
+   10018391     0001ced8     00015f06   cc2640_ctrl_pxxx.a : ble_patch.o (.text)
+LL_CtrlToHostFlowControl  $Tramp$TT$L$PI$$LL_CtrlToHostFlowControl
+   100058d5     0001cee0     0001605e   cc2640_ctrl_pxxx.a : hci_data_patch.o (.text)
+HCI_SendCommandCompleteEvent  $Tramp$TT$L$PI$$HCI_SendCommandCompleteEvent
+   10008c81     0001cee8     000165e4   cc2640_ctrl_pxxx.a : hci_event_patch.o (.text)
+HCI_CommandCompleteEvent  $Tramp$TT$L$PI$$HCI_CommandCompleteEvent
+   10008add     0001cef0     0001667a   cc2640_ctrl_pxxx.a : hci_patch.o (.text)
+                             00016736                      : hci_patch.o (.text)
+                             00016768                      : hci_patch.o (.text)
+                             0001689e                      : hci_patch.o (.text)
+                             000168cc                      : hci_patch.o (.text)
+HCI_CommandStatusEvent    $Tramp$TT$L$PI$$HCI_CommandStatusEvent
+   10008ba1     0001cef8     00016752   cc2640_ctrl_pxxx.a : hci_patch.o (.text)
+                             000167c4                      : hci_patch.o (.text)
+LL_EXT_ResetSystem        $Tramp$TT$L$PI$$LL_EXT_ResetSystem
+   100070d5     0001cf00     000167dc   cc2640_ctrl_pxxx.a : hci_patch.o (.text)
+LL_ReadLocalVersionInfo   $Tramp$TT$L$PI$$LL_ReadLocalVersionInfo
+   1000589d     0001cf08     0001685c   cc2640_ctrl_pxxx.a : hci_patch.o (.text)
+llFreeTask                $Tramp$TT$L$PI$$llFreeTask
+   1000abed     0001cf10     00016938   cc2640_ctrl_pxxx.a : ll_adv_end_causes_patch.o (.text)
+                             00016a54                      : ll_adv_end_causes_patch.o (.text)
+                             000170d6                      : ll_common_patch.o (.text)
+                             00018fb0                      : ll_patch.o (.text)
+LL_ENC_GeneratePseudoRandNum  $Tramp$TT$L$PI$$LL_ENC_GeneratePseudoRandNum
+   1000b50d     0001cf18     0001694c   cc2640_ctrl_pxxx.a : ll_adv_end_causes_patch.o (.text)
+                             000169e4                      : ll_adv_end_causes_patch.o (.text)
+llScheduler               $Tramp$TT$L$PI$$llScheduler
+   1000a335     0001cf20     00016976   cc2640_ctrl_pxxx.a : ll_adv_end_causes_patch.o (.text)
+                             00016a1e                      : ll_adv_end_causes_patch.o (.text)
+                             00016cfa                      : ll_adv_end_causes_patch.o (.text)
+                             00018f78                      : ll_patch.o (.text)
+                             00018fbc                      : ll_patch.o (.text)
+                             00019532                      : ll_slave_end_causes_patch.o (.text)
+llConvertLstoToEvent      $Tramp$TT$L$PI$$llConvertLstoToEvent
+   10008721     0001cf28     00016b68   cc2640_ctrl_pxxx.a : ll_adv_end_causes_patch.o (.text)
+                             00019628                      : ll_slave_end_causes_patch.o (.text)
+llConvertCtrlProcTimeoutToEvent  $Tramp$TT$L$PI$$llConvertCtrlProcTimeoutToEvent
+   10008741     0001cf30     00016b72   cc2640_ctrl_pxxx.a : ll_adv_end_causes_patch.o (.text)
+                             00019682                      : ll_slave_end_causes_patch.o (.text)
+llCalcScaFactor           $Tramp$TT$L$PI$$llCalcScaFactor
+   1000d94d     0001cf38     00016b8c   cc2640_ctrl_pxxx.a : ll_adv_end_causes_patch.o (.text)
+llConnTerminate           $Tramp$TT$L$PI$$llConnTerminate
+   10008631     0001cf40     00016c3a   cc2640_ctrl_pxxx.a : ll_adv_end_causes_patch.o (.text)
+                             0001912a                      : ll_patch.o (.text)
+                             000194c6                      : ll_slave_end_causes_patch.o (.text)
+                             000197ac                      : ll_slave_end_causes_patch.o (.text)
+                             00019864                      : ll_slave_end_causes_patch.o (.text)
+RFHAL_InitDataQueue       $Tramp$TT$L$PI$$RFHAL_InitDataQueue
+   100183b9     0001cf48     00016c4e   cc2640_ctrl_pxxx.a : ll_adv_end_causes_patch.o (.text)
+                             00017082                      : ll_common_patch.o (.text)
+                             000170b2                      : ll_common_patch.o (.text)
+llEventDelta              $Tramp$TT$L$PI$$llEventDelta
+   10008719     0001cf50     00016dac   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             00017628                      : ll_common_patch.o (.text)
+                             000195f6                      : ll_slave_end_causes_patch.o (.text)
+                             00019642                      : ll_slave_end_causes_patch.o (.text)
+LL_TX_bm_alloc            $Tramp$TT$L$PI$$LL_TX_bm_alloc
+   10005549     0001cf58     00016f1e   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             00016f80                      : ll_common_patch.o (.text)
+                             00017686                      : ll_common_patch.o (.text)
+RFHAL_FreeNextTxDataEntry  $Tramp$TT$L$PI$$RFHAL_FreeNextTxDataEntry
+   10018485     0001cf60     00016fe4   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             00017050                      : ll_common_patch.o (.text)
+RFHAL_GetNextDataEntry    $Tramp$TT$L$PI$$RFHAL_GetNextDataEntry
+   100184cd     0001cf68     00016fea   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             00017056                      : ll_common_patch.o (.text)
+                             00017096                      : ll_common_patch.o (.text)
+                             00019dbe                      : ll_isr.o (.text)
+RFHAL_GetTempDataEntry    $Tramp$TT$L$PI$$RFHAL_GetTempDataEntry
+   100184d1     0001cf70     00017060   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             00017750                      : ll_common_patch.o (.text)
+llReleaseConnId           $Tramp$TT$L$PI$$llReleaseConnId
+   10008429     0001cf78     000170d0   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+llTimeCompare             $Tramp$TT$L$PI$$llTimeCompare
+   1000d8c9     0001cf80     00017182   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             00017400                      : ll_common_patch.o (.text)
+HCI_HardwareErrorEvent    $Tramp$TT$L$PI$$HCI_HardwareErrorEvent
+   10008bf5     0001cf88     0001727c   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             00017388                      : ll_common_patch.o (.text)
+                             000174e4                      : ll_common_patch.o (.text)
+                             00017860                      : ll_common_patch.o (.text)
+                             000178da                      : ll_common_patch.o (.text)
+                             0001847e                      : ll_patch.o (.text)
+                             00018840                      : ll_patch.o (.text)
+llGetCurrentTask          $Tramp$TT$L$PI$$llGetCurrentTask
+   1000ac3d     0001cf90     00017406   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             000183b8                      : ll_patch.o (.text)
+                             00018f96                      : ll_patch.o (.text)
+                             00019104                      : ll_patch.o (.text)
+                             0001910e                      : ll_patch.o (.text)
+llTimeDelta               $Tramp$TT$L$PI$$llTimeDelta
+   1000d8f5     0001cf98     00017418   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+llSetupRejectInd          $Tramp$TT$L$PI$$llSetupRejectInd
+   10007df5     0001cfa0     00017668   cc2640_ctrl_pxxx.a : ll_common_patch.o (.text)
+                             000199aa                      : ll_slave_end_causes_patch.o (.text)
+LL_ENC_Init               $Tramp$TT$L$PI$$LL_ENC_Init
+   1000b4c9     0001cfa8     0001798a   cc2640_ctrl_pxxx.a : ll_enc_patch.o (.text)
+                             000179f8                      : ll_enc_patch.o (.text)
+                             00018512                      : ll_patch.o (.text)
+                             00019a7c                      : ll_sleep.o (.text)
+LL_ENC_LoadKey            $Tramp$TT$L$PI$$LL_ENC_LoadKey
+   1000b58d     0001cfb0     00017992   cc2640_ctrl_pxxx.a : ll_enc_patch.o (.text)
+                             00017a00                      : ll_enc_patch.o (.text)
+LL_ENC_GenerateNonce      $Tramp$TT$L$PI$$LL_ENC_GenerateNonce
+   1000b569     0001cfb8     000179b4   cc2640_ctrl_pxxx.a : ll_enc_patch.o (.text)
+                             00017a24                      : ll_enc_patch.o (.text)
+LL_ENC_EncryptMsg         $Tramp$TT$L$PI$$LL_ENC_EncryptMsg
+   1000b721     0001cfc0     000179c0   cc2640_ctrl_pxxx.a : ll_enc_patch.o (.text)
+LL_ENC_DecryptMsg         $Tramp$TT$L$PI$$LL_ENC_DecryptMsg
+   1000b851     0001cfc8     00017a34   cc2640_ctrl_pxxx.a : ll_enc_patch.o (.text)
+LL_ENC_GenerateTrueRandNum  $Tramp$TT$L$PI$$LL_ENC_GenerateTrueRandNum
+   1000b51d     0001cfd0     0001838e   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+WL_Init                   $Tramp$TT$L$PI$$WL_Init
+   1000d189     0001cfd8     0001850e   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+LL_ClearWhiteList         $Tramp$TT$L$PI$$LL_ClearWhiteList
+   10005719     0001cfe0     00018516   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+llReleaseAllConnId        $Tramp$TT$L$PI$$llReleaseAllConnId
+   10008461     0001cfe8     0001857a   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+LL_ConnActive             $Tramp$TT$L$PI$$LL_ConnActive
+   1000678d     0001cff0     00018638   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+                             00018688                      : ll_patch.o (.text)
+                             000186c6                      : ll_patch.o (.text)
+                             00018702                      : ll_patch.o (.text)
+                             0001884a                      : ll_patch.o (.text)
+                             00019026                      : ll_patch.o (.text)
+                             0001906c                      : ll_patch.o (.text)
+                             000190fc                      : ll_patch.o (.text)
+HCI_DataBufferOverflowEvent  $Tramp$TT$L$PI$$HCI_DataBufferOverflowEvent
+   10008a2d     0001cff8     0001886a   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+LL_DirectTestEndDoneCback  $Tramp$TT$L$PI$$LL_DirectTestEndDoneCback
+   10009471     0001d000     00018d66   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+                             00018d9c                      : ll_patch.o (.text)
+llGetActiveTasks          $Tramp$TT$L$PI$$llGetActiveTasks
+   1000aca9     0001d008     00018f10   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+llSetupAdv                $Tramp$TT$L$PI$$llSetupAdv
+   100073e5     0001d010     00018f3c   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+llGetNumTasks             $Tramp$TT$L$PI$$llGetNumTasks
+   1000ace1     0001d018     00018f8e   cc2640_ctrl_pxxx.a : ll_patch.o (.text)
+llCheckForLstoDuringSL    $Tramp$TT$L$PI$$llCheckForLstoDuringSL
+   1000c1b5     0001d020     00019596   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+llEventInRange            $Tramp$TT$L$PI$$llEventInRange
+   100086f1     0001d028     000195b8   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+                             000195d8                      : ll_slave_end_causes_patch.o (.text)
+LL_EncLtkReqCback         $Tramp$TT$L$PI$$LL_EncLtkReqCback
+   1000925d     0001d030     0001989c   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+llSetupEncRsp             $Tramp$TT$L$PI$$llSetupEncRsp
+   10007b95     0001d038     000198a4   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+LL_ENC_AES128_Encrypt     $Tramp$TT$L$PI$$LL_ENC_AES128_Encrypt
+   1000b5f5     0001d040     00019900   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+LL_EncKeyRefreshCback     $Tramp$TT$L$PI$$LL_EncKeyRefreshCback
+   100093dd     0001d048     00019934   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+LL_EncChangeCback         $Tramp$TT$L$PI$$LL_EncChangeCback
+   1000933d     0001d050     0001993e   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+llSetupStartEncRsp        $Tramp$TT$L$PI$$llSetupStartEncRsp
+   10007ca9     0001d058     00019950   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+llSetupPauseEncRsp        $Tramp$TT$L$PI$$llSetupPauseEncRsp
+   10007d55     0001d060     0001996a   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+LL_ReadRemoteVersionInfoCback  $Tramp$TT$L$PI$$LL_ReadRemoteVersionInfoCback
+   100091e1     0001d068     000199e2   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+                             000199f6                      : ll_slave_end_causes_patch.o (.text)
+llSetupVersionIndReq      $Tramp$TT$L$PI$$llSetupVersionIndReq
+   10007f29     0001d070     00019a02   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+llMoveTempTxDataEntries   $Tramp$TT$L$PI$$llMoveTempTxDataEntries
+   1000afa1     0001d078     00019a62   cc2640_ctrl_pxxx.a : ll_slave_end_causes_patch.o (.text)
+WL_ClearEntry             $Tramp$TT$L$PI$$WL_ClearEntry
+   1000d1f5     0001d080     00019abe   cc2640_ctrl_pxxx.a : ll_wl_patch.o (.text)
+RFHAL_NextDataEntryDone   $Tramp$TT$L$PI$$RFHAL_NextDataEntryDone
+   100184d5     0001d088     00019e9e   cc2640_ctrl_pxxx.a : ll_isr.o (.text)
+LL_PseudoRand             $Tramp$TT$L$PI$$LL_PseudoRand
+   10005801     0001d090     0001ae92   osal.obj (.text)
+HCI_LE_ClearWhiteListCmd  $Tramp$TT$L$PI$$HCI_LE_ClearWhiteListCmd
+   100099f9     0001d098     0001b73e   gapbondmgr.obj (.text)
+                             0001c2c8   ble_dispatch.obj (.text)
+HCI_LE_AddWhiteListCmd    $Tramp$TT$L$PI$$HCI_LE_AddWhiteListCmd
+   10009a15     0001d0a0     0001b756   gapbondmgr.obj (.text)
+                             0001c2c4   ble_dispatch.obj (.text)
+HCI_LE_TestEndCmd         $Tramp$TT$L$PI$$HCI_LE_TestEndCmd
+   10009c8d     0001d0a8     0001c28a   ble_dispatch.obj (.text)
+HCI_EXT_SetFastTxResponseTimeCmd  $Tramp$TT$L$PI$$HCI_EXT_SetFastTxResponseTimeCmd
+   10009e4d     0001d0b0     0001c26c   ble_dispatch.obj (.text)
+HCI_EXT_NumComplPktsLimitCmd  $Tramp$TT$L$PI$$HCI_EXT_NumComplPktsLimitCmd
+   1000a1b5     0001d0b8     0001c1f6   ble_dispatch.obj (.text)
+HCI_EXT_BuildRevisionCmd  $Tramp$TT$L$PI$$HCI_EXT_BuildRevisionCmd
+   1000a109     0001d0c0     0001c20a   ble_dispatch.obj (.text)
+HCI_EXT_SetSlaveLatencyOverrideCmd  $Tramp$TT$L$PI$$HCI_EXT_SetSlaveLatencyOverrideCmd
+   10009e6d     0001d0c8     0001c210   ble_dispatch.obj (.text)
+HCI_EXT_AdvEventNoticeCmd  $Tramp$TT$L$PI$$HCI_EXT_AdvEventNoticeCmd
+   1000a0f1     0001d0d0     0001c224   ble_dispatch.obj (.text)
+HCI_EXT_PERbyChanCmd      $Tramp$TT$L$PI$$HCI_EXT_PERbyChanCmd
+   1000a075     0001d0d8     0001c22c   ble_dispatch.obj (.text)
+HCI_EXT_PacketErrorRateCmd  $Tramp$TT$L$PI$$HCI_EXT_PacketErrorRateCmd
+   1000a031     0001d0e0     0001c234   ble_dispatch.obj (.text)
+HCI_EXT_DisconnectImmedCmd  $Tramp$TT$L$PI$$HCI_EXT_DisconnectImmedCmd
+   1000a011     0001d0e8     0001c23a   ble_dispatch.obj (.text)
+HCI_EXT_SetMaxDtmTxPowerCmd  $Tramp$TT$L$PI$$HCI_EXT_SetMaxDtmTxPowerCmd
+   10009fd1     0001d0f0     0001c240   ble_dispatch.obj (.text)
+HCI_EXT_EnablePTMCmd      $Tramp$TT$L$PI$$HCI_EXT_EnablePTMCmd
+   10009f69     0001d0f8     0001c244   ble_dispatch.obj (.text)
+HCI_EXT_SetSCACmd         $Tramp$TT$L$PI$$HCI_EXT_SetSCACmd
+   10009f49     0001d100     0001c24a   ble_dispatch.obj (.text)
+HCI_EXT_SetBDADDRCmd      $Tramp$TT$L$PI$$HCI_EXT_SetBDADDRCmd
+   10009f0d     0001d108     0001c250   ble_dispatch.obj (.text)
+HCI_EXT_EndModemTestCmd   $Tramp$TT$L$PI$$HCI_EXT_EndModemTestCmd
+   10009eed     0001d110     0001c254   ble_dispatch.obj (.text)
+HCI_EXT_ModemTestRxCmd    $Tramp$TT$L$PI$$HCI_EXT_ModemTestRxCmd
+   10009ecd     0001d118     0001c25a   ble_dispatch.obj (.text)
+HCI_EXT_ModemHopTestTxCmd  $Tramp$TT$L$PI$$HCI_EXT_ModemHopTestTxCmd
+   10009ead     0001d120     0001c25e   ble_dispatch.obj (.text)
+HCI_EXT_ModemTestTxCmd    $Tramp$TT$L$PI$$HCI_EXT_ModemTestTxCmd
+   10009e8d     0001d128     0001c266   ble_dispatch.obj (.text)
+HCI_EXT_SetLocalSupportedFeaturesCmd  $Tramp$TT$L$PI$$HCI_EXT_SetLocalSupportedFeaturesCmd
+   10009e2d     0001d130     0001c272   ble_dispatch.obj (.text)
+HCI_EXT_DecryptCmd        $Tramp$TT$L$PI$$HCI_EXT_DecryptCmd
+   10009dd1     0001d138     0001c27a   ble_dispatch.obj (.text)
+HCI_EXT_OnePktPerEvtCmd   $Tramp$TT$L$PI$$HCI_EXT_OnePktPerEvtCmd
+   10009d45     0001d140     0001c280   ble_dispatch.obj (.text)
+HCI_EXT_SetTxPowerCmd     $Tramp$TT$L$PI$$HCI_EXT_SetTxPowerCmd
+   10009d09     0001d148     0001c286   ble_dispatch.obj (.text)
+HCI_LE_ReadSupportedStatesCmd  $Tramp$TT$L$PI$$HCI_LE_ReadSupportedStatesCmd
+   10009c15     0001d150     0001c2a0   ble_dispatch.obj (.text)
+HCI_LE_EncryptCmd         $Tramp$TT$L$PI$$HCI_LE_EncryptCmd
+   10009af5     0001d158     0001c2a8   ble_dispatch.obj (.text)
+HCI_LE_ReadChannelMapCmd  $Tramp$TT$L$PI$$HCI_LE_ReadChannelMapCmd
+   10009aa1     0001d160     0001c2b4   ble_dispatch.obj (.text)
+HCI_LE_RemoveWhiteListCmd  $Tramp$TT$L$PI$$HCI_LE_RemoveWhiteListCmd
+   10009a31     0001d168     0001c2bc   ble_dispatch.obj (.text)
+HCI_LE_ReadWhiteListSizeCmd  $Tramp$TT$L$PI$$HCI_LE_ReadWhiteListSizeCmd
+   100099c9     0001d170     0001c2cc   ble_dispatch.obj (.text)
+HCI_LE_ReadAdvChanTxPowerCmd  $Tramp$TT$L$PI$$HCI_LE_ReadAdvChanTxPowerCmd
+   100098f5     0001d178     0001c2d0   ble_dispatch.obj (.text)
+HCI_LE_ReadLocalSupportedFeaturesCmd  $Tramp$TT$L$PI$$HCI_LE_ReadLocalSupportedFeaturesCmd
+   10009829     0001d180     0001c2d4   ble_dispatch.obj (.text)
+HCI_ReadLocalSupportedFeaturesCmd  $Tramp$TT$L$PI$$HCI_ReadLocalSupportedFeaturesCmd
+   1000973d     0001d188     0001c2e8   ble_dispatch.obj (.text)
+HCI_ReadTransmitPowerLevelCmd  $Tramp$TT$L$PI$$HCI_ReadTransmitPowerLevelCmd
+   100095d1     0001d190     0001c2fe   ble_dispatch.obj (.text)
+HCI_SetEventMaskCmd       $Tramp$TT$L$PI$$HCI_SetEventMaskCmd
+   10009571     0001d198     0001c308   ble_dispatch.obj (.text)
+HCI_ReadRemoteVersionInfoCmd  $Tramp$TT$L$PI$$HCI_ReadRemoteVersionInfoCmd
+   10009541     0001d1a0     0001c30e   ble_dispatch.obj (.text)
+
+[138 trampolines]
+[230 trampoline calls]
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                                  
+-------   ----                                  
+10014c00  A1_rw                                 
+10005000  A1_rw_1                               
+10019ffe  A2_rw                                 
+1000dffe  A2_rw_1                               
+10019ffc  A3_rw                                 
+1000dffc  A3_rw_1                               
+20004f2c  A4_rw                                 
+200048e8  A4_rw_1                               
+20004f7c  ACCX                                  
+20004f80  ACCY                                  
+20004f84  ACCZ                                  
+10015229  ATOMICPATTERN                         
+0000f59f  ATT_BuildErrorRsp                     
+0000f5cf  ATT_BuildExchangeMTUReq               
+0000f5db  ATT_BuildExchangeMTURsp               
+0000f905  ATT_BuildExecuteWriteReq              
+0000f669  ATT_BuildFindByTypeValueReq           
+0000f6c5  ATT_BuildFindByTypeValueRsp           
+0000f601  ATT_BuildFindInfoReq                  
+0000f60d  ATT_BuildFindInfoRsp                  
+0000f929  ATT_BuildHandleValueInd               
+0000f88b  ATT_BuildPrepareWriteReq              
+0000f8b5  ATT_BuildPrepareWriteRsp              
+0000f7cf  ATT_BuildReadBlobReq                  
+0000f80d  ATT_BuildReadBlobRsp                  
+0000f84d  ATT_BuildReadByGrpTypeRsp             
+0000f6e7  ATT_BuildReadByTypeReq                
+0000f753  ATT_BuildReadByTypeRsp                
+0000f81f  ATT_BuildReadMultiReq                 
+0000f847  ATT_BuildReadMultiRsp                 
+0000f777  ATT_BuildReadReq                      
+0000f793  ATT_BuildReadRsp                      
+0000f7c3  ATT_BuildWriteReq                     
+0000f9f9  ATT_CompareUUID                       
+0000fa49  ATT_ConvertUUIDto128                  
+0000fa71  ATT_ConvertUUIDto16                   
+0000f35f  ATT_ErrorRsp                          
+0000f371  ATT_ExchangeMTURsp                    
+0000f4a3  ATT_ExecuteWriteRsp                   
+0000f3b9  ATT_FindByTypeValueRsp                
+0000f389  ATT_FindInfoRsp                       
+0000fad9  ATT_GetMTU                            
+0000fafb  ATT_GetParamValue                     
+0000f4c5  ATT_HandleValueInd                    
+0000f4af  ATT_HandleValueNoti                   
+0000f5b1  ATT_ParseErrorRsp                     
+0000f5d1  ATT_ParseExchangeMTUReq               
+0000f5eb  ATT_ParseExchangeMTURsp               
+0000f90d  ATT_ParseExecuteWriteReq              
+0000f91f  ATT_ParseExecuteWriteRsp              
+0000f683  ATT_ParseFindByTypeValueReq           
+0000f6cd  ATT_ParseFindByTypeValueRsp           
+0000f603  ATT_ParseFindInfoReq                  
+0000f625  ATT_ParseFindInfoRsp                  
+0000f969  ATT_ParseHandleValueCfm               
+0000f93d  ATT_ParseHandleValueInd               
+0000f545  ATT_ParsePacket                       
+0000f88d  ATT_ParsePrepareWriteReq              
+0000f8d3  ATT_ParsePrepareWriteRsp              
+0000f7e9  ATT_ParseReadBlobReq                  
+0000f811  ATT_ParseReadBlobRsp                  
+0000f85f  ATT_ParseReadByGrpTypeRsp             
+0000f717  ATT_ParseReadByTypeReq                
+0000f755  ATT_ParseReadByTypeRsp                
+0000f827  ATT_ParseReadMultiReq                 
+0000f84b  ATT_ParseReadMultiRsp                 
+0000f779  ATT_ParseReadReq                      
+0000f797  ATT_ParseReadRsp                      
+0000f799  ATT_ParseWriteReq                     
+0000f7c5  ATT_ParseWriteRsp                     
+0000f489  ATT_PrepareWriteRsp                   
+0000f421  ATT_ReadBlobRsp                       
+0000f45b  ATT_ReadByGrpTypeRsp                  
+0000f3d9  ATT_ReadByTypeRsp                     
+0000f43d  ATT_ReadMultiRsp                      
+0000f405  ATT_ReadRsp                           
+0000f359  ATT_RegisterServer                    
+0000faf9  ATT_SetParamValue                     
+0000faaf  ATT_UpdateMTU                         
+0000f47d  ATT_WriteRsp                          
+10016c29  AddRoundKeySubBytes_Sw                
+10018a19  AesCcm_authEncrypt_Sw                 
+10018a35  AesCcm_decryptAuth_Sw                 
+10018b09  AesCcm_getNumBlocks_Sw                
+10018ac5  Aes_decrypt_Sw                        
+10018a99  Aes_encrypt_Sw                        
+20004f2c  COMMON_RAM_BASE_ADDR                  
+10014c01  COMMON_ROM_BASE_ADDR                  
+10015a6d  COPY                                  
+10017959  ECC_allocWorkzone                     
+10017dbd  ECC_keyGen                            
+10017961  ECC_setWin                            
+10017ded  ECDH_commonKey                        
+10017969  ECDSA_sign                            
+10017b01  ECDSA_verif                           
+10015a11  EXPORTOPERAND                         
+20004f78  EXPW                                  
+20004f6c  EXPX                                  
+20004f70  EXPY                                  
+20004f74  EXPZ                                  
+10016f58  FFMult2                               
+10017058  FFMult3                               
+10016d05  FFMult_Sw                             
+10018d6c  Fill1                                 
+1000d9ec  Fill1_1                               
+0001bedd  GAPBondMgr_LinkEst                    
+0001bb5b  GAPBondMgr_LinkTerm                   
+0001bd37  GAPBondMgr_ProcessEvent               
+0001bbad  GAPBondMgr_ProcessGAPMsg              
+0001b53f  GAPBondMgr_ResolveAddr                
+0001b6e3  GAPBondMgr_UpdateCharCfg              
+000100c5  GAP_Authenticate                      
+000101ff  GAP_Bond                              
+0000fba7  GAP_ConfigDeviceAddr                  
+000109bb  GAP_EndDiscoverable                   
+00010ab1  GAP_GetAdvToken                       
+0000fba1  GAP_GetIRK                            
+0000fb2b  GAP_GetParamValue                     
+00010ffb  GAP_Init                              
+000108c1  GAP_MakeDiscoverable                  
+000110d9  GAP_NumActiveConnections              
+0000fb3d  GAP_ParamsInit                        
+000101b3  GAP_PasscodeUpdate                    
+0001017f  GAP_PasskeyUpdate                     
+00010f1f  GAP_PeriConnRegister                  
+00010b25  GAP_PeriDevMgrInit                    
+0000fb7f  GAP_PrivacyInit                       
+00011011  GAP_ProcessEvent                      
+000112b9  GAP_RegisterBondMgrCBs                
+00010ff5  GAP_RegisterForMsgs                   
+00010ac7  GAP_RemoveAdvToken                    
+0000fe59  GAP_ResolvePrivateAddr                
+0000fb65  GAP_SecParamsInit                     
+00010ee5  GAP_SendSlaveSecurityRequest          
+00010a07  GAP_SetAdvToken                       
+0000fb11  GAP_SetParamValue                     
+0001007d  GAP_Signable                          
+00010161  GAP_TerminateAuth                     
+0000ff09  GAP_TerminateLinkReq                  
+00010b11  GAP_UpdateAdvTokens                   
+00010953  GAP_UpdateAdvertisingData             
+0000ff83  GAP_UpdateLinkParamReq                
+0000ffeb  GAP_UpdateLinkParamReqReply           
+000127a3  GATTServApp_AddService                
+000127b9  GATTServApp_DelService                
+00012647  GATTServApp_DeregisterService         
+0001346f  GATTServApp_GetParamValue             
+000126e9  GATTServApp_GetParameter              
+00012565  GATTServApp_Init                      
+0001cddd  GATTServApp_InitCharCfg               
+000125b3  GATTServApp_ProcessEvent              
+000131ed  GATTServApp_ReadAttr                  
+0001cdcd  GATTServApp_ReadCharCfg               
+0001255d  GATTServApp_RegisterForMsg            
+000125f1  GATTServApp_RegisterService           
+000134e5  GATTServApp_SendCCCUpdatedEvent       
+0001346d  GATTServApp_SetParamValue             
+0001268b  GATTServApp_SetParameter              
+20004388  GATTServApp_TaskID                    
+00013473  GATTServApp_UpdateCharCfg             
+000133e5  GATTServApp_WriteAttr                 
+00012143  GATT_AppCompletedMsg                  
+00011711  GATT_DeregisterService                
+000118b3  GATT_FindHandle                       
+00011855  GATT_FindHandleUUID                   
+000118ff  GATT_FindNextAttr                     
+0001241d  GATT_FindUUIDRec                      
+000120b1  GATT_GetNextHandle                    
+00011a53  GATT_Indication                       
+0001216b  GATT_Init                             
+0001160d  GATT_InitServer                       
+00011abf  GATT_Notification                     
+000122d5  GATT_NotifyEvent                      
+00012189  GATT_ProcessEvent                     
+00012131  GATT_RegisterForMsgs                  
+00011751  GATT_RegisterForReq                   
+00011675  GATT_RegisterService                  
+0001199f  GATT_SendRsp                          
+000117e3  GATT_ServiceChangedInd                
+0001198f  GATT_ServiceEncKeySize                
+00011983  GATT_ServiceNumAttrs                  
+00012137  GATT_SetHostToAppFlowCtrl             
+00012121  GATT_SetNextHandle                    
+000122e9  GATT_UpdateMTU                        
+00011759  GATT_VerifyReadPermissions            
+0001178f  GATT_VerifyWritePermissions           
+00012391  GATT_bm_alloc                         
+00012409  GATT_bm_free                          
+10015141  GETBIT                                
+10015155  GETDIGIT                              
+100151a5  GETDIGITL2R                           
+0001139d  GGS_AddService                        
+000113b5  GGS_DelService                        
+00011399  GGS_GetParamValue                     
+00011361  GGS_GetParameter                      
+000113c9  GGS_RegisterAppCBs                    
+00011397  GGS_SetParamValue                     
+000112e1  GGS_SetParameter                      
+10008add  HCI_CommandCompleteEvent              
+10008ba1  HCI_CommandStatusEvent                
+10008a2d  HCI_DataBufferOverflowEvent           
+10009525  HCI_DisconnectCmd                     
+1000a0f1  HCI_EXT_AdvEventNoticeCmd             
+1000a109  HCI_EXT_BuildRevisionCmd              
+10009d79  HCI_EXT_ClkDivOnHaltCmd               
+00016817  HCI_EXT_ConnEventNoticeCmd            
+10009dad  HCI_EXT_DeclareNvUsageCmd             
+10009dd1  HCI_EXT_DecryptCmd                    
+000167f3  HCI_EXT_DelaySleepCmd                 
+1000a011  HCI_EXT_DisconnectImmedCmd            
+10009f69  HCI_EXT_EnablePTMCmd                  
+10009eed  HCI_EXT_EndModemTestCmd               
+1000a095  HCI_EXT_ExtendRfRangeCmd              
+00016683  HCI_EXT_GetConnInfoCmd                
+1000a0d1  HCI_EXT_HaltDuringRfCmd               
+10009ff1  HCI_EXT_MapPmIoPortCmd                
+10009ead  HCI_EXT_ModemHopTestTxCmd             
+10009ecd  HCI_EXT_ModemTestRxCmd                
+10009e8d  HCI_EXT_ModemTestTxCmd                
+1000a1b5  HCI_EXT_NumComplPktsLimitCmd          
+10009d45  HCI_EXT_OnePktPerEvtCmd               
+1000a195  HCI_EXT_OverlappedProcessingCmd       
+1000a075  HCI_EXT_PERbyChanCmd                  
+1000a031  HCI_EXT_PacketErrorRateCmd            
+000167cd  HCI_EXT_ResetSystemCmd                
+10009fb1  HCI_EXT_SaveFreqTuneCmd               
+10009f0d  HCI_EXT_SetBDADDRCmd                  
+10009e4d  HCI_EXT_SetFastTxResponseTimeCmd      
+10009f81  HCI_EXT_SetFreqTuneCmd                
+10009e2d  HCI_EXT_SetLocalSupportedFeaturesCmd  
+10009fd1  HCI_EXT_SetMaxDtmTxPowerCmd           
+10009cd5  HCI_EXT_SetRxGainCmd                  
+10009f49  HCI_EXT_SetSCACmd                     
+10009e6d  HCI_EXT_SetSlaveLatencyOverrideCmd    
+10009d09  HCI_EXT_SetTxPowerCmd                 
+00019fab  HCI_ExtTaskRegister                   
+00019f99  HCI_GAPTaskRegister                   
+10008bf5  HCI_HardwareErrorEvent                
+10009631  HCI_HostBufferSizeCmd                 
+1000965d  HCI_HostNumCompletedPktCmd            
+00019f25  HCI_Init                              
+00019f9f  HCI_L2CAPTaskRegister                 
+10009a15  HCI_LE_AddWhiteListCmd                
+100099f9  HCI_LE_ClearWhiteListCmd              
+000167bd  HCI_LE_ConnUpdateCmd                  
+1000999d  HCI_LE_CreateConnCancelCmd            
+1000995d  HCI_LE_CreateConnCmd                  
+10009af5  HCI_LE_EncryptCmd                     
+10009be1  HCI_LE_LtkReqNegReplyCmd              
+10009bc5  HCI_LE_LtkReqReplyCmd                 
+10009b51  HCI_LE_RandCmd                        
+100098f5  HCI_LE_ReadAdvChanTxPowerCmd          
+00016711  HCI_LE_ReadBufSizeCmd                 
+10009aa1  HCI_LE_ReadChannelMapCmd              
+10009829  HCI_LE_ReadLocalSupportedFeaturesCmd  
+00016747  HCI_LE_ReadRemoteUsedFeaturesCmd      
+10009c15  HCI_LE_ReadSupportedStatesCmd         
+100099c9  HCI_LE_ReadWhiteListSizeCmd           
+00016783  HCI_LE_ReceiverTestCmd                
+00016743  HCI_LE_RemoteConnParamReqNegReplyCmd  
+0001673f  HCI_LE_RemoteConnParamReqReplyCmd     
+10009a31  HCI_LE_RemoveWhiteListCmd             
+100098a1  HCI_LE_SetAdvDataCmd                  
+100098d9  HCI_LE_SetAdvEnableCmd                
+1000986d  HCI_LE_SetAdvParamCmd                 
+0001681b  HCI_LE_SetEventMaskCmd                
+10009a85  HCI_LE_SetHostChanClassificationCmd   
+10009849  HCI_LE_SetRandomAddressCmd            
+10009941  HCI_LE_SetScanEnableCmd               
+10009915  HCI_LE_SetScanParamCmd                
+100098bd  HCI_LE_SetScanRspDataCmd              
+10009ba9  HCI_LE_StartEncyptCmd                 
+10009c8d  HCI_LE_TestEndCmd                     
+00016771  HCI_LE_TransmitterTestCmd             
+00016227  HCI_NumOfCompletedPacketsEvent        
+00019f57  HCI_ProcessEvent                      
+10009765  HCI_ReadBDADDRCmd                     
+0001666f  HCI_ReadLocalSupportedCommandsCmd     
+1000973d  HCI_ReadLocalSupportedFeaturesCmd     
+00016851  HCI_ReadLocalVersionInfoCmd           
+10009541  HCI_ReadRemoteVersionInfoCmd          
+000168a9  HCI_ReadRssiCmd                       
+100095d1  HCI_ReadTransmitPowerLevelCmd         
+0001664d  HCI_ResetCmd                          
+1000d7cd  HCI_ReverseBytes                      
+00019fa5  HCI_SMPTaskRegister                   
+10008c81  HCI_SendCommandCompleteEvent          
+10008c59  HCI_SendCommandStatusEvent            
+10008d31  HCI_SendControllerToHostEvent         
+100094e9  HCI_SendDataPkt                       
+100095f5  HCI_SetControllerToHostFlowCtrlCmd    
+10009571  HCI_SetEventMaskCmd                   
+00016795  HCI_SetEventMaskPage2Cmd              
+00019f93  HCI_TestAppTaskRegister               
+00016611  HCI_ValidConnTimeParams               
+00016595  HCI_VendorSpecifcCommandCompleteEvent 
+100094a1  HCI_bm_alloc                          
+0001af21  HalFlashGetAddress                    
+0001af3b  HalFlashRead                          
+0001af67  HalFlashWrite                         
+0001a6cf  HalTRNG_GetTRNG                       
+0001a6a1  HalTRNG_InitTRNG                      
+2000447c  ICall_dispatcher                      
+20004480  ICall_enterCriticalSection            
+20004484  ICall_leaveCriticalSection            
+10015a35  IMPORTDATA                            
+100159a9  IMPORTLENGTH                          
+100159ad  IMPORTMODULUS                         
+100159d1  IMPORTOPERAND                         
+1001568d  INVERT                                
+10016da1  InvAddRoundKey_Sw                     
+10016ed5  InvMixColumns_Sw                      
+10016dc9  InvRoundKey_Sw                        
+10017264  InvSbox                               
+10016ea1  InvShiftRows_Sw                       
+10016e8d  InvSubBytes_Sw                        
+100154f5  JACADD                                
+00013bd5  L2CAP_BuildCmdReject                  
+00013ced  L2CAP_BuildInfoRsp                    
+00013cb9  L2CAP_BuildParamUpdateRsp             
+000135b5  L2CAP_CmdReject                       
+000135db  L2CAP_ConnParamUpdateReq              
+00013611  L2CAP_ConnParamUpdateRsp              
+0001367f  L2CAP_GetMTU                          
+00013fe1  L2CAP_GetParamValue                   
+0001365d  L2CAP_HostNumCompletedPkts            
+000135c3  L2CAP_InfoReq                         
+000136a9  L2CAP_Init                            
+00013cd5  L2CAP_ParseInfoReq                    
+00013c7f  L2CAP_ParseParamUpdateReq             
+0001370b  L2CAP_ProcessEvent                    
+00013529  L2CAP_RegisterApp                     
+00013819  L2CAP_RegisterFlowCtrlTask            
+00013553  L2CAP_SendData                        
+00013673  L2CAP_SetBufSize                      
+00013623  L2CAP_SetControllerToHostFlowCtrl     
+00013fdf  L2CAP_SetParamValue                   
+000136a5  L2CAP_SetUserConfig                   
+00013fc5  L2CAP_bm_alloc                        
+20004fe8  LEN                                   
+10005739  LL_AddWhiteListDevice                 
+10008d81  LL_AdvReportCback                     
+00016307  LL_AuthPayloadTimeoutExpiredCback     
+10005719  LL_ClearWhiteList                     
+1000678d  LL_ConnActive                         
+00016129  LL_ConnParamUpdateCback               
+10008ead  LL_ConnectionCompleteCback            
+100058d5  LL_CtrlToHostFlowControl              
+00018d31  LL_DirectTestEnd                      
+10009471  LL_DirectTestEndDoneCback             
+00018c2d  LL_DirectTestRxTest                   
+00018ab3  LL_DirectTestTxTest                   
+10005a39  LL_Disconnect                         
+10009005  LL_DisconnectCback                    
+00019b93  LL_DoorbellErrorCback                 
+1000b639  LL_ENC_AES128_Decrypt                 
+1000b5f5  LL_ENC_AES128_Encrypt                 
+000179e3  LL_ENC_Decrypt                        
+1000b851  LL_ENC_DecryptMsg                     
+00017975  LL_ENC_Encrypt                        
+1000b721  LL_ENC_EncryptMsg                     
+1000b555  LL_ENC_GenDeviceIV                    
+1000b541  LL_ENC_GenDeviceSKD                   
+1000b569  LL_ENC_GenerateNonce                  
+1000b50d  LL_ENC_GeneratePseudoRandNum          
+1000b51d  LL_ENC_GenerateTrueRandNum            
+1000b4c9  LL_ENC_Init                           
+1000b58d  LL_ENC_LoadKey                        
+1000b4ed  LL_ENC_ReverseBytes                   
+10007025  LL_EXT_AdvEventNotice                 
+000190bd  LL_EXT_BuildRevision                  
+10006b7d  LL_EXT_ClkDivOnHalt                   
+00019065  LL_EXT_ConnEventNotice                
+10006b81  LL_EXT_DeclareNvUsage                 
+10006b85  LL_EXT_Decrypt                        
+100070a1  LL_EXT_DelaySleep                     
+000190f9  LL_EXT_DisconnectImmed                
+00018a8d  LL_EXT_EndModemTest                   
+1000701d  LL_EXT_ExtendRfRange                  
+1000a2ad  LL_EXT_ExtendRfRangeCback             
+000185d1  LL_EXT_GetConnInfo                    
+10007021  LL_EXT_HaltDuringRf                   
+10006f49  LL_EXT_MapPmIoPort                    
+000188d1  LL_EXT_ModemHopTestTx                 
+000189f5  LL_EXT_ModemTestRx                    
+00018971  LL_EXT_ModemTestTx                    
+00019095  LL_EXT_NumComplPktsLimit              
+10006b59  LL_EXT_OnePacketPerEvent              
+10007109  LL_EXT_OverlappedProcessing           
+10006fed  LL_EXT_PERbyChan                      
+10006f99  LL_EXT_PacketErrorRate                
+1000a259  LL_EXT_PacketErrorRateCback           
+100070d5  LL_EXT_ResetSystem                    
+10006efd  LL_EXT_SaveFreqTune                   
+10006e01  LL_EXT_SetBDADDR                      
+10006bc5  LL_EXT_SetFastTxResponseTime          
+10006ef9  LL_EXT_SetFreqTune                    
+0001874f  LL_EXT_SetLocalSupportedFeatures      
+000187bd  LL_EXT_SetMaxDtmTxPower               
+10006ad9  LL_EXT_SetRxGain                      
+1000a201  LL_EXT_SetRxGainCback                 
+10006e85  LL_EXT_SetSCA                         
+10006bdd  LL_EXT_SetSlaveLatencyOverride        
+00018785  LL_EXT_SetTxPower                     
+1000a211  LL_EXT_SetTxPowerCback                
+1000933d  LL_EncChangeCback                     
+100093dd  LL_EncKeyRefreshCback                 
+000186c3  LL_EncLtkNegReply                     
+0001867d  LL_EncLtkReply                        
+1000925d  LL_EncLtkReqCback                     
+100057d5  LL_Encrypt                            
+0001637b  LL_EnhancedConnectionCompleteCback    
+00018ff3  LL_GetNumActiveConns                  
+00018149  LL_Init                               
+00019ba5  LL_LastCmdDoneCback                   
+100057b9  LL_NumEmptyWlEntries                  
+00019a6d  LL_PM_Enter_AES                       
+00019a83  LL_PM_Exit_AES                        
+00019a69  LL_PM_GetRfCoreState                  
+00019aad  LL_PM_PowerOffRfCore                  
+000183af  LL_ProcessEvent                       
+10005801  LL_PseudoRand                         
+1000556d  LL_RX_bm_alloc                        
+100057f5  LL_Rand                               
+1000a1d5  LL_RandCback                          
+10006105  LL_ReadAdvChanTxPower                 
+100056c9  LL_ReadBDADDR                         
+100059a1  LL_ReadChanMap                        
+10005879  LL_ReadLocalSupportedFeatures         
+1000589d  LL_ReadLocalVersionInfo               
+000186ff  LL_ReadRemoteUsedFeatures             
+000161bb  LL_ReadRemoteUsedFeaturesCompleteCback
+100058e9  LL_ReadRemoteVersionInfo              
+100091e1  LL_ReadRemoteVersionInfoCback         
+00018fff  LL_ReadRssi                           
+00018fd7  LL_ReadSupportedStates                
+000187d9  LL_ReadTxPowerLevel                   
+100057a1  LL_ReadWlSize                         
+10005765  LL_RemoveWhiteListDevice              
+000184d7  LL_Reset                              
+0001603d  LL_RxDataCompleteCback                
+00019d89  LL_RxEntryDoneCback                   
+00019d87  LL_RxIgnoredCback                     
+00018ed5  LL_SetAdvControl                      
+10005f89  LL_SetAdvData                         
+00018dc5  LL_SetAdvParam                        
+100056e9  LL_SetRandomAddress                   
+1000612d  LL_SetScanRspData                     
+10005549  LL_TX_bm_alloc                        
+20004c84  LL_TaskID                             
+00018817  LL_TxData                             
+00019d59  LL_TxDoneCback                        
+00019d6d  LL_TxEntryDoneCback                   
+100158ac  LUTC                                  
+100158dc  LUTINCI                               
+100158f4  LUTJ                                  
+1001588c  LUTOPCODE                             
+10015894  LUTOPSIGN                             
+100158c4  LUTSE                                 
+1001596c  LUTSTATE                              
+20004fe4  MOD                                   
+20004fd8  MSBMOD                                
+10016c79  MixColumns_Sw                         
+10018b9c  NIST256_Gx                            
+10018bc0  NIST256_Gy                            
+10018b54  NIST256_a                             
+10018b78  NIST256_b                             
+10018b0c  NIST256_p                             
+10018b30  NIST256_r                             
+0001a36b  NOROM_CPUcpsid                        
+0001a35f  NOROM_CPUcpsie                        
+0001bff5  NOROM_FlashProgram                    
+0001c011  NOROM_FlashSectorErase                
+0001a739  NOROM_IntDisable                      
+0001a7a1  NOROM_IntEnable                       
+0001bfe1  NOROM_VIMSModeGet                     
+0001e000  NV_FLASH                              
+200047f8  OSAL_timeSeconds                      
+00012123  Onboard_soft_reset                    
+10014c04  P1_ro                                 
+10005004  P1_ro_1                               
+10019ffe  P1_ro_2                               
+1000dffe  P1_ro_2_1                             
+20004f40  P2_rw                                 
+20004f40  P2_s0                                 
+20004fac  P2_zi                                 
+200048fc  P2_zi_1                               
+0001d1e8  R2F_Flash_JT                          
+0001d1d0  R2F_Flash_JT_CommonROM                
+0001d384  R2R_Flash_JT                          
+0001d290  R2R_Flash_JT_CommonROM                
+200048e8  RAM_BASE_ADDR                         
+10017158  RCon                                  
+00015fa3  RFHAL_AddTxDataEntry                  
+100184f9  RFHAL_AllocDataEntry                  
+100184a9  RFHAL_AllocDataEntryQueue             
+10018315  RFHAL_AllocRatChan                    
+100185e1  RFHAL_BuildDataEntryRingBuffer        
+10018669  RFHAL_BuildLinkedBuffer               
+10018551  RFHAL_BuildRingBuffer                 
+10018549  RFHAL_FreeDataEntry                   
+100184c5  RFHAL_FreeDataEntryQueue              
+10018485  RFHAL_FreeNextTxDataEntry             
+1001833d  RFHAL_FreeRatChan                     
+100184cd  RFHAL_GetNextDataEntry                
+100184d1  RFHAL_GetTempDataEntry                
+100183b9  RFHAL_InitDataQueue                   
+00015f3f  RFHAL_InitRfHal                       
+10018369  RFHAL_MapRatChansToInt                
+100184d5  RFHAL_NextDataEntryDone               
+100183c5  RFHAL_QueueRFDataEntries              
+10018391  RFHAL_RegisterRatChanCallback         
+10005001  ROM_BASE_ADDR                         
+0001a669  ROM_Spinlock                          
+10016b79  RoundKey_Sw                           
+10015101  SAVEPOINT                             
+1000d964  SCA                                   
+20004f68  SCAL                                  
+100150e5  SCALARMUL                             
+10014ced  SCALARMUL_core                        
+10015019  SCALARMUL_final                       
+10014c05  SCALARMUL_init                        
+10015a51  SETOPERAND                            
+10015a91  SETWORD                               
+10018089  SHA256_final                          
+10018129  SHA256_full                           
+10017ffd  SHA256_init                           
+10017ef1  SHA256_nextState                      
+10018019  SHA256_process                        
+10017e75  SHA256_round                          
+10017f49  SHA256_saveBuffer                     
+10017e39  SHA256_updateW                        
+UNDEFED   SHT$$INIT_ARRAY$$Base                 
+UNDEFED   SHT$$INIT_ARRAY$$Limit                
+000142d1  SM_CalcRandomAddr                     
+0001435f  SM_Encrypt                            
+000145f9  SM_GenerateAuthenSig                  
+000156c5  SM_Init                               
+000149ff  SM_PasskeyUpdate                      
+000156e1  SM_ProcessEvent                       
+00014309  SM_ResolveRandomAddrs                 
+00015155  SM_ResponderInit                      
+00014971  SM_StartPairing                       
+00014693  SM_VerifyAuthenSig                    
+10015821  SQUAREMULTIPLYWORD                    
+10017895  SSP_CCM_Auth_Encrypt_Sw               
+10017365  SSP_CCM_Auth_Sw                       
+1001767d  SSP_CCM_Decrypt_Sw                    
+100174fd  SSP_CCM_Encrypt_Sw                    
+100178f5  SSP_CCM_InvAuth_Decrypt_Sw            
+10017839  SSP_CCM_InvAuth_Sw                    
+10017771  SSP_CTR_Decrypt_Sw                    
+100175ed  SSP_CTR_Encrypt_Sw                    
+10017164  Sbox                                  
+10015215  SelectReg                             
+10016c45  ShiftRows_Sw                          
+2000466c  SysBootMsg                            
+20004f88  TMP1                                  
+20004f8c  TMP2                                  
+20004f90  TMP3                                  
+20004f94  TMP4                                  
+20004f98  TMP5                                  
+20004f9c  TMP6                                  
+1000d2d9  WL_AddEntry                           
+00019aaf  WL_Clear                              
+1000d1f5  WL_ClearEntry                         
+00019b3f  WL_ClearIgnoreList                    
+00019add  WL_FindEntry                          
+00019ad3  WL_GetNumFreeEntries                  
+1000d229  WL_GetSize                            
+1000d189  WL_Init                               
+1000d36d  WL_RemoveEntry                        
+00019b1f  WL_SetWlIgnore                        
+10015a85  ZERO                                  
+0001d91c  __TI_CINIT_Base                       
+0001d92c  __TI_CINIT_Limit                      
+0001d910  __TI_Handler_Table_Base               
+0001d91c  __TI_Handler_Table_Limit              
+00019fcd  __TI_auto_init                        
+0001cd47  __TI_decompress_lzss                  
+0001cd39  __TI_decompress_none                  
+ffffffff  __TI_pprof_out_hndl                   
+ffffffff  __TI_prof_data_size                   
+ffffffff  __TI_prof_data_start                  
+0000f000  __TI_static_base__                    
+0001cd2d  __TI_zero_init                        
+0001a03d  __aeabi_lmul                          
+0001a0f1  __aeabi_memclr                        
+0001a0f1  __aeabi_memclr4                       
+0001a0f1  __aeabi_memclr8                       
+0001a055  __aeabi_memcpy                        
+0001a055  __aeabi_memcpy4                       
+0001a055  __aeabi_memcpy8                       
+0001a0f3  __aeabi_memset                        
+0001a0f3  __aeabi_memset4                       
+0001a0f3  __aeabi_memset8                       
+0001a16b  __aeabi_uldivmod                      
+ffffffff  __binit__                             
+ffffffff  __c_args__                            
+1000dffe  __checksum                            
+10019ffe  __checksum_CommonROM                  
+10005000  __checksum_begin                      
+10014c00  __checksum_begin_CommonROM            
+1000dffd  __checksum_end                        
+10019ffd  __checksum_end_CommonROM              
+00005721  __checksum_value                      
+0000e0ea  __checksum_value_CommonROM            
+10018ced  __exit                                
+0001241b  _system_post_cinit                    
+1000d9b0  advChan                               
+20004c24  advCmd                                
+20004bdc  advDataEntry                          
+20004c14  advDataQueue                          
+1000d9b4  advEvt2Cmd                            
+1000d9c0  advEvt2State                          
+200049ec  advInfo                               
+20004654  advInfoExt                            
+20004e98  advOutput                             
+20004d58  advParam                              
+0001d8c4  advPktSuffix                          
+200045f5  appTaskID                             
+0001253c  appearanceUUID                        
+20004748  assertSubcause                        
+0000f973  attSendMsg                            
+20004fdc  aux64                                 
+20004778  baseTaskID                            
+ffffffff  binit                                 
+0001cb91  bleDispatch_BMAlloc                   
+0001cbbd  bleDispatch_BMFree                    
+0001c319  bleDispatch_ProcessEvent              
+20004434  bleDispatch_TaskID                    
+20004f08  bleEvtMask                            
+0000fb00  btBaseUUID                            
+20004c98  buildInfo                             
+20004ee8  cachedTRNGdata                        
+2000477c  cbTimers                              
+20004ca8  chanMapUpdate                         
+00012534  charAggFormatUUID                     
+00012520  charExtPropsUUID                      
+00012530  charFormatUUID                        
+00012524  charUserDescUUID                      
+0001251c  characterUUID                         
+00012528  clientCharCfgUUID                     
+20004e70  connOutput                            
+20004dc8  connReqData                           
+00014960  const_Rb                              
+0001cce1  copy_in                               
+20004f24  ctrlToHostEnable                      
+20004cb9  curTxPowerVal                         
+20004fa0  data_Gx                               
+20004fa4  data_Gy                               
+20004f50  data_a                                
+20004fa8  data_b                                
+20004f48  data_p                                
+20004f4c  data_r                                
+20004ed0  deviceFeatureSet                      
+00012538  deviceNameUUID                        
+20004edc  dtmInfo                               
+00012554  extReportRefUUID                      
+20004cbb  fastTxRespTime                        
+20004fcc  fwInfoCmd                             
+0000fd2b  gapAddAddrAdj                         
+200044ac  gapAppTaskID                          
+200044af  gapAutoAdvPrivateAddrChange           
+2000483a  gapBond_lruBondList                   
+20004811  gapBond_removeLRUBond                 
+0000fedd  gapClrState                           
+200044ae  gapDeviceAddrMode                     
+0000fe7f  gapFindADType                         
+0001063d  gapFreeEstLink                        
+0000fde7  gapGetDevAddress                      
+0000fde1  gapGetDevAddressMode                  
+0000fdb9  gapGetSRK                             
+0000fdbf  gapGetSignCounter                     
+0000fd4f  gapHost2CtrlOwnAddrType               
+0000fdc7  gapIncSignCounter                     
+0000fe5d  gapIsAdvertising                      
+0000fe61  gapIsScanning                         
+0001076d  gapPairingCompleteCB                  
+00010705  gapPasskeyNeededCB                    
+200044b0  gapPrivateAddrChangeTimeout           
+00010309  gapProcessConnectionCompleteEvt       
+000103e3  gapProcessDisconnectCompleteEvt       
+0000fcfd  gapProcessNewAddr                     
+0000fd59  gapProcessRandomAddrComplete          
+000103b7  gapProcessRemoteConnParamReqEvt       
+200044ad  gapProfileRole                        
+0000fc7d  gapReadBD_ADDRStatus                  
+0000fcb9  gapReadBufSizeCmdStatus               
+000112ad  gapRegisterCentral                    
+000112b3  gapRegisterPeripheral                 
+0001089d  gapRegisterPeripheralConn             
+00010659  gapSendBondCompleteEvent              
+000104c9  gapSendLinkUpdateEvent                
+000106ab  gapSendPairingReqEvent                
+000102c7  gapSendSlaveSecurityReqEvent          
+00011600  gapServiceCBs                         
+00012508  gapServiceUUID                        
+0000fed3  gapSetState                           
+20004354  gapState                              
+20004548  gapTaskID                             
+20004549  gapUnwantedTaskID                     
+00010275  gapUpdateConnSignCounter              
+0000fe6b  gapValidADType                        
+200045f4  gattAppTaskID                         
+0001233d  gattGetPayload                        
+00012257  gattNotifyEvent                       
+20004355  gattNumConns                          
+0001212b  gattRegisterClient                    
+00012125  gattRegisterServer                    
+0001230f  gattSendFlowCtrlEvt                   
+0001250c  gattServiceUUID                       
+000122ad  gattStartTimer                        
+000122bd  gattStopTimer                         
+20004356  gattTaskID                            
+2000474c  halAssertCback                        
+0001a719  halAssertHandler                      
+0001a71d  halAssertHandlerExt                   
+0001a71b  halAssertSpinlock                     
+2000442d  hciExtTaskID                          
+2000442a  hciGapTaskID                          
+000160e5  hciInitEventMasks                     
+2000442b  hciL2capTaskID                        
+20004f28  hciPTMenabled                         
+2000442c  hciSmpTaskID                          
+20004428  hciTaskID                             
+20004429  hciTestTaskID                         
+20004f58  inPointX                              
+20004f5c  inPointY                              
+20004f54  inScalar                              
+00012518  includeUUID                           
+20004db0  initCmd                               
+20004b94  initDataEntry                         
+20004bcc  initDataQueue                         
+20004e58  initInfo                              
+20004eb8  initOutput                            
+20004cf0  initParam                             
+0001d8cc  initPktSuffix                         
+00013e25  l2capAllocConnChannel                 
+00013cc5  l2capBuildInfoReq                     
+00013c53  l2capBuildParamUpdateReq              
+2000460c  l2capChannels                         
+00013f21  l2capDisconnectAllChannels            
+00013ad5  l2capEncapSendData                    
+00013e85  l2capFindLocalId                      
+20004398  l2capFixedChannels                    
+00013e77  l2capFreeChannel                      
+00013f1f  l2capHandleRxError                    
+200043c8  l2capId                               
+200045f6  l2capMtuSize                          
+00013d93  l2capNotifyData                       
+00013dd7  l2capNotifySignal                     
+20004609  l2capNumChannels                      
+2000460a  l2capNumDataPkts                      
+00013c13  l2capParseCmdReject                   
+00013d33  l2capParseInfoRsp                     
+00013b7f  l2capParsePacket                      
+00013cbb  l2capParseParamUpdateRsp              
+00013959  l2capParseSignalHdr                   
+000139d1  l2capSendCmd                          
+00013a67  l2capSendPkt                          
+0001396d  l2capSendReq                          
+00013eaf  l2capStartTimer                       
+00013ec3  l2capStopTimer                        
+00013a41  l2capStoreFCPkt                       
+20004608  l2capTaskID                           
+20004749  legacyMode                            
+200043cc  linkDBNumConns                        
+00014051  linkDB_Add                            
+00014233  linkDB_Authen                         
+00014153  linkDB_Find                           
+0001417d  linkDB_FindFirst                      
+00014113  linkDB_GetInfo                        
+00013fe5  linkDB_Init                           
+00014227  linkDB_MTU                            
+000141dd  linkDB_NumActive                      
+00014205  linkDB_NumConns                       
+0001427f  linkDB_PerformFunc                    
+00014033  linkDB_Register                       
+000140b7  linkDB_Remove                         
+000141d1  linkDB_Role                           
+000141af  linkDB_State                          
+000140eb  linkDB_Update                         
+0001420b  linkDB_UpdateMTU                      
+000142ab  linkDB_reportStatusChange             
+0001926f  llActiveTask                          
+1000cd51  llAdv_TaskAbort                       
+00016a3f  llAdv_TaskConnect                     
+0001697b  llAdv_TaskEnd                         
+000173b5  llAlignToNextEvent                    
+00016dc3  llAllocConnId                         
+000191f3  llAllocTask                           
+100082f1  llAtLeastTwoChans                     
+1000d94d  llCalcScaFactor                       
+1000c1b5  llCheckForLstoDuringSL                
+00015e99  llCheckRxBuffers                      
+00017575  llCheckWhiteListUsage                 
+100072e9  llClearRfInts                         
+00017287  llCombinePDU                          
+0001d8dc  llConfigTable                         
+00017027  llConnCleanup                         
+10008631  llConnTerminate                       
+20004664  llConnectionExt                       
+20004cb0  llConns                               
+10008741  llConvertCtrlProcTimeoutToEvent       
+10008721  llConvertLstoToEvent                  
+00015e6b  llCreateRxBuffer                      
+10008985  llDataQEmpty                          
+10008965  llDataQFull                           
+00017101  llDequeueCtrlPkt                      
+10008921  llDequeueDataQ                        
+00016919  llDirAdv_TaskEnd                      
+100072e5  llDisableRfInts                       
+100072ed  llEnableRfInts                        
+100080bd  llEnqueueCtrlPkt                      
+10008889  llEnqueueDataQ                        
+100088b5  llEnqueueHeadDataQ                    
+1000d795  llEqAlreadyValidAddr                  
+1000d6e5  llEqSynchWord                         
+1000d709  llEqualBytes                          
+10008719  llEventDelta                          
+100086f1  llEventInRange                        
+1000a939  llFindNextSecTask                     
+1000a895  llFindStartType                       
+00017225  llFragmentPDU                         
+1000abed  llFreeTask                            
+100086b9  llGenerateCRC                         
+1000d695  llGenerateValidAccessAddr             
+1000aca9  llGetActiveTasks                      
+1000d4ad  llGetAdvChanPDU                       
+1000ac3d  llGetCurrentTask                      
+000191b3  llGetCurrentTime                      
+000171b9  llGetMinCI                            
+00017169  llGetNextConn                         
+000175c9  llGetNextDataChan                     
+1000ace1  llGetNumTasks                         
+1000b009  llGetNumTxDataEntries                 
+000192a5  llGetTask                             
+0001924d  llGetTaskState                        
+00017561  llGetTxPower                          
+1000d6b1  llGtSixConsecZerosOrOnes              
+1000d731  llGtTwentyFourTransitions             
+000177d1  llHaltRadio                           
+000178db  llHardwareError                       
+00016f01  llInitFeatureSet                      
+000191b1  llInitRAT                             
+1000d761  llLtTwoChangesInLastSixBits           
+100089f1  llMemCopyDst                          
+100089d9  llMemCopySrc                          
+1000afa1  llMoveTempTxDataEntries               
+0001779d  llOctets2Time                         
+1000d6f5  llOneBitSynchWordDiffer               
+1000adb1  llPatchCM0                            
+10008665  llPendingUpdateParam                  
+00017589  llProcessChanMap                      
+100072f1  llProcessPostRfOps                    
+00015b49  llProcessSlaveControlPacket           
+000197d9  llProcessSlaveControlProcedures       
+00016fbd  llProcessTxData                       
+00015f3d  llRatChanCBack_A                      
+1000ae41  llRatChanCBack_B                      
+1000ae45  llRatChanCBack_C                      
+1000ae49  llRatChanCBack_D                      
+10008461  llReleaseAllConnId                    
+10008429  llReleaseConnId                       
+0001713d  llReplaceCtrlPkt                      
+00015ebf  llReplaceRxBuffers                    
+000178d9  llResetRadio                          
+000174a9  llRfInit                              
+00017461  llRfSetup                             
+000177f1  llRfStartFS                           
+000192d5  llScheduleTask                        
+1000a335  llScheduler                           
+000191c1  llSchedulerInit                       
+00017663  llSendReject                          
+100072e1  llSetFreqTune                         
+00017615  llSetNextDataChan                     
+00017517  llSetTxPower                          
+100073e5  llSetupAdv                            
+1000aeb1  llSetupAdvDataEntryQueue              
+00015de5  llSetupConnRxDataEntryQueue           
+10007aed  llSetupEncReq                         
+10007b95  llSetupEncRsp                         
+00016f19  llSetupFeatureSetRsp                  
+100077b5  llSetupInit                           
+1000ae95  llSetupInitDataEntryQueue             
+0001953b  llSetupNextSlaveEvent                 
+10007cfd  llSetupPauseEncReq                    
+10007d55  llSetupPauseEncRsp                    
+00015f0b  llSetupRATChanCompare                 
+10007df5  llSetupRejectInd                      
+00015ef1  llSetupRfHal                          
+100075fd  llSetupScan                           
+1000ae4d  llSetupScanDataEntryQueue             
+00016f7b  llSetupStartEncReq                    
+10007ca9  llSetupStartEncRsp                    
+00017681  llSetupTermInd                        
+10008069  llSetupUnknownRsp                     
+100079c9  llSetupUpdateParamReq                 
+10007f29  llSetupVersionIndReq                  
+00019369  llSlave_TaskEnd                       
+20004cb8  llState                               
+1000d9e1  llTaskError                           
+20004ef4  llTaskList                            
+0001776f  llTime2Octets                         
+1000d8c9  llTimeCompare                         
+1000d8f5  llTimeDelta                           
+2000462c  llUserConfig                          
+000178df  llValidateConnParams                  
+00016d41  llVerifyConnParamReqParams            
+000176f3  llWriteTxData                         
+0001d90c  ll_buildRevision                      
+10016551  mADD                                  
+10015bd5  mINVK                                 
+10015f81  mMULT                                 
+10016749  mOUT                                  
+10015a9d  mSET                                  
+1001664d  mSUB                                  
+20004cbc  maxNumConns                           
+20004652  maxNumTxDataBufs                      
+20004650  maxPduSize                            
+0001d8d4  maxPktsPerEvt                         
+20004c85  maxTxPwrForDTM                        
+0001a055  memcpy                                
+0001a0f9  memset                                
+20004f14  mstCmd                                
+20004f18  mstParam                              
+20004cba  numComplPkts                          
+20004c88  numComplPktsFlush                     
+20004c87  numComplPktsLimit                     
+20004f26  numHostBufs                           
+20004c8b  numTxDataBufs                         
+20004c86  onePktPerEvt                          
+0001a393  osalAddTimer                          
+0001a379  osalFindTimer                         
+0001af79  osal_CbTimerProcessEvent              
+0001b0dd  osal_CbTimerStart                     
+0001b003  osal_CbTimerStop                      
+0001a81d  osal_bm_adjust_header                 
+0001a845  osal_bm_alloc                         
+0001a877  osal_bm_free                          
+0001aeed  osal_buffer_uint32                    
+0001aeb9  osal_build_uint32                     
+0001abd1  osal_clear_event                      
+20004751  osal_entity                           
+2000475c  osal_eventloop_hook                   
+0001a3d7  osal_get_timeoutEx                    
+0001a941  osal_isbufset                         
+20004474  osal_last_timestamp                   
+20004768  osal_max_msecs                        
+0001cc69  osal_mem_alloc                        
+0001cc8b  osal_mem_free                         
+0001a95b  osal_memcmp                           
+0001a8c9  osal_memcpy                           
+0001ae9d  osal_memdup                           
+0001a8c5  osal_memset                           
+0001a8e1  osal_msg_allocate                     
+0001a90b  osal_msg_deallocate                   
+0001a97b  osal_msg_receive                      
+0001aab3  osal_msg_send                         
+0001a623  osal_next_timeout                     
+0001cbf9  osal_pwrmgr_task_state                
+20004758  osal_qHead                            
+0001ae8d  osal_rand                             
+0001aa05  osal_revmemcpy                        
+0001a905  osal_self                             
+20004760  osal_semaphore                        
+0001ac8d  osal_service_entry                    
+0001ab3b  osal_set_event                        
+0001b48d  osal_snv_compact                      
+0001b153  osal_snv_read                         
+0001b391  osal_snv_write                        
+0001a5ed  osal_start_reload_timer               
+0001ad1d  osal_start_system                     
+0001a583  osal_start_timerEx                    
+0001a5bd  osal_stop_timerEx                     
+0001ae79  osal_strlen                           
+20004764  osal_tickperiod                       
+0001a41b  osal_timer_refTimeUpdate              
+20004f60  outPointX                             
+20004f64  outPointY                             
+20004c6c  ownPublicAddr                         
+20004c74  ownRandomAddr                         
+20004c7c  ownSavedPublicAddr                    
+20004520  pAuthLink                             
+20004410  pBleEvtMask                           
+2000451c  pEstLink                              
+20004350  pGapAdvertState                       
+2000434c  pGapDiscReq                           
+20004f00  pHciEvtMask                           
+20004418  pHciEvtMask2                          
+20004404  pPairingParams                        
+20004ffc  pSspAesEncrypt_Sw                     
+20004c9c  peerInfo                              
+00012548  periConnParamUUID                     
+00012540  periPrivacyFlagUUID                   
+2000435c  pfnBondMgrCBs                         
+20004524  pfnCentralConnCBs                     
+2000454c  pfnPeripheralCBs                      
+20004358  pfnPeripheralConnCBs                  
+20004408  pfnResponderCBs                       
+20004cbe  postRfOperations                      
+00012510  primaryServiceUUID                    
+200047fe  pwrmgr_attribute                      
+200047fc  pwrmgr_initialized                    
+20004fac  ratChanInfo                           
+00012544  reconnectAddrUUID                     
+00012558  reportRefUUID                         
+20004557  reqTaskId                             
+00019b69  rfCallback                            
+20004c94  rfCfgAdiVal                           
+0001d8bc  rfCfgVal                              
+20004658  rfCmdHandle                           
+20004660  rfDrvTblPtr                           
+20004420  rfEvent                               
+20004651  rfFeModeBias                          
+2000465c  rfHandle                              
+20004674  rfMode                                
+200046b0  rfObject                              
+0001d8d8  rfOpLoc                               
+00019b5d  rfPUpCallback                         
+20004684  rfParams                              
+20004698  rfSetup                               
+1000dffc  romRev                                
+20004435  rspBuf                                
+20004cc0  rssiCorrection                        
+20004f0c  rxDataQ                               
+20004c8a  rxFifoFlowCtrl                        
+20004e40  rxModemTestCmd                        
+0001d8c0  rxPktSuffix                           
+20004f10  rxRingBuf                             
+20004ec4  rxTestOut                             
+20004e84  rxTestParam                           
+20004df8  scanCmd                               
+200048fc  scanDataEntry                         
+200049dc  scanDataQueue                         
+20004d94  scanInfo                              
+20004e10  scanOutput                            
+20004d14  scanParam                             
+0001d8c8  scanPktSuffix                         
+20004670  sclkSrc                               
+00012514  secondaryServiceUUID                  
+00010445  sendEstLinkEvent                      
+0001252c  servCharCfgUUID                       
+20004364  serverInfoTbl                         
+0001254c  serviceChangedUUID                    
+20004c89  slOverride                            
+20004518  slaveConnHandle                       
+20004510  slaveUpdateReq                        
+20004c96  sleepDelay                            
+20004de0  slvCmd                                
+20004d38  slvParam                              
+00014583  smAuthReqToUint8                      
+0001507d  smDetermineKeySize                    
+0001504d  smEndPairing                          
+00014dbf  smGenerateConfirm                     
+00014d93  smGeneratePairingReqRsp               
+00014559  smGenerateRandBuf                     
+00014dd7  smGenerateRandMsg                     
+00014a8d  smLinkCheck                           
+00014c55  smNextPairingState                    
+00014fa1  smPairingSendEncInfo                  
+00014fd9  smPairingSendIdentityAddrInfo         
+00014fcf  smPairingSendIdentityInfo             
+00014fa7  smPairingSendMasterID                 
+00014ffd  smPairingSendSigningInfo              
+00014ab5  smProcessDataMsg                      
+00014ba5  smProcessEncryptChange                
+00014d23  smProcessPairingReq                   
+00014a7d  smRegisterInitiator                   
+00014a85  smRegisterResponder                   
+00014e01  smSavePairInfo                        
+00014b89  smSendFailAndEnd                      
+0001510d  smSendFailureEvt                      
+00015aff  smSendSMMsg                           
+00014d79  smStartEncryption                     
+0001439d  smStartRspTimer                       
+000143b9  smStopRspTimer                        
+200043c9  smTaskID                              
+00014aaf  smTimedOut                            
+000145b1  smUint8ToAuthReq                      
+00014c85  sm_c1                                 
+0001444b  sm_c1new                              
+000143c9  sm_d1                                 
+00014421  sm_dm                                 
+00014519  sm_s1                                 
+000159cd  smpBuildEncInfo                       
+00015a4f  smpBuildIdentityAddrInfo              
+00015a3d  smpBuildIdentityInfo                  
+000159f5  smpBuildMasterID                      
+00015937  smpBuildPairingConfirm                
+00015997  smpBuildPairingFailed                 
+0001595f  smpBuildPairingRandom                 
+000157ad  smpBuildPairingReq                    
+000157bb  smpBuildPairingReqRsp                 
+000157b5  smpBuildPairingRsp                    
+00015ac7  smpBuildSecurityReq                   
+00015a9f  smpBuildSigningInfo                   
+000159df  smpParseEncInfo                       
+00015a83  smpParseIdentityAddrInfo              
+00015a6d  smpParseIdentityInfo                  
+00015a19  smpParseMasterID                      
+00015949  smpParsePairingConfirm                
+000159af  smpParsePairingFailed                 
+00015981  smpParsePairingRandom                 
+00015863  smpParsePairingReq                    
+00015ae3  smpParseSecurityReq                   
+00015ab1  smpParseSigningInfo                   
+10016d29  sspAesDecrypt_Sw                      
+10016af5  sspAesEncryptBasic_Sw                 
+10016a99  sspAesEncryptKeyExp_Sw                
+10016979  sspAesEncrypt_Sw                      
+10016985  sspKeyExpansion_Sw                    
+10016975  ssp_KeyInit_Sw                        
+0000f001  startup_entry                         
+000168d4  supportedCmdsTable                    
+20004cc4  taskEndAction                         
+20004f0a  taskEndStatus                         
+0001d1a8  tasksArr                              
+20004488  tasksEvents                           
+20004470  timerHead                             
+20004668  trngDrvTblPtr                         
+20004e28  trxTestCmd                            
+20004f1c  txDataQ                               
+20004d78  txModemTestCmd                        
+0001d8b0  txPowerTable                          
+0001d8b4  txPwrTbl                              
+20004f20  txTestOut                             
+20004ea8  txTestParam                           
+00012550  validRangeUUID                        
+20004c8c  verInfo                               
+20004f40  win                                   
+0001d8d0  wlSize                                
+20004a8c  wlTable                               
+20004b10  wlTableScan                           
+20004f44  workzone                              
+10015d19  zADD                                  
+10015eb5  zADD32                                
+10015de9  zMACC32                               
+10015f0d  zMULT32                               
+10015bcd  zSET                                  
+10015d5d  zSUB                                  
+10015e69  zSUB32                                
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                                  
+-------   ----                                  
+00005721  __checksum_value                      
+0000e0ea  __checksum_value_CommonROM            
+0000f000  __TI_static_base__                    
+0000f001  startup_entry                         
+0000f359  ATT_RegisterServer                    
+0000f35f  ATT_ErrorRsp                          
+0000f371  ATT_ExchangeMTURsp                    
+0000f389  ATT_FindInfoRsp                       
+0000f3b9  ATT_FindByTypeValueRsp                
+0000f3d9  ATT_ReadByTypeRsp                     
+0000f405  ATT_ReadRsp                           
+0000f421  ATT_ReadBlobRsp                       
+0000f43d  ATT_ReadMultiRsp                      
+0000f45b  ATT_ReadByGrpTypeRsp                  
+0000f47d  ATT_WriteRsp                          
+0000f489  ATT_PrepareWriteRsp                   
+0000f4a3  ATT_ExecuteWriteRsp                   
+0000f4af  ATT_HandleValueNoti                   
+0000f4c5  ATT_HandleValueInd                    
+0000f545  ATT_ParsePacket                       
+0000f59f  ATT_BuildErrorRsp                     
+0000f5b1  ATT_ParseErrorRsp                     
+0000f5cf  ATT_BuildExchangeMTUReq               
+0000f5d1  ATT_ParseExchangeMTUReq               
+0000f5db  ATT_BuildExchangeMTURsp               
+0000f5eb  ATT_ParseExchangeMTURsp               
+0000f601  ATT_BuildFindInfoReq                  
+0000f603  ATT_ParseFindInfoReq                  
+0000f60d  ATT_BuildFindInfoRsp                  
+0000f625  ATT_ParseFindInfoRsp                  
+0000f669  ATT_BuildFindByTypeValueReq           
+0000f683  ATT_ParseFindByTypeValueReq           
+0000f6c5  ATT_BuildFindByTypeValueRsp           
+0000f6cd  ATT_ParseFindByTypeValueRsp           
+0000f6e7  ATT_BuildReadByTypeReq                
+0000f717  ATT_ParseReadByTypeReq                
+0000f753  ATT_BuildReadByTypeRsp                
+0000f755  ATT_ParseReadByTypeRsp                
+0000f777  ATT_BuildReadReq                      
+0000f779  ATT_ParseReadReq                      
+0000f793  ATT_BuildReadRsp                      
+0000f797  ATT_ParseReadRsp                      
+0000f799  ATT_ParseWriteReq                     
+0000f7c3  ATT_BuildWriteReq                     
+0000f7c5  ATT_ParseWriteRsp                     
+0000f7cf  ATT_BuildReadBlobReq                  
+0000f7e9  ATT_ParseReadBlobReq                  
+0000f80d  ATT_BuildReadBlobRsp                  
+0000f811  ATT_ParseReadBlobRsp                  
+0000f81f  ATT_BuildReadMultiReq                 
+0000f827  ATT_ParseReadMultiReq                 
+0000f847  ATT_BuildReadMultiRsp                 
+0000f84b  ATT_ParseReadMultiRsp                 
+0000f84d  ATT_BuildReadByGrpTypeRsp             
+0000f85f  ATT_ParseReadByGrpTypeRsp             
+0000f88b  ATT_BuildPrepareWriteReq              
+0000f88d  ATT_ParsePrepareWriteReq              
+0000f8b5  ATT_BuildPrepareWriteRsp              
+0000f8d3  ATT_ParsePrepareWriteRsp              
+0000f905  ATT_BuildExecuteWriteReq              
+0000f90d  ATT_ParseExecuteWriteReq              
+0000f91f  ATT_ParseExecuteWriteRsp              
+0000f929  ATT_BuildHandleValueInd               
+0000f93d  ATT_ParseHandleValueInd               
+0000f969  ATT_ParseHandleValueCfm               
+0000f973  attSendMsg                            
+0000f9f9  ATT_CompareUUID                       
+0000fa49  ATT_ConvertUUIDto128                  
+0000fa71  ATT_ConvertUUIDto16                   
+0000faaf  ATT_UpdateMTU                         
+0000fad9  ATT_GetMTU                            
+0000faf9  ATT_SetParamValue                     
+0000fafb  ATT_GetParamValue                     
+0000fb00  btBaseUUID                            
+0000fb11  GAP_SetParamValue                     
+0000fb2b  GAP_GetParamValue                     
+0000fb3d  GAP_ParamsInit                        
+0000fb65  GAP_SecParamsInit                     
+0000fb7f  GAP_PrivacyInit                       
+0000fba1  GAP_GetIRK                            
+0000fba7  GAP_ConfigDeviceAddr                  
+0000fc7d  gapReadBD_ADDRStatus                  
+0000fcb9  gapReadBufSizeCmdStatus               
+0000fcfd  gapProcessNewAddr                     
+0000fd2b  gapAddAddrAdj                         
+0000fd4f  gapHost2CtrlOwnAddrType               
+0000fd59  gapProcessRandomAddrComplete          
+0000fdb9  gapGetSRK                             
+0000fdbf  gapGetSignCounter                     
+0000fdc7  gapIncSignCounter                     
+0000fde1  gapGetDevAddressMode                  
+0000fde7  gapGetDevAddress                      
+0000fe59  GAP_ResolvePrivateAddr                
+0000fe5d  gapIsAdvertising                      
+0000fe61  gapIsScanning                         
+0000fe6b  gapValidADType                        
+0000fe7f  gapFindADType                         
+0000fed3  gapSetState                           
+0000fedd  gapClrState                           
+0000ff09  GAP_TerminateLinkReq                  
+0000ff83  GAP_UpdateLinkParamReq                
+0000ffeb  GAP_UpdateLinkParamReqReply           
+0001007d  GAP_Signable                          
+000100c5  GAP_Authenticate                      
+00010161  GAP_TerminateAuth                     
+0001017f  GAP_PasskeyUpdate                     
+000101b3  GAP_PasscodeUpdate                    
+000101ff  GAP_Bond                              
+00010275  gapUpdateConnSignCounter              
+000102c7  gapSendSlaveSecurityReqEvent          
+00010309  gapProcessConnectionCompleteEvt       
+000103b7  gapProcessRemoteConnParamReqEvt       
+000103e3  gapProcessDisconnectCompleteEvt       
+00010445  sendEstLinkEvent                      
+000104c9  gapSendLinkUpdateEvent                
+0001063d  gapFreeEstLink                        
+00010659  gapSendBondCompleteEvent              
+000106ab  gapSendPairingReqEvent                
+00010705  gapPasskeyNeededCB                    
+0001076d  gapPairingCompleteCB                  
+0001089d  gapRegisterPeripheralConn             
+000108c1  GAP_MakeDiscoverable                  
+00010953  GAP_UpdateAdvertisingData             
+000109bb  GAP_EndDiscoverable                   
+00010a07  GAP_SetAdvToken                       
+00010ab1  GAP_GetAdvToken                       
+00010ac7  GAP_RemoveAdvToken                    
+00010b11  GAP_UpdateAdvTokens                   
+00010b25  GAP_PeriDevMgrInit                    
+00010ee5  GAP_SendSlaveSecurityRequest          
+00010f1f  GAP_PeriConnRegister                  
+00010ff5  GAP_RegisterForMsgs                   
+00010ffb  GAP_Init                              
+00011011  GAP_ProcessEvent                      
+000110d9  GAP_NumActiveConnections              
+000112ad  gapRegisterCentral                    
+000112b3  gapRegisterPeripheral                 
+000112b9  GAP_RegisterBondMgrCBs                
+000112e1  GGS_SetParameter                      
+00011361  GGS_GetParameter                      
+00011397  GGS_SetParamValue                     
+00011399  GGS_GetParamValue                     
+0001139d  GGS_AddService                        
+000113b5  GGS_DelService                        
+000113c9  GGS_RegisterAppCBs                    
+00011600  gapServiceCBs                         
+0001160d  GATT_InitServer                       
+00011675  GATT_RegisterService                  
+00011711  GATT_DeregisterService                
+00011751  GATT_RegisterForReq                   
+00011759  GATT_VerifyReadPermissions            
+0001178f  GATT_VerifyWritePermissions           
+000117e3  GATT_ServiceChangedInd                
+00011855  GATT_FindHandleUUID                   
+000118b3  GATT_FindHandle                       
+000118ff  GATT_FindNextAttr                     
+00011983  GATT_ServiceNumAttrs                  
+0001198f  GATT_ServiceEncKeySize                
+0001199f  GATT_SendRsp                          
+00011a53  GATT_Indication                       
+00011abf  GATT_Notification                     
+000120b1  GATT_GetNextHandle                    
+00012121  GATT_SetNextHandle                    
+00012123  Onboard_soft_reset                    
+00012125  gattRegisterServer                    
+0001212b  gattRegisterClient                    
+00012131  GATT_RegisterForMsgs                  
+00012137  GATT_SetHostToAppFlowCtrl             
+00012143  GATT_AppCompletedMsg                  
+0001216b  GATT_Init                             
+00012189  GATT_ProcessEvent                     
+00012257  gattNotifyEvent                       
+000122ad  gattStartTimer                        
+000122bd  gattStopTimer                         
+000122d5  GATT_NotifyEvent                      
+000122e9  GATT_UpdateMTU                        
+0001230f  gattSendFlowCtrlEvt                   
+0001233d  gattGetPayload                        
+00012391  GATT_bm_alloc                         
+00012409  GATT_bm_free                          
+0001241b  _system_post_cinit                    
+0001241d  GATT_FindUUIDRec                      
+00012508  gapServiceUUID                        
+0001250c  gattServiceUUID                       
+00012510  primaryServiceUUID                    
+00012514  secondaryServiceUUID                  
+00012518  includeUUID                           
+0001251c  characterUUID                         
+00012520  charExtPropsUUID                      
+00012524  charUserDescUUID                      
+00012528  clientCharCfgUUID                     
+0001252c  servCharCfgUUID                       
+00012530  charFormatUUID                        
+00012534  charAggFormatUUID                     
+00012538  deviceNameUUID                        
+0001253c  appearanceUUID                        
+00012540  periPrivacyFlagUUID                   
+00012544  reconnectAddrUUID                     
+00012548  periConnParamUUID                     
+0001254c  serviceChangedUUID                    
+00012550  validRangeUUID                        
+00012554  extReportRefUUID                      
+00012558  reportRefUUID                         
+0001255d  GATTServApp_RegisterForMsg            
+00012565  GATTServApp_Init                      
+000125b3  GATTServApp_ProcessEvent              
+000125f1  GATTServApp_RegisterService           
+00012647  GATTServApp_DeregisterService         
+0001268b  GATTServApp_SetParameter              
+000126e9  GATTServApp_GetParameter              
+000127a3  GATTServApp_AddService                
+000127b9  GATTServApp_DelService                
+000131ed  GATTServApp_ReadAttr                  
+000133e5  GATTServApp_WriteAttr                 
+0001346d  GATTServApp_SetParamValue             
+0001346f  GATTServApp_GetParamValue             
+00013473  GATTServApp_UpdateCharCfg             
+000134e5  GATTServApp_SendCCCUpdatedEvent       
+00013529  L2CAP_RegisterApp                     
+00013553  L2CAP_SendData                        
+000135b5  L2CAP_CmdReject                       
+000135c3  L2CAP_InfoReq                         
+000135db  L2CAP_ConnParamUpdateReq              
+00013611  L2CAP_ConnParamUpdateRsp              
+00013623  L2CAP_SetControllerToHostFlowCtrl     
+0001365d  L2CAP_HostNumCompletedPkts            
+00013673  L2CAP_SetBufSize                      
+0001367f  L2CAP_GetMTU                          
+000136a5  L2CAP_SetUserConfig                   
+000136a9  L2CAP_Init                            
+0001370b  L2CAP_ProcessEvent                    
+00013819  L2CAP_RegisterFlowCtrlTask            
+00013959  l2capParseSignalHdr                   
+0001396d  l2capSendReq                          
+000139d1  l2capSendCmd                          
+00013a41  l2capStoreFCPkt                       
+00013a67  l2capSendPkt                          
+00013ad5  l2capEncapSendData                    
+00013b7f  l2capParsePacket                      
+00013bd5  L2CAP_BuildCmdReject                  
+00013c13  l2capParseCmdReject                   
+00013c53  l2capBuildParamUpdateReq              
+00013c7f  L2CAP_ParseParamUpdateReq             
+00013cb9  L2CAP_BuildParamUpdateRsp             
+00013cbb  l2capParseParamUpdateRsp              
+00013cc5  l2capBuildInfoReq                     
+00013cd5  L2CAP_ParseInfoReq                    
+00013ced  L2CAP_BuildInfoRsp                    
+00013d33  l2capParseInfoRsp                     
+00013d93  l2capNotifyData                       
+00013dd7  l2capNotifySignal                     
+00013e25  l2capAllocConnChannel                 
+00013e77  l2capFreeChannel                      
+00013e85  l2capFindLocalId                      
+00013eaf  l2capStartTimer                       
+00013ec3  l2capStopTimer                        
+00013f1f  l2capHandleRxError                    
+00013f21  l2capDisconnectAllChannels            
+00013fc5  L2CAP_bm_alloc                        
+00013fdf  L2CAP_SetParamValue                   
+00013fe1  L2CAP_GetParamValue                   
+00013fe5  linkDB_Init                           
+00014033  linkDB_Register                       
+00014051  linkDB_Add                            
+000140b7  linkDB_Remove                         
+000140eb  linkDB_Update                         
+00014113  linkDB_GetInfo                        
+00014153  linkDB_Find                           
+0001417d  linkDB_FindFirst                      
+000141af  linkDB_State                          
+000141d1  linkDB_Role                           
+000141dd  linkDB_NumActive                      
+00014205  linkDB_NumConns                       
+0001420b  linkDB_UpdateMTU                      
+00014227  linkDB_MTU                            
+00014233  linkDB_Authen                         
+0001427f  linkDB_PerformFunc                    
+000142ab  linkDB_reportStatusChange             
+000142d1  SM_CalcRandomAddr                     
+00014309  SM_ResolveRandomAddrs                 
+0001435f  SM_Encrypt                            
+0001439d  smStartRspTimer                       
+000143b9  smStopRspTimer                        
+000143c9  sm_d1                                 
+00014421  sm_dm                                 
+0001444b  sm_c1new                              
+00014519  sm_s1                                 
+00014559  smGenerateRandBuf                     
+00014583  smAuthReqToUint8                      
+000145b1  smUint8ToAuthReq                      
+000145f9  SM_GenerateAuthenSig                  
+00014693  SM_VerifyAuthenSig                    
+00014960  const_Rb                              
+00014971  SM_StartPairing                       
+000149ff  SM_PasskeyUpdate                      
+00014a7d  smRegisterInitiator                   
+00014a85  smRegisterResponder                   
+00014a8d  smLinkCheck                           
+00014aaf  smTimedOut                            
+00014ab5  smProcessDataMsg                      
+00014b89  smSendFailAndEnd                      
+00014ba5  smProcessEncryptChange                
+00014c55  smNextPairingState                    
+00014c85  sm_c1                                 
+00014d23  smProcessPairingReq                   
+00014d79  smStartEncryption                     
+00014d93  smGeneratePairingReqRsp               
+00014dbf  smGenerateConfirm                     
+00014dd7  smGenerateRandMsg                     
+00014e01  smSavePairInfo                        
+00014fa1  smPairingSendEncInfo                  
+00014fa7  smPairingSendMasterID                 
+00014fcf  smPairingSendIdentityInfo             
+00014fd9  smPairingSendIdentityAddrInfo         
+00014ffd  smPairingSendSigningInfo              
+0001504d  smEndPairing                          
+0001507d  smDetermineKeySize                    
+0001510d  smSendFailureEvt                      
+00015155  SM_ResponderInit                      
+000156c5  SM_Init                               
+000156e1  SM_ProcessEvent                       
+000157ad  smpBuildPairingReq                    
+000157b5  smpBuildPairingRsp                    
+000157bb  smpBuildPairingReqRsp                 
+00015863  smpParsePairingReq                    
+00015937  smpBuildPairingConfirm                
+00015949  smpParsePairingConfirm                
+0001595f  smpBuildPairingRandom                 
+00015981  smpParsePairingRandom                 
+00015997  smpBuildPairingFailed                 
+000159af  smpParsePairingFailed                 
+000159cd  smpBuildEncInfo                       
+000159df  smpParseEncInfo                       
+000159f5  smpBuildMasterID                      
+00015a19  smpParseMasterID                      
+00015a3d  smpBuildIdentityInfo                  
+00015a4f  smpBuildIdentityAddrInfo              
+00015a6d  smpParseIdentityInfo                  
+00015a83  smpParseIdentityAddrInfo              
+00015a9f  smpBuildSigningInfo                   
+00015ab1  smpParseSigningInfo                   
+00015ac7  smpBuildSecurityReq                   
+00015ae3  smpParseSecurityReq                   
+00015aff  smSendSMMsg                           
+00015b49  llProcessSlaveControlPacket           
+00015de5  llSetupConnRxDataEntryQueue           
+00015e6b  llCreateRxBuffer                      
+00015e99  llCheckRxBuffers                      
+00015ebf  llReplaceRxBuffers                    
+00015ef1  llSetupRfHal                          
+00015f0b  llSetupRATChanCompare                 
+00015f3d  llRatChanCBack_A                      
+00015f3f  RFHAL_InitRfHal                       
+00015fa3  RFHAL_AddTxDataEntry                  
+0001603d  LL_RxDataCompleteCback                
+000160e5  hciInitEventMasks                     
+00016129  LL_ConnParamUpdateCback               
+000161bb  LL_ReadRemoteUsedFeaturesCompleteCback
+00016227  HCI_NumOfCompletedPacketsEvent        
+00016307  LL_AuthPayloadTimeoutExpiredCback     
+0001637b  LL_EnhancedConnectionCompleteCback    
+00016595  HCI_VendorSpecifcCommandCompleteEvent 
+00016611  HCI_ValidConnTimeParams               
+0001664d  HCI_ResetCmd                          
+0001666f  HCI_ReadLocalSupportedCommandsCmd     
+00016683  HCI_EXT_GetConnInfoCmd                
+00016711  HCI_LE_ReadBufSizeCmd                 
+0001673f  HCI_LE_RemoteConnParamReqReplyCmd     
+00016743  HCI_LE_RemoteConnParamReqNegReplyCmd  
+00016747  HCI_LE_ReadRemoteUsedFeaturesCmd      
+00016771  HCI_LE_TransmitterTestCmd             
+00016783  HCI_LE_ReceiverTestCmd                
+00016795  HCI_SetEventMaskPage2Cmd              
+000167bd  HCI_LE_ConnUpdateCmd                  
+000167cd  HCI_EXT_ResetSystemCmd                
+000167f3  HCI_EXT_DelaySleepCmd                 
+00016817  HCI_EXT_ConnEventNoticeCmd            
+0001681b  HCI_LE_SetEventMaskCmd                
+00016851  HCI_ReadLocalVersionInfoCmd           
+000168a9  HCI_ReadRssiCmd                       
+000168d4  supportedCmdsTable                    
+00016919  llDirAdv_TaskEnd                      
+0001697b  llAdv_TaskEnd                         
+00016a3f  llAdv_TaskConnect                     
+00016d41  llVerifyConnParamReqParams            
+00016dc3  llAllocConnId                         
+00016f01  llInitFeatureSet                      
+00016f19  llSetupFeatureSetRsp                  
+00016f7b  llSetupStartEncReq                    
+00016fbd  llProcessTxData                       
+00017027  llConnCleanup                         
+00017101  llDequeueCtrlPkt                      
+0001713d  llReplaceCtrlPkt                      
+00017169  llGetNextConn                         
+000171b9  llGetMinCI                            
+00017225  llFragmentPDU                         
+00017287  llCombinePDU                          
+000173b5  llAlignToNextEvent                    
+00017461  llRfSetup                             
+000174a9  llRfInit                              
+00017517  llSetTxPower                          
+00017561  llGetTxPower                          
+00017575  llCheckWhiteListUsage                 
+00017589  llProcessChanMap                      
+000175c9  llGetNextDataChan                     
+00017615  llSetNextDataChan                     
+00017663  llSendReject                          
+00017681  llSetupTermInd                        
+000176f3  llWriteTxData                         
+0001776f  llTime2Octets                         
+0001779d  llOctets2Time                         
+000177d1  llHaltRadio                           
+000177f1  llRfStartFS                           
+000178d9  llResetRadio                          
+000178db  llHardwareError                       
+000178df  llValidateConnParams                  
+00017975  LL_ENC_Encrypt                        
+000179e3  LL_ENC_Decrypt                        
+00018149  LL_Init                               
+000183af  LL_ProcessEvent                       
+000184d7  LL_Reset                              
+000185d1  LL_EXT_GetConnInfo                    
+0001867d  LL_EncLtkReply                        
+000186c3  LL_EncLtkNegReply                     
+000186ff  LL_ReadRemoteUsedFeatures             
+0001874f  LL_EXT_SetLocalSupportedFeatures      
+00018785  LL_EXT_SetTxPower                     
+000187bd  LL_EXT_SetMaxDtmTxPower               
+000187d9  LL_ReadTxPowerLevel                   
+00018817  LL_TxData                             
+000188d1  LL_EXT_ModemHopTestTx                 
+00018971  LL_EXT_ModemTestTx                    
+000189f5  LL_EXT_ModemTestRx                    
+00018a8d  LL_EXT_EndModemTest                   
+00018ab3  LL_DirectTestTxTest                   
+00018c2d  LL_DirectTestRxTest                   
+00018d31  LL_DirectTestEnd                      
+00018dc5  LL_SetAdvParam                        
+00018ed5  LL_SetAdvControl                      
+00018fd7  LL_ReadSupportedStates                
+00018ff3  LL_GetNumActiveConns                  
+00018fff  LL_ReadRssi                           
+00019065  LL_EXT_ConnEventNotice                
+00019095  LL_EXT_NumComplPktsLimit              
+000190bd  LL_EXT_BuildRevision                  
+000190f9  LL_EXT_DisconnectImmed                
+000191b1  llInitRAT                             
+000191b3  llGetCurrentTime                      
+000191c1  llSchedulerInit                       
+000191f3  llAllocTask                           
+0001924d  llGetTaskState                        
+0001926f  llActiveTask                          
+000192a5  llGetTask                             
+000192d5  llScheduleTask                        
+00019369  llSlave_TaskEnd                       
+0001953b  llSetupNextSlaveEvent                 
+000197d9  llProcessSlaveControlProcedures       
+00019a69  LL_PM_GetRfCoreState                  
+00019a6d  LL_PM_Enter_AES                       
+00019a83  LL_PM_Exit_AES                        
+00019aad  LL_PM_PowerOffRfCore                  
+00019aaf  WL_Clear                              
+00019ad3  WL_GetNumFreeEntries                  
+00019add  WL_FindEntry                          
+00019b1f  WL_SetWlIgnore                        
+00019b3f  WL_ClearIgnoreList                    
+00019b5d  rfPUpCallback                         
+00019b69  rfCallback                            
+00019b93  LL_DoorbellErrorCback                 
+00019ba5  LL_LastCmdDoneCback                   
+00019d59  LL_TxDoneCback                        
+00019d6d  LL_TxEntryDoneCback                   
+00019d87  LL_RxIgnoredCback                     
+00019d89  LL_RxEntryDoneCback                   
+00019f25  HCI_Init                              
+00019f57  HCI_ProcessEvent                      
+00019f93  HCI_TestAppTaskRegister               
+00019f99  HCI_GAPTaskRegister                   
+00019f9f  HCI_L2CAPTaskRegister                 
+00019fa5  HCI_SMPTaskRegister                   
+00019fab  HCI_ExtTaskRegister                   
+00019fcd  __TI_auto_init                        
+0001a03d  __aeabi_lmul                          
+0001a055  __aeabi_memcpy                        
+0001a055  __aeabi_memcpy4                       
+0001a055  __aeabi_memcpy8                       
+0001a055  memcpy                                
+0001a0f1  __aeabi_memclr                        
+0001a0f1  __aeabi_memclr4                       
+0001a0f1  __aeabi_memclr8                       
+0001a0f3  __aeabi_memset                        
+0001a0f3  __aeabi_memset4                       
+0001a0f3  __aeabi_memset8                       
+0001a0f9  memset                                
+0001a16b  __aeabi_uldivmod                      
+0001a35f  NOROM_CPUcpsie                        
+0001a36b  NOROM_CPUcpsid                        
+0001a379  osalFindTimer                         
+0001a393  osalAddTimer                          
+0001a3d7  osal_get_timeoutEx                    
+0001a41b  osal_timer_refTimeUpdate              
+0001a583  osal_start_timerEx                    
+0001a5bd  osal_stop_timerEx                     
+0001a5ed  osal_start_reload_timer               
+0001a623  osal_next_timeout                     
+0001a669  ROM_Spinlock                          
+0001a6a1  HalTRNG_InitTRNG                      
+0001a6cf  HalTRNG_GetTRNG                       
+0001a719  halAssertHandler                      
+0001a71b  halAssertSpinlock                     
+0001a71d  halAssertHandlerExt                   
+0001a739  NOROM_IntDisable                      
+0001a7a1  NOROM_IntEnable                       
+0001a81d  osal_bm_adjust_header                 
+0001a845  osal_bm_alloc                         
+0001a877  osal_bm_free                          
+0001a8c5  osal_memset                           
+0001a8c9  osal_memcpy                           
+0001a8e1  osal_msg_allocate                     
+0001a905  osal_self                             
+0001a90b  osal_msg_deallocate                   
+0001a941  osal_isbufset                         
+0001a95b  osal_memcmp                           
+0001a97b  osal_msg_receive                      
+0001aa05  osal_revmemcpy                        
+0001aab3  osal_msg_send                         
+0001ab3b  osal_set_event                        
+0001abd1  osal_clear_event                      
+0001ac8d  osal_service_entry                    
+0001ad1d  osal_start_system                     
+0001ae79  osal_strlen                           
+0001ae8d  osal_rand                             
+0001ae9d  osal_memdup                           
+0001aeb9  osal_build_uint32                     
+0001aeed  osal_buffer_uint32                    
+0001af21  HalFlashGetAddress                    
+0001af3b  HalFlashRead                          
+0001af67  HalFlashWrite                         
+0001af79  osal_CbTimerProcessEvent              
+0001b003  osal_CbTimerStop                      
+0001b0dd  osal_CbTimerStart                     
+0001b153  osal_snv_read                         
+0001b391  osal_snv_write                        
+0001b48d  osal_snv_compact                      
+0001b53f  GAPBondMgr_ResolveAddr                
+0001b6e3  GAPBondMgr_UpdateCharCfg              
+0001bb5b  GAPBondMgr_LinkTerm                   
+0001bbad  GAPBondMgr_ProcessGAPMsg              
+0001bd37  GAPBondMgr_ProcessEvent               
+0001bedd  GAPBondMgr_LinkEst                    
+0001bfe1  NOROM_VIMSModeGet                     
+0001bff5  NOROM_FlashProgram                    
+0001c011  NOROM_FlashSectorErase                
+0001c319  bleDispatch_ProcessEvent              
+0001cb91  bleDispatch_BMAlloc                   
+0001cbbd  bleDispatch_BMFree                    
+0001cbf9  osal_pwrmgr_task_state                
+0001cc69  osal_mem_alloc                        
+0001cc8b  osal_mem_free                         
+0001cce1  copy_in                               
+0001cd2d  __TI_zero_init                        
+0001cd39  __TI_decompress_none                  
+0001cd47  __TI_decompress_lzss                  
+0001cdcd  GATTServApp_ReadCharCfg               
+0001cddd  GATTServApp_InitCharCfg               
+0001d1a8  tasksArr                              
+0001d1d0  R2F_Flash_JT_CommonROM                
+0001d1e8  R2F_Flash_JT                          
+0001d290  R2R_Flash_JT_CommonROM                
+0001d384  R2R_Flash_JT                          
+0001d8b0  txPowerTable                          
+0001d8b4  txPwrTbl                              
+0001d8bc  rfCfgVal                              
+0001d8c0  rxPktSuffix                           
+0001d8c4  advPktSuffix                          
+0001d8c8  scanPktSuffix                         
+0001d8cc  initPktSuffix                         
+0001d8d0  wlSize                                
+0001d8d4  maxPktsPerEvt                         
+0001d8d8  rfOpLoc                               
+0001d8dc  llConfigTable                         
+0001d90c  ll_buildRevision                      
+0001d910  __TI_Handler_Table_Base               
+0001d91c  __TI_CINIT_Base                       
+0001d91c  __TI_Handler_Table_Limit              
+0001d92c  __TI_CINIT_Limit                      
+0001e000  NV_FLASH                              
+10005000  A1_rw_1                               
+10005000  __checksum_begin                      
+10005001  ROM_BASE_ADDR                         
+10005004  P1_ro_1                               
+10005549  LL_TX_bm_alloc                        
+1000556d  LL_RX_bm_alloc                        
+100056c9  LL_ReadBDADDR                         
+100056e9  LL_SetRandomAddress                   
+10005719  LL_ClearWhiteList                     
+10005739  LL_AddWhiteListDevice                 
+10005765  LL_RemoveWhiteListDevice              
+100057a1  LL_ReadWlSize                         
+100057b9  LL_NumEmptyWlEntries                  
+100057d5  LL_Encrypt                            
+100057f5  LL_Rand                               
+10005801  LL_PseudoRand                         
+10005879  LL_ReadLocalSupportedFeatures         
+1000589d  LL_ReadLocalVersionInfo               
+100058d5  LL_CtrlToHostFlowControl              
+100058e9  LL_ReadRemoteVersionInfo              
+100059a1  LL_ReadChanMap                        
+10005a39  LL_Disconnect                         
+10005f89  LL_SetAdvData                         
+10006105  LL_ReadAdvChanTxPower                 
+1000612d  LL_SetScanRspData                     
+1000678d  LL_ConnActive                         
+10006ad9  LL_EXT_SetRxGain                      
+10006b59  LL_EXT_OnePacketPerEvent              
+10006b7d  LL_EXT_ClkDivOnHalt                   
+10006b81  LL_EXT_DeclareNvUsage                 
+10006b85  LL_EXT_Decrypt                        
+10006bc5  LL_EXT_SetFastTxResponseTime          
+10006bdd  LL_EXT_SetSlaveLatencyOverride        
+10006e01  LL_EXT_SetBDADDR                      
+10006e85  LL_EXT_SetSCA                         
+10006ef9  LL_EXT_SetFreqTune                    
+10006efd  LL_EXT_SaveFreqTune                   
+10006f49  LL_EXT_MapPmIoPort                    
+10006f99  LL_EXT_PacketErrorRate                
+10006fed  LL_EXT_PERbyChan                      
+1000701d  LL_EXT_ExtendRfRange                  
+10007021  LL_EXT_HaltDuringRf                   
+10007025  LL_EXT_AdvEventNotice                 
+100070a1  LL_EXT_DelaySleep                     
+100070d5  LL_EXT_ResetSystem                    
+10007109  LL_EXT_OverlappedProcessing           
+100072e1  llSetFreqTune                         
+100072e5  llDisableRfInts                       
+100072e9  llClearRfInts                         
+100072ed  llEnableRfInts                        
+100072f1  llProcessPostRfOps                    
+100073e5  llSetupAdv                            
+100075fd  llSetupScan                           
+100077b5  llSetupInit                           
+100079c9  llSetupUpdateParamReq                 
+10007aed  llSetupEncReq                         
+10007b95  llSetupEncRsp                         
+10007ca9  llSetupStartEncRsp                    
+10007cfd  llSetupPauseEncReq                    
+10007d55  llSetupPauseEncRsp                    
+10007df5  llSetupRejectInd                      
+10007f29  llSetupVersionIndReq                  
+10008069  llSetupUnknownRsp                     
+100080bd  llEnqueueCtrlPkt                      
+100082f1  llAtLeastTwoChans                     
+10008429  llReleaseConnId                       
+10008461  llReleaseAllConnId                    
+10008631  llConnTerminate                       
+10008665  llPendingUpdateParam                  
+100086b9  llGenerateCRC                         
+100086f1  llEventInRange                        
+10008719  llEventDelta                          
+10008721  llConvertLstoToEvent                  
+10008741  llConvertCtrlProcTimeoutToEvent       
+10008889  llEnqueueDataQ                        
+100088b5  llEnqueueHeadDataQ                    
+10008921  llDequeueDataQ                        
+10008965  llDataQFull                           
+10008985  llDataQEmpty                          
+100089d9  llMemCopySrc                          
+100089f1  llMemCopyDst                          
+10008a2d  HCI_DataBufferOverflowEvent           
+10008add  HCI_CommandCompleteEvent              
+10008ba1  HCI_CommandStatusEvent                
+10008bf5  HCI_HardwareErrorEvent                
+10008c59  HCI_SendCommandStatusEvent            
+10008c81  HCI_SendCommandCompleteEvent          
+10008d31  HCI_SendControllerToHostEvent         
+10008d81  LL_AdvReportCback                     
+10008ead  LL_ConnectionCompleteCback            
+10009005  LL_DisconnectCback                    
+100091e1  LL_ReadRemoteVersionInfoCback         
+1000925d  LL_EncLtkReqCback                     
+1000933d  LL_EncChangeCback                     
+100093dd  LL_EncKeyRefreshCback                 
+10009471  LL_DirectTestEndDoneCback             
+100094a1  HCI_bm_alloc                          
+100094e9  HCI_SendDataPkt                       
+10009525  HCI_DisconnectCmd                     
+10009541  HCI_ReadRemoteVersionInfoCmd          
+10009571  HCI_SetEventMaskCmd                   
+100095d1  HCI_ReadTransmitPowerLevelCmd         
+100095f5  HCI_SetControllerToHostFlowCtrlCmd    
+10009631  HCI_HostBufferSizeCmd                 
+1000965d  HCI_HostNumCompletedPktCmd            
+1000973d  HCI_ReadLocalSupportedFeaturesCmd     
+10009765  HCI_ReadBDADDRCmd                     
+10009829  HCI_LE_ReadLocalSupportedFeaturesCmd  
+10009849  HCI_LE_SetRandomAddressCmd            
+1000986d  HCI_LE_SetAdvParamCmd                 
+100098a1  HCI_LE_SetAdvDataCmd                  
+100098bd  HCI_LE_SetScanRspDataCmd              
+100098d9  HCI_LE_SetAdvEnableCmd                
+100098f5  HCI_LE_ReadAdvChanTxPowerCmd          
+10009915  HCI_LE_SetScanParamCmd                
+10009941  HCI_LE_SetScanEnableCmd               
+1000995d  HCI_LE_CreateConnCmd                  
+1000999d  HCI_LE_CreateConnCancelCmd            
+100099c9  HCI_LE_ReadWhiteListSizeCmd           
+100099f9  HCI_LE_ClearWhiteListCmd              
+10009a15  HCI_LE_AddWhiteListCmd                
+10009a31  HCI_LE_RemoveWhiteListCmd             
+10009a85  HCI_LE_SetHostChanClassificationCmd   
+10009aa1  HCI_LE_ReadChannelMapCmd              
+10009af5  HCI_LE_EncryptCmd                     
+10009b51  HCI_LE_RandCmd                        
+10009ba9  HCI_LE_StartEncyptCmd                 
+10009bc5  HCI_LE_LtkReqReplyCmd                 
+10009be1  HCI_LE_LtkReqNegReplyCmd              
+10009c15  HCI_LE_ReadSupportedStatesCmd         
+10009c8d  HCI_LE_TestEndCmd                     
+10009cd5  HCI_EXT_SetRxGainCmd                  
+10009d09  HCI_EXT_SetTxPowerCmd                 
+10009d45  HCI_EXT_OnePktPerEvtCmd               
+10009d79  HCI_EXT_ClkDivOnHaltCmd               
+10009dad  HCI_EXT_DeclareNvUsageCmd             
+10009dd1  HCI_EXT_DecryptCmd                    
+10009e2d  HCI_EXT_SetLocalSupportedFeaturesCmd  
+10009e4d  HCI_EXT_SetFastTxResponseTimeCmd      
+10009e6d  HCI_EXT_SetSlaveLatencyOverrideCmd    
+10009e8d  HCI_EXT_ModemTestTxCmd                
+10009ead  HCI_EXT_ModemHopTestTxCmd             
+10009ecd  HCI_EXT_ModemTestRxCmd                
+10009eed  HCI_EXT_EndModemTestCmd               
+10009f0d  HCI_EXT_SetBDADDRCmd                  
+10009f49  HCI_EXT_SetSCACmd                     
+10009f69  HCI_EXT_EnablePTMCmd                  
+10009f81  HCI_EXT_SetFreqTuneCmd                
+10009fb1  HCI_EXT_SaveFreqTuneCmd               
+10009fd1  HCI_EXT_SetMaxDtmTxPowerCmd           
+10009ff1  HCI_EXT_MapPmIoPortCmd                
+1000a011  HCI_EXT_DisconnectImmedCmd            
+1000a031  HCI_EXT_PacketErrorRateCmd            
+1000a075  HCI_EXT_PERbyChanCmd                  
+1000a095  HCI_EXT_ExtendRfRangeCmd              
+1000a0d1  HCI_EXT_HaltDuringRfCmd               
+1000a0f1  HCI_EXT_AdvEventNoticeCmd             
+1000a109  HCI_EXT_BuildRevisionCmd              
+1000a195  HCI_EXT_OverlappedProcessingCmd       
+1000a1b5  HCI_EXT_NumComplPktsLimitCmd          
+1000a1d5  LL_RandCback                          
+1000a201  LL_EXT_SetRxGainCback                 
+1000a211  LL_EXT_SetTxPowerCback                
+1000a259  LL_EXT_PacketErrorRateCback           
+1000a2ad  LL_EXT_ExtendRfRangeCback             
+1000a335  llScheduler                           
+1000a895  llFindStartType                       
+1000a939  llFindNextSecTask                     
+1000abed  llFreeTask                            
+1000ac3d  llGetCurrentTask                      
+1000aca9  llGetActiveTasks                      
+1000ace1  llGetNumTasks                         
+1000adb1  llPatchCM0                            
+1000ae41  llRatChanCBack_B                      
+1000ae45  llRatChanCBack_C                      
+1000ae49  llRatChanCBack_D                      
+1000ae4d  llSetupScanDataEntryQueue             
+1000ae95  llSetupInitDataEntryQueue             
+1000aeb1  llSetupAdvDataEntryQueue              
+1000afa1  llMoveTempTxDataEntries               
+1000b009  llGetNumTxDataEntries                 
+1000b4c9  LL_ENC_Init                           
+1000b4ed  LL_ENC_ReverseBytes                   
+1000b50d  LL_ENC_GeneratePseudoRandNum          
+1000b51d  LL_ENC_GenerateTrueRandNum            
+1000b541  LL_ENC_GenDeviceSKD                   
+1000b555  LL_ENC_GenDeviceIV                    
+1000b569  LL_ENC_GenerateNonce                  
+1000b58d  LL_ENC_LoadKey                        
+1000b5f5  LL_ENC_AES128_Encrypt                 
+1000b639  LL_ENC_AES128_Decrypt                 
+1000b721  LL_ENC_EncryptMsg                     
+1000b851  LL_ENC_DecryptMsg                     
+1000c1b5  llCheckForLstoDuringSL                
+1000cd51  llAdv_TaskAbort                       
+1000d189  WL_Init                               
+1000d1f5  WL_ClearEntry                         
+1000d229  WL_GetSize                            
+1000d2d9  WL_AddEntry                           
+1000d36d  WL_RemoveEntry                        
+1000d4ad  llGetAdvChanPDU                       
+1000d695  llGenerateValidAccessAddr             
+1000d6b1  llGtSixConsecZerosOrOnes              
+1000d6e5  llEqSynchWord                         
+1000d6f5  llOneBitSynchWordDiffer               
+1000d709  llEqualBytes                          
+1000d731  llGtTwentyFourTransitions             
+1000d761  llLtTwoChangesInLastSixBits           
+1000d795  llEqAlreadyValidAddr                  
+1000d7cd  HCI_ReverseBytes                      
+1000d8c9  llTimeCompare                         
+1000d8f5  llTimeDelta                           
+1000d94d  llCalcScaFactor                       
+1000d964  SCA                                   
+1000d9b0  advChan                               
+1000d9b4  advEvt2Cmd                            
+1000d9c0  advEvt2State                          
+1000d9e1  llTaskError                           
+1000d9ec  Fill1_1                               
+1000dffc  A3_rw_1                               
+1000dffc  romRev                                
+1000dffd  __checksum_end                        
+1000dffe  A2_rw_1                               
+1000dffe  P1_ro_2_1                             
+1000dffe  __checksum                            
+10014c00  A1_rw                                 
+10014c00  __checksum_begin_CommonROM            
+10014c01  COMMON_ROM_BASE_ADDR                  
+10014c04  P1_ro                                 
+10014c05  SCALARMUL_init                        
+10014ced  SCALARMUL_core                        
+10015019  SCALARMUL_final                       
+100150e5  SCALARMUL                             
+10015101  SAVEPOINT                             
+10015141  GETBIT                                
+10015155  GETDIGIT                              
+100151a5  GETDIGITL2R                           
+10015215  SelectReg                             
+10015229  ATOMICPATTERN                         
+100154f5  JACADD                                
+1001568d  INVERT                                
+10015821  SQUAREMULTIPLYWORD                    
+1001588c  LUTOPCODE                             
+10015894  LUTOPSIGN                             
+100158ac  LUTC                                  
+100158c4  LUTSE                                 
+100158dc  LUTINCI                               
+100158f4  LUTJ                                  
+1001596c  LUTSTATE                              
+100159a9  IMPORTLENGTH                          
+100159ad  IMPORTMODULUS                         
+100159d1  IMPORTOPERAND                         
+10015a11  EXPORTOPERAND                         
+10015a35  IMPORTDATA                            
+10015a51  SETOPERAND                            
+10015a6d  COPY                                  
+10015a85  ZERO                                  
+10015a91  SETWORD                               
+10015a9d  mSET                                  
+10015bcd  zSET                                  
+10015bd5  mINVK                                 
+10015d19  zADD                                  
+10015d5d  zSUB                                  
+10015de9  zMACC32                               
+10015e69  zSUB32                                
+10015eb5  zADD32                                
+10015f0d  zMULT32                               
+10015f81  mMULT                                 
+10016551  mADD                                  
+1001664d  mSUB                                  
+10016749  mOUT                                  
+10016975  ssp_KeyInit_Sw                        
+10016979  sspAesEncrypt_Sw                      
+10016985  sspKeyExpansion_Sw                    
+10016a99  sspAesEncryptKeyExp_Sw                
+10016af5  sspAesEncryptBasic_Sw                 
+10016b79  RoundKey_Sw                           
+10016c29  AddRoundKeySubBytes_Sw                
+10016c45  ShiftRows_Sw                          
+10016c79  MixColumns_Sw                         
+10016d05  FFMult_Sw                             
+10016d29  sspAesDecrypt_Sw                      
+10016da1  InvAddRoundKey_Sw                     
+10016dc9  InvRoundKey_Sw                        
+10016e8d  InvSubBytes_Sw                        
+10016ea1  InvShiftRows_Sw                       
+10016ed5  InvMixColumns_Sw                      
+10016f58  FFMult2                               
+10017058  FFMult3                               
+10017158  RCon                                  
+10017164  Sbox                                  
+10017264  InvSbox                               
+10017365  SSP_CCM_Auth_Sw                       
+100174fd  SSP_CCM_Encrypt_Sw                    
+100175ed  SSP_CTR_Encrypt_Sw                    
+1001767d  SSP_CCM_Decrypt_Sw                    
+10017771  SSP_CTR_Decrypt_Sw                    
+10017839  SSP_CCM_InvAuth_Sw                    
+10017895  SSP_CCM_Auth_Encrypt_Sw               
+100178f5  SSP_CCM_InvAuth_Decrypt_Sw            
+10017959  ECC_allocWorkzone                     
+10017961  ECC_setWin                            
+10017969  ECDSA_sign                            
+10017b01  ECDSA_verif                           
+10017dbd  ECC_keyGen                            
+10017ded  ECDH_commonKey                        
+10017e39  SHA256_updateW                        
+10017e75  SHA256_round                          
+10017ef1  SHA256_nextState                      
+10017f49  SHA256_saveBuffer                     
+10017ffd  SHA256_init                           
+10018019  SHA256_process                        
+10018089  SHA256_final                          
+10018129  SHA256_full                           
+10018315  RFHAL_AllocRatChan                    
+1001833d  RFHAL_FreeRatChan                     
+10018369  RFHAL_MapRatChansToInt                
+10018391  RFHAL_RegisterRatChanCallback         
+100183b9  RFHAL_InitDataQueue                   
+100183c5  RFHAL_QueueRFDataEntries              
+10018485  RFHAL_FreeNextTxDataEntry             
+100184a9  RFHAL_AllocDataEntryQueue             
+100184c5  RFHAL_FreeDataEntryQueue              
+100184cd  RFHAL_GetNextDataEntry                
+100184d1  RFHAL_GetTempDataEntry                
+100184d5  RFHAL_NextDataEntryDone               
+100184f9  RFHAL_AllocDataEntry                  
+10018549  RFHAL_FreeDataEntry                   
+10018551  RFHAL_BuildRingBuffer                 
+100185e1  RFHAL_BuildDataEntryRingBuffer        
+10018669  RFHAL_BuildLinkedBuffer               
+10018a19  AesCcm_authEncrypt_Sw                 
+10018a35  AesCcm_decryptAuth_Sw                 
+10018a99  Aes_encrypt_Sw                        
+10018ac5  Aes_decrypt_Sw                        
+10018b09  AesCcm_getNumBlocks_Sw                
+10018b0c  NIST256_p                             
+10018b30  NIST256_r                             
+10018b54  NIST256_a                             
+10018b78  NIST256_b                             
+10018b9c  NIST256_Gx                            
+10018bc0  NIST256_Gy                            
+10018ced  __exit                                
+10018d6c  Fill1                                 
+10019ffc  A3_rw                                 
+10019ffd  __checksum_end_CommonROM              
+10019ffe  A2_rw                                 
+10019ffe  P1_ro_2                               
+10019ffe  __checksum_CommonROM                  
+2000434c  pGapDiscReq                           
+20004350  pGapAdvertState                       
+20004354  gapState                              
+20004355  gattNumConns                          
+20004356  gattTaskID                            
+20004358  pfnPeripheralConnCBs                  
+2000435c  pfnBondMgrCBs                         
+20004364  serverInfoTbl                         
+20004388  GATTServApp_TaskID                    
+20004398  l2capFixedChannels                    
+200043c8  l2capId                               
+200043c9  smTaskID                              
+200043cc  linkDBNumConns                        
+20004404  pPairingParams                        
+20004408  pfnResponderCBs                       
+20004410  pBleEvtMask                           
+20004418  pHciEvtMask2                          
+20004420  rfEvent                               
+20004428  hciTaskID                             
+20004429  hciTestTaskID                         
+2000442a  hciGapTaskID                          
+2000442b  hciL2capTaskID                        
+2000442c  hciSmpTaskID                          
+2000442d  hciExtTaskID                          
+20004434  bleDispatch_TaskID                    
+20004435  rspBuf                                
+20004470  timerHead                             
+20004474  osal_last_timestamp                   
+2000447c  ICall_dispatcher                      
+20004480  ICall_enterCriticalSection            
+20004484  ICall_leaveCriticalSection            
+20004488  tasksEvents                           
+200044ac  gapAppTaskID                          
+200044ad  gapProfileRole                        
+200044ae  gapDeviceAddrMode                     
+200044af  gapAutoAdvPrivateAddrChange           
+200044b0  gapPrivateAddrChangeTimeout           
+20004510  slaveUpdateReq                        
+20004518  slaveConnHandle                       
+2000451c  pEstLink                              
+20004520  pAuthLink                             
+20004524  pfnCentralConnCBs                     
+20004548  gapTaskID                             
+20004549  gapUnwantedTaskID                     
+2000454c  pfnPeripheralCBs                      
+20004557  reqTaskId                             
+200045f4  gattAppTaskID                         
+200045f5  appTaskID                             
+200045f6  l2capMtuSize                          
+20004608  l2capTaskID                           
+20004609  l2capNumChannels                      
+2000460a  l2capNumDataPkts                      
+2000460c  l2capChannels                         
+2000462c  llUserConfig                          
+20004650  maxPduSize                            
+20004651  rfFeModeBias                          
+20004652  maxNumTxDataBufs                      
+20004654  advInfoExt                            
+20004658  rfCmdHandle                           
+2000465c  rfHandle                              
+20004660  rfDrvTblPtr                           
+20004664  llConnectionExt                       
+20004668  trngDrvTblPtr                         
+2000466c  SysBootMsg                            
+20004670  sclkSrc                               
+20004674  rfMode                                
+20004684  rfParams                              
+20004698  rfSetup                               
+200046b0  rfObject                              
+20004748  assertSubcause                        
+20004749  legacyMode                            
+2000474c  halAssertCback                        
+20004751  osal_entity                           
+20004758  osal_qHead                            
+2000475c  osal_eventloop_hook                   
+20004760  osal_semaphore                        
+20004764  osal_tickperiod                       
+20004768  osal_max_msecs                        
+20004778  baseTaskID                            
+2000477c  cbTimers                              
+200047f8  OSAL_timeSeconds                      
+200047fc  pwrmgr_initialized                    
+200047fe  pwrmgr_attribute                      
+20004811  gapBond_removeLRUBond                 
+2000483a  gapBond_lruBondList                   
+200048e8  A4_rw_1                               
+200048e8  RAM_BASE_ADDR                         
+200048fc  P2_zi_1                               
+200048fc  scanDataEntry                         
+200049dc  scanDataQueue                         
+200049ec  advInfo                               
+20004a8c  wlTable                               
+20004b10  wlTableScan                           
+20004b94  initDataEntry                         
+20004bcc  initDataQueue                         
+20004bdc  advDataEntry                          
+20004c14  advDataQueue                          
+20004c24  advCmd                                
+20004c6c  ownPublicAddr                         
+20004c74  ownRandomAddr                         
+20004c7c  ownSavedPublicAddr                    
+20004c84  LL_TaskID                             
+20004c85  maxTxPwrForDTM                        
+20004c86  onePktPerEvt                          
+20004c87  numComplPktsLimit                     
+20004c88  numComplPktsFlush                     
+20004c89  slOverride                            
+20004c8a  rxFifoFlowCtrl                        
+20004c8b  numTxDataBufs                         
+20004c8c  verInfo                               
+20004c94  rfCfgAdiVal                           
+20004c96  sleepDelay                            
+20004c98  buildInfo                             
+20004c9c  peerInfo                              
+20004ca8  chanMapUpdate                         
+20004cb0  llConns                               
+20004cb8  llState                               
+20004cb9  curTxPowerVal                         
+20004cba  numComplPkts                          
+20004cbb  fastTxRespTime                        
+20004cbc  maxNumConns                           
+20004cbe  postRfOperations                      
+20004cc0  rssiCorrection                        
+20004cc4  taskEndAction                         
+20004cf0  initParam                             
+20004d14  scanParam                             
+20004d38  slvParam                              
+20004d58  advParam                              
+20004d78  txModemTestCmd                        
+20004d94  scanInfo                              
+20004db0  initCmd                               
+20004dc8  connReqData                           
+20004de0  slvCmd                                
+20004df8  scanCmd                               
+20004e10  scanOutput                            
+20004e28  trxTestCmd                            
+20004e40  rxModemTestCmd                        
+20004e58  initInfo                              
+20004e70  connOutput                            
+20004e84  rxTestParam                           
+20004e98  advOutput                             
+20004ea8  txTestParam                           
+20004eb8  initOutput                            
+20004ec4  rxTestOut                             
+20004ed0  deviceFeatureSet                      
+20004edc  dtmInfo                               
+20004ee8  cachedTRNGdata                        
+20004ef4  llTaskList                            
+20004f00  pHciEvtMask                           
+20004f08  bleEvtMask                            
+20004f0a  taskEndStatus                         
+20004f0c  rxDataQ                               
+20004f10  rxRingBuf                             
+20004f14  mstCmd                                
+20004f18  mstParam                              
+20004f1c  txDataQ                               
+20004f20  txTestOut                             
+20004f24  ctrlToHostEnable                      
+20004f26  numHostBufs                           
+20004f28  hciPTMenabled                         
+20004f2c  A4_rw                                 
+20004f2c  COMMON_RAM_BASE_ADDR                  
+20004f40  P2_rw                                 
+20004f40  P2_s0                                 
+20004f40  win                                   
+20004f44  workzone                              
+20004f48  data_p                                
+20004f4c  data_r                                
+20004f50  data_a                                
+20004f54  inScalar                              
+20004f58  inPointX                              
+20004f5c  inPointY                              
+20004f60  outPointX                             
+20004f64  outPointY                             
+20004f68  SCAL                                  
+20004f6c  EXPX                                  
+20004f70  EXPY                                  
+20004f74  EXPZ                                  
+20004f78  EXPW                                  
+20004f7c  ACCX                                  
+20004f80  ACCY                                  
+20004f84  ACCZ                                  
+20004f88  TMP1                                  
+20004f8c  TMP2                                  
+20004f90  TMP3                                  
+20004f94  TMP4                                  
+20004f98  TMP5                                  
+20004f9c  TMP6                                  
+20004fa0  data_Gx                               
+20004fa4  data_Gy                               
+20004fa8  data_b                                
+20004fac  P2_zi                                 
+20004fac  ratChanInfo                           
+20004fcc  fwInfoCmd                             
+20004fd8  MSBMOD                                
+20004fdc  aux64                                 
+20004fe4  MOD                                   
+20004fe8  LEN                                   
+20004ffc  pSspAesEncrypt_Sw                     
+ffffffff  __TI_pprof_out_hndl                   
+ffffffff  __TI_prof_data_size                   
+ffffffff  __TI_prof_data_start                  
+ffffffff  __binit__                             
+ffffffff  __c_args__                            
+ffffffff  binit                                 
+UNDEFED   SHT$$INIT_ARRAY$$Base                 
+UNDEFED   SHT$$INIT_ARRAY$$Limit                
+
+[1143 symbols]
