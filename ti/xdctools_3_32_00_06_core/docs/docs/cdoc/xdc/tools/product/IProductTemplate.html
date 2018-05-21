@@ -1,0 +1,896 @@
+<html>
+<head>
+<title>interface xdc.tools.product.IProductTemplate</title>
+<meta name="description" content="Interface to provide examples for a product">
+<link rel="stylesheet" type="text/css" href="../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">xdc.tools.product.</span><span class="xdoc-id">IProductTemplate</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/package.html" title="package xdc.tools.product"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductView.html" title="interface IProductView"><img class="xdocHdrArrow" src="../../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductTemplate.html">index URL</a></div>
+<p class="xdocHdrSummary">Interface to provide examples for a product</p>
+<ul class="xdocToc">
+</ul>
+<div class="xdocBrief">
+This interface allows products to contribute examples to
+  development environments like IDE's. This is an experimental
+  interface and is subject to change.
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> summary</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">IProductTemplate</span> {<b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <a class="xdoc-link" href="../../../xdc/tools/product/package.html" title="xdc.tools.product">xdc.tools.product</a>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">IProductTemplate</span> {
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Board"><span class="xdoc-id">Board</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Structure defining properties of a board used in the example</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Board"><span class="xdoc-id">tiCloudName</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;name used in TI Cloud TIREX</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.File.Desc"><span class="xdoc-id">FileDesc</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Structure defining properties of a file included in an example</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.File.Desc"><span class="xdoc-id">path</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;path to file or folder</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.File.Desc"><span class="xdoc-id">excludeFromBuild</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;exclude from build</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.File.Desc"><span class="xdoc-id">openOnCreation</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;open on project creation</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.File.Desc"><span class="xdoc-id">copyIntoConfiguration</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;copy into RTSC configuration</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.File.Desc"><span class="xdoc-id">action</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Flag indicating whether the file
+  should be copied into the project
+  or linked to</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.File.Desc"><span class="xdoc-id">targetDirectory</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;directory into which the path
+  file/folder should be copied into</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Filter"><span class="xdoc-id">Filter</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Structure defining filter properties for an example</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Filter" title="xdc.tools.product.IProductTemplate.Filter"><span class="xdoc-id">deviceFamily</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Filter" title="xdc.tools.product.IProductTemplate.Filter"><span class="xdoc-id">deviceVariant</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Filter" title="xdc.tools.product.IProductTemplate.Filter"><span class="xdoc-id">deviceId</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Filter" title="xdc.tools.product.IProductTemplate.Filter"><span class="xdoc-id">endianness</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Filter" title="xdc.tools.product.IProductTemplate.Filter"><span class="xdoc-id">toolChain</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Filter" title="xdc.tools.product.IProductTemplate.Filter"><span class="xdoc-id">outputFormat</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Template.Group"><span class="xdoc-id">TemplateGroup</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;TemplateGroup structure</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Group" title="xdc.tools.product.IProductTemplate.TemplateGroup"><span class="xdoc-id">id</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Group" title="xdc.tools.product.IProductTemplate.TemplateGroup"><span class="xdoc-id">name</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Group" title="xdc.tools.product.IProductTemplate.TemplateGroup"><span class="xdoc-id">description</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Group" title="xdc.tools.product.IProductTemplate.TemplateGroup"><span class="xdoc-id">groups</span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">TemplateInfo</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;TemplateInfo structure</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">title</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Title of this example</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">name</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Name of the project imported from
+  this template</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.File.Desc" title="xdc.tools.product.IProductTemplate.FileDesc">IProductTemplate.FileDesc</a>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">fileList</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;List of files along with properties 
+  for this example</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">description</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Description of this example</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">target</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;RTSC target</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">platform</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;RTSC platform</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.Board" title="xdc.tools.product.IProductTemplate.Board">IProductTemplate.Board</a>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">board</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Properties of the board</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">buildProfile</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;RTSC build profile</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">linkerCommandFile</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Linker file for this example</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">compilerBuildOptions</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Special compiler options</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">linkerBuildOptions</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Special linker options</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">requiredProducts</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;List of products required to build
+  this example</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">xdcToolsVersion</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Version of xdctools this template
+  requires eg. '3.24.6.63'</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">groups</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Array of group ids for groups
+ containing this example</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info" title="xdc.tools.product.IProductTemplate.TemplateInfo"><span class="xdoc-id">legacyTcf</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">configuroOptions</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;configuro options</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">configOnly</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Indicates whether only a RTSC
+  configuration project should
+  be created for this example</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">isHybrid</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Indicates whether application and
+ configuration content exists in
+ one project</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">isFragment</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Indicates whether this template
+  can be applied "incrementally"
+  to an already existing project</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.Filter" title="xdc.tools.product.IProductTemplate.Filter">IProductTemplate.Filter</a>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">filterArr</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Array of filters for this example</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">options</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Comma separated attributes</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">references</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Comma separated list of referenced
+ project names</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">buildCommandFlags</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Comma seperated list of build-command
+ flags</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">launchWizard</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Flag indicating to launch the New
+ Project Wizard allowing the user to
+ adjust the details</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">preBuildStep</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Shell cmd to run before the build.
+ Cmd is run within the debug/release
+ directory</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">postBuildStep</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Shell cmd to run after the build. Cmd
+ is run within the debug/release
+ directory</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">projectType</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;type of project.  If this field is
+  not set, a default will be used that
+  is based on other settings.  If it is
+  set to "ccs", the project will be a
+  "Code Composer Studio" project</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Template.Info"><span class="xdoc-id">outputType</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;type of output produced by this
+  project: "executable" or
+  "staticLibrary", or "any".  The "any"
+  type indicates that this project
+  template applies to type of output,
+  executable, library, etc</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class='xdocSynHdr'>module-wide config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.Template.Info" title="xdc.tools.product.IProductTemplate.TemplateInfo">IProductTemplate.TemplateInfo</a>&nbsp;<a class="xdocSynGo" href="#template.Arr"><span class="xdoc-id">templateArr</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Examples contained in the product</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.Template.Group" title="xdc.tools.product.IProductTemplate.TemplateGroup">IProductTemplate.TemplateGroup</a>&nbsp;<a class="xdocSynGo" href="#template.Group.Arr"><span class="xdoc-id">templateGroupArr</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Array of template group ids</span></span></a>[<span class="xdoc-kw2"></span>] = [ ];
+</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<div id="xdocSep">
+</div>
+<div id="xdocElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Board"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProductTemplate.</span><span class="xdoc-id">Board</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductTemplate.html#.Board">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Structure defining properties of a board used in the example</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Board</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">tiCloudName</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;name used in TI Cloud TIREX</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">tirexName</span>
+<span class="xdocChildSum">&#151;&nbsp;TIREX on Cloud recognizes board under
+                                  its previously defined name. We have to
+                                  use these names to get the tree
+                                  structure that uses the names.</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".File.Desc"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProductTemplate.</span><span class="xdoc-id">FileDesc</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductTemplate.html#.File.Desc">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Structure defining properties of a file included in an example</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">FileDesc</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">path</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;path to file or folder</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">excludeFromBuild</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;exclude from build</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">openOnCreation</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;open on project creation</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">copyIntoConfiguration</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;copy into RTSC configuration</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">action</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Flag indicating whether the file
+  should be copied into the project
+  or linked to</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">targetDirectory</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;directory into which the path
+  file/folder should be copied into</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">path</span>
+<span class="xdocChildSum">&#151;&nbsp;Path to file or folder relative to the
+                                  package containing the implementation
+                                  of <tt>IProductTemplate</tt>.
+                                  If the path points to a file then the
+                                  file is copied or linked into the
+                                  project.
+                                  If the path points to a directory then
+                                  the entire directory and contents are
+                                  copied into the project.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">excludeFromBuild</span>
+<span class="xdocChildSum">&#151;&nbsp;Flag indicating whether file should be
+                                  excluded from build inside an IDE
+                                  project</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">openOnCreation</span>
+<span class="xdocChildSum">&#151;&nbsp;Flag indicating whether the file should
+                                  be opened when a project containing the
+                                  example file is created by the IDE.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">copyIntoConfiguration</span>
+<span class="xdocChildSum">&#151;&nbsp;Flag indicating whether the file should
+                                  be copied into RTSC configuration. This
+                                  flag applies only when the <tt>isHybrid</tt>
+                                  flag of the
+                                  <a class="xdoc-link" href="IProductTemplate.html#.Template.Info" title="TemplateInfo">template</a> is set
+                                  to <tt>false</tt>.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">action</span>
+<span class="xdocChildSum">&#151;&nbsp;Flag indicating whether the file
+                                  should be copied into the project or
+                                  linked in.  For example, the
+                                  <tt><a class="xdoc-link" href="../../../xdc/tools/product/trexgen/package.html" title="xdc.tools.product.trexgen">trexgen</a></tt>
+                                  tool recognizes the following flags:
+                                  "COPY" - copy the file into the project
+                                  "LINK" - link the file into the project</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">targetDirectory</span>
+<span class="xdocChildSum">&#151;&nbsp;The file or folder from the <tt>path</tt> field
+                                  will be copied into this target
+                                  directory within the project folder.</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Filter"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProductTemplate.</span><span class="xdoc-id">Filter</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductTemplate.html#.Filter">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Structure defining filter properties for an example</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Filter</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">deviceFamily</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">deviceVariant</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">deviceId</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">endianness</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">toolChain</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">outputFormat</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">deviceFamily</span>
+<span class="xdocChildSum">&#151;&nbsp;String indicating the device family
+                         eg. "MSP430","C6000"</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">deviceVariant</span>
+<span class="xdocChildSum">&#151;&nbsp;String indicating device variant
+                         eg. "C674X", "CortexA8"</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">deviceId</span>
+<span class="xdocChildSum">&#151;&nbsp;String indicating the device part number
+                         eg. "TMS320C6747"</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">endianness</span>
+<span class="xdocChildSum">&#151;&nbsp;String indicating the device endianness
+                         eg. "little", "big"</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">toolChain</span>
+<span class="xdocChildSum">&#151;&nbsp;String indicating the tool chain
+                         eg. "TI", "GNU"</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">outputFormat</span>
+<span class="xdocChildSum">&#151;&nbsp;String indicating the object file format
+                         eg. "COFF", "ELF"</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This structure allows products to define constraints for their
+  examples. IDEs use the <tt>Filter</tt> properties of an example
+  to decide whether the example should be presented to the user.</div>
+<div class="xdocText">The filter is evaluated by performing an 'AND' operation on its
+  individual elements. In other words, all the defined elements must
+  evaluate to <tt>true</tt> for the filter to evaluate to <tt>true</tt>.</div>
+<div class="xdocText">Each example typically defines an array of more than one filter;
+  see <a class="xdoc-link" href="IProductTemplate.html#.Template.Info" title="TemplateInfo">TemplateInfo.filterArr</a>. This filter array
+  is evaluated using the 'OR' operation.  In other words, the example
+  is presented to the user when any one of the filters evaluate
+  to <tt>true</tt>.</div>
+<div class="xdocText">Each filter property can be an arbitrary Java regular expression.
+  In addition, each allows the user to define the NOT property
+  by inserting a "~" character at the start of the string. For
+  example, if the deviceFamily field is set to "~MSP430", the example
+  will be displayed for all device families except "MSP430".</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Template.Group"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProductTemplate.</span><span class="xdoc-id">TemplateGroup</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductTemplate.html#.Template.Group">index URL</a></div>
+<p class="xdocHdrSummaryDcl">TemplateGroup structure</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">TemplateGroup</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">id</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">name</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">description</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">groups</span>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">id</span>
+<span class="xdocChildSum">&#151;&nbsp;Unique id for the template group</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">name</span>
+<span class="xdocChildSum">&#151;&nbsp;Name of the group</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">description</span>
+<span class="xdocChildSum">&#151;&nbsp;Description of the group</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">groups</span>
+<span class="xdocChildSum">&#151;&nbsp;Array of group ids used to specify
+                 membership of other groups.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This structure may be used to define a hierarchy of examples for the
+  product. Examples may be logically organized into groups with a unique
+  <tt>id</tt> and may specify membership of other groups by referring to their
+  ids in the <tt>groups</tt> array. In this manner, the example producer
+  can define a tree topology of examples for their product. Once the
+  template groups are defined, the individual examples may specify their
+  membership within a template group in the <tt>groups</tt> array of
+  <a class="xdoc-link" href="IProductTemplate.html#.Template.Info" title="TemplateInfo">TemplateInfo</a>. The example provider may specify all the defined
+  groups for their product in <a class="xdoc-link" href="IProductTemplate.html#template.Group.Arr" title="templateGroupArr">templateGroupArr</a>.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Template.Info"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProductTemplate.</span><span class="xdoc-id">TemplateInfo</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductTemplate.html#.Template.Info">index URL</a></div>
+<p class="xdocHdrSummaryDcl">TemplateInfo structure</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">TemplateInfo</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">title</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Title of this example</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">name</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Name of the project imported from
+  this template</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.File.Desc" title="xdc.tools.product.IProductTemplate.FileDesc">IProductTemplate.FileDesc</a>&nbsp;<span class="xdoc-id">fileList</span>[<span class="xdoc-kw2"></span>];
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;List of files along with properties 
+  for this example</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">description</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Description of this example</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">target</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;RTSC target</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">platform</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;RTSC platform</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.Board" title="xdc.tools.product.IProductTemplate.Board">IProductTemplate.Board</a>&nbsp;<span class="xdoc-id">board</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Properties of the board</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">buildProfile</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;RTSC build profile</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">linkerCommandFile</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Linker file for this example</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">compilerBuildOptions</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Special compiler options</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">linkerBuildOptions</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Special linker options</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">requiredProducts</span>[<span class="xdoc-kw2"></span>];
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;List of products required to build
+  this example</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">xdcToolsVersion</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Version of xdctools this template
+  requires eg. '3.24.6.63'</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">groups</span>[<span class="xdoc-kw2"></span>];
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Array of group ids for groups
+ containing this example</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">legacyTcf</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">configuroOptions</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;configuro options</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">configOnly</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Indicates whether only a RTSC
+  configuration project should
+  be created for this example</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">isHybrid</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Indicates whether application and
+ configuration content exists in
+ one project</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">isFragment</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Indicates whether this template
+  can be applied "incrementally"
+  to an already existing project</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.Filter" title="xdc.tools.product.IProductTemplate.Filter">IProductTemplate.Filter</a>&nbsp;<span class="xdoc-id">filterArr</span>[<span class="xdoc-kw2"></span>];
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Array of filters for this example</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">options</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Comma separated attributes</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">references</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Comma separated list of referenced
+ project names</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">buildCommandFlags</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Comma seperated list of build-command
+ flags</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">launchWizard</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Flag indicating to launch the New
+ Project Wizard allowing the user to
+ adjust the details</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">preBuildStep</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Shell cmd to run before the build.
+ Cmd is run within the debug/release
+ directory</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">postBuildStep</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Shell cmd to run after the build. Cmd
+ is run within the debug/release
+ directory</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">projectType</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;type of project.  If this field is
+  not set, a default will be used that
+  is based on other settings.  If it is
+  set to "ccs", the project will be a
+  "Code Composer Studio" project</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">outputType</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;type of output produced by this
+  project: "executable" or
+  "staticLibrary", or "any".  The "any"
+  type indicates that this project
+  template applies to type of output,
+  executable, library, etc</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">title</span>
+<span class="xdocChildSum">&#151;&nbsp;String containing the title of the template</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">name</span>
+<span class="xdocChildSum">&#151;&nbsp;String containing the name of the project
+                            created from this template</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">fileList</span>
+<span class="xdocChildSum">&#151;&nbsp;Array of <a class="xdoc-link" href="IProductTemplate.html#.File.Desc" title="FileDesc">FileDesc</a> defining the
+                            properties of the files contributed by this
+                            example.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">description</span>
+<span class="xdocChildSum">&#151;&nbsp;String containing  description of example</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">target</span>
+<span class="xdocChildSum">&#151;&nbsp;String containing RTSC target</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">platform</span>
+<span class="xdocChildSum">&#151;&nbsp;String containing RTSC platform</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">buildProfile</span>
+<span class="xdocChildSum">&#151;&nbsp;String containing RTSC build profile</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">linkerCommandFile</span>
+<span class="xdocChildSum">&#151;&nbsp;Linker command file for the example. If
+                            this is set to the empty string then no
+                            linker command file is added by the IDE
+                            to the example. If this is not defined,
+                            then the wizard picks the default
+                            linker command file for the selected device.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">compilerBuildOptions</span>
+<span class="xdocChildSum">&#151;&nbsp;Special compiler options required to
+                               build template. For example the template
+                               may need special -I and -D options
+                               to build and these may be specified
+                               here.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">linkerBuildOptions</span>
+<span class="xdocChildSum">&#151;&nbsp;Special linker options to build template</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">requiredProducts</span>
+<span class="xdocChildSum">&#151;&nbsp;Products required to build this
+                            example. Products are  identified by
+                            their globally unique 
+                            <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#id" title="xdc.tools.product.IProduct.id">xdc.tools.product.IProduct.id</a> 
+                            eg. 'com.ti.bios'. Dependency on a
+                            minimum version of a product may be
+                            defined in the following manner
+                            : &lt;product-id&gt;:&lt;min-version&gt;</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">xdcToolsVersion</span>
+<span class="xdocChildSum">&#151;&nbsp;String containing XDCTools the exact version
+                            required eg. '3.24.6.63'.  Note that this
+                            number must be an 'eclipse' version number:
+                            no leading 0's in the first three segments
+                            and the forth is treated as an arbitrary
+                            string.</span>
+</div>
+<div class="xdocChildText">If this string is <tt>undefined</tt>, any
+                            version of XDCtools will be allowed.</div>
+<div class="xdocChildText">If the exact version doesn't exist for some
+                            reason, the project will still be
+                            created, but the project will give a 'this
+                            version of XDCtools doesn't exist' warning.
+                            The user can then select a version that is
+                            hopefully compatible.</div>
+<div class="xdocChild"><span class="xdocChildId">groups</span>
+<span class="xdocChildSum">&#151;&nbsp;Array of strings referring example groups
+                            that a particular example may
+                            belong. Products may
+                            provide examples that are part of an
+                            existing example group eg."Empty Projects" 
+                            that are defined elsewhere. The
+                            groups are identified by an unique id.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">configOnly</span>
+<span class="xdocChildSum">&#151;&nbsp;Flag indicating to the IDE
+                            whether example contributes only
+                            to a RTSC configuration project.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">configuroOptions</span>
+<span class="xdocChildSum">&#151;&nbsp;This string contains options that are passed
+                            to <tt>xdc.tools.configuro</tt>.  You must be
+                            careful to quote embedded special characters
+                            in this string in such a way that they can
+                            be directly embedded in an XML file.  For
+                            example, to pass '-foo "bar"' to <tt>configuro</tt>
+                            you must use the string
+                            '-foo &amp;quot;bar&amp;quot;'.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">isHybrid</span>
+<span class="xdocChildSum">&#151;&nbsp;Flag indicating to the IDE whether example
+                            contains RTSC configuration and target
+                            content files in one project.
+                            If this field is set to <tt>true</tt>, then the IDE
+                            consuming this example will create one project
+                            with all the files. Otherwise, multiple
+                            projects will be created - one containing the
+                            target content and the other containing the
+                            RTSC configuration files. This flag applies
+                            only when <tt>configOnly</tt> flag is set to <tt>false</tt>.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">filterArr</span>
+<span class="xdocChildSum">&#151;&nbsp;Array of <a class="xdoc-link" href="IProductTemplate.html#.Filter" title="Filter">Filter</a>. Used to specify
+                            the constraints for a particular
+                            example. The filter array is evaluated using
+                            an OR operation on the individual array
+                            elements. Note that individual elements 
+                            within a <a class="xdoc-link" href="IProductTemplate.html#.Filter" title="Filter">filter</a> is evaluated
+                            with the 'AND' operation.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">options</span>
+<span class="xdocChildSum">&#151;&nbsp;Comma separated list of options used to
+                            specify various configurable items for this
+                            template.  For example, the
+                            <tt><a class="xdoc-link" href="../../../xdc/tools/product/trexgen/package.html" title="xdc.tools.product.trexgen">trexgen</a></tt>
+                            tool recognizes the following flags:
+                                "NPW" - display this example in the New
+                                        Project Wizard, and
+                                "TREX" - display this example in the
+                                         Resource Explorer</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">references</span>
+<span class="xdocChildSum">&#151;&nbsp;Comma separated list of referenced project
+                            names</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">buildCommandFlags</span>
+<span class="xdocChildSum">&#151;&nbsp;Comma separated list of build-command flags.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">launchWizard</span>
+<span class="xdocChildSum">&#151;&nbsp;Flag indicating to launch the New Project
+                            wizard allowing the user to adjust the
+                            details.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">preBuildStep</span>
+<span class="xdocChildSum">&#151;&nbsp;Shell cmd to run before the build. Cmd is
+                            run within the debug/release directory</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">postBuildStep</span>
+<span class="xdocChildSum">&#151;&nbsp;Shell cmd to run after the build. Cmd is run
+                            within the debug/release directory</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="template.Arr"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProductTemplate.</span><span class="xdoc-id">templateArr</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductTemplate.html#template.Arr">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Examples contained in the product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.Template.Info" title="xdc.tools.product.IProductTemplate.TemplateInfo">IProductTemplate.TemplateInfo</a>&nbsp;<span class="xdoc-id">templateArr</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="template.Group.Arr"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProductTemplate.</span><span class="xdoc-id">templateGroupArr</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductTemplate.html#template.Group.Arr">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Array of template group ids</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductTemplate-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductTemplate.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html#.Template.Group" title="xdc.tools.product.IProductTemplate.TemplateGroup">IProductTemplate.TemplateGroup</a>&nbsp;<span class="xdoc-id">templateGroupArr</span>[<span class="xdoc-kw2"></span>] = [ ];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This array may be optionally specified by Products that
+  organize their examples into groups.</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:48 GMT</div>
+</div></div></body>
+</html>

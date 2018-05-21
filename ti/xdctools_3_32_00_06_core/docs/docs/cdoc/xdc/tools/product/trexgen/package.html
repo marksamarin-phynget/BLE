@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>package xdc.tools.product.trexgen</title>
+<meta name="description" content="Command-line tool for generating projectspec files for RTSC content">
+<link rel="stylesheet" type="text/css" href="../../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.product.trexgen</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../../xdc/tools/product/trexgen/Main.html" title="module Main"><img class="xdocHdrArrow" src="../../../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../../index.html#xdc/tools/product/trexgen/package.html">index URL</a></div>
+<p class="xdocHdrSummary">Command-line tool for generating projectspec files for RTSC content</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-1">USAGE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-2">OPTIONS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-3">DETAILS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-4">EXAMPLE</a></li>
+</ul>
+<div class="xdocBrief">
+The <tt>trexgen</tt> tool allows RTSC content producers to
+  create projectspec files that allow their content to be
+  integrated in the CCS Resource Explorer environment. As input,
+  the tool requires
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../../xdc/tools/product/trexgen/package-src.html"><span class="xdocLabelFile">xdc/tools/product/trexgen/package.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.product.trexgen</span> [1, 0, 0] {
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">module</span> <a class='xdocSynGo' href='../../../../xdc/tools/product/trexgen/Main.html' title='xdc.tools.product.trexgen.Main'><span class="xdoc-id">Main</span>;</a>
+</div>
+<div class='xdocSynSum'><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Command implementation</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">USAGE</div>
+<div class="xdocText"><tt>xs xdc.tools.product.trexgen [--help]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-p product_root_directory]<br />&nbsp;&nbsp;&nbsp;&nbsp; -m module<br />&nbsp;&nbsp;&nbsp;&nbsp;[-o outdir]</tt></div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">OPTIONS</div>
+<div class="xdocText"><dl><dt><tt>-p</tt></dt><dd>Product root directory<p>  This option names the product root directory that is used by the
+  tool to generate the projectspec files.  For example, it's declared
+  repositories are added to the package path and are searched for
+  contributed platforms.
+</p><p>  If the '-o' option is not specified, the tool generates the resources
+  directory in the product root directory.
+</p><p>  If this option is not specified, the product root directory is
+  assumed to be <tt>./</tt>.
+</p></dd><dt><tt>-m</tt></dt><dd>Input description of the plug-in to be specified<p>  This required option names a module that implements
+  <tt><a class="xdoc-link" href="../../../../xdc/tools/product/IProduct.html" title="xdc.tools.product.IProduct">xdc.tools.product.IProduct</a></tt>.
+</p></dd><dt><tt>-o</tt></dt><dd>Output directory in which the plugin will be generated<p>  This option names the directory in which the project spec
+  will be generated in a sub-directory named <tt>eclipse</tt>.
+  If this option is not specified the tool will generate
+  the plugin in the product root directory specified with
+  the '-p' option.
+</p></dd><dt><tt>--generation_format</tt></dt><dd>Plugin generation format</dd></div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The <tt>trexgen</tt> tool allows RTSC content producers to
+  create projectspec files that allow their content to be
+  integrated in the CCS Resource Explorer environment. As input,
+  the tool requires</div>
+<div class="xdocText"><UL><LI> a RTSC module implementing <a class="xdoc-link" href="../../../../xdc/tools/product/IProduct.html" title="xdc.tools.product.IProduct">xdc.tools.product.IProduct</a>
+</LI></UL></div>
+<div class="xdocText">Refer to <a class="xdoc-linkFile" href="./doc-files/ExampleProduct.xdc" title="./doc-files/ExampleProduct.xdc">ExampleProduct</a>
+  for an implementation of <a class="xdoc-link" href="../../../../xdc/tools/product/IProduct.html" title="xdc.tools.product.IProduct">IProduct</a>.</div>
+<div class="xdocText">The tool generates starter examples that will show up
+  in the Resource explorer. This is accomplished by implementing
+  <a class="xdoc-link" href="../../../../xdc/tools/product/IProductTemplate.html" title="xdc.tools.product.IProductTemplate">IProductTemplate</a> and setting
+  the <a class="xdoc-link" href="../../../../xdc/tools/product/IProduct.html#template.Module" title="xdc.tools.product.IProduct.templateModule">templateModule</a>
+  configuration parameter of the <a class="xdoc-link" href="../../../../xdc/tools/product/IProduct.html" title="xdc.tools.product.IProduct">IProduct</a>
+  implementation to the name of the implementation module.
+  Refer to <a class="xdoc-linkFile" href="./doc-files/Examples.xdc" title="./doc-files/Examples.xdc">Examples</a>
+  for a sample implementation of <a class="xdoc-link" href="../../../../xdc/tools/product/IProductTemplate.html" title="xdc.tools.product.IProductTemplate">IProductTemplate</a>.</div>
+<div class="xdocText">The tool operates on a product that is either specified by the <tt>-p</tt>
+  option or is present in the folder from which the tool is executed.
+  The tool will create the resources sub-folder in the output directory
+  specified with <tt>-o</tt> option. If the <tt>-o</tt>
+  option is not specified the resources is created in the product root
+  directory.</div>
+<div class="xdocText">The tool will search the repositories specified in the module
+  implementing <a class="xdoc-link" href="../../../../xdc/tools/product/IProduct.html" title="xdc.tools.product.IProduct">xdc.tools.product.IProduct</a> for RTSC platforms.
+  This search can be disabled by specifying the<tt>--disable_repo_search</tt>
+  option. The user needs to ensure that the repositories are installed
+  in the product root directory before using the tool.</div>
+<span id="xdoc-sect-4"></span>
+<div class="xdocSect">EXAMPLE</div>
+<div class="xdocText"></div>
+<div class="xdocText"><PRE class="Example">      xs xdc.tools.product.trexgen
+                      -p exampleprod_1_0_0_00
+                      -m xdc.tools.product.plugingen.examples.ExampleProduct
+</PRE></div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:48 GMT</div>
+</div></div></body>
+</html>

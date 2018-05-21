@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>interface xdc.bld.ITarget2</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2009 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    <span class="comment">/*
+</span>    13    <span class="comment"> *  ======== ITarget2.xdc ========
+</span>    14    <span class="comment"> */</span>
+    15    <span class=key>package</span> xdc.bld;
+    16    
+    17    <span class="xdoc">/*!
+</span>    18    <span class="xdoc"> *  ======== ITarget2 ========
+</span>    19    <span class="xdoc"> *  Extension of the interface {<b>@link</b> xdc.bld.ITarget}.
+</span>    20    <span class="xdoc"> *
+</span>    21    <span class="xdoc"> *  This interface contains some common structures and config parameters
+</span>    22    <span class="xdoc"> *  shared by several packages that contain targets.
+</span>    23    <span class="xdoc"> */</span>
+    24    <span class=key>metaonly</span> <span class=key>interface</span> ITarget2 <span class=key>inherits</span> ITarget {
+    25    
+    26        <span class="xdoc">/*!
+</span>    27    <span class="xdoc">     *  ======== Command ========
+</span>    28    <span class="xdoc">     *  Required command and options.
+</span>    29    <span class="xdoc">     *
+</span>    30    <span class="xdoc">     *  The compile, link, and archive functions in this interface are
+</span>    31    <span class="xdoc">     *  implemented by expanding the strings specified in this structure
+</span>    32    <span class="xdoc">     *  and inserting strings from the Options structure to form a single
+</span>    33    <span class="xdoc">     *  command.  The strings in this structure can not be changed by
+</span>    34    <span class="xdoc">     *  the user (they are fixed by the target), but the string in the
+</span>    35    <span class="xdoc">     *  Options structure may be changed by the user.
+</span>    36    <span class="xdoc">     *
+</span>    37    <span class="xdoc">     *  The final command is:
+</span>    38    <span class="xdoc">     *      Command.cmd Options.prefix Command.opts Options.suffix
+</span>    39    <span class="xdoc">     *
+</span>    40    <span class="xdoc">     *  <b>@field(cmd)</b>     name of a tool-chain executable without any path
+</span>    41    <span class="xdoc">     *                  information.  The location of this executable is
+</span>    42    <span class="xdoc">     *                  specified by the binDir (or pathPrefix) 
+</span>    43    <span class="xdoc">     *                  configuration parameter.
+</span>    44    <span class="xdoc">     *
+</span>    45    <span class="xdoc">     *  <b>@field(opts)</b>    required options passed to the command; these options
+</span>    46    <span class="xdoc">     *                  can not be changed or eliminated by user's
+</span>    47    <span class="xdoc">     *                  configuration script.
+</span>    48    <span class="xdoc">     */</span>
+    49        <span class=key>struct</span> Command {
+    50            string cmd;     <span class="xdoc">/*! the command to run */</span>
+    51            string opts;    <span class="xdoc">/*! required options for the command */</span>
+    52        }
+    53    
+    54        <span class="xdoc">/*!
+</span>    55    <span class="xdoc">     *  ======== Options ========
+</span>    56    <span class="xdoc">     *  User configurable command options.
+</span>    57    <span class="xdoc">     *
+</span>    58    <span class="xdoc">     *  The option strings allow the user to pass additional parameters to the
+</span>    59    <span class="xdoc">     *  executable that is responsible for compiling, linker, or archiving.
+</span>    60    <span class="xdoc">     *  See `{<b>@link</b> #Command xdc.bld.ITarget2.Command}`.
+</span>    61    <span class="xdoc">     */</span>
+    62        <span class=key>struct</span> Options {
+    63            string prefix;  <span class="xdoc">/*! options that appear before Command.opts */</span>
+    64            string suffix;  <span class="xdoc">/*! options that appear after Command.opts */</span>
+    65        }
+    66    
+    67        <span class="xdoc">/*!
+</span>    68    <span class="xdoc">     *  ======== ar ========
+</span>    69    <span class="xdoc">     *  The command used to create an archive
+</span>    70    <span class="xdoc">     */</span>
+    71        <span class=key>readonly</span> <span class=key>config</span> Command ar;
+    72    
+    73        <span class="xdoc">/*!
+</span>    74    <span class="xdoc">     *  ======== arOpts ========
+</span>    75    <span class="xdoc">     *  User configurable archiver options.
+</span>    76    <span class="xdoc">     */</span>
+    77        <span class=key>config</span> Options arOpts = {
+    78            prefix: <span class="string">""</span>,
+    79            suffix: <span class="string">""</span>
+    80        };
+    81    
+    82        <span class="xdoc">/*!
+</span>    83    <span class="xdoc">     *  ======== lnk ========
+</span>    84    <span class="xdoc">     *  The command used to link executables.
+</span>    85    <span class="xdoc">     */</span>
+    86        <span class=key>readonly</span> <span class=key>config</span> Command lnk;
+    87    
+    88        <span class="xdoc">/*!
+</span>    89    <span class="xdoc">     *  ======== lnkOpts ========
+</span>    90    <span class="xdoc">     *  User configurable linker options.
+</span>    91    <span class="xdoc">     */</span>
+    92        <span class=key>config</span> Options lnkOpts = {
+    93            prefix: <span class="string">""</span>,
+    94            suffix: <span class="string">""</span>
+    95        };
+    96    
+    97        <span class="xdoc">/*!
+</span>    98    <span class="xdoc">     *  ======== cc ========
+</span>    99    <span class="xdoc">     *  The command used to compile C/C++ source files into object files
+</span>   100    <span class="xdoc">     */</span>
+   101        <span class=key>readonly</span> <span class=key>config</span> Command cc;
+   102    
+   103        <span class="xdoc">/*!
+</span>   104    <span class="xdoc">     *  ======== ccOpts ========
+</span>   105    <span class="xdoc">     *  User configurable compiler options.
+</span>   106    <span class="xdoc">     */</span>
+   107        <span class=key>config</span> Options ccOpts = {
+   108            prefix: <span class="string">""</span>,
+   109            suffix: <span class="string">""</span>
+   110        };
+   111    
+   112        <span class="xdoc">/*!
+</span>   113    <span class="xdoc">     *  ======== ccConfigOpts ========
+</span>   114    <span class="xdoc">     *  User configurable compiler options for the generated config C file.
+</span>   115    <span class="xdoc">     *
+</span>   116    <span class="xdoc">     *  By default, this parameter inherits values specified in
+</span>   117    <span class="xdoc">     *  `{<b>@link</b> #ccOpts ccOpts}`.  The strings `"$(ccOpts.prefix)"` and
+</span>   118    <span class="xdoc">     *  `"$(ccOpts.suffix)"` are expanded into the values specified by
+</span>   119    <span class="xdoc">     *  `{<b>@link</b> #ccOpts ccOpts}` for this target.
+</span>   120    <span class="xdoc">     */</span>
+   121        <span class=key>config</span> Options ccConfigOpts = {
+   122            prefix: <span class="string">"$(ccOpts.prefix)"</span>,
+   123            suffix: <span class="string">"$(ccOpts.suffix)"</span>
+   124        };
+   125    
+   126        <span class="xdoc">/*!
+</span>   127    <span class="xdoc">     *  ======== asm ========
+</span>   128    <span class="xdoc">     *  The command used to assembles assembly source files into object files
+</span>   129    <span class="xdoc">     */</span>
+   130        <span class=key>readonly</span> <span class=key>config</span> Command asm;
+   131    
+   132        <span class="xdoc">/*!
+</span>   133    <span class="xdoc">     *  ======== asmOpts ========
+</span>   134    <span class="xdoc">     *  User configurable assembler options.
+</span>   135    <span class="xdoc">     */</span>
+   136        <span class=key>config</span> Options asmOpts = {
+   137            prefix: <span class="string">""</span>,
+   138            suffix: <span class="string">""</span>
+   139        };
+   140    
+   141        <span class="xdoc">/*!
+</span>   142    <span class="xdoc">     *  ======== includeOpts ========
+</span>   143    <span class="xdoc">     *  Additional user configurable target-specific include path options
+</span>   144    <span class="xdoc">     */</span>
+   145        <span class=key>config</span> string includeOpts;
+   146    
+   147        <span class="xdoc">/*!
+</span>   148    <span class="xdoc">     *  ======== genConstCustom ========
+</span>   149    <span class="xdoc">     *  Return any custom generated code related to generated constants
+</span>   150    <span class="xdoc">     *
+</span>   151    <span class="xdoc">     *  This function is invoked for each constant in the generated config C
+</span>   152    <span class="xdoc">     *  file. This includes module-level config parameter, as well as the
+</span>   153    <span class="xdoc">     *  internal data structures that define modules, interfaces and instances.
+</span>   154    <span class="xdoc">     *  A target is given a chance to add any target-specific pragmas or
+</span>   155    <span class="xdoc">     *  attributes for the generated constants. The set of the data supplied to
+</span>   156    <span class="xdoc">     *  this function overlaps with the data supplied to
+</span>   157    <span class="xdoc">     *  `{<b>@link</b> genVisibleData genVisibleData}`, so their output must be
+</span>   158    <span class="xdoc">     *  coordinated to avoid duplicate or inconsistent definitions or
+</span>   159    <span class="xdoc">     *  directives.
+</span>   160    <span class="xdoc">     *
+</span>   161    <span class="xdoc">     *  <b>@params(names)</b>  array of constant names generated in the
+</span>   162    <span class="xdoc">     *                  config C file
+</span>   163    <span class="xdoc">     *
+</span>   164    <span class="xdoc">     *  <b>@params(types)</b>  array of types; each type corresponds to the element
+</span>   165    <span class="xdoc">     *                  of `names` with the same index
+</span>   166    <span class="xdoc">     *
+</span>   167    <span class="xdoc">     *  <b>@a(returns)</b>
+</span>   168    <span class="xdoc">     *  This function returns custom C code that will be embedded into the
+</span>   169    <span class="xdoc">     *  generated config C file. If there is nothing to be added, this function
+</span>   170    <span class="xdoc">     *  returns `null`. If a target never generates any such code, it can rely
+</span>   171    <span class="xdoc">     *  on the default implementation that always returns `null`.
+</span>   172    <span class="xdoc">     */</span>
+   173        String genConstCustom(StringArray names, StringArray types);
+   174    
+   175        <span class="xdoc">/*!
+</span>   176    <span class="xdoc">     *  ======== genVisibleData ========
+</span>   177    <span class="xdoc">     *  Return any custom generated code related to data generated in the
+</span>   178    <span class="xdoc">     *  config C file
+</span>   179    <span class="xdoc">     *
+</span>   180    <span class="xdoc">     *  This function is invoked for each module-level configuration parameter
+</span>   181    <span class="xdoc">     *  in the configuration. Such parameters are represented by constants in the
+</span>   182    <span class="xdoc">     *  generated config C file.
+</span>   183    <span class="xdoc">     
+</span>   184    <span class="xdoc">     *  A target is given a chance to add any target-specific pragmas or
+</span>   185    <span class="xdoc">     *  attributes for the generated constants. The set of the data supplied to
+</span>   186    <span class="xdoc">     *  this function overlaps with the data supplied to
+</span>   187    <span class="xdoc">     *  `{<b>@link</b> genConstCustom genConstCustom}`, so their output must be
+</span>   188    <span class="xdoc">     *  coordinated to avoid duplicate or inconsistent definitions or
+</span>   189    <span class="xdoc">     *  directives.
+</span>   190    <span class="xdoc">     *
+</span>   191    <span class="xdoc">     *  <b>@params(quals)</b>          array of declaration qualifiers for the
+</span>   192    <span class="xdoc">     *                          generated data
+</span>   193    <span class="xdoc">     *
+</span>   194    <span class="xdoc">     *  <b>@params(types)</b>          array of types for the generated data
+</span>   195    <span class="xdoc">     *
+</span>   196    <span class="xdoc">     *  <b>@params(names)</b>          array of variable names; each name corresponds
+</span>   197    <span class="xdoc">     *                          to the elements of `quals` and `types` with the
+</span>   198    <span class="xdoc">     *                          same index
+</span>   199    <span class="xdoc">     *
+</span>   200    <span class="xdoc">     *  <b>@a(returns)</b>
+</span>   201    <span class="xdoc">     *  This function returns custom C code that will be embedded into the
+</span>   202    <span class="xdoc">     *  generated config C file. The purpose of the function is to allow
+</span>   203    <span class="xdoc">     *  targets to add pragmas or attributes to prevent elimination of data
+</span>   204    <span class="xdoc">     *  in case of partially linker objects.
+</span>   205    <span class="xdoc">     *  If there is nothing to be added, this function returns `null`. If a
+</span>   206    <span class="xdoc">     *  target never generates any such code, it can rely on the default
+</span>   207    <span class="xdoc">     *  implementation that always returns `null`.
+</span>   208    <span class="xdoc">     */</span>
+   209        String genVisibleData(StringArray quals, StringArray types,
+   210                              StringArray names);
+   211        <span class="xdoc">/*!
+</span>   212    <span class="xdoc">     *  ======== genVisibleFxns ========
+</span>   213    <span class="xdoc">     *  Return any custom generated code related to functions generated in
+</span>   214    <span class="xdoc">     *  the config C file
+</span>   215    <span class="xdoc">     *
+</span>   216    <span class="xdoc">     *  <b>@params(types)</b>          array of types of functions' return values
+</span>   217    <span class="xdoc">     *
+</span>   218    <span class="xdoc">     *  <b>@params(names)</b>          array of functions' names; each name corresponds
+</span>   219    <span class="xdoc">     *                          to the elements of `types` and `args` with the
+</span>   220    <span class="xdoc">     *                          same index
+</span>   221    <span class="xdoc">     *
+</span>   222    <span class="xdoc">     *  <b>@params(args)</b>           array of functions' argument lists, including
+</span>   223    <span class="xdoc">     *                          qualifiers
+</span>   224    <span class="xdoc">     
+</span>   225    <span class="xdoc">     *  <b>@a(returns)</b>
+</span>   226    <span class="xdoc">     *  This function returns custom C code that will be embedded into the
+</span>   227    <span class="xdoc">     *  generated config C file. The purpose of the function is to allow
+</span>   228    <span class="xdoc">     *  targets to add pragmas or attributes to prevent elimination of functions
+</span>   229    <span class="xdoc">     *  in case of partially linker objects.
+</span>   230    <span class="xdoc">     */</span>
+   231        String genVisibleFxns(StringArray types, StringArray names,
+   232                              StringArray args);
+   233    
+   234        <span class="xdoc">/*!
+</span>   235    <span class="xdoc">     *  ======== genVisibleLibFxns ========
+</span>   236    <span class="xdoc">     *  Return any custom generated code related to functions that are included
+</span>   237    <span class="xdoc">     *  in the configuration, but are not generated in the config C file
+</span>   238    <span class="xdoc">     *
+</span>   239    <span class="xdoc">     *  <b>@params(types)</b>          array of types of functions' return values
+</span>   240    <span class="xdoc">     *
+</span>   241    <span class="xdoc">     *  <b>@params(names)</b>          array of functions' names; each name corresponds
+</span>   242    <span class="xdoc">     *                          to the elements of `types` and `args` with the
+</span>   243    <span class="xdoc">     *                          same index
+</span>   244    <span class="xdoc">     *
+</span>   245    <span class="xdoc">     *  <b>@params(args)</b>           array of functions' argument lists, including
+</span>   246    <span class="xdoc">     *                          qualifiers
+</span>   247    <span class="xdoc">     
+</span>   248    <span class="xdoc">     *  <b>@a(returns)</b>
+</span>   249    <span class="xdoc">     *  This function returns custom C code that will be embedded into the
+</span>   250    <span class="xdoc">     *  generated config C file. The purpose of the function is to allow
+</span>   251    <span class="xdoc">     *  targets to add pragmas or attributes to prevent elimination of functions
+</span>   252    <span class="xdoc">     *  in case of partially linker objects. These functions are managed
+</span>   253    <span class="xdoc">     *  separately from the functions that are generated in the config C file
+</span>   254    <span class="xdoc">     *  because some pragmas and attributes can be used only for functions
+</span>   255    <span class="xdoc">     *  defined in the same compilation unit where the paragmas and attributes
+</span>   256    <span class="xdoc">     *  are generated. For functions that are not generated in the config C
+</span>   257    <span class="xdoc">     *  file, and the mentioned restrictions exist, targets may have to create
+</span>   258    <span class="xdoc">     *  references that will prevent elimination of functions defined outside
+</span>   259    <span class="xdoc">     *  of the config C file.
+</span>   260    <span class="xdoc">     */</span>
+   261        String genVisibleLibFxns(StringArray types, StringArray names,
+   262                                 StringArray args);
+   263    }
+   264    <span class="comment">/*
+</span>   265    <span class="comment"> *  @(#) xdc.bld; 1, 0, 2,0; 12-9-2015 17:35:10; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>   266    <span class="comment"> */</span>
+   267    
+</pre>
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>interface xdc.tools.ICmd</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    
+    13    <span class="xdoc">/*!
+</span>    14    <span class="xdoc"> *  ======== ICmd ========
+</span>    15    <span class="xdoc"> *  Generic xdc-script (xs) command
+</span>    16    <span class="xdoc"> *
+</span>    17    <span class="xdoc"> *  Modules that implement this interface can serve as "commands" that
+</span>    18    <span class="xdoc"> *  can be executed from the command line (via `xs`) or from within
+</span>    19    <span class="xdoc"> *  XDCscript scripts (without having to fork a separate process to run
+</span>    20    <span class="xdoc"> *  `xs`).
+</span>    21    <span class="xdoc"> *
+</span>    22    <span class="xdoc"> *  <b>@a(Command Line Example)</b>
+</span>    23    <span class="xdoc"> *  The following example runs the `xdc.tools.path` tool from the command 
+</span>    24    <span class="xdoc"> *  line to get an array of names of all packages below the current
+</span>    25    <span class="xdoc"> *  working directory (".").
+</span>    26    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    27    <span class="xdoc"> *      xs xdc.tools.path -n -a -PR .
+</span>    28    <span class="xdoc"> *  <b>@p</b>
+</span>    29    <span class="xdoc"> *  
+</span>    30    <span class="xdoc"> *  <b>@a(XDCscript Example)</b>
+</span>    31    <span class="xdoc"> *  The following example runs the `xdc.tools.path` tool from within
+</span>    32    <span class="xdoc"> *  a script to get an array of names of all packages below the current
+</span>    33    <span class="xdoc"> *  working directory (".").
+</span>    34    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    35    <span class="xdoc"> *      var Main = xdc.module('xdc.tools.path.Main');
+</span>    36    <span class="xdoc"> *      var result = Main.exec(["-n", "-a", "-PR", "."]);
+</span>    37    <span class="xdoc"> *  <b>@p</b>
+</span>    38    <span class="xdoc"> */</span>
+    39    <span class=key>metaonly</span> <span class=key>interface</span> ICmd {
+    40    
+    41        <span class=xdoc>//! Usage for this command</span>
+    42        <span class=key>config</span> String usage[] = [];
+    43    
+    44        <span class="xdoc">/*!
+</span>    45    <span class="xdoc">     *  ======== main ========
+</span>    46    <span class="xdoc">     *  `xs` shell entry point
+</span>    47    <span class="xdoc">     *
+</span>    48    <span class="xdoc">     *  This function
+</span>    49    <span class="xdoc">     *  <b>@p(blist)</b>
+</span>    50    <span class="xdoc">     *   - creates a no-arg instance, `inst`, of the module inheriting
+</span>    51    <span class="xdoc">     *     this interface;
+</span>    52    <span class="xdoc">     *   - parses command line arguments placing all options in the config
+</span>    53    <span class="xdoc">     *     params of the inheriting module;
+</span>    54    <span class="xdoc">     *   - creates a `{<b>@link</b> xdc.tools.Cmdr}` instance, `cmdr`;
+</span>    55    <span class="xdoc">     *   - calls `{<b>@link</b> #run inst.run()}` with the `cmdr` and any command
+</span>    56    <span class="xdoc">     *     line command line arguments not parsed as options; and
+</span>    57    <span class="xdoc">     *   - outputs the return result from `inst.run()`
+</span>    58    <span class="xdoc">     *   <b>@p</b>
+</span>    59    <span class="xdoc">     */</span>
+    60        <span class=key>final</span> <span class=key>function</span> main(args);
+    61    
+    62        <span class="xdoc">/*!
+</span>    63    <span class="xdoc">     *  ======== exec ========
+</span>    64    <span class="xdoc">     *  `xs` script entry point
+</span>    65    <span class="xdoc">     *
+</span>    66    <span class="xdoc">     *  This function is called from within other XDCscript scripts and
+</span>    67    <span class="xdoc">     *  performs the same operations as `{<b>@link</b> #main()}` except that,
+</span>    68    <span class="xdoc">     *  rather than output the return value of `inst.run()`, this value
+</span>    69    <span class="xdoc">     *  is simply returned to the caller of `exec()`.
+</span>    70    <span class="xdoc">     */</span>
+    71        <span class=key>final</span> <span class=key>function</span> exec(args);
+    72    
+    73    <span class=key>instance</span>:
+    74    
+    75        <span class="xdoc">/*!
+</span>    76    <span class="xdoc">     *  ======== run ========
+</span>    77    <span class="xdoc">     *  Underlying implementation of the command
+</span>    78    <span class="xdoc">     *
+</span>    79    <span class="xdoc">     *  Since this method is used to support both command line tools and
+</span>    80    <span class="xdoc">     *  other XDCscript scripts, it is important to avoid explicit
+</span>    81    <span class="xdoc">     *  termination of the JVM via `java.lang.System.exit()`; doing so
+</span>    82    <span class="xdoc">     *  precludes callers from handling failures.
+</span>    83    <span class="xdoc">     *
+</span>    84    <span class="xdoc">     *  Implementations should instead call
+</span>    85    <span class="xdoc">     *  <b>@p(blist)</b>
+</span>    86    <span class="xdoc">     *  - `{<b>@link</b> xdc.tools.Cmdr#error cmdr.error()}` when encountering a
+</span>    87    <span class="xdoc">     *     fatal error.
+</span>    88    <span class="xdoc">     *  - `{<b>@link</b> xdc.tools.Cmdr#warning cmdr.warning()}` when encountering a
+</span>    89    <span class="xdoc">     *     non-fatal error.
+</span>    90    <span class="xdoc">     *  - `{<b>@link</b> xdc.tools.Cmdr#info cmdr.info()}` when simply generating
+</span>    91    <span class="xdoc">     *     an informative message.
+</span>    92    <span class="xdoc">     *  <b>@p</b>
+</span>    93    <span class="xdoc">     */</span>
+    94        Any run(Cmdr.Instance cmdr, String args[]);
+    95    }
+    96    <span class="comment">/*
+</span>    97    <span class="comment"> *  @(#) xdc.tools; 1, 0, 0,0; 12-9-2015 17:39:39; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>    98    <span class="comment"> */</span>
+    99    
+</pre>
+</body></html>

@@ -1,0 +1,1195 @@
+<html>
+<head>
+<title>module xdc.rov.Program</title>
+<meta name="description" content="Root object for the ROV model">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.rov.</span><span class="xdoc-id">Program</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/package.html" title="package xdc.rov"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html">index URL</a></div>
+<p class="xdocHdrSummary">Root object for the ROV model</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<div class="xdocBrief">
+This module is the main access point for all ROV operations.
+  The Program APIs are used to retrieve the views for the
+  requested modules.
+</div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/rov/Program-src.html"><span class="xdocLabelFile">xdc/rov/Program.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> Program = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.rov.Program'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Fetch.Desc">Program.<span class="xdoc-id">FetchDesc</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Description of data to fetch</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Fetch.Desc" title="xdc.rov.Program.FetchDesc"><span class="xdoc-id">type</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Fetch.Desc" title="xdc.rov.Program.FetchDesc"><span class="xdoc-id">isScalar</span></a> = <i><span class="xdoc-kw2">Bool</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Inst.Data.View">Program.<span class="xdoc-id">InstDataView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Instance view data returned from a scan</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Inst.Data.View" title="xdc.rov.Program.InstDataView"><span class="xdoc-id">label</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Inst.Data.View" title="xdc.rov.Program.InstDataView"><span class="xdoc-id">elements</span></a> = <i><span class="xdoc-kw2">Any</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Mod.Data.View">Program.<span class="xdoc-id">ModDataView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Module view data returned from a scan</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Mod.Data.View" title="xdc.rov.Program.ModDataView"><span class="xdoc-id">elements</span></a> = <i><span class="xdoc-kw2">Any</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Raw.View">Program.<span class="xdoc-id">RawView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Raw module view</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Raw.View" title="xdc.rov.Program.RawView"><span class="xdoc-id">modState</span></a> = <i><span class="xdoc-kw2">Any</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Raw.View" title="xdc.rov.Program.RawView"><span class="xdoc-id">instStates</span></a> = <i><span class="xdoc-kw2">Any</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Raw.View" title="xdc.rov.Program.RawView"><span class="xdoc-id">modCfg</span></a> = <i><span class="xdoc-kw2">Any</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Status.Entry">Program.<span class="xdoc-id">StatusEntry</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Single entry in the ROV status table</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Status.Entry" title="xdc.rov.Program.StatusEntry"><span class="xdoc-id">mod</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Status.Entry" title="xdc.rov.Program.StatusEntry"><span class="xdoc-id">tab</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Status.Entry" title="xdc.rov.Program.StatusEntry"><span class="xdoc-id">inst</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Status.Entry" title="xdc.rov.Program.StatusEntry"><span class="xdoc-id">field</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Status.Entry" title="xdc.rov.Program.StatusEntry"><span class="xdoc-id">message</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Tree.Node">Program.<span class="xdoc-id">TreeNode</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Node for a generic "tree table" view</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Tree.Node" title="xdc.rov.Program.TreeNode"><span class="xdoc-id">label</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Tree.Node" title="xdc.rov.Program.TreeNode"><span class="xdoc-id">children</span></a> = <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Tree.Node" title="xdc.rov.Program.TreeNode">Program.TreeNode</a>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Tree.Node" title="xdc.rov.Program.TreeNode"><span class="xdoc-id">properties</span></a> = <i><span class="xdoc-kw2">Any</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#debug.Print">Program.<span class="xdoc-id">debugPrint</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Print API which will only print the message if debug printing is
+  enabled</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#display.Error">Program.<span class="xdoc-id">displayError</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">view</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">fieldName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">errorMsg</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#ex.To.String">Program.<span class="xdoc-id">exToString</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Helper function for formatting exceptions into strings with filename 
+  and line number</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">e</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Array">Program.<span class="xdoc-id">fetchArray</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieve the specified array from the target</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Fetch.Desc" title="xdc.rov.Program.FetchDesc">Program.FetchDesc</a></i> <span class="xdoc-id">desc</span>, <i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">len</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Static.String">Program.<span class="xdoc-id">fetchStaticString</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieves a static string from the executable</span></span></a>(<i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">addr</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.String">Program.<span class="xdoc-id">fetchString</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieve a string from the target</span></span></a>(<i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Struct">Program.<span class="xdoc-id">fetchStruct</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieve the specified structure from the target</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Fetch.Desc" title="xdc.rov.Program.FetchDesc">Program.FetchDesc</a></i> <span class="xdoc-id">desc</span>, <i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Module.Config">Program.<span class="xdoc-id">getModuleConfig</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Get a module's configuration state</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Private.Data">Program.<span class="xdoc-id">getPrivateData</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieves module's private ROV data</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Short.Name">Program.<span class="xdoc-id">getShortName</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Convert canonical instance names to a short name</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">name</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Status.Table">Program.<span class="xdoc-id">getStatusTable</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Returns the current table of all encountered status messages</span></span></a>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Symbol.Value">Program.<span class="xdoc-id">getSymbolValue</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Returns the value for the given symbol</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">symName</span>) <i>returns</i> <i><span class="xdoc-kw2">Int</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#lookup.Data.Symbol">Program.<span class="xdoc-id">lookupDataSymbol</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Lookup symbolic names for an address</span></span></a>(<i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">addr</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#lookup.Func.Name">Program.<span class="xdoc-id">lookupFuncName</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Lookup function names for an address</span></span></a>(<i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">addr</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#new.View.Struct">Program.<span class="xdoc-id">newViewStruct</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Creates a new instance of the view structure for the specified view</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#ptr.To.Hex">Program.<span class="xdoc-id">ptrToHex</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Convert pointer representation to hex string</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">ptr</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Handle.View">Program.<span class="xdoc-id">scanHandleView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Scan single instance of a module</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">instAddr</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Instance.Data.View">Program.<span class="xdoc-id">scanInstanceDataView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Inst.Data.View" title="xdc.rov.Program.InstDataView">Program.InstDataView</a>[<span class="xdoc-kw2"></span>]</i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Instance.View">Program.<span class="xdoc-id">scanInstanceView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieve the instance-type views for a module</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Module.Data.View">Program.<span class="xdoc-id">scanModuleDataView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Mod.Data.View" title="xdc.rov.Program.ModDataView">Program.ModDataView</a></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Module.View">Program.<span class="xdoc-id">scanModuleView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieve module-type view for a module</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Object.View">Program.<span class="xdoc-id">scanObjectView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Scan view for an embedded object</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Raw.View">Program.<span class="xdoc-id">scanRawView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieve the raw view for a module</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Raw.View" title="xdc.rov.Program.RawView">Program.RawView</a></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Tree.Table.View">Program.<span class="xdoc-id">scanTreeTableView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Tree.Node" title="xdc.rov.Program.TreeNode">Program.TreeNode</a>[<span class="xdoc-kw2"></span>]</i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#scan.Tree.View">Program.<span class="xdoc-id">scanTreeView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#set.Timestamp.Func">Program.<span class="xdoc-id">setTimestampFunc</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Sets API to be used for printing timestamp</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">func</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#timestamp">Program.<span class="xdoc-id">timestamp</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;API for printing timestamp messages for performance analysis</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Fetch.Desc"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Program.</span><span class="xdoc-id">FetchDesc</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#.Fetch.Desc">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Description of data to fetch</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> Program.<span class="xdoc-id">FetchDesc</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">type</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">isScalar</span> = <i><span class="xdoc-kw2">Bool</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">type</span>
+<span class="xdocChildSum">&#151;&nbsp;the fully qualified name of a specified type; i.e.,
+                   a type declared in some .xdc file.  For example,
+                   "xdc.runtime.Types.Timestamp64".</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">isScalar</span>
+<span class="xdocChildSum">&#151;&nbsp;if fetching an array, are the elements of the array
+                   really just one of the "scalar structs" defined by
+                   xdc.rov.support.ScalarStructs.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">A FetchDesc object is required as the first argument of the
+  <tt><a class="xdoc-link" href="Program.html#fetch.Struct" title="fetchStruct">fetchStruct</a></tt> and <tt><a class="xdoc-link" href="Program.html#fetch.Array" title="fetchArray">fetchArray</a></tt> methods.
+  The FetchDesc tells ROV the type of the data to be
+  fetched so it knows how much data to read and how to decode it.</div>
+<div class="xdocText">Every reference-type field in a state structure has a FetchDesc
+  generated for it, with the name <tt>&lt;field name&gt;$fetchDesc</tt>.</div>
+<div class="xdocText">For example, the instance structure</div>
+<div class="xdocText"><PRE class="Example">      struct Instance_State {
+          Char stack[];
+      ];
+</PRE></div>
+<div class="xdocText">will have defined <tt>obj.stack$fetchDesc</tt>, which can be used to fetch
+  the array:</div>
+<div class="xdocText"><PRE class="Example">      var data = Program.fetchArray(obj.stack$fetchDesc, obj.stack, len);
+</PRE></div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">SEE</div>
+<div class="xdocText"><a class="xdoc-link" href="Program.html#fetch.Struct" title="fetchStruct">fetchStruct</a>, <a class="xdoc-link" href="Program.html#fetch.Array" title="fetchArray">fetchArray</a></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Inst.Data.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Program.</span><span class="xdoc-id">InstDataView</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#.Inst.Data.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Instance view data returned from a scan</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> Program.<span class="xdoc-id">InstDataView</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">label</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">elements</span> = <i><span class="xdoc-kw2">Any</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">SEE</div>
+<div class="xdocText"><a class="xdoc-link" href="Program.html#scan.Instance.Data.View" title="scanInstanceDataView">scanInstanceDataView</a></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Mod.Data.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Program.</span><span class="xdoc-id">ModDataView</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#.Mod.Data.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Module view data returned from a scan</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> Program.<span class="xdoc-id">ModDataView</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">elements</span> = <i><span class="xdoc-kw2">Any</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">SEE</div>
+<div class="xdocText"><a class="xdoc-link" href="Program.html#scan.Module.Data.View" title="scanModuleDataView">scanModuleDataView</a></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Raw.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Program.</span><span class="xdoc-id">RawView</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#.Raw.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Raw module view</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> Program.<span class="xdoc-id">RawView</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">modState</span> = <i><span class="xdoc-kw2">Any</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">instStates</span> = <i><span class="xdoc-kw2">Any</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">modCfg</span> = <i><span class="xdoc-kw2">Any</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This is the structure returned by the <tt><a class="xdoc-link" href="../../scanRawView/package.html" title="scanRawView">scanRawView</a></tt> method.
+  It contains the module's state, the instance states, and the module
+  configuration fields and values.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Status.Entry"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Program.</span><span class="xdoc-id">StatusEntry</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#.Status.Entry">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Single entry in the ROV status table</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> Program.<span class="xdoc-id">StatusEntry</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">mod</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">tab</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">inst</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">field</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">message</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">ROV maintains a table of all errors, warnings, etc. encountered while
+  processing views. This table is cleared on each call to clear cache
+  (e.g., at each breakpoint).</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Tree.Node"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Program.</span><span class="xdoc-id">TreeNode</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#.Tree.Node">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Node for a generic "tree table" view</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> Program.<span class="xdoc-id">TreeNode</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">label</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">children</span> = <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Tree.Node" title="xdc.rov.Program.TreeNode">Program.TreeNode</a>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">properties</span> = <i><span class="xdoc-kw2">Any</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">SEE</div>
+<div class="xdocText"><a class="xdoc-link" href="Program.html#scan.Tree.Table.View" title="scanTreeTableView">scanTreeTableView</a>, <a class="xdoc-link" href="ViewInfo.html#.T.R.E.E_.T.A.B.L.E" title="ViewInfo.TREE_TABLE">ViewInfo.TREE_TABLE</a></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="debug.Print"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">debugPrint</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#debug.Print">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Print API which will only print the message if debug printing is
+  enabled</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">debugPrint</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="display.Error"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">displayError</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#display.Error">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">displayError</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">view</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">fieldName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">errorMsg</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="ex.To.String"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">exToString</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#ex.To.String">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Helper function for formatting exceptions into strings with filename 
+  and line number</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">exToString</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">e</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Array"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">fetchArray</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#fetch.Array">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieve the specified array from the target</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">fetchArray</span>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Fetch.Desc" title="xdc.rov.Program.FetchDesc">Program.FetchDesc</a></i> <span class="xdoc-id">desc</span>, <i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">len</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">desc</span>
+<span class="xdocChildSum">&#151;&nbsp;Fetch descriptor for the array, indicating the type of
+                data in the array.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">addr</span>
+<span class="xdocChildSum">&#151;&nbsp;Address of the array to fetch.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">length</span>
+<span class="xdocChildSum">&#151;&nbsp;The number of arrray elements to fetch.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">addrCheck</span>
+<span class="xdocChildSum">&#151;&nbsp;Optional, defaults to true. Indicates whether the
+                     memory image should validate the read by comparing
+                     the address to section information.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Returns a JavaScript array with the data in it.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Static.String"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">fetchStaticString</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#fetch.Static.String">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieves a static string from the executable</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">fetchStaticString</span>(<i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">addr</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">addr</span>
+<span class="xdocChildSum">&#151;&nbsp;Address of the string.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This API makes use of an object file reader to improve the string
+  reading performance--it reads the string from the file rather than
+  performing a target memory read. For this reason, it should only be
+  used on static strings and not dynamic ones.</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Requested string.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.String"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">fetchString</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#fetch.String">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieve a string from the target</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">fetchString</span>(<i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">addr</span>
+<span class="xdocChildSum">&#151;&nbsp;Address of the string.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">addrCheck</span>
+<span class="xdocChildSum">&#151;&nbsp;Optional, defaults to true. Indicates whether the
+                     memory image should validate the read by comparing
+                     the address to section information.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Requested string.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Struct"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">fetchStruct</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#fetch.Struct">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieve the specified structure from the target</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">fetchStruct</span>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Fetch.Desc" title="xdc.rov.Program.FetchDesc">Program.FetchDesc</a></i> <span class="xdoc-id">desc</span>, <i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">desc</span>
+<span class="xdocChildSum">&#151;&nbsp;Fetch descriptor for the structure, indicating the type
+                of the structure.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">addr</span>
+<span class="xdocChildSum">&#151;&nbsp;Address of the structure to fetch.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">addrCheck</span>
+<span class="xdocChildSum">&#151;&nbsp;Optional, defaults to true. Indicates whether the
+                     memory image should validate the read by comparing
+                     the address to section information.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Returns the requested structure as a javascript object.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Module.Config"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">getModuleConfig</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#get.Module.Config">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Get a module's configuration state</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">getModuleConfig</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">modName</span>
+<span class="xdocChildSum">&#151;&nbsp;Full module name to get the configs for.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Returns an object with all of the module configuration values used
+  in configuring the application.</div>
+<div class="xdocText">This object includes the common$ config params.</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Object containing all of the module configs and
+               their values.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Private.Data"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">getPrivateData</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#get.Private.Data">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieves module's private ROV data</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">getPrivateData</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This API returns an object which can be used to store private data
+  across different ROV API calls. The object is reset at every
+  breakpoint.</div>
+<div class="xdocText">This object is also passed as the context to all view init functions,
+  so it can also be accessed using 'this'. However, the context changes
+  when you call other APIs in your module; that is when you will need
+  this API. It can also be used to support metaonly APIs which are called
+  by other modules.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Short.Name"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">getShortName</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#get.Short.Name">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Convert canonical instance names to a short name</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">getShortName</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">name</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">name</span>
+<span class="xdocChildSum">&#151;&nbsp;Full canonical instance name.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Parses the full canonical instance name for the shorter name given 
+  by the user. If there is no shorter name, then it returns an empty
+  string "".</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">The short name, if the user specified one. Empty string
+               otherwise.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Status.Table"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">getStatusTable</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#get.Status.Table">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Returns the current table of all encountered status messages</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">getStatusTable</span>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This table is reset with every call to 'resetMods'. (e.g., at every
+  breakpoint).</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Symbol.Value"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">getSymbolValue</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#get.Symbol.Value">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Returns the value for the given symbol</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">getSymbolValue</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">symName</span>) <i>returns</i> <i><span class="xdoc-kw2">Int</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">symName</span>
+<span class="xdocChildSum">&#151;&nbsp;Name of symbol</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Returns -1 if the symbol does not exist.</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Address or value of symbol, or -1 if symbol does not exist</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="lookup.Data.Symbol"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">lookupDataSymbol</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#lookup.Data.Symbol">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Lookup symbolic names for an address</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">lookupDataSymbol</span>(<i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">addr</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">addr</span>
+<span class="xdocChildSum">&#151;&nbsp;Address of symbols</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Uses the ISymbolTable to look up the symbols at the given address.</div>
+<div class="xdocText">This API is separate from lookupFuncName to address paging concerns.
+  Use lookupFuncName to get function names (or any symbols in PROGRAM
+  memory) and use lookupDataSymbol to get data symbols (for symbols in
+  DATA memory).</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Array of symbols at the requested address.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="lookup.Func.Name"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">lookupFuncName</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#lookup.Func.Name">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Lookup function names for an address</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">lookupFuncName</span>(<i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">addr</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">addr</span>
+<span class="xdocChildSum">&#151;&nbsp;Address of symbols</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Uses the ISymbolTable to look up the symbols at the given address.</div>
+<div class="xdocText">This API is separate from lookupDataSymbol to address paging concerns.
+  Use lookupFuncName to get function names (or any symbols in PROGRAM
+  memory) and use lookupDataSymbol to get data symbols (for symbols in
+  DATA memory).</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Array of symbols at the requested address.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="new.View.Struct"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">newViewStruct</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#new.View.Struct">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Creates a new instance of the view structure for the specified view</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">newViewStruct</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This API is called for views where the view structure is not already 
+  passed in as an argument to the view init function.</div>
+<div class="xdocText">It is necessary to instantiate a view structure in this way so that ROV
+  is given an oppportunity to initialize the status-reporting mechanisms
+  of the view structure (to support, e.g., Program.displayError).</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="ptr.To.Hex"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">ptrToHex</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#ptr.To.Hex">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Convert pointer representation to hex string</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">ptrToHex</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">ptr</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Convenience function for converting the 'at' symbol representation
+  of a pointer to the form 0x80005846.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Handle.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanHandleView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Handle.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Scan single instance of a module</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanHandleView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">Ptr</span></i> <span class="xdoc-id">instAddr</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">modName</span>
+<span class="xdocChildSum">&#151;&nbsp;Full module name to return the raw view for.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">instAddr</span>
+<span class="xdocChildSum">&#151;&nbsp;Address of instance to scan.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">tabName</span>
+<span class="xdocChildSum">&#151;&nbsp;Name of the tab to retrieve the view for.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Used from a view$init function to scan a single instance of a 
+  different module given that instance's address.</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">An Instance_View object for the requested view.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Instance.Data.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanInstanceDataView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Instance.Data.View">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanInstanceDataView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Inst.Data.View" title="xdc.rov.Program.InstDataView">Program.InstDataView</a>[<span class="xdoc-kw2"></span>]</i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Instance.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanInstanceView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Instance.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieve the instance-type views for a module</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanInstanceView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">modName</span>
+<span class="xdocChildSum">&#151;&nbsp;Full module name to return the views for.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">tabName</span>
+<span class="xdocChildSum">&#151;&nbsp;Name of the tab to retrieve the views for.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Returns an array of Instance_View structures, each structure 
+  representing an instance of the module.</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Array of Instance_View structures, one for each isntance.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Module.Data.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanModuleDataView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Module.Data.View">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanModuleDataView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Mod.Data.View" title="xdc.rov.Program.ModDataView">Program.ModDataView</a></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Module.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanModuleView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Module.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieve module-type view for a module</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanModuleView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">modName</span>
+<span class="xdocChildSum">&#151;&nbsp;Full module name to return the view for.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">tabName</span>
+<span class="xdocChildSum">&#151;&nbsp;Name of the tab to retreive the view for.</span>
+</div>
+<div class="xdocChildText">@(returns)  Module_View structure.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Object.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanObjectView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Object.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Scan view for an embedded object</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanObjectView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">modName</span>
+<span class="xdocChildSum">&#151;&nbsp;Full module name to return the view for.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">obj</span>
+<span class="xdocChildSum">&#151;&nbsp;Actual object to retrieve the view for.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">tabName</span>
+<span class="xdocChildSum">&#151;&nbsp;Name of the tab to retrieve the view for.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Called from a view$init function to retrieve the specified view for
+  an embedded object.</div>
+<div class="xdocText">Since XDC has no way of knowing what embedded objects are present in
+  a system, embedded objects do not appear in the list of a module's 
+  instances until they have been scanned in this way.</div>
+<div class="xdocText">Calling Program.scanObjectView will not read any additional data from
+  the target, since the state structure was already read as part of 
+  reading it's parent structure.</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">An Instance_View object for the requested view.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Raw.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanRawView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Raw.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieve the raw view for a module</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanRawView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Raw.View" title="xdc.rov.Program.RawView">Program.RawView</a></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">modName</span>
+<span class="xdocChildSum">&#151;&nbsp;Full module name to return the raw view for.</span>
+</div>
+<div class="xdocChildText">@(returns) A RawView structure which contains the raw data.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Tree.Table.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanTreeTableView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Tree.Table.View">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanTreeTableView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.Tree.Node" title="xdc.rov.Program.TreeNode">Program.TreeNode</a>[<span class="xdoc-kw2"></span>]</i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="scan.Tree.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">scanTreeView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#scan.Tree.View">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">scanTreeView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="set.Timestamp.Func"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">setTimestampFunc</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#set.Timestamp.Func">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Sets API to be used for printing timestamp</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">setTimestampFunc</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">func</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="timestamp"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Program.</span><span class="xdoc-id">timestamp</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Program.html#timestamp">index URL</a></div>
+<p class="xdocHdrSummaryDcl">API for printing timestamp messages for performance analysis</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Program.<span class="xdoc-id">timestamp</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:39 GMT</div>
+</div></div></body>
+</html>

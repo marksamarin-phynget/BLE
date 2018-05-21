@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.tools.product.plugingen.Main</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/*
+</span>     2    <span class="comment"> *  Copyright 2015 by Texas Instruments Incorporated.
+</span>     3    <span class="comment"> *
+</span>     4    <span class="comment"> */</span>
+     5    
+     6    <span class="xdoc">/*!
+</span>     7    <span class="xdoc"> *  ======== Main ========
+</span>     8    <span class="xdoc"> *  Command-line tool for generating eclipse plugins for RTSC content
+</span>     9    <span class="xdoc"> *
+</span>    10    <span class="xdoc"> *  The `plugingen` tool allows RTSC content producers to
+</span>    11    <span class="xdoc"> *  create eclipse plugins that allows their content to be
+</span>    12    <span class="xdoc"> *  integrated in the CCS environment. As input, the tool requires
+</span>    13    <span class="xdoc"> *  <b>@p(blist)</b>
+</span>    14    <span class="xdoc"> *      - a RTSC module implementing {<b>@link</b> xdc.tools.product.IProduct}
+</span>    15    <span class="xdoc"> *  <b>@p</b>
+</span>    16    <span class="xdoc"> *  Refer to {<b>@link</b> ./doc-files/ExampleProduct.xdc ExampleProduct}
+</span>    17    <span class="xdoc"> *  for an implementation of {<b>@link</b> xdc.tools.product.IProduct IProduct}.
+</span>    18    <span class="xdoc"> *
+</span>    19    <span class="xdoc"> *  The tool may also be used to generate starter examples that will showup
+</span>    20    <span class="xdoc"> *  in the new project wizard. This is accomplished by implementing
+</span>    21    <span class="xdoc"> *  {<b>@link</b> xdc.tools.product.IProductTemplate IProductTemplate} and setting
+</span>    22    <span class="xdoc"> *  the {<b>@link</b> xdc.tools.product.IProduct#templateModule templateModule}
+</span>    23    <span class="xdoc"> *  configuration parameter of the {<b>@link</b> xdc.tools.product.IProduct IProduct}
+</span>    24    <span class="xdoc"> *  implementation to the name of the implementation module.
+</span>    25    <span class="xdoc"> *  Refer to {<b>@link</b> ./doc-files/Examples.xdc Examples}
+</span>    26    <span class="xdoc"> *  for a sample implementation of {<b>@link</b>
+</span>    27    <span class="xdoc"> *  xdc.tools.product.IProductTemplate IProductTemplate}.
+</span>    28    <span class="xdoc"> *
+</span>    29    <span class="xdoc"> *  The XGCONF product view maybe developed by implementing
+</span>    30    <span class="xdoc"> *  {<b>@link</b> xdc.tools.product.IProductView IProductView} and setting
+</span>    31    <span class="xdoc"> *  the {<b>@link</b> xdc.tools.product.IProduct#productViewModule productViewModule}
+</span>    32    <span class="xdoc"> *  configuration parameter of the {<b>@link</b> xdc.tools.product.IProduct IProduct}
+</span>    33    <span class="xdoc"> *  implementation to the name of the implementation module.
+</span>    34    <span class="xdoc"> *  Refer to {<b>@link</b> ./doc-files/ProductView.xdc ProductView.xdc} and
+</span>    35    <span class="xdoc"> *  {<b>@link</b> ./doc-files/ProductView.xs ProductView.xs}
+</span>    36    <span class="xdoc"> *  for a sample implementation of {<b>@link</b>
+</span>    37    <span class="xdoc"> *  xdc.tools.product.IProductView IProductView}.
+</span>    38    <span class="xdoc"> *
+</span>    39    <span class="xdoc"> *  The tool operates on a product that is either specified by the `-p`
+</span>    40    <span class="xdoc"> *  option or is present in the folder from which the tool is executed.
+</span>    41    <span class="xdoc"> *  The tool will create the plugin in a sub-folder named `eclipse`
+</span>    42    <span class="xdoc"> *  in the output directory specified with `-o` option. If the `-o`
+</span>    43    <span class="xdoc"> *  option is not specified the plugin is created in the product root
+</span>    44    <span class="xdoc"> *  directory.
+</span>    45    <span class="xdoc"> *
+</span>    46    <span class="xdoc"> *  <b>@a(Example)</b>
+</span>    47    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    48    <span class="xdoc"> *      xs xdc.tools.product.plugingen 
+</span>    49    <span class="xdoc"> *                      -p exampleprod_1_0_0_00
+</span>    50    <span class="xdoc"> *                      -m xdc.tools.product.plugingen.examples.ExampleProduct
+</span>    51    <span class="xdoc"> *  <b>@p</b>
+</span>    52    <span class="xdoc"> */</span>
+    53    <span class=key>metaonly</span> <span class=key>module</span> Main <span class=key>inherits</span> xdc.tools.ICmd
+    54    {
+    55        <span class=key>override</span> <span class=key>config</span> String usage[] = [
+    56            <span class="string">'[-p product_root_directory]'</span>,
+    57            <span class="string">' -m module'</span>,
+    58            <span class="string">'[-o outdir]'</span>,
+    59            <span class="string">'[-f pluginFragment]'</span>
+    60        ];
+    61    
+    62    <span class=key>instance</span>:
+    63    
+    64        <span class="xdoc">/*!
+</span>    65    <span class="xdoc">     *  ======== productDir ========
+</span>    66    <span class="xdoc">     *  Product root directory
+</span>    67    <span class="xdoc">     *
+</span>    68    <span class="xdoc">     *  This option names the product root directory that is used by the
+</span>    69    <span class="xdoc">     *  tool to generate the plugin.  For example, its declared repositories
+</span>    70    <span class="xdoc">     *  are added to the package path and are searched for contributed
+</span>    71    <span class="xdoc">     *  platforms.
+</span>    72    <span class="xdoc">     *
+</span>    73    <span class="xdoc">     *  If the '-o' option is not specified, the tool generates the plugin
+</span>    74    <span class="xdoc">     *  in a sub-directory named `eclipse` in the product root directory.
+</span>    75    <span class="xdoc">     *
+</span>    76    <span class="xdoc">     *  If this option is not specified, the product root directory is
+</span>    77    <span class="xdoc">     *  assumed to be `./`.
+</span>    78    <span class="xdoc">     *
+</span>    79    <span class="xdoc">     */</span>
+    80        @CommandOption(<span class="string">"p"</span>)
+    81        <span class=key>config</span> String productDir = <span class="string">"./"</span>;
+    82    
+    83        <span class="xdoc">/*!
+</span>    84    <span class="xdoc">     *  ======== productModule ========
+</span>    85    <span class="xdoc">     *  Input description of the plug-in to be specified
+</span>    86    <span class="xdoc">     *
+</span>    87    <span class="xdoc">     *  This required option names a module that implements
+</span>    88    <span class="xdoc">     *  `{<b>@link</b> xdc.tools.product.IProduct}`.
+</span>    89    <span class="xdoc">     */</span>
+    90        @CommandOption(<span class="string">"m"</span>)
+    91        <span class=key>config</span> String productModule;
+    92    
+    93        <span class="xdoc">/*!
+</span>    94    <span class="xdoc">     *  ======== outputDir ========
+</span>    95    <span class="xdoc">     *  Output directory in which the plugin will be generated.
+</span>    96    <span class="xdoc">     *
+</span>    97    <span class="xdoc">     *  This option names the directory in which the plugin
+</span>    98    <span class="xdoc">     *  will be generated in a sub-directory named `eclipse`.
+</span>    99    <span class="xdoc">     *  If this option is not specified the tool will generate
+</span>   100    <span class="xdoc">     *  the plugin in the product root directory specified with
+</span>   101    <span class="xdoc">     *  the '-p' option.
+</span>   102    <span class="xdoc">     */</span>
+   103        @CommandOption(<span class="string">"o"</span>)
+   104        <span class=key>config</span> String outputDir = <span class=key>null</span>;
+   105    
+   106        <span class="xdoc">/*!
+</span>   107    <span class="xdoc">     *  ======== pluginFragment ========
+</span>   108    <span class="xdoc">     *  Text file containing plugin fragment
+</span>   109    <span class="xdoc">     *
+</span>   110    <span class="xdoc">     *  This option names the text file containing a plugin fragment.
+</span>   111    <span class="xdoc">     *  This allows users to contribute extensions to the UI plugins
+</span>   112    <span class="xdoc">     *  generated by the tool.
+</span>   113    <span class="xdoc">     *
+</span>   114    <span class="xdoc">     *  The tool does not perform syntax checking of the contributed
+</span>   115    <span class="xdoc">     *  fragment. Users need to ensure the correctness of the
+</span>   116    <span class="xdoc">     *  contributed fragment. Note that syntactically incorrect
+</span>   117    <span class="xdoc">     *  fragments can disable the plugin completely in the eclipse
+</span>   118    <span class="xdoc">     *  platform.
+</span>   119    <span class="xdoc">     */</span>
+   120        @CommandOption(<span class="string">"f"</span>)
+   121        <span class=key>config</span> String pluginFragment = <span class=key>null</span>;
+   122    
+   123        <span class="xdoc">/*!
+</span>   124    <span class="xdoc">     *  ======== generationFormat ========
+</span>   125    <span class="xdoc">     *  Plugin generation format
+</span>   126    <span class="xdoc">     */</span>
+   127        @CommandOption(<span class="string">"generation_format"</span>)
+   128        <span class=key>config</span> String generationFormat = <span class=key>null</span>;
+   129    
+   130        <span class="xdoc">/*!
+</span>   131    <span class="xdoc">     *  ======== suppress_product_type_info ========
+</span>   132    <span class="xdoc">     *  This Option is now removed from PluginGen.
+</span>   133    <span class="xdoc">     *  We shall throw an error to flag this change to users.
+</span>   134    <span class="xdoc">     *
+</span>   135    <span class="xdoc">     *  Suppress generation of product type information
+</span>   136    <span class="xdoc">     *
+</span>   137    <span class="xdoc">     *  This option generates eclipse plugin without the product
+</span>   138    <span class="xdoc">     *  type information. Should only be invoked to generate plugins
+</span>   139    <span class="xdoc">     *  whose product type information was hard coded into CCS 4.x prior
+</span>   140    <span class="xdoc">     *  to the creation of this tool.
+</span>   141    <span class="xdoc">     *
+</span>   142    <span class="xdoc">     *  This option should not be used by _any_ new products.
+</span>   143    <span class="xdoc">     */</span>
+   144        @CommandOption(<span class="string">"suppress_product_type_info"</span>)
+   145        <span class=key>config</span> Bool suppressProductTypeInfo = <span class=key>false</span>;
+   146    
+   147        <span class="xdoc">/*!
+</span>   148    <span class="xdoc">     *  ======== dynamic_toc ========
+</span>   149    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   150    <span class="xdoc">     *
+</span>   151    <span class="xdoc">     *  This switch allows us to enable the new (to 3.30) dynamic TOC provider
+</span>   152    <span class="xdoc">     *  which can read TOC files that are _not_ in any of the signed plugins.
+</span>   153    <span class="xdoc">     *  Which means we can completely encapsulate the docs in a product's
+</span>   154    <span class="xdoc">     *  directories and there is no possibility of using a TOC that doesn't
+</span>   155    <span class="xdoc">     *  match the docs provided.
+</span>   156    <span class="xdoc">     *
+</span>   157    <span class="xdoc">     *  This option should only be used for products that will only be used
+</span>   158    <span class="xdoc">     *  with versions of XDCtools 3.30 or later (unless we backport this
+</span>   159    <span class="xdoc">     *  provider to 3.26, for example).
+</span>   160    <span class="xdoc">     *
+</span>   161    <span class="xdoc">     *  Someday we may ignore this switch as default to using dynamic_toc.
+</span>   162    <span class="xdoc">     *  But for now (3.30), dynamic_toc is only used by xdctools itself.
+</span>   163    <span class="xdoc">     */</span>
+   164        @CommandOption(<span class="string">"dynamic_toc"</span>)
+   165        <span class=key>config</span> Bool dynamicToc = <span class=key>false</span>;
+   166    
+   167        <span class="xdoc">/*!
+</span>   168    <span class="xdoc">     *  ======== run ========
+</span>   169    <span class="xdoc">     */</span>
+   170        <span class=key>override</span> Any run(xdc.tools.Cmdr.Instance cmdr, String args[]);
+   171    }
+   172    <span class="comment">/*
+</span>   173    <span class="comment"> *  @(#) xdc.tools.product.plugingen; 1, 0, 0,141; 12-8-2015 17:33:48; /db/ztree/library/trees/xdctools/xdctools-g03x/src/
+</span>   174    <span class="comment"> */</span>
+   175    
+</pre>
+</body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.services.global.Clock</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    <span class="xdoc">/*!
+</span>    13    <span class="xdoc"> *  ======== Clock ========
+</span>    14    <span class="xdoc"> *  Elapsed time measurement functions
+</span>    15    <span class="xdoc"> */</span>
+    16    <span class=key>metaonly</span> <span class=key>module</span> Clock {
+    17    
+    18        <span class="xdoc">/*!
+</span>    19    <span class="xdoc">     *  ======== getElapsedTime ========
+</span>    20    <span class="xdoc">     *  Get elapsed time from last reset
+</span>    21    <span class="xdoc">     */</span>
+    22        <span class=key>function</span> getElapsedTime();
+    23    
+    24        <span class="xdoc">/*!
+</span>    25    <span class="xdoc">     *  ======== enable ========
+</span>    26    <span class="xdoc">     *  Enable output from this module
+</span>    27    <span class="xdoc">     *
+</span>    28    <span class="xdoc">     *  If false, all output is suppressed.
+</span>    29    <span class="xdoc">     *
+</span>    30    <span class="xdoc">     *  The initial value of this configuration parameter can be set
+</span>    31    <span class="xdoc">     *  on the `xs` command line.  For example,
+</span>    32    <span class="xdoc">     *  <b>@p(code)</b>
+</span>    33    <span class="xdoc">     *      xs -Dxdc.services.global.Clock.enable=true ...
+</span>    34    <span class="xdoc">     *  <b>@p</b>
+</span>    35    <span class="xdoc">     *  sets the initial value of `enable` to `true`.
+</span>    36    <span class="xdoc">     *  
+</span>    37    <span class="xdoc">     *  If the value is not set on the command line, its initial value
+</span>    38    <span class="xdoc">     *   defaults to `false`.
+</span>    39    <span class="xdoc">     */</span>
+    40        <span class=key>config</span> Bool enable = <span class=key>false</span>;
+    41    
+    42        <span class="xdoc">/*!
+</span>    43    <span class="xdoc">     *  ======== showMemory ========
+</span>    44    <span class="xdoc">     *  Enable memory usage output
+</span>    45    <span class="xdoc">     *
+</span>    46    <span class="xdoc">     *  If false, memory usage output is suppressed
+</span>    47    <span class="xdoc">     */</span>
+    48        <span class=key>config</span> Bool showMemory = <span class=key>false</span>;
+    49    
+    50        <span class="xdoc">/*!
+</span>    51    <span class="xdoc">     *  ======== print ========
+</span>    52    <span class="xdoc">     *  Report elapsed time from last reset
+</span>    53    <span class="xdoc">     */</span>
+    54        <span class=key>void</span> print(String msg);
+    55    
+    56        <span class="xdoc">/*!
+</span>    57    <span class="xdoc">     *  ======== reset ========
+</span>    58    <span class="xdoc">     *  Set elapsed time to 0
+</span>    59    <span class="xdoc">     */</span>
+    60        <span class=key>void</span> reset();
+    61    }
+    62    <span class="comment">/*
+</span>    63    <span class="comment"> *  @(#) xdc.services.global; 1, 0, 0,0; 12-9-2015 17:37:20; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>    64    <span class="comment"> */</span>
+    65    
+</pre>
+</body></html>

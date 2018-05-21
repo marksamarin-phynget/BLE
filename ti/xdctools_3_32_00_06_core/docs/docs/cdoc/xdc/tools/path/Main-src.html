@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.tools.path.Main</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> *
+</span>    11    <span class="comment"> * */</span>
+    12    <span class=key>package</span> xdc.tools.path;
+    13    
+    14    <span class="xdoc">/*!
+</span>    15    <span class="xdoc"> *  ======== xdc.tools.path.Main ========
+</span>    16    <span class="xdoc"> *  Package Repository Path Display Tool
+</span>    17    <span class="xdoc"> *
+</span>    18    <span class="xdoc"> *  This tool displays the packages located along the specified package
+</span>    19    <span class="xdoc"> *  repository path.  Repositories can be specified by explicitly naming
+</span>    20    <span class="xdoc"> *  them via the `-Pr` option or implicitly by not passing `-Pr`; in
+</span>    21    <span class="xdoc"> *  this case, the set of repositories searched corresponds to the set of
+</span>    22    <span class="xdoc"> *  repositories defined by the current package path:
+</span>    23    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    24    <span class="xdoc"> *      $XDCPATH;$XDCROOT/packages;^
+</span>    25    <span class="xdoc"> *  <b>@p</b>
+</span>    26    <span class="xdoc"> *
+</span>    27    <span class="xdoc"> *  where `$XDCPATH` is the value of the the user settable prefix of
+</span>    28    <span class="xdoc"> *  the package path, `$XDCROOT` is the installation directory of the 
+</span>    29    <span class="xdoc"> *  XDC tools, and `^` is the repository of the package in the current
+</span>    30    <span class="xdoc"> *  working directory (if it exists).
+</span>    31    <span class="xdoc"> * 
+</span>    32    <span class="xdoc"> *  <b>@a(Examples)</b>
+</span>    33    <span class="xdoc"> *  
+</span>    34    <span class="xdoc"> *    1. To display information about the packages on the package path
+</span>    35    <span class="xdoc"> *    (in this example, the package path is just `C:/xdc-o00/packages`):
+</span>    36    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    37    <span class="xdoc"> *    xs xdc.tools.path
+</span>    38    <span class="xdoc"> *  <b>@p</b>
+</span>    39    <span class="xdoc"> *
+</span>    40    <span class="xdoc"> *    Output:
+</span>    41    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    42    <span class="xdoc"> *    Package Name:      gnu.gdb.jserver
+</span>    43    <span class="xdoc"> *    Repository:        C:/xdc-o00/packages
+</span>    44    <span class="xdoc"> *    Release Name:      gnu_gdb_jserver
+</span>    45    <span class="xdoc"> *    Label:             default
+</span>    46    <span class="xdoc"> *    Compatibility Key: 1, 0, 0, 0, 87
+</span>    47    <span class="xdoc"> *    Date:              11/20/2006  20:38
+</span>    48    <span class="xdoc"> * 
+</span>    49    <span class="xdoc"> *    Package Name:      gnu.targets
+</span>    50    <span class="xdoc"> *    Repository:        C:/xdc-o00/packages
+</span>    51    <span class="xdoc"> *    Release Name:      gnu_targets
+</span>    52    <span class="xdoc"> *    Label:             default
+</span>    53    <span class="xdoc"> *    Compatibility Key: 1, 0, 0, 0, 194
+</span>    54    <span class="xdoc"> *    Date:              11/20/2006  20:38
+</span>    55    <span class="xdoc"> *     
+</span>    56    <span class="xdoc"> *  <b>@p</b>
+</span>    57    <span class="xdoc"> *
+</span>    58    <span class="xdoc"> *    2. To display the names of the packages on the package path
+</span>    59    <span class="xdoc"> *    (in this example, the package path is just `C:/xdc-o00/packages`):
+</span>    60    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    61    <span class="xdoc"> *    xs xdc.tools.path -n
+</span>    62    <span class="xdoc"> *  <b>@p</b>
+</span>    63    <span class="xdoc"> * 
+</span>    64    <span class="xdoc"> *    Output:
+</span>    65    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    66    <span class="xdoc"> *    gnu.gdb.jserver
+</span>    67    <span class="xdoc"> *    gnu.targets
+</span>    68    <span class="xdoc"> *    gnu.targets.rts470MV
+</span>    69    <span class="xdoc"> *    gnu.targets.rts470uC
+</span>    70    <span class="xdoc"> *    gnu.targets.rts5
+</span>    71    <span class="xdoc"> *     
+</span>    72    <span class="xdoc"> *  <b>@p</b>
+</span>    73    <span class="xdoc"> *
+</span>    74    <span class="xdoc"> *    3. To simply, echo the current package path:
+</span>    75    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    76    <span class="xdoc"> *    xs xdc.tools.path -p
+</span>    77    <span class="xdoc"> *  <b>@p</b>
+</span>    78    <span class="xdoc"> *  
+</span>    79    <span class="xdoc"> *    Output:
+</span>    80    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    81    <span class="xdoc"> *    C:/xdc-o00/packages
+</span>    82    <span class="xdoc"> *  <b>@p</b>
+</span>    83    <span class="xdoc"> * 
+</span>    84    <span class="xdoc"> *    4. To display information about the packages "rooted" in the repository
+</span>    85    <span class="xdoc"> *    `C:/CCStudio_v3.3/bios_5_31/packages`:
+</span>    86    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    87    <span class="xdoc"> *    xs xdc.tools.path -Pr C:/CCStudio_v3.3/bios_5_31/packages
+</span>    88    <span class="xdoc"> *  <b>@p</b>
+</span>    89    <span class="xdoc"> *  
+</span>    90    <span class="xdoc"> *    Output:
+</span>    91    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    92    <span class="xdoc"> *    Package Name:      ti.platforms.dsk5402
+</span>    93    <span class="xdoc"> *    Repository:        C:/CCStudio_v3.3/bios_5_31/packages
+</span>    94    <span class="xdoc"> *    Release Name:      ti_platforms_dsk5402
+</span>    95    <span class="xdoc"> *    Label:             default
+</span>    96    <span class="xdoc"> *    Compatibility Key: 1, 0, 0, 24
+</span>    97    <span class="xdoc"> *    Date:              05/11/2006  19:10
+</span>    98    <span class="xdoc"> * 
+</span>    99    <span class="xdoc"> *    Package Name:      ti.platforms.dsk5416
+</span>   100    <span class="xdoc"> *    Repository:        C:/CCStudio_v3.3/bios_5_31/packages
+</span>   101    <span class="xdoc"> *    Release Name:      ti_platforms_dsk5416
+</span>   102    <span class="xdoc"> *    Label:             default
+</span>   103    <span class="xdoc"> *    Compatibility Key: 1, 0, 0, 24
+</span>   104    <span class="xdoc"> *    Date:              05/11/2006  19:10
+</span>   105    <span class="xdoc"> * 
+</span>   106    <span class="xdoc"> *    Package Name:      ti.platforms.dsk5510
+</span>   107    <span class="xdoc"> *    Repository:        C:/CCStudio_v3.3/bios_5_31/packages
+</span>   108    <span class="xdoc"> *    Release Name:      ti_platforms_dsk5510
+</span>   109    <span class="xdoc"> *    Label:             default
+</span>   110    <span class="xdoc"> *    Compatibility Key: 1, 0, 0, 24
+</span>   111    <span class="xdoc"> *    Date:              05/11/2006  19:10
+</span>   112    <span class="xdoc"> *     
+</span>   113    <span class="xdoc"> *  <b>@p</b>
+</span>   114    <span class="xdoc"> *
+</span>   115    <span class="xdoc"> *    5. To display the names of all packages in or below the directory
+</span>   116    <span class="xdoc"> *    `C:/CCStudio_v3.3/bios_5_31/packages`:
+</span>   117    <span class="xdoc"> *  <b>@p(code)</b>
+</span>   118    <span class="xdoc"> *    xs xdc.tools.path -n -PR C:/CCStudio_v3.3/bios_5_31/packages
+</span>   119    <span class="xdoc"> *  <b>@p</b>
+</span>   120    <span class="xdoc"> * 
+</span>   121    <span class="xdoc"> *    Output:
+</span>   122    <span class="xdoc"> *  <b>@p(code)</b>
+</span>   123    <span class="xdoc"> *    ti.platforms.dsk5402
+</span>   124    <span class="xdoc"> *    ti.platforms.dsk5416
+</span>   125    <span class="xdoc"> *    ti.platforms.dsk5510
+</span>   126    <span class="xdoc"> *    ti.platforms.dsk6211
+</span>   127    <span class="xdoc"> *     
+</span>   128    <span class="xdoc"> *  <b>@p</b>
+</span>   129    <span class="xdoc"> *
+</span>   130    <span class="xdoc"> *  <b>@see</b> xdc.tools.path
+</span>   131    <span class="xdoc"> */</span>
+   132    <span class=key>metaonly</span> <span class=key>module</span> Main <span class=key>inherits</span> xdc.tools.ICmd {
+   133    
+   134        <span class=key>override</span> <span class=key>config</span> String usage[] = [
+   135           <span class="string">'[-n] [-x] [-v] [-H header] [-p] [-c] [-P package_base_dir ...|-Pr repository ...|-PR directory ...]'</span>
+   136        ];
+   137    
+   138        <span class="xdoc">/*!
+</span>   139    <span class="xdoc">     *  ======== Pkg ========
+</span>   140    <span class="xdoc">     *  struct used for xml package info
+</span>   141    <span class="xdoc">     */</span>
+   142        @XmlDtd
+   143        <span class=key>metaonly</span> <span class=key>struct</span> Pkg {
+   144            String name; 
+   145            String repository;
+   146            String release;
+   147            String label;
+   148            String key;
+   149            String date;
+   150            String providerId;
+   151            String originalProviderId;
+   152            String producerId;
+   153        }
+   154    
+   155        @XmlDtd
+   156        <span class=key>metaonly</span> <span class=key>struct</span> CheckResults {
+   157            String repository;
+   158            String warnings[];
+   159        }
+   160    
+   161        <span class="xdoc">/*!
+</span>   162    <span class="xdoc">     *  ======== Results ========
+</span>   163    <span class="xdoc">     *  return value for xml package info
+</span>   164    <span class="xdoc">     */</span>
+   165        @XmlDtd
+   166        <span class=key>metaonly</span> <span class=key>struct</span> Results {
+   167            String header;     <span class="xdoc">/*! user-specified header */</span>
+   168            String path;       <span class="xdoc">/*! package path */</span>
+   169            Pkg pkg[];         <span class="xdoc">/*! array of packages */</span>
+   170            CheckResults checkResults[];
+   171        }
+   172    
+   173        <span class="xdoc">/*!
+</span>   174    <span class="xdoc">     *  ======== NameResults ========
+</span>   175    <span class="xdoc">     *  return value for xml package names
+</span>   176    <span class="xdoc">     */</span>
+   177        @XmlDtd
+   178        <span class=key>metaonly</span> <span class=key>struct</span> NameResults {
+   179            String header;     <span class="xdoc">/*! user-specified header */</span>
+   180            String path;       <span class="xdoc">/*! package path */</span>
+   181            String name[];     <span class="xdoc">/*! array of names */</span>
+   182            CheckResults checkResults[];
+   183        }
+   184    
+   185        <span class="xdoc">/*!
+</span>   186    <span class="xdoc">     *  ======== PathResults ========
+</span>   187    <span class="xdoc">     *  return value for xml package path
+</span>   188    <span class="xdoc">     */</span>
+   189        @XmlDtd
+   190        <span class=key>metaonly</span> <span class=key>struct</span> PathResults {
+   191            String header;     <span class="xdoc">/*! user-specified header */</span>
+   192            String path;       <span class="xdoc">/*! package path */</span>
+   193            CheckResults checkResults[];
+   194        }
+   195    
+   196        <span class="xdoc">/*!
+</span>   197    <span class="xdoc">     *  ======== DirResults ========
+</span>   198    <span class="xdoc">     *  return value for xml directory echo
+</span>   199    <span class="xdoc">     */</span>
+   200        @XmlDtd
+   201        <span class=key>metaonly</span> <span class=key>struct</span> DirResults {
+   202            String header;     <span class="xdoc">/*! user-specified header */</span>
+   203            String dir[];      <span class="xdoc">/*! array of package base directories */</span>
+   204            CheckResults checkResults[];
+   205        }
+   206    
+   207    <span class=key>instance</span>:
+   208    
+   209        <span class="xdoc">/*!
+</span>   210    <span class="xdoc">     * Echo path
+</span>   211    <span class="xdoc">     */</span>
+   212        @CommandOption(<span class="string">'p'</span>)
+   213        <span class=key>config</span> Bool pathFlag = <span class=key>false</span>;
+   214    
+   215        <span class="xdoc">/*!
+</span>   216    <span class="xdoc">     * Display package names only
+</span>   217    <span class="xdoc">     */</span>
+   218        @CommandOption(<span class="string">'n'</span>)
+   219        <span class=key>config</span> Bool shortFlag = <span class=key>false</span>;
+   220    
+   221        <span class="xdoc">/*!
+</span>   222    <span class="xdoc">     * Return an array of strings
+</span>   223    <span class="xdoc">     */</span>
+   224        @CommandOption(<span class="string">'a'</span>)
+   225        <span class=key>config</span> Bool arrFlag = <span class=key>false</span>;
+   226    
+   227        <span class="xdoc">/*!
+</span>   228    <span class="xdoc">     * Return a Results struct as XML
+</span>   229    <span class="xdoc">     */</span>
+   230        @CommandOption(<span class="string">'x'</span>)
+   231        <span class=key>config</span> Bool xmlFlag = <span class=key>false</span>;
+   232    
+   233        <span class="xdoc">/*!
+</span>   234    <span class="xdoc">     * Print informative messages during execution
+</span>   235    <span class="xdoc">     */</span>
+   236        @CommandOption(<span class="string">'v'</span>)
+   237        <span class=key>config</span> Bool verboseFlag = <span class=key>false</span>;
+   238    
+   239        <span class="xdoc">/*!
+</span>   240    <span class="xdoc">     * Header label
+</span>   241    <span class="xdoc">     */</span>
+   242        @CommandOption(<span class="string">'H'</span>)
+   243        <span class=key>config</span> String header = <span class=key>null</span>;
+   244    
+   245        <span class="xdoc">/*!
+</span>   246    <span class="xdoc">     * Use specified directory args instead of xdc.path
+</span>   247    <span class="xdoc">     */</span>
+   248        @CommandOption(<span class="string">'-Pr,d'</span>)
+   249        <span class=key>config</span> Bool repositoriesFlag = <span class=key>false</span>;
+   250    
+   251        <span class="xdoc">/*!
+</span>   252    <span class="xdoc">     * Recursively find all packages
+</span>   253    <span class="xdoc">     *
+</span>   254    <span class="xdoc">     * Recursively descend into specified directories and find every
+</span>   255    <span class="xdoc">     * package, including packages whose repository is not one of
+</span>   256    <span class="xdoc">     * the specified directories.
+</span>   257    <span class="xdoc">     */</span>
+   258        @CommandOption(<span class="string">'-PR'</span>)
+   259        <span class=key>config</span> Bool recurseFlag = <span class=key>false</span>;
+   260    
+   261        <span class="xdoc">/*!
+</span>   262    <span class="xdoc">     * Only display information for the package directories
+</span>   263    <span class="xdoc">     */</span>
+   264        @CommandOption(<span class="string">'-P'</span>)
+   265        <span class=key>config</span> Bool directoriesFlag = <span class=key>false</span>;
+   266    
+   267        <span class="xdoc">/*!
+</span>   268    <span class="xdoc">     * Check repositories for possible errors
+</span>   269    <span class="xdoc">     */</span>
+   270        @CommandOption(<span class="string">'c,--checkpath'</span>)
+   271        <span class=key>config</span> Bool checkFlag = <span class=key>false</span>;
+   272    
+   273    }
+   274    
+   275    <span class="comment">/*
+</span>   276    <span class="comment"> *  @(#) xdc.tools.path; 1, 0, 0,291; 12-8-2015 17:33:37; /db/ztree/library/trees/xdctools/xdctools-g03x/src/
+</span>   277    <span class="comment"> */</span>
+   278    
+</pre>
+</body></html>

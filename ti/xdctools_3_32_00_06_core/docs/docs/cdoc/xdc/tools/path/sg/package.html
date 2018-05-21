@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>package xdc.tools.path.sg</title>
+<meta name="description" content="Graphical interface to path tool">
+<link rel="stylesheet" type="text/css" href="../../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.path.sg</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../../xdc/tools/path/sg/Main.html" title="module Main"><img class="xdocHdrArrow" src="../../../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../../index.html#xdc/tools/path/sg/package.html">index URL</a></div>
+<p class="xdocHdrSummary">Graphical interface to path tool</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-1">USAGE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-2">OPTIONS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-3">USAGE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-4">DETAILS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-5">BUGS</a></li>
+</ul>
+<div class="xdocBrief">
+This graphical interactive tool displays the packages located along any
+  specified package repository path.
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../../xdc/tools/path/sg/package-src.html"><span class="xdocLabelFile">xdc/tools/path/sg/package.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">requires</span> <a class="xdoc-link" href="../../../../xdc/tools/sg/package.html" title="xdc.tools.sg">xdc.tools.sg</a>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">requires</span> <a class="xdoc-link" href="../../../../xdc/tools/path/package.html" title="xdc.tools.path">xdc.tools.path</a>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">requires</span> <a class="xdoc-link" href="../../../../xdc/tools/sg/widgets/package.html" title="xdc.tools.sg.widgets">xdc.tools.sg.widgets</a>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.path.sg</span> [1, 0, 0] {
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">module</span> <a class='xdocSynGo' href='../../../../xdc/tools/path/sg/Main.html' title='xdc.tools.path.sg.Main'><span class="xdoc-id">Main</span>;</a>
+</div>
+<div class='xdocSynSum'><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Command implementation</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">USAGE</div>
+<div class="xdocText"><tt>xs xdc.tools.path.sg [--help]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--packagepath PATH]</tt></div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">OPTIONS</div>
+<div class="xdocText"><dl><dt><tt>--packagepath</tt></dt><dd>package path to scan for packages</dd></div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">USAGE</div>
+<div class="xdocText"></div>
+<div class="xdocText"><PRE class="Example">    xs xdc.tools.path.sg [--packagepath PATH]
+</PRE></div>
+<span id="xdoc-sect-4"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This graphical interactive tool displays the packages located along any
+  specified package repository path.</div>
+<div class="xdocText">At startup, this tool shows the packages located along the current package
+  path; i.e.,</div>
+<div class="xdocText"><PRE class="Example">      $XDCPATH;$XDCROOT/packages;^
+</PRE></div>
+<div class="xdocText">where <tt>$XDCPATH</tt> is the value of the the user settable prefix of the
+  package path, <tt>$XDCROOT</tt> is the installation directory of the XDC tools,
+  and <tt>^</tt> is the repository of the package in the current working directory
+  (if it exists). To specify a package path other than the current package
+  path, use the --packagepath option. Only semicolon delimited canonical 
+  paths should be specifed as arguments with the --packagepath option.
+  Environment variables such as $XDCROOT and special designators such as
+  '^' should not be used.</div>
+<span id="xdoc-sect-5"></span>
+<div class="xdocSect">BUGS</div>
+<div class="xdocText"></div>
+<div class="xdocText">This tool scans all packages available along the current
+  package path before displaying the user interface.  So, a repository in
+  the package path that contains a large number of sub-directories, such
+  as '/', causes very long delays before the user interface is displayed.</div>
+<div class="xdocText">While it is easy to see that you should not put '/' in the package path,
+  it is less obvious that installing a package at '/' has the same effect.</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:48 GMT</div>
+</div></div></body>
+</html>

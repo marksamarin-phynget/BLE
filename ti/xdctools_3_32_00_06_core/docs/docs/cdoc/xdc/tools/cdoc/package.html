@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>package xdc.tools.cdoc</title>
+<meta name="description" content="RTSC documentation generator">
+<link rel="stylesheet" type="text/css" href="../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.cdoc</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/cdoc/Example.html" title="module Example"><img class="xdocHdrArrow" src="../../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/cdoc/package.html">index URL</a></div>
+<p class="xdocHdrSummary">RTSC documentation generator</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-1">USAGE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-2">OPTIONS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-3">DETAILS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-4">EXAMPLES</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-5">NOTE</a></li>
+</ul>
+<div class="xdocBrief">
+cdoc is a package documentation generation utility. It builds a
+  directory of browsable HTML documentation using the meta-
+  information stored in RTSC packages.
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/cdoc/package-src.html"><span class="xdocLabelFile">xdc/tools/cdoc/package.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.cdoc</span> [1, 0, 0] {
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">module</span> <a class='xdocSynGo' href='../../../xdc/tools/cdoc/Example.html' title='xdc.tools.cdoc.Example'><span class="xdoc-id">Example</span>;</a>
+</div>
+<div class='xdocSynSum'><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;XDOC markup language examples for modules and interfaces</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">module</span> <a class='xdocSynGo' href='../../../xdc/tools/cdoc/Main.html' title='xdc.tools.cdoc.Main'><span class="xdoc-id">Main</span>;</a>
+</div>
+<div class='xdocSynSum'><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Command implementation</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">module</span> <a class='xdocSynGo' href='../../../xdc/tools/cdoc/Markup.html' title='xdc.tools.cdoc.Markup'><span class="xdoc-id">Markup</span>;</a>
+</div>
+<div class='xdocSynSum'><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;XDCspec doc markup language examples</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">USAGE</div>
+<div class="xdocText"><tt>xs xdc.tools.cdoc [--help]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-od:dir] [-title text] [--start package] [--indexonly] [--doxytags file] [--doxybase dir] [-h] [-n] [-b] [-s] [-P pkg-dir...|-Pr repo-dir...|-A]</tt></div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">OPTIONS</div>
+<div class="xdocText"><dl><dt><tt>-od</tt></dt><dd>Place the generated files in the named directory</dd><dt><tt>-title</tt></dt><dd>Generated HTML pages will show the string in the page title</dd><dt><tt>--start</tt></dt><dd>Set start page to specified package<p>  The opening page is, by default, the documentation for the
+  alphabetically first package processed.  This option allows
+  you to explicitly specify the package used.
+</p><p>  If "" is specified, the start page will be blank.
+</p><p>  If the package specified is not processed, no warning or error
+  results; it is assumed that when the documentation is used the
+  specified package documentation will exist.
+</p></dd><dt><tt>-s</tt></dt><dd>Include .xdc file sources<p>  In the generated documentation for each .xdc file, link
+  to a pretty-printed view of the .xdc file source text.
+</p></dd><dt><tt>-P</tt></dt><dd>The subsequent directories are package directories<p> Generates documentation for each of the specified packages.
+</p></dd><dt><tt>-Pr</tt></dt><dd>The subsequent directories are repositories of packages<p> Generates documentation for all packages rooted in each of
+ the specified repositories.
+</p></dd><dt><tt>-A</tt></dt><dd>Generate documentation for all packages on the package path</dd><dt><tt>-b</tt></dt><dd>Generate a single "big" output</dd><dt><tt>-h</tt></dt><dd>Generate html pages only, not table of contents or index</dd><dt><tt>-n</tt></dt><dd>Generate nodoc'd docs</dd><dt><tt>--quiet</tt></dt><dd>Quiet mode</dd><dt><tt>--indexonly</tt></dt><dd>Generate index and table of contents only</dd><dt><tt>--doxytags</tt></dt><dd>Process doxygen links, using this argument
+  as the tag file</dd><dt><tt>--doxybase</tt></dt><dd>The directory containing doxygen html files</dd><dt><tt>--style</tt></dt><dd>Use specified style sheet</dd></div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">cdoc is a package documentation generation utility. It builds a
+  directory of browsable HTML documentation using the meta-
+  information stored in RTSC packages.</div>
+<div class="xdocText">This utility is invoked via the XDCtools <tt>xs</tt> command.  In the
+  examples below we assume that the alias <tt>cdoc</tt> is defined as
+  follows:</div>
+<div class="xdocText"><PRE class="Example">      $(XDCROOT)/xs xdc.tools.cdoc
+</PRE></div>
+<div class="xdocText">where $(XDCROOT) is the installation directory of the XDCtools toolset.</div>
+<span id="xdoc-sect-4"></span>
+<div class="xdocSect">EXAMPLES</div>
+<div class="xdocText">In the examples below we assume that the alias <tt>cdoc</tt> is defined as
+  <tt>$(XDCROOT)/xs xdc.tools.cdoc</tt>, where <tt>$(XDCROOT)</tt> is the installation
+  directory of the XDCtools toolset.</div>
+<div class="xdocText">1. To generate documentation for the package in the current working
+  directory:</div>
+<div class="xdocText"><PRE class="Example">      cdoc
+</PRE></div>
+<div class="xdocText">Since no package is specified and no output directory is specified,
+  documentation is generated for the package in the current working
+  directory and the output is placed in the package's <tt>./package/cdoc</tt>
+  sub-directory.</div>
+<div class="xdocText">2. To generate documentation with the title "My Packages" for all
+  packages installed in the <tt>myPackages</tt> repository:</div>
+<div class="xdocText"><PRE class="Example">      cdoc -title "My Packages" -Pr myPackages
+</PRE></div>
+<div class="xdocText">Since no output directory was specified and documentation will be for
+  more than one package, the generated files are placed in the directory
+  <tt>./cdoc</tt>.</div>
+<div class="xdocText">3. To generate documentation for the package located in <tt>./ti/bios</tt> and 
+  put results in the directory <tt>./html</tt>.</div>
+<div class="xdocText"><PRE class="Example">      cdoc -od:html -P ti/bios
+</PRE></div>
+<span id="xdoc-sect-5"></span>
+<div class="xdocSect">NOTE</div>
+<div class="xdocText"><tt>cdoc</tt> processes the XML files that are generated *after* a package
+  is built (actually after the <tt>.interfaces</tt> goal is built).  One must first
+  build a package before generating its documentation.  If you change a
+  <tt>.xdc</tt> file and re-run <tt>cdoc</tt> without rebuilding the package, the change 
+  in the <tt>.xdc</tt> file will not show up in the generated docs.</div>
+<div class="xdocText">When interatively updating a package's .xdc files and examining the
+  generated documentation, it is useful to define a command alias that
+  first "compiles" the package's .xdc files and then runs the cdoc tool.
+  For example, if your shell is Korn shell compatible, the following
+  command alias ensures that any changes in .xdc files will show up in the
+  generated documents:</div>
+<div class="xdocText"><PRE class="Example">      function cdoc {
+          $XDCROOT/xdc .interfaces
+          $XDCROOT/xs xdc.tools.cdoc $*
+      }
+</PRE></div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:46 GMT</div>
+</div></div></body>
+</html>

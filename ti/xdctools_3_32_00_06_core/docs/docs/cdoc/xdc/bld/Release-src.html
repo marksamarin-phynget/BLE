@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.bld.Release</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    <span class="comment">/*
+</span>    13    <span class="comment"> *  ======== Release.xdc ========
+</span>    14    <span class="comment"> */</span>
+    15    <span class=key>package</span> xdc.bld;
+    16    
+    17    <span class="xdoc">/*!
+</span>    18    <span class="xdoc"> *  ======== Release ========
+</span>    19    <span class="xdoc"> *  Model of an archive of all files that are part of a release.
+</span>    20    <span class="xdoc"> *
+</span>    21    <span class="xdoc"> *  Release instances define a container object that represents all files that
+</span>    22    <span class="xdoc"> *  are part of a release of a package.  A release may, for example, include
+</span>    23    <span class="xdoc"> *  just the files necessary to support a particular ISA even though the
+</span>    24    <span class="xdoc"> *  package as a whole can support multiple ISAs.
+</span>    25    <span class="xdoc"> *
+</span>    26    <span class="xdoc"> *  Each Release instance is realized as a tar file containing the files
+</span>    27    <span class="xdoc"> *  that are part of a release of a package.
+</span>    28    <span class="xdoc"> */</span>
+    29    <span class=key>metaonly</span> <span class=key>module</span> Release {
+    30    
+    31        <span class="xdoc">/*!
+</span>    32    <span class="xdoc">     *  ======== Attrs ========
+</span>    33    <span class="xdoc">     *  Optional Release attributes
+</span>    34    <span class="xdoc">     *
+</span>    35    <span class="xdoc">     *  Unspecified attributes are "inherited" from
+</span>    36    <span class="xdoc">     *  `{<b>@link</b> xdc.bld.PackageContents#Attrs}`; i.e., if one of fields in
+</span>    37    <span class="xdoc">     *  this structure is unspecified *and* this field's name matches a field
+</span>    38    <span class="xdoc">     *  name in `{<b>@link</b> xdc.bld.PackageContents#Attrs}`, then
+</span>    39    <span class="xdoc">     *  this field's value defaults to the value in specified by
+</span>    40    <span class="xdoc">     *  `{<b>@link</b> xdc.bld.PackageContents#attrs}`.  This mechanism makes it
+</span>    41    <span class="xdoc">     *  possible to establish package-wide default values for any of the
+</span>    42    <span class="xdoc">     *  "inherited" attributes.
+</span>    43    <span class="xdoc">     *
+</span>    44    <span class="xdoc">     *  However, elements added to a release can "override" these attributes.
+</span>    45    <span class="xdoc">     *  For example, when an executable is added to a release and the
+</span>    46    <span class="xdoc">     *  executable's attributes specify `'exportSrc = false'`, the release
+</span>    47    <span class="xdoc">     *  will not contain the executable's sources (even if the release's
+</span>    48    <span class="xdoc">     *  `{<b>@link</b> #attrs}.exportSrc` attribute is set to `true`).
+</span>    49    <span class="xdoc">     *
+</span>    50    <span class="xdoc">     *  <b>@field(exportCfg)</b>  If this field is set to `true`, configuration
+</span>    51    <span class="xdoc">     *          scripts will be part of the release.  If it is unspecified
+</span>    52    <span class="xdoc">     *          (or set to `null`), program configuration scripts will not
+</span>    53    <span class="xdoc">     *          be added to this release.
+</span>    54    <span class="xdoc">     *
+</span>    55    <span class="xdoc">     *  <b>@field(exportDoc)</b>  If this field is set to `true`,  generated
+</span>    56    <span class="xdoc">     *          documentation will be part of the release.
+</span>    57    <span class="xdoc">     *
+</span>    58    <span class="xdoc">     *  <b>@field(exportSrc)</b>  If this field is set to `true`, sources
+</span>    59    <span class="xdoc">     *          used to produce object files will be part of the release.
+</span>    60    <span class="xdoc">     *          If it is unspecified (or set to `null`), no sources will
+</span>    61    <span class="xdoc">     *          be part of this release.
+</span>    62    <span class="xdoc">     *
+</span>    63    <span class="xdoc">     *  <b>@field(exportExe)</b>  If this field is set to `true`, executables
+</span>    64    <span class="xdoc">     *          will be part of the release.  If it is unspecified (or set
+</span>    65    <span class="xdoc">     *          to `null`), executables will not be part of this release.
+</span>    66    <span class="xdoc">     *
+</span>    67    <span class="xdoc">     *  <b>@field(exportAll)</b>  If this field is set to `true`, all files
+</span>    68    <span class="xdoc">     *          in this package that are not known to be generated are in
+</span>    69    <span class="xdoc">     *          the release.  If it is unspecified (or set to `null`), these
+</span>    70    <span class="xdoc">     *          files will not be added to this release.
+</span>    71    <span class="xdoc">     *
+</span>    72    <span class="xdoc">     *          Note that the set of files specified by `exportAll` is
+</span>    73    <span class="xdoc">     *          determined at the time the package's makefile is generated.
+</span>    74    <span class="xdoc">     *          If one of these files is subsequently removed before the
+</span>    75    <span class="xdoc">     *          release is built, the build of the release will fail; a file
+</span>    76    <span class="xdoc">     *          required by the release no longer exists.  If the file is
+</span>    77    <span class="xdoc">     *          not really required for the release, you must trigger a
+</span>    78    <span class="xdoc">     *          rebuild for the generated makefiles; either touch
+</span>    79    <span class="xdoc">     *          `package.bld` or remove the generated makefile and re-build
+</span>    80    <span class="xdoc">     *          the release.
+</span>    81    <span class="xdoc">     *
+</span>    82    <span class="xdoc">     *  <b>@field(relScript)</b>  If this field is non-`null`, the string names a
+</span>    83    <span class="xdoc">     *          "release script" that is run to post-process the
+</span>    84    <span class="xdoc">     *          files that are part of a release.  Like
+</span>    85    <span class="xdoc">     *          configuration scripts, the string names a script
+</span>    86    <span class="xdoc">     *          file that is searched for first in the in package's
+</span>    87    <span class="xdoc">     *          base directory, and then along the package path.  See
+</span>    88    <span class="xdoc">     *          `{<b>@link</b> Manifest}` for more information about release scripts
+</span>    89    <span class="xdoc">     *          and what they can do.
+</span>    90    <span class="xdoc">     *
+</span>    91    <span class="xdoc">     *  <b>@field(relScriptArgs)</b>  If this field is non-`null`, the string is
+</span>    92    <span class="xdoc">     *          used to initialize the `arguments[]` array which is
+</span>    93    <span class="xdoc">     *          accessible to the release script named by `relScript`.  The
+</span>    94    <span class="xdoc">     *          elements of the `arguments[]` array are formed from the white
+</span>    95    <span class="xdoc">     *          space separated elements of `relScriptArgs`.  If this string
+</span>    96    <span class="xdoc">     *          is `null` or empty, the `arguments[]` array has length `0`.
+</span>    97    <span class="xdoc">     *
+</span>    98    <span class="xdoc">     *  <b>@field(label)</b>  This string allows one to "tag" each release with a
+</span>    99    <span class="xdoc">     *          label that can be used by other tools to select appropriate
+</span>   100    <span class="xdoc">     *          releases.  For example, the label might contain customer names.
+</span>   101    <span class="xdoc">     *
+</span>   102    <span class="xdoc">     *          This label is not interpreted by the XDC tools.  It is simply 
+</span>   103    <span class="xdoc">     *          recorded in the package's build model XML file
+</span>   104    <span class="xdoc">     *          (`package/package.bld.xml`) and retrieved via
+</span>   105    <span class="xdoc">     *          `{<b>@link</b> xdc.bld.BuildEnvironment#getReleaseDescs()}`
+</span>   106    <span class="xdoc">     *
+</span>   107    <span class="xdoc">     *  <b>@field(prefix)</b>  This string allows one to "export" each release to a
+</span>   108    <span class="xdoc">     *          location outside of the package.  `prefix` is prepended
+</span>   109    <span class="xdoc">     *          to the name of the release name to form the name of the
+</span>   110    <span class="xdoc">     *          release archive.
+</span>   111    <span class="xdoc">     *
+</span>   112    <span class="xdoc">     *          For example, setting `prefix` to `"../"` implies that a 
+</span>   113    <span class="xdoc">     *          release named `"exports/foo"` generates an archive file named
+</span>   114    <span class="xdoc">     *          `foo.tar` in the directory `"../exports"`.
+</span>   115    <span class="xdoc">     *
+</span>   116    <span class="xdoc">     *          `prefix` must either begin with the '^' character or
+</span>   117    <span class="xdoc">     *          be a path that is relative to the package's "base"
+</span>   118    <span class="xdoc">     *          directory; i.e., the directory containing the package's
+</span>   119    <span class="xdoc">     *          specification file `package.xdc`.
+</span>   120    <span class="xdoc">     *
+</span>   121    <span class="xdoc">     *          If `prefix` begins with the '^' character, the
+</span>   122    <span class="xdoc">     *          remainder of the string is treated as though it is relative
+</span>   123    <span class="xdoc">     *          to the package's repository.  In effect, the '^' character is
+</span>   124    <span class="xdoc">     *          replaced with an appropriate number of '../' sequences to
+</span>   125    <span class="xdoc">     *          sufficient to navigate to the package's repository.
+</span>   126    <span class="xdoc">     *
+</span>   127    <span class="xdoc">     *          If it is not specified (or set to `null`) the current setting
+</span>   128    <span class="xdoc">     *          of `{<b>@link</b> xdc.bld.PackageContents#releasePrefix}` is used.
+</span>   129    <span class="xdoc">     *
+</span>   130    <span class="xdoc">     *  <b>@field(compress)</b> If this field is set to `true`, the release
+</span>   131    <span class="xdoc">     *          archive file will be compressed; otherwise, the
+</span>   132    <span class="xdoc">     *          archive will not be compressed.  Archives are compressed
+</span>   133    <span class="xdoc">     *          via `gzip`; compressed archives are `.tar.gz` files.
+</span>   134    <span class="xdoc">     *
+</span>   135    <span class="xdoc">     *  <b>@field(archiver)</b> This field names the archiver to use when creating a
+</span>   136    <span class="xdoc">     *          release.  Two archivers are currently supported:
+</span>   137    <span class="xdoc">     *          "tar" and "zip".  If the archiver is set to "zip"
+</span>   138    <span class="xdoc">     *          the `{<b>@link</b> #Attrs.compress}` field is implicitly set to
+</span>   139    <span class="xdoc">     *          `true`.
+</span>   140    <span class="xdoc">     *
+</span>   141    <span class="xdoc">     *  <b>@see</b> #attrs
+</span>   142    <span class="xdoc">     */</span>
+   143        <span class=key>struct</span> Attrs {
+   144            String  archiver;       <span class="xdoc">/*! "tar" or "zip"; defaults to "tar" */</span>
+   145            Bool    compress;       <span class="xdoc">/*! if `true`, compress package archive */</span>
+   146            Bool    exportDoc;      <span class="xdoc">/*! if `true`, export generated docs */</span>
+   147            Bool    exportExe;      <span class="xdoc">/*! if `true`, export program executables */</span>
+   148            Bool    exportCfg;      <span class="xdoc">/*! if `true`, export program cfg scripts */</span>
+   149            Bool    exportSrc;      <span class="xdoc">/*! if `true`, export all package sources */</span>
+   150            Bool    exportAll;      <span class="xdoc">/*! if `true`, export all files in package */</span>
+   151            String  relScript;      <span class="xdoc">/*! release files post-processing script */</span>
+   152            String  relScriptArgs;  <span class="xdoc">/*! optional arguments to relScript */</span>
+   153            String  prefix;         <span class="xdoc">/*! prefix for name of install of archive */</span>
+   154            String  label;          <span class="xdoc">/*! uninterpreted label for this release */</span>
+   155        };
+   156    
+   157        <span class="xdoc">/*!
+</span>   158    <span class="xdoc">     *  ======== Desc ========
+</span>   159    <span class="xdoc">     *  A description of a release
+</span>   160    <span class="xdoc">     *
+</span>   161    <span class="xdoc">     *  This structure provides information about a release that can be
+</span>   162    <span class="xdoc">     *  used to select from multiple releases provided by a package.
+</span>   163    <span class="xdoc">     *
+</span>   164    <span class="xdoc">     *  <b>@see</b> xdc.bld.BuildEnvironment#getReleaseDescs()
+</span>   165    <span class="xdoc">     */</span>
+   166        <span class=key>struct</span> Desc {
+   167            String name;    <span class="xdoc">/*! the name used to create the release */</span>
+   168            String aname;   <span class="xdoc">/*! the file name of the archive */</span>
+   169            String label;   <span class="xdoc">/*! the label given to the release */</span>
+   170        };
+   171        
+   172        <span class="xdoc">/*!
+</span>   173    <span class="xdoc">     *  ======== DescArray ========
+</span>   174    <span class="xdoc">     *  An array of release descriptors
+</span>   175    <span class="xdoc">     */</span>
+   176        <span class=key>typedef</span> Desc DescArray[];
+   177    
+   178    <span class=key>instance</span>:
+   179        <span class="xdoc">/*!
+</span>   180    <span class="xdoc">     *  ======== create ========
+</span>   181    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   182    <span class="xdoc">     *  Instances should only be created via PackageContents.addRelease()
+</span>   183    <span class="xdoc">     */</span>
+   184        create();
+   185    
+   186        <span class="xdoc">/*!
+</span>   187    <span class="xdoc">     *  ======== name ========
+</span>   188    <span class="xdoc">     *  The name of the release.
+</span>   189    <span class="xdoc">     *
+</span>   190    <span class="xdoc">     *  This name is the base name of the generated tar file containing all
+</span>   191    <span class="xdoc">     *  files that make up the release.  For example, if the name of the
+</span>   192    <span class="xdoc">     *  release is "foo" then the file "foo.tar" (located in the same
+</span>   193    <span class="xdoc">     *  directory as package.bld) is a tar file containing the release files.
+</span>   194    <span class="xdoc">     *
+</span>   195    <span class="xdoc">     *  Note that each package has at least one release defined, the default
+</span>   196    <span class="xdoc">     *  release.  The default release's name is the name of the package with
+</span>   197    <span class="xdoc">     *  '.'s replaced with '_'s.  For example, the default release name for
+</span>   198    <span class="xdoc">     *  the package "foo.bar" is "foo_bar" and the generated tar file is
+</span>   199    <span class="xdoc">     *  named "foo_bar.tar".
+</span>   200    <span class="xdoc">     */</span>
+   201        <span class=key>config</span> String name;
+   202        
+   203        <span class="xdoc">/*!
+</span>   204    <span class="xdoc">     *  ======== attrs ========
+</span>   205    <span class="xdoc">     *  This instance's attributes.
+</span>   206    <span class="xdoc">     *
+</span>   207    <span class="xdoc">     *  Unless explicitly specified, these attributes are "inherited" from
+</span>   208    <span class="xdoc">     *  the package's attributes (`{<b>@link</b> xdc.bld.PackageContents#attrs}`)
+</span>   209    <span class="xdoc">     *
+</span>   210    <span class="xdoc">     *  <b>@see</b> xdc.bld.PackageContents#attrs
+</span>   211    <span class="xdoc">     */</span>
+   212        <span class=key>config</span> Release.Attrs attrs;
+   213    
+   214        <span class="xdoc">/*!
+</span>   215    <span class="xdoc">     *  ======== otherFiles ========
+</span>   216    <span class="xdoc">     *  Additional files to add to this release.
+</span>   217    <span class="xdoc">     *
+</span>   218    <span class="xdoc">     *  This is an array of arbitrary files that are to be included
+</span>   219    <span class="xdoc">     *  in this release of the package.
+</span>   220    <span class="xdoc">     *
+</span>   221    <span class="xdoc">     *  Only those files that are not already directly (or indirectly) named
+</span>   222    <span class="xdoc">     *  by adding programs or libraries to this release need to appear in
+</span>   223    <span class="xdoc">     *  this array.
+</span>   224    <span class="xdoc">     */</span>
+   225        <span class=key>config</span> String otherFiles[];
+   226    
+   227        <span class="xdoc">/*!
+</span>   228    <span class="xdoc">     *  ======== excludeDirs ========
+</span>   229    <span class="xdoc">     *  List of directory base names to exclude
+</span>   230    <span class="xdoc">     *
+</span>   231    <span class="xdoc">     *  This is an array of arbitrary directory "base names" that should
+</span>   232    <span class="xdoc">     *  be excluded in this release of the package.  This list only
+</span>   233    <span class="xdoc">     *  excludes directories that would otherwise be added due to the
+</span>   234    <span class="xdoc">     *  recursive include of a parent directory.
+</span>   235    <span class="xdoc">     *
+</span>   236    <span class="xdoc">     *  For example, if a directory is specified in `{<b>@link</b> #otherFiles}`
+</span>   237    <span class="xdoc">     *  all of its sub-directories will be added unless those sub-directories
+</span>   238    <span class="xdoc">     *  are named in the `excludeDirs` list.
+</span>   239    <span class="xdoc">     *
+</span>   240    <span class="xdoc">     *  This list is often used to exclude "hidden" directories added by
+</span>   241    <span class="xdoc">     *  change control systems and IDEs (`.svn`, `.git`, `.settings`, ...).
+</span>   242    <span class="xdoc">     *
+</span>   243    <span class="xdoc">     *  <b>@see</b> #otherFiles
+</span>   244    <span class="xdoc">     *  <b>@see</b> PackageContents#excludeDirs
+</span>   245    <span class="xdoc">     */</span>
+   246        <span class=key>config</span> String excludeDirs[];
+   247    }
+   248    <span class="comment">/*
+</span>   249    <span class="comment"> *  @(#) xdc.bld; 1, 0, 2,0; 12-9-2015 17:35:10; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>   250    <span class="comment"> */</span>
+   251    
+</pre>
+</body></html>

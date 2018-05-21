@@ -1,0 +1,220 @@
+<html>
+<head>
+<title>interface xdc.platform.IPeripheral</title>
+<meta name="description" content="Configuration-time representation of a peripheral">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">xdc.platform.</span><span class="xdoc-id">IPeripheral</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/IExeContext.html" title="interface IExeContext"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/package.html" title="package xdc.platform"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/IPlatform.html" title="interface IPlatform"><img class="xdocHdrArrow" src="../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/platform/IPeripheral.html">index URL</a></div>
+<p class="xdocHdrSummary">Configuration-time representation of a peripheral</p>
+<ul class="xdocToc">
+</ul>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> summary</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/platform/IPeripheral-src.html"><span class="xdocLabelFile">xdc/platform/IPeripheral.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">IPeripheral</span> {<b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">instance</span>:<b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/platform/IPeripheral-src.html"><span class="xdocLabelFile">xdc/platform/IPeripheral.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <a class="xdoc-link" href="../../xdc/platform/package.html" title="xdc.platform">xdc.platform</a>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">IPeripheral</span> {
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">typedef</span> <a class="xdoc-link" href="../../xdc/platform/IPeripheral.html#.Instance" title="xdc.platform.IPeripheral.Instance">IPeripheral.Instance</a>&nbsp;<a class="xdocSynGo" href="#.I.Peripheral.Array"><span class="xdoc-id">IPeripheralArray</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">typedef</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.String.Array"><span class="xdoc-id">StringArray</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdoc-link" href="../../xdc/platform/IPeripheral.html#.I.Peripheral.Array" title="xdc.platform.IPeripheral.IPeripheralArray">IPeripheral.IPeripheralArray</a>&nbsp;<a class="xdocSynGo" href="#get.All"><span class="xdoc-id">getAll</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Find all peripherals of a certain type</span></span></a>();
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdoc-link" href="../../xdc/platform/IPeripheral.html#.String.Array" title="xdc.platform.IPeripheral.StringArray">IPeripheral.StringArray</a>&nbsp;<a class="xdocSynGo" href="#get.Registers"><span class="xdoc-id">getRegisters</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Find all registers defined by the peripheral</span></span></a>();
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">instance</span>:
+</div>
+<div class='xdocSynHdr'>per-instance config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#name"><span class="xdoc-id">name</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Specific peripheral name given by the device</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#owner"><span class="xdoc-id">owner</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;String specifying the entity that manages the peripheral</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<div id="xdocSep">
+</div>
+<div id="xdocElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".I.Peripheral.Array"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">typedef</span> <span class="xdoc-id">IPeripheral.</span><span class="xdoc-id">IPeripheralArray</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/IPeripheral.html" title="interface IPeripheral"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/platform/IPeripheral.html#.I.Peripheral.Array">index URL</a></div>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/platform/IPeripheral-src.html"><span class="xdocLabelFile">xdc/platform/IPeripheral.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">typedef</span> <a class="xdoc-link" href="../../xdc/platform/IPeripheral.html#.Instance" title="xdc.platform.IPeripheral.Instance">IPeripheral.Instance</a>&nbsp;<span class="xdoc-id">IPeripheralArray</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".String.Array"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">typedef</span> <span class="xdoc-id">IPeripheral.</span><span class="xdoc-id">StringArray</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/IPeripheral.html" title="interface IPeripheral"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/platform/IPeripheral.html#.String.Array">index URL</a></div>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/platform/IPeripheral-src.html"><span class="xdocLabelFile">xdc/platform/IPeripheral.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">typedef</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">StringArray</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.All"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">IPeripheral.</span><span class="xdoc-id">getAll</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/IPeripheral.html" title="interface IPeripheral"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/platform/IPeripheral.html#get.All">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Find all peripherals of a certain type</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/platform/IPeripheral-src.html"><span class="xdocLabelFile">xdc/platform/IPeripheral.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><a class="xdoc-link" href="../../xdc/platform/IPeripheral.html#.I.Peripheral.Array" title="xdc.platform.IPeripheral.IPeripheralArray">IPeripheral.IPeripheralArray</a>&nbsp;<span class="xdoc-id">getAll</span>();
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The type of the peripherals returned is defined by the type of the
+  caller.</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Returns an array of IPeripheral instances</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Registers"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">IPeripheral.</span><span class="xdoc-id">getRegisters</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/IPeripheral.html" title="interface IPeripheral"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/platform/IPeripheral.html#get.Registers">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Find all registers defined by the peripheral</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/platform/IPeripheral-src.html"><span class="xdocLabelFile">xdc/platform/IPeripheral.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><a class="xdoc-link" href="../../xdc/platform/IPeripheral.html#.String.Array" title="xdc.platform.IPeripheral.StringArray">IPeripheral.StringArray</a>&nbsp;<span class="xdoc-id">getRegisters</span>();
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Returns an array of register names</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="name"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IPeripheral.Params.</span><span class="xdoc-id">name</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/IPeripheral.html" title="interface IPeripheral"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/platform/IPeripheral.html#name">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Specific peripheral name given by the device</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/platform/IPeripheral-src.html"><span class="xdocLabelFile">xdc/platform/IPeripheral.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">name</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Devices can have more than one peripheral of the same type. In such
+  cases, device data sheets give different names to the instances of a
+  same peripheral. For example, the name for a timer module could be
+  <tt>TimerA3</tt>, and a device that has two such timers can name them <tt>TA0</tt>
+  and <tt>TA1</tt>.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="owner"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IPeripheral.Params.</span><span class="xdoc-id">owner</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/platform/IPeripheral.html" title="interface IPeripheral"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/platform/IPeripheral.html#owner">index URL</a></div>
+<p class="xdocHdrSummaryDcl">String specifying the entity that manages the peripheral</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/platform/IPeripheral-src.html"><span class="xdocLabelFile">xdc/platform/IPeripheral.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">owner</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:38 GMT</div>
+</div></div></body>
+</html>

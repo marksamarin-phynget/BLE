@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.tools.configuro.Main</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* --COPYRIGHT--,EPL
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> *
+</span>    11    <span class="comment"> * --/COPYRIGHT--*/</span>
+    12    <span class="xdoc">/*!
+</span>    13    <span class="xdoc"> *  ======== Main ========
+</span>    14    <span class="xdoc"> *  Command-line configuration tool
+</span>    15    <span class="xdoc"> *
+</span>    16    <span class="xdoc"> *  This command allows RTSC content, in the form of reusable modules built
+</span>    17    <span class="xdoc"> *  using the XDCtools tooling, to be imported into a system integrator's
+</span>    18    <span class="xdoc"> *  embedded application. It is the recommended method for integrating RTSC
+</span>    19    <span class="xdoc"> *  content into non-RTSC application build environments.
+</span>    20    <span class="xdoc"> *
+</span>    21    <span class="xdoc"> *  Configuro lets the system integrator identify and customize the RTSC
+</span>    22    <span class="xdoc"> *  content they wish to use, and computes a set of libraries, command-line
+</span>    23    <span class="xdoc"> *  flags and other artifacts to include in their application build. By
+</span>    24    <span class="xdoc"> *  changing the values of configuration settings, the integrator can
+</span>    25    <span class="xdoc"> *  trade off the functionality, memory footprint, and even performance of
+</span>    26    <span class="xdoc"> *  the RTSC content to best meet the needs of their application.
+</span>    27    <span class="xdoc"> *
+</span>    28    <span class="xdoc"> *  <b>@a(INPUTS)</b>
+</span>    29    <span class="xdoc"> *  <b>@p(dlist)</b>
+</span>    30    <span class="xdoc"> *    - `infile.cfg`
+</span>    31    <span class="xdoc"> *      A user-supplied configuration script that names a set of RTSC
+</span>    32    <span class="xdoc"> *      modules, and optionally changes their configuration settings.
+</span>    33    <span class="xdoc"> *  <b>@p</b>
+</span>    34    <span class="xdoc"> *
+</span>    35    <span class="xdoc"> *  <b>@a(OUTPUTS)</b>
+</span>    36    <span class="xdoc"> *  <b>@p(dlist)</b>
+</span>    37    <span class="xdoc"> *    - `outdir/`
+</span>    38    <span class="xdoc"> *      A directory containing all generated build artifacts.
+</span>    39    <span class="xdoc"> *    - `outdir/compiler.opt`
+</span>    40    <span class="xdoc"> *      A file containing C compiler command-line flags. These flags must
+</span>    41    <span class="xdoc"> *      included on the compiler command line for any C source file that
+</span>    42    <span class="xdoc"> *      directly accesses the RTSC content. The flags define the header file
+</span>    43    <span class="xdoc"> *      include paths, and machine-mode compiler flags to ensure object code
+</span>    44    <span class="xdoc"> *      compatibility between all included content.
+</span>    45    <span class="xdoc"> *    - `outdir/linker.cmd`
+</span>    46    <span class="xdoc"> *      A file containing linker command-line flags. These flags must be
+</span>    47    <span class="xdoc"> *      included on the linker command line for the final link of the
+</span>    48    <span class="xdoc"> *      application. The flags list needed libraries and object files,
+</span>    49    <span class="xdoc"> *      and on some platforms define the embedded system memory map.
+</span>    50    <span class="xdoc"> *  <b>@p</b>
+</span>    51    <span class="xdoc"> *  
+</span>    52    <span class="xdoc"> *  For example:
+</span>    53    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    54    <span class="xdoc"> *      xs xdc.tools.configuro myconfig.cfg
+</span>    55    <span class="xdoc"> *  <b>@p</b>
+</span>    56    <span class="xdoc"> */</span>
+    57    <span class=key>metaonly</span> <span class=key>module</span> Main <span class=key>inherits</span> xdc.tools.ICmd {
+    58    
+    59        <span class="xdoc">/*!
+</span>    60    <span class="xdoc">     * usage help message
+</span>    61    <span class="xdoc">     */</span>
+    62        <span class=key>override</span> <span class=key>config</span> String usage[] = [
+    63            <span class="string">'[-v | -q]'</span>,
+    64            <span class="string">'[-@ optionsfile]'</span>,
+    65            <span class="string">'[-o outdir]'</span>,
+    66            <span class="string">'[-b config_bld | -c codegen_dir | --cb]'</span>,
+    67            <span class="string">'[-t target] [-p platform[:instance]] [-r profile]'</span>,
+    68            <span class="string">'[-Dname=value]'</span>,
+    69            <span class="string">'[-w | -x regexp]'</span>,
+    70            <span class="string">'[--rtsName pkg_name]'</span>,
+    71            <span class="string">'[--cfgArgs args_string]'</span>,
+    72            <span class="string">'[--linkTemplate linker_template]'</span>,
+    73            <span class="string">'[--pkg] [--generationOnly]'</span>,
+    74            <span class="string">'[--compileOptions compile_options_string]'</span>,
+    75            <span class="string">'[--linkOptions linker_options_string]'</span>,
+    76            <span class="string">'[--oc compiler.opt] [--ol linker.cmd]'</span>,
+    77            <span class="string">'infile.cfg'</span>
+    78        ];
+    79    
+    80    <span class=key>instance</span>:
+    81        <span class="xdoc">/*!
+</span>    82    <span class="xdoc">     *  Pathname of the output directory
+</span>    83    <span class="xdoc">     *
+</span>    84    <span class="xdoc">     *  A directory containing the generated build artifacts, in particular
+</span>    85    <span class="xdoc">     *  the `compiler.opt` and `linker.cmd` files.
+</span>    86    <span class="xdoc">     *
+</span>    87    <span class="xdoc">     *  The last component of the output directory path must be a valid
+</span>    88    <span class="xdoc">     *  ANSI C identifier; i.e., it must consist entirely of alphanumeric or
+</span>    89    <span class="xdoc">     *  '_' characters and must not start with a number.  So, the names
+</span>    90    <span class="xdoc">     *  '0app' and 'app-test' are not valid but '0app/config' and
+</span>    91    <span class="xdoc">     *  'app-test/config' are valid.
+</span>    92    <span class="xdoc">     *
+</span>    93    <span class="xdoc">     *  By default, the output directory has the same name as the
+</span>    94    <span class="xdoc">     *  configuration script, minus the `.cfg` extension, within the same
+</span>    95    <span class="xdoc">     *  parent directory as this script.  As a result, the directory name
+</span>    96    <span class="xdoc">     *  constraint above applies to the name of the configuration script.
+</span>    97    <span class="xdoc">     */</span>
+    98        @CommandOption(<span class="string">"o"</span>)
+    99        <span class=key>config</span> String output = <span class=key>null</span>;
+   100    
+   101        <span class="xdoc">/*!
+</span>   102    <span class="xdoc">     *  Name of the RTSC target module
+</span>   103    <span class="xdoc">     *
+</span>   104    <span class="xdoc">     *  The name of a RTSC target module to use, for example
+</span>   105    <span class="xdoc">     *  `ti.targets.C64P`.
+</span>   106    <span class="xdoc">     *
+</span>   107    <span class="xdoc">     *  If no `config.bld` file is given, then this is a required
+</span>   108    <span class="xdoc">     *  parameter.
+</span>   109    <span class="xdoc">     *
+</span>   110    <span class="xdoc">     *  If a `config.bld` file is given then this parameter is optional,
+</span>   111    <span class="xdoc">     *  and by default the target will be
+</span>   112    <span class="xdoc">     *  {<b>@link</b> xdc.bld.BuildEnvironment#targets `Build.targets[0]`} from the
+</span>   113    <span class="xdoc">     *  user's `config.bld`. If `Build.targets` contains more than one entry,
+</span>   114    <span class="xdoc">     *  then this option can be used to override that default.
+</span>   115    <span class="xdoc">     */</span>
+   116        @CommandOption(<span class="string">"t"</span>)
+   117        <span class=key>config</span> String target = <span class=key>null</span>;
+   118    
+   119        <span class="xdoc">/*!
+</span>   120    <span class="xdoc">     *  Root directory of the code generation tools
+</span>   121    <span class="xdoc">     *
+</span>   122    <span class="xdoc">     *  The path to the installation directory of the compiler and linker
+</span>   123    <span class="xdoc">     *  for the selected target. The definition of "installation directory"
+</span>   124    <span class="xdoc">     *  can vary from compiler to compiler, but is most commonly the
+</span>   125    <span class="xdoc">     *  directory that contains a "bin" subdirectory.
+</span>   126    <span class="xdoc">     *
+</span>   127    <span class="xdoc">     *  If no `config.bld` file is given, then this is a required
+</span>   128    <span class="xdoc">     *  parameter.
+</span>   129    <span class="xdoc">     *
+</span>   130    <span class="xdoc">     *  If a `config.bld` file is given then this parameter is optional,
+</span>   131    <span class="xdoc">     *  and by default the compiler will be the one configured there.
+</span>   132    <span class="xdoc">     *  This option can still be used, to override the default established
+</span>   133    <span class="xdoc">     *  in `config.bld`.
+</span>   134    <span class="xdoc">     */</span>
+   135        @CommandOption(<span class="string">"c"</span>)
+   136        <span class=key>config</span> String rootdir = <span class=key>null</span>;
+   137    
+   138        <span class="xdoc">/*!
+</span>   139    <span class="xdoc">     *  Name of the RTSC platform package (and optionally instance)
+</span>   140    <span class="xdoc">     *
+</span>   141    <span class="xdoc">     *  The name of a RTSC platform package to use, using the syntax
+</span>   142    <span class="xdoc">     *  `my.pkg.name` or `my.pkg.name:instanceName`. For example,
+</span>   143    <span class="xdoc">     *  `ti.platforms.sim64Pxx` or `ti.platforms.generic:custom`.
+</span>   144    <span class="xdoc">     *
+</span>   145    <span class="xdoc">     *  This is an optional parameter, and by default the platform is
+</span>   146    <span class="xdoc">     *  the one that the selected target names as its default. The user
+</span>   147    <span class="xdoc">     *  may override this default in their `config.bld` or by using this
+</span>   148    <span class="xdoc">     *  parameter.
+</span>   149    <span class="xdoc">     *
+</span>   150    <span class="xdoc">     *  The optional `:instanceName` suffix names a pre-configured variant
+</span>   151    <span class="xdoc">     *  of the platform, which can be set up either in the user's
+</span>   152    <span class="xdoc">     *  `config.bld` or in the platform package itself. For more details, see
+</span>   153    <span class="xdoc">     *  {<b>@link</b> xdc.bld.BuildEnvironment#platformTable `Build.platformTable`}
+</span>   154    <span class="xdoc">     *  and the {<b>@link</b> xdc.platform.IPlatform `IPlatform`} interface.
+</span>   155    <span class="xdoc">     */</span>
+   156        @CommandOption(<span class="string">"p"</span>)
+   157        <span class=key>config</span> String platform = <span class=key>null</span>;
+   158    
+   159        <span class="xdoc">/*!
+</span>   160    <span class="xdoc">     *  Build profile to use
+</span>   161    <span class="xdoc">     *
+</span>   162    <span class="xdoc">     *  The name of the build profile to use for the RTSC content, for
+</span>   163    <span class="xdoc">     *  example 'release' or 'debug'. The list of allowed profiles is
+</span>   164    <span class="xdoc">     *  determined by the RTSC target module named.
+</span>   165    <span class="xdoc">     */</span>
+   166        @CommandOption(<span class="string">"r"</span>)
+   167        <span class=key>config</span> String profile = <span class="string">'release'</span>;
+   168    
+   169        <span class="xdoc">/*!
+</span>   170    <span class="xdoc">     *  Read build environment from the named `config.bld` file
+</span>   171    <span class="xdoc">     *
+</span>   172    <span class="xdoc">     *  A `config.bld` file can optionally be used to hold the values
+</span>   173    <span class="xdoc">     *  of the target, compiler root directory, platform, and other
+</span>   174    <span class="xdoc">     *  more advanced options. This is a convenient way to share a common
+</span>   175    <span class="xdoc">     *  build environment between multiple projects.
+</span>   176    <span class="xdoc">     *
+</span>   177    <span class="xdoc">     *  The format of the file is JavaScript statements with the XDCscript
+</span>   178    <span class="xdoc">     *  extensions. The script should set the properties of the
+</span>   179    <span class="xdoc">     *  {<b>@link</b> xdc.bld.BuildEnvironment `Build`} global object.
+</span>   180    <span class="xdoc">     *
+</span>   181    <span class="xdoc">     *  If no `config.bld` file is given then the target and compiler
+</span>   182    <span class="xdoc">     *  root directory are required command-line parameters.
+</span>   183    <span class="xdoc">     */</span>
+   184        @CommandOption(<span class="string">"b"</span>)
+   185        <span class=key>config</span> String configbld = <span class=key>null</span>;
+   186    
+   187        <span class="xdoc">/*!
+</span>   188    <span class="xdoc">     *  Use a `config.bld` found along the package path
+</span>   189    <span class="xdoc">     *
+</span>   190    <span class="xdoc">     *  Find a `config.bld` by searching the package path, instead of
+</span>   191    <span class="xdoc">     *  via an explicit pathname. Looks for a file named `config.bld` in
+</span>   192    <span class="xdoc">     *  any of the directories named along the package path, in order. The
+</span>   193    <span class="xdoc">     *  directories are not searched recursively.
+</span>   194    <span class="xdoc">     */</span>
+   195        @CommandOption(<span class="string">"cb"</span>)
+   196        <span class=key>config</span> Bool searchForConfigBld = <span class=key>false</span>;
+   197    
+   198        <span class="xdoc">/*!
+</span>   199    <span class="xdoc">     *  Set a Java property in the configuration script
+</span>   200    <span class="xdoc">     *
+</span>   201    <span class="xdoc">     *  Allows values to be injected from the command line into the
+</span>   202    <span class="xdoc">     *  `config.bld` file. For example, the option `-Dmyprop=myval`
+</span>   203    <span class="xdoc">     *  creates a property named `myprop` with string value `"myval"`.
+</span>   204    <span class="xdoc">     *  This can be read in `config.bld` using the XDCscript syntax
+</span>   205    <span class="xdoc">     *  `environment["myprop"]`.
+</span>   206    <span class="xdoc">     */</span>
+   207        @CommandOption(<span class="string">"D"</span>)
+   208        <span class=key>config</span> String defines[] = [];
+   209    
+   210        <span class="xdoc">/*!
+</span>   211    <span class="xdoc">     *  Set the name of the RTSC runtime package
+</span>   212    <span class="xdoc">     *
+</span>   213    <span class="xdoc">     *  The name of a package containing pre-built libraries containing
+</span>   214    <span class="xdoc">     *  the {<b>@link</b> xdc.runtime} modules.  If this parameter is `null` (or
+</span>   215    <span class="xdoc">     *  `undefined`) the name of the rts package is taken from the target
+</span>   216    <span class="xdoc">     *  (`{<b>@link</b> xdc.bld.ITarget#rtsName}`).  If this parameter is set to
+</span>   217    <span class="xdoc">     *  the empty string (""), then no rts package is included in the
+</span>   218    <span class="xdoc">     *  configuration.  Finally, if this parameter is non-`null` and
+</span>   219    <span class="xdoc">     *  non-empty, it should be the name of a package along the package
+</span>   220    <span class="xdoc">     *  path that can supply pre-built versions of the modules in the
+</span>   221    <span class="xdoc">     *  `{<b>@link</b> xdc.runtime}` package.
+</span>   222    <span class="xdoc">     *
+</span>   223    <span class="xdoc">     *  <b>@see</b> xdc.bld.ITarget#rtsName
+</span>   224    <span class="xdoc">     *  <b>@see</b> xdc.bld.Executable#Attrs
+</span>   225    <span class="xdoc">     */</span>
+   226        @CommandOption(<span class="string">"rtsName"</span>)
+   227        <span class=key>config</span> String rtsName = <span class=key>null</span>;
+   228    
+   229        <span class="xdoc">/*!
+</span>   230    <span class="xdoc">     *  ======== cfgArgs ========
+</span>   231    <span class="xdoc">     *  Optional arguments passed to configuration script
+</span>   232    <span class="xdoc">     *
+</span>   233    <span class="xdoc">     *  This option lets the user pass values into the configuration script
+</span>   234    <span class="xdoc">     *  from the command line. The argument is an expression in JavaScript
+</span>   235    <span class="xdoc">     *  syntax.  Its value is available in the configuration script under the
+</span>   236    <span class="xdoc">     *  name `Program.build.cfgArgs`.
+</span>   237    <span class="xdoc">     *
+</span>   238    <span class="xdoc">     *  The JavaScript expression is evaluated in the configuration domain
+</span>   239    <span class="xdoc">     *  after the platform package is imported, immediately before calling
+</span>   240    <span class="xdoc">     *  the user's configuration script.
+</span>   241    <span class="xdoc">     *
+</span>   242    <span class="xdoc">     *  This string has the same effect as the `cfgArgs` string in
+</span>   243    <span class="xdoc">     *  `{<b>@link</b> xdc.bld.Executable#Attrs}`.
+</span>   244    <span class="xdoc">     *
+</span>   245    <span class="xdoc">     *  You can pass multiple values to configuration scripts using the
+</span>   246    <span class="xdoc">     *  syntax of a JavaScript `Object` constant:
+</span>   247    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   248    <span class="xdoc">     *      xs xdc.tools.configuro --cfgArgs '{foo:"hello", bar:2}' ... app.cfg
+</span>   249    <span class="xdoc">     *  <b>@p</b>
+</span>   250    <span class="xdoc">     *
+</span>   251    <span class="xdoc">     *  The configuration script can read the various fields as, e.g.:
+</span>   252    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   253    <span class="xdoc">     *      if (Program.build.cfgArgs.foo == "hello") {
+</span>   254    <span class="xdoc">     *          :
+</span>   255    <span class="xdoc">     *      }
+</span>   256    <span class="xdoc">     *  <b>@p</b>
+</span>   257    <span class="xdoc">     *    
+</span>   258    <span class="xdoc">     *  <b>@a(Note)</b>
+</span>   259    <span class="xdoc">     *  Different command line shells, such as UNIX `bash` verses Windows
+</span>   260    <span class="xdoc">     *  `cmd.exe`, interpret quotes on the command line very differently.
+</span>   261    <span class="xdoc">     *  As a result, the syntax necessary to pass a string such as "hello"
+</span>   262    <span class="xdoc">     *  to `configuro` can vary depending on the shell you use.
+</span>   263    <span class="xdoc">     *
+</span>   264    <span class="xdoc">     *  For most UNIX shells, it is possible to use single quotes around the
+</span>   265    <span class="xdoc">     *  use of double quotes as in the example above.  However, since Windows
+</span>   266    <span class="xdoc">     *  `cmd.exe` does not treat the single quote as a special character, it
+</span>   267    <span class="xdoc">     *  is necessary to use a backslash, '\', to ensure that the double quote
+</span>   268    <span class="xdoc">     *  characters are passed to the configuro tool.
+</span>   269    <span class="xdoc">     *
+</span>   270    <span class="xdoc">     *  Windows `cmd.exe`:
+</span>   271    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   272    <span class="xdoc">     *      xs xdc.tools.configuro --cfgArgs "{foo:\"hello\", bar:2}" ...
+</span>   273    <span class="xdoc">     *  <b>@p</b>
+</span>   274    <span class="xdoc">     *
+</span>   275    <span class="xdoc">     *  UNIX `bash`, `ksh`, `csh`, ...:
+</span>   276    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   277    <span class="xdoc">     *      xs xdc.tools.configuro --cfgArgs '{foo:"hello", bar:2}' ...
+</span>   278    <span class="xdoc">     *  <b>@p</b>
+</span>   279    <span class="xdoc">     *
+</span>   280    <span class="xdoc">     *  <b>@see</b> xdc.bld.Executable#Attrs
+</span>   281    <span class="xdoc">     */</span>
+   282        @CommandOption(<span class="string">"cfgArgs"</span>)
+   283        <span class=key>config</span> String cfgArgs = <span class=key>null</span>;
+   284    
+   285        <span class="xdoc">/*!
+</span>   286    <span class="xdoc">     *  Linker command file template
+</span>   287    <span class="xdoc">     *
+</span>   288    <span class="xdoc">     *  If this option is provided it overrides the template supplied by
+</span>   289    <span class="xdoc">     *  the platform, giving the caller complete control over the generated
+</span>   290    <span class="xdoc">     *  linker command file.
+</span>   291    <span class="xdoc">     *
+</span>   292    <span class="xdoc">     *  <b>@see</b> xdc.cfg.Program#linkTemplate
+</span>   293    <span class="xdoc">     */</span>
+   294        @CommandOption(<span class="string">"linkTemplate"</span>)
+   295        <span class=key>config</span> String linkTemplate = <span class=key>null</span>;
+   296        
+   297        <span class="xdoc">/*!
+</span>   298    <span class="xdoc">     *  Show verbose details during build
+</span>   299    <span class="xdoc">     *
+</span>   300    <span class="xdoc">     *  This option produces the same verbose output as the `xdc` command
+</span>   301    <span class="xdoc">     *  with the `XDCOPTIONS=v` parameter.
+</span>   302    <span class="xdoc">     */</span>
+   303        @CommandOption(<span class="string">"v"</span>)
+   304        <span class=key>config</span> Bool verbose = <span class=key>false</span>;
+   305    
+   306        <span class="xdoc">/*!
+</span>   307    <span class="xdoc">     *  Minimize details during build
+</span>   308    <span class="xdoc">     *
+</span>   309    <span class="xdoc">     *  This option produces the same output as the `xdc` command
+</span>   310    <span class="xdoc">     *  with the `XDCOPTIONS=qq` parameter.
+</span>   311    <span class="xdoc">     */</span>
+   312        @CommandOption(<span class="string">"q"</span>)
+   313        <span class=key>config</span> Bool quiet = <span class=key>false</span>;
+   314    
+   315        <span class="xdoc">/*!
+</span>   316    <span class="xdoc">     *  Exclude packages matching regexp from compatibility checking
+</span>   317    <span class="xdoc">     *
+</span>   318    <span class="xdoc">     *  A JavaScript regular expression that is used to select packages that
+</span>   319    <span class="xdoc">     *  should be excluded from the set of packages checked during
+</span>   320    <span class="xdoc">     *  configuration.
+</span>   321    <span class="xdoc">     *
+</span>   322    <span class="xdoc">     *  <b>@see</b> xdc.cfg
+</span>   323    <span class="xdoc">     */</span>
+   324        @CommandOption(<span class="string">"x"</span>)
+   325        <span class=key>config</span> String exclude = <span class=key>null</span>;
+   326    
+   327        <span class="xdoc">/*!
+</span>   328    <span class="xdoc">     *  Treat package version incompatibilites as warnings
+</span>   329    <span class="xdoc">     *
+</span>   330    <span class="xdoc">     *  If set to "`true`", force any incompatibilities detected to be
+</span>   331    <span class="xdoc">     *  treated as warnings only; otherwise incompatibilities are fatal.
+</span>   332    <span class="xdoc">     *
+</span>   333    <span class="xdoc">     *  <b>@see</b> xdc.cfg
+</span>   334    <span class="xdoc">     */</span>
+   335        @CommandOption(<span class="string">"w"</span>)
+   336        <span class=key>config</span> Bool warn = <span class=key>false</span>;
+   337    
+   338        <span class="xdoc">/*!
+</span>   339    <span class="xdoc">     *  Create the build model generated output files but do not build
+</span>   340    <span class="xdoc">     *
+</span>   341    <span class="xdoc">     *  This option creates the output directory and key generated files
+</span>   342    <span class="xdoc">     *  but does not process the user's configuration script. It is used
+</span>   343    <span class="xdoc">     *  by internal tooling to snapshot the RTSC build settings implied by
+</span>   344    <span class="xdoc">     *  the configuro command line parameters.
+</span>   345    <span class="xdoc">     */</span>
+   346        @CommandOption(<span class="string">"pkg"</span>)
+   347        <span class=key>config</span> Bool mkPkgOnly = <span class=key>false</span>;
+   348    
+   349        <span class="xdoc">/*!
+</span>   350    <span class="xdoc">     *  Create the configuration generated source files but do not build
+</span>   351    <span class="xdoc">     *
+</span>   352    <span class="xdoc">     *  This option runs the configuration step but does not compile the
+</span>   353    <span class="xdoc">     *  generated source files.  This option is used 
+</span>   354    <span class="xdoc">     *  by internal tooling to eliminate unnecessary build steps.
+</span>   355    <span class="xdoc">     */</span>
+   356        @CommandOption(<span class="string">"generationOnly"</span>)
+   357        <span class=key>config</span> Bool generationOnly = <span class=key>false</span>;
+   358    
+   359        <span class="xdoc">/*!
+</span>   360    <span class="xdoc">     *  Add compile options for C files in the configuration package
+</span>   361    <span class="xdoc">     *
+</span>   362    <span class="xdoc">     *  This option accepts one or more compiler options that are added to
+</span>   363    <span class="xdoc">     *  the compiler command line when compiling C files in the generated
+</span>   364    <span class="xdoc">     *  configuration package.
+</span>   365    <span class="xdoc">     *  If multiple compiler options are given, the whole string containing
+</span>   366    <span class="xdoc">     *  options must be surrounded by quotes.
+</span>   367    <span class="xdoc">     */</span>
+   368        @CommandOption(<span class="string">"compileOptions"</span>)
+   369        <span class=key>config</span> String compileOptions = <span class="string">""</span>;
+   370    
+   371        <span class="xdoc">/*!
+</span>   372    <span class="xdoc">     *  Add linker options for libraries in the configuration package
+</span>   373    <span class="xdoc">     *
+</span>   374    <span class="xdoc">     *  This option accepts one or more linker options which are used to
+</span>   375    <span class="xdoc">     *  pull in the correct libraries during link.
+</span>   376    <span class="xdoc">     *  If multiple linker options are given, the whole string containing
+</span>   377    <span class="xdoc">     *  options must be surrounded by quotes.
+</span>   378    <span class="xdoc">     */</span>
+   379        @CommandOption(<span class="string">"linkOptions"</span>)
+   380        <span class=key>config</span> String linkOptions = <span class="string">""</span>;
+   381    
+   382        <span class="xdoc">/*!
+</span>   383    <span class="xdoc">     *  Set the name of the compiler options file (default is "compiler.opt")
+</span>   384    <span class="xdoc">     */</span>
+   385        @CommandOption(<span class="string">"oc"</span>)
+   386        <span class=key>config</span> String compilerOptionsFile = <span class="string">"compiler.opt"</span>;
+   387    
+   388        <span class="xdoc">/*!
+</span>   389    <span class="xdoc">     *  Set the name of the linker command file (default is "linker.cmd")
+</span>   390    <span class="xdoc">     */</span>
+   391        @CommandOption(<span class="string">"ol"</span>)
+   392        <span class=key>config</span> String linkerCommandFile = <span class="string">"linker.cmd"</span>;
+   393    
+   394        <span class="xdoc">/*!
+</span>   395    <span class="xdoc">     *  Generate and build the configuration package
+</span>   396    <span class="xdoc">     */</span>
+   397        <span class=key>int</span> gen(String infile);
+   398    }
+</pre>
+</body></html>

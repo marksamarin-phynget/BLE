@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.rov.StructureDecoder</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * 
+</span>    12    <span class="comment"> */</span>
+    13    <span class="comment">/*
+</span>    14    <span class="comment"> *  ======== StructureDecoder.xdc ========
+</span>    15    <span class="comment"> */</span>
+    16    
+    17    <span class=key>package</span> xdc.rov;
+    18    
+    19    <span class="xdoc">/*!
+</span>    20    <span class="xdoc"> *  ======== StructureDecoder ========
+</span>    21    <span class="xdoc"> *  Module for retrieving and decoding target structures.  
+</span>    22    <span class="xdoc"> *
+</span>    23    <span class="xdoc"> *  The StructureDecoder is responsible for decoding target data given the
+</span>    24    <span class="xdoc"> *  raw target bytes and the data's type as defined in XDC. It also contains
+</span>    25    <span class="xdoc"> *  APIs for retrieving data from the target given the data's address.
+</span>    26    <span class="xdoc"> *  
+</span>    27    <span class="xdoc"> *  The StructureDecoder relies on the TargetDecoder to decode the raw target 
+</span>    28    <span class="xdoc"> *  bytes, but is itself responsible for decoding the structure layout. The 
+</span>    29    <span class="xdoc"> *  decodeStruct API takes as an argument the structure's type representation
+</span>    30    <span class="xdoc"> *  in the XDC object model, and refers to this object to determine the size 
+</span>    31    <span class="xdoc"> *  and offsets of the structure's fields.
+</span>    32    <span class="xdoc"> *
+</span>    33    <span class="xdoc"> *  The object returned by decodeStruct is not the typed Java representation of
+</span>    34    <span class="xdoc"> *  the structure, but rather a typeless JavaScript object which simply
+</span>    35    <span class="xdoc"> *  contains all of the same fields. This allows ROV to control the type of the
+</span>    36    <span class="xdoc"> *  fields, and specifically to represent arrays as addresses rather than as
+</span>    37    <span class="xdoc"> *  objects.
+</span>    38    <span class="xdoc"> *
+</span>    39    <span class="xdoc"> *  All of the 'decode' methods are essentially private methods. The intended
+</span>    40    <span class="xdoc"> *  interface to the StructureDecoder is through the 'fetch' APIs.
+</span>    41    <span class="xdoc"> */</span>
+    42    <span class=key>metaonly</span> <span class=key>module</span> StructureDecoder
+    43    {
+    44        <span class="xdoc">/*!
+</span>    45    <span class="xdoc">     *  ======== Buffer ========
+</span>    46    <span class="xdoc">     *  Target buffer
+</span>    47    <span class="xdoc">     *  
+</span>    48    <span class="xdoc">     *  This structure encapsulates a buffer of target memory (`buffer`), 
+</span>    49    <span class="xdoc">     *  the buffer's original target address (`addr`), and a running offset
+</span>    50    <span class="xdoc">     *  into that buffer (`off`). 
+</span>    51    <span class="xdoc">     *
+</span>    52    <span class="xdoc">     *  Decoding a structure is a recursive process, since the structure may
+</span>    53    <span class="xdoc">     *  include fields which are also structures. As `StructureDecoder` 
+</span>    54    <span class="xdoc">     *  decodes each field, it updates the `off` field to move to the next
+</span>    55    <span class="xdoc">     *  field.
+</span>    56    <span class="xdoc">     *
+</span>    57    <span class="xdoc">     *  The original address of the buffer is stored as well so that each
+</span>    58    <span class="xdoc">     *  structure field can be given a `$addr` property with its target 
+</span>    59    <span class="xdoc">     *  address.
+</span>    60    <span class="xdoc">     */</span>
+    61        <span class=key>metaonly</span> <span class=key>struct</span> Buffer {
+    62            Any    buffer;
+    63            Int    addr;
+    64            Int    off;
+    65        }
+    66    
+    67        <span class="xdoc">/*!
+</span>    68    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>    69    <span class="xdoc">     *  ======== FieldType ========
+</span>    70    <span class="xdoc">     *  Object representing the type of a field.
+</span>    71    <span class="xdoc">     *
+</span>    72    <span class="xdoc">     *  An object of this type is returned by the `{<b>@link</b> #parseTypeString}`
+</span>    73    <span class="xdoc">     *  method.
+</span>    74    <span class="xdoc">     * 
+</span>    75    <span class="xdoc">     *  A field can either be a scalar, a structure, or an array.
+</span>    76    <span class="xdoc">     */</span>
+    77        <span class=key>metaonly</span> <span class=key>struct</span> FieldType {
+    78            <span class="comment">/* Scalar */</span>
+    79            Bool    isScalarType;
+    80            Bool    signed;
+    81            Bool    isEnum;
+    82            Bool    isEncoded;
+    83            Int     size;
+    84            Int     align;
+    85            Bool    isAddr;
+    86            String  fldType;
+    87            
+    88            <span class="comment">/* Structure */</span>
+    89            Bool    isStrType;
+    90            Any     strType;
+    91            
+    92            <span class="comment">/* Array */</span>
+    93            Bool    isArrType;
+    94            Int     len;
+    95            String  elemType;
+    96        }
+    97        
+    98    <span class=key>instance</span>:
+    99        <span class="xdoc">/*!
+</span>   100    <span class="xdoc">     *  ======== create ========
+</span>   101    <span class="xdoc">     *  Create a StructureDecoder instance
+</span>   102    <span class="xdoc">     *  
+</span>   103    <span class="xdoc">     *  The StructureDecoder requires a MemoryImage instance and the target
+</span>   104    <span class="xdoc">     *  configuration object from the ROV recap file; i.e.,
+</span>   105    <span class="xdoc">     *  recap.build.target.
+</span>   106    <span class="xdoc">     */</span>
+   107        create(Any mem, Any targConfig);
+   108        
+   109        <span class="xdoc">/*!
+</span>   110    <span class="xdoc">     *  ======== fetchStruct ========
+</span>   111    <span class="xdoc">     *  Retrieve and decode a structure from the target
+</span>   112    <span class="xdoc">     *
+</span>   113    <span class="xdoc">     *  This method retrieves and decodes a structure of the given type at
+</span>   114    <span class="xdoc">     *  the given address from the target.
+</span>   115    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   116    <span class="xdoc">     *     - `structType`
+</span>   117    <span class="xdoc">     *            Structure type. Not just a string, it is the XDC object
+</span>   118    <span class="xdoc">     *            model representation of the type.
+</span>   119    <span class="xdoc">     *     - `addr`
+</span>   120    <span class="xdoc">     *            Target address of the structure to retrieve.
+</span>   121    <span class="xdoc">     *     - `addrCheck`
+</span>   122    <span class="xdoc">     *            Whether to check the memory read against the section map.
+</span>   123    <span class="xdoc">     *  <b>@p</b>
+</span>   124    <span class="xdoc">     */</span>
+   125        Any fetchStruct(Any structType, Int addr, Bool addrCheck);
+   126        
+   127        <span class="xdoc">/*!
+</span>   128    <span class="xdoc">     *  ======== fetchArray ========
+</span>   129    <span class="xdoc">     *  Retrieve and decode an array of structures from the target
+</span>   130    <span class="xdoc">     *
+</span>   131    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   132    <span class="xdoc">     *     - `structType`
+</span>   133    <span class="xdoc">     *           Structure type. Not just a string, it is the XDC object 
+</span>   134    <span class="xdoc">     *           model representation of the type.
+</span>   135    <span class="xdoc">     *     - `addr`
+</span>   136    <span class="xdoc">     *           Target address of the structure to retrieve.
+</span>   137    <span class="xdoc">     *     - `len`
+</span>   138    <span class="xdoc">     *           Number of entries in the array.
+</span>   139    <span class="xdoc">     *     - `isScalar`
+</span>   140    <span class="xdoc">     *           Whether it is an array of scalars.
+</span>   141    <span class="xdoc">     *     - `addrCheck`
+</span>   142    <span class="xdoc">     *           Whether to check the memory read against the section map.
+</span>   143    <span class="xdoc">     *  <b>@p</b>
+</span>   144    <span class="xdoc">     */</span>
+   145        Any fetchArray(Any structType, Int addr, Int len, Bool isScalar, 
+   146                       Bool addrCheck);
+   147        
+   148        <span class="xdoc">/*!
+</span>   149    <span class="xdoc">     *  ======== decodeStruct ========
+</span>   150    <span class="xdoc">     *  Decode an entire structure by decoding each of the structure's fields
+</span>   151    <span class="xdoc">     *
+</span>   152    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   153    <span class="xdoc">     *     - `structType`
+</span>   154    <span class="xdoc">     *           Structure type. Not just a string, it is the XDC object 
+</span>   155    <span class="xdoc">     *           model representation of the type.
+</span>   156    <span class="xdoc">     *     - `buffer`
+</span>   157    <span class="xdoc">     *           Buffer of target memory containing raw data.
+</span>   158    <span class="xdoc">     *     - `inStr`
+</span>   159    <span class="xdoc">     *           Optional structure to fill in. Otherwise decodeStruct will
+</span>   160    <span class="xdoc">     *           create a new one.
+</span>   161    <span class="xdoc">     *  <b>@p</b>
+</span>   162    <span class="xdoc">     */</span>
+   163        Any decodeStruct(Any structType, Buffer buffer, Any inStr = <span class=key>null</span>);
+   164        
+   165        <span class="xdoc">/*!
+</span>   166    <span class="xdoc">     *  ======== decodeStructArray ========
+</span>   167    <span class="xdoc">     *  Decode an array of structures
+</span>   168    <span class="xdoc">     *  
+</span>   169    <span class="xdoc">     *  This API exists to perform some optimizations when decoding an array
+</span>   170    <span class="xdoc">     *  of a single type of object.
+</span>   171    <span class="xdoc">     *
+</span>   172    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   173    <span class="xdoc">     *     - `structType`
+</span>   174    <span class="xdoc">     *           Structure type of the elements in the array. Not just a 
+</span>   175    <span class="xdoc">     *           string, it is the XDC object model representation of the 
+</span>   176    <span class="xdoc">     *           type.
+</span>   177    <span class="xdoc">     *     - `buffer`
+</span>   178    <span class="xdoc">     *           Buffer of target memory containing raw data.
+</span>   179    <span class="xdoc">     *     - `len`
+</span>   180    <span class="xdoc">     *           Number of elements in the array.
+</span>   181    <span class="xdoc">     *  <b>@p</b>
+</span>   182    <span class="xdoc">     */</span>
+   183        Any decodeStructArray(Any structType, Buffer buffer, Int len);
+   184        
+   185        <span class="xdoc">/*!
+</span>   186    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   187    <span class="xdoc">     *  ======== _parseTypeString ========
+</span>   188    <span class="xdoc">     *  Convert a type string to a FieldType
+</span>   189    <span class="xdoc">     *  
+</span>   190    <span class="xdoc">     *  This method interperets a type string from a $$sizes structure, and
+</span>   191    <span class="xdoc">     *  returns the interpretation in a FieldType object.
+</span>   192    <span class="xdoc">     */</span>
+   193        FieldType _parseTypeString(String fieldType);
+   194        
+   195        <span class="xdoc">/*!
+</span>   196    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   197    <span class="xdoc">     *  ======== _decodeField ========
+</span>   198    <span class="xdoc">     *  Decodes a single field within a structure and returns its value.
+</span>   199    <span class="xdoc">     *  This API is only called by decodeStruct. It does not take an XDC type
+</span>   200    <span class="xdoc">     *  object but just a string representing the type of a single field within
+</span>   201    <span class="xdoc">     *  a structure.
+</span>   202    <span class="xdoc">     *
+</span>   203    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   204    <span class="xdoc">     *      - `fieldType`
+</span>   205    <span class="xdoc">     *            Type info for the field.
+</span>   206    <span class="xdoc">     *      - `buffer`
+</span>   207    <span class="xdoc">     *            Buffer of target memory containing raw data.
+</span>   208    <span class="xdoc">     *  <b>@p</b>
+</span>   209    <span class="xdoc">     *
+</span>   210    <span class="xdoc">     *  TODO - This should be spec'd, but currently it can't because it will
+</span>   211    <span class="xdoc">     *  not properly return an Enum object.
+</span>   212    <span class="xdoc">     */</span>
+   213        <span class=comment>//Any _decodeField(String fieldType, Buffer buffer);</span>
+   214        <span class=key>function</span> _decodeField(fieldType, buffer);
+   215    
+   216        <span class="xdoc">/*!
+</span>   217    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   218    <span class="xdoc">     *  ======== _decodeArray ========
+</span>   219    <span class="xdoc">     *  This API decodes an array of any type of elements given the elements' 
+</span>   220    <span class="xdoc">     *  type string.
+</span>   221    <span class="xdoc">     *
+</span>   222    <span class="xdoc">     *  decodeStructArray takes an XDC OM type object, while decodeArray takes
+</span>   223    <span class="xdoc">     *  a type string. decodeArray calls down to decodeStructArray if the 
+</span>   224    <span class="xdoc">     *  element type is a structure.
+</span>   225    <span class="xdoc">     *
+</span>   226    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   227    <span class="xdoc">     *      - `elemType`
+</span>   228    <span class="xdoc">     *            Type info for the elements of the array.
+</span>   229    <span class="xdoc">     *      - `buffer`
+</span>   230    <span class="xdoc">     *            Buffer of target memory containing raw data.
+</span>   231    <span class="xdoc">     *      - `len`
+</span>   232    <span class="xdoc">     *            Number of elements in the array.
+</span>   233    <span class="xdoc">     *  <b>@p</b>
+</span>   234    <span class="xdoc">     */</span>
+   235        Any _decodeArray(String elemType, Buffer buffer, Int len);
+   236        
+   237        <span class="xdoc">/*!
+</span>   238    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   239    <span class="xdoc">     *  ======== _decodeScalar ========
+</span>   240    <span class="xdoc">     *  Decodes a scalar value of 'type' at the offset specified in
+</span>   241    <span class="xdoc">     *  'buffer.off'.
+</span>   242    <span class="xdoc">     *
+</span>   243    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   244    <span class="xdoc">     *      - `type`
+</span>   245    <span class="xdoc">     *            Type info for the scalar
+</span>   246    <span class="xdoc">     *      - `buffer`
+</span>   247    <span class="xdoc">     *            Buffer of target memory containing raw data.
+</span>   248    <span class="xdoc">     *  <b>@p</b>
+</span>   249    <span class="xdoc">     *
+</span>   250    <span class="xdoc">     *  TODO - This should be spec'd, but currently it can't because it will
+</span>   251    <span class="xdoc">     *  not properly return an Enum object.
+</span>   252    <span class="xdoc">     */</span>
+   253        <span class=comment>//Any _decodeScalar(FieldType type, Buffer buffer);</span>
+   254        <span class=key>function</span> _decodeScalar(type, buffer);
+   255        
+   256    }
+   257    <span class="comment">/*
+</span>   258    <span class="comment"> *  @(#) xdc.rov; 1, 0, 1,0; 12-9-2015 17:36:23; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>   259    <span class="comment"> */</span>
+   260    
+</pre>
+</body></html>

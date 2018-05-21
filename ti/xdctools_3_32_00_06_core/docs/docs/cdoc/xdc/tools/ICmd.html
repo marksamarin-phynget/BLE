@@ -1,0 +1,221 @@
+<html>
+<head>
+<title>interface xdc.tools.ICmd</title>
+<meta name="description" content="Generic xdc-script (xs) command">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">xdc.tools.</span><span class="xdoc-id">ICmd</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/package.html" title="package xdc.tools"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/ICmd.html">index URL</a></div>
+<p class="xdocHdrSummary">Generic xdc-script (xs) command</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-1">DETAILS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-2">COMMAND LINE EXAMPLE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-3">XDCSCRIPT EXAMPLE</a></li>
+</ul>
+<div class="xdocBrief">
+Modules that implement this interface can serve as "commands" that
+  can be executed from the command line (via <tt>xs</tt>) or from within
+  XDCscript scripts (without having to fork a separate process to run
+  <tt>xs</tt>).
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> summary</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/tools/ICmd-src.html"><span class="xdocLabelFile">xdc/tools/ICmd.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">ICmd</span> {<b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">instance</span>:<b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/tools/ICmd-src.html"><span class="xdocLabelFile">xdc/tools/ICmd.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <a class="xdoc-link" href="../../xdc/tools/package.html" title="xdc.tools">xdc.tools</a>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">ICmd</span> {
+</div>
+<div class='xdocSynHdr'>module-wide config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#usage"><span class="xdoc-id">usage</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Usage for this command</span></span></a>[<span class="xdoc-kw2"></span>] = [ ];
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#exec"><span class="xdoc-kw1">function </span><span class="xdoc-id">exec</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;<tt>xs</tt> script entry point</span></span></a>(<span class="xdoc-id">args</span>);
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#main"><span class="xdoc-kw1">function </span><span class="xdoc-id">main</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;<tt>xs</tt> shell entry point</span></span></a>(<span class="xdoc-id">args</span>);
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">instance</span>:
+</div>
+<div class='xdocSynHdr'>per-instance functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw2">Any</span>&nbsp;<a class="xdocSynGo" href="#run"><span class="xdoc-id">run</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Underlying implementation of the command</span></span></a>(<a class="xdoc-link" href="../../xdc/tools/Cmdr.html#.Instance" title="xdc.tools.Cmdr.Instance">Cmdr.Instance</a>&nbsp;<span class="xdoc-id">cmdr</span>, <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">args</span>[<span class="xdoc-kw2"></span>]);
+</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Modules that implement this interface can serve as "commands" that
+  can be executed from the command line (via <tt>xs</tt>) or from within
+  XDCscript scripts (without having to fork a separate process to run
+  <tt>xs</tt>).</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">COMMAND LINE EXAMPLE</div>
+<div class="xdocText">The following example runs the <tt>xdc.tools.path</tt> tool from the command 
+  line to get an array of names of all packages below the current
+  working directory (".").</div>
+<div class="xdocText"><PRE class="Example">      xs xdc.tools.path -n -a -PR .
+</PRE></div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">XDCSCRIPT EXAMPLE</div>
+<div class="xdocText">The following example runs the <tt>xdc.tools.path</tt> tool from within
+  a script to get an array of names of all packages below the current
+  working directory (".").</div>
+<div class="xdocText"><PRE class="Example">      var Main = xdc.module('xdc.tools.path.Main');
+      var result = Main.exec(["-n", "-a", "-PR", "."]);
+</PRE></div>
+<div id="xdocSep">
+</div>
+<div id="xdocElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="usage"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">ICmd.</span><span class="xdoc-id">usage</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/ICmd.html" title="interface ICmd"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/ICmd.html#usage">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Usage for this command</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/tools/ICmd-src.html"><span class="xdocLabelFile">xdc/tools/ICmd.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">usage</span>[<span class="xdoc-kw2"></span>] = [ ];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="exec"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">ICmd.</span><span class="xdoc-id">exec</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/ICmd.html" title="interface ICmd"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/ICmd.html#exec">index URL</a></div>
+<p class="xdocHdrSummaryDcl"><tt>xs</tt> script entry point</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/tools/ICmd-src.html"><span class="xdocLabelFile">xdc/tools/ICmd.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">function </span><span class="xdoc-id">exec</span>(<span class="xdoc-id">args</span>);
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This function is called from within other XDCscript scripts and
+  performs the same operations as <tt><a class="xdoc-link" href="ICmd.html#main" title="main">main()</a></tt> except that,
+  rather than output the return value of <tt>inst.run()</tt>, this value
+  is simply returned to the caller of <tt>exec()</tt>.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="main"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">ICmd.</span><span class="xdoc-id">main</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/ICmd.html" title="interface ICmd"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/ICmd.html#main">index URL</a></div>
+<p class="xdocHdrSummaryDcl"><tt>xs</tt> shell entry point</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/tools/ICmd-src.html"><span class="xdocLabelFile">xdc/tools/ICmd.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">function </span><span class="xdoc-id">main</span>(<span class="xdoc-id">args</span>);
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This function</div>
+<div class="xdocText"><UL><LI> creates a no-arg instance, <tt>inst</tt>, of the module inheriting
+     this interface;
+</LI><LI> parses command line arguments placing all options in the config
+     params of the inheriting module;
+</LI><LI> creates a <tt><a class="xdoc-link" href="../../xdc/tools/Cmdr.html" title="xdc.tools.Cmdr">xdc.tools.Cmdr</a></tt> instance, <tt>cmdr</tt>;
+</LI><LI> calls <tt><a class="xdoc-link" href="ICmd.html#run" title="run">inst.run()</a></tt> with the <tt>cmdr</tt> and any command
+     line command line arguments not parsed as options; and
+</LI><LI> outputs the return result from <tt>inst.run()</tt>
+</LI></UL></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="run"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">ICmd.</span><span class="xdoc-id">run</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/ICmd.html" title="interface ICmd"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/ICmd.html#run">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Underlying implementation of the command</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/tools/ICmd-src.html"><span class="xdocLabelFile">xdc/tools/ICmd.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw2">Any</span>&nbsp;<span class="xdoc-id">run</span>(<a class="xdoc-link" href="../../xdc/tools/Cmdr.html#.Instance" title="xdc.tools.Cmdr.Instance">Cmdr.Instance</a>&nbsp;<span class="xdoc-id">cmdr</span>, <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">args</span>[<span class="xdoc-kw2"></span>]);
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Since this method is used to support both command line tools and
+  other XDCscript scripts, it is important to avoid explicit
+  termination of the JVM via <tt>java.lang.System.exit()</tt>; doing so
+  precludes callers from handling failures.</div>
+<div class="xdocText">Implementations should instead call</div>
+<div class="xdocText"><UL><LI> <tt><a class="xdoc-link" href="../../xdc/tools/Cmdr.html#error" title="xdc.tools.Cmdr.error">cmdr.error()</a></tt> when encountering a
+     fatal error.
+</LI><LI> <tt><a class="xdoc-link" href="../../xdc/tools/Cmdr.html#warning" title="xdc.tools.Cmdr.warning">cmdr.warning()</a></tt> when encountering a
+     non-fatal error.
+</LI><LI> <tt><a class="xdoc-link" href="../../xdc/tools/Cmdr.html#info" title="xdc.tools.Cmdr.info">cmdr.info()</a></tt> when simply generating
+     an informative message.
+</LI></UL></div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:46 GMT</div>
+</div></div></body>
+</html>

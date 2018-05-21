@@ -1,0 +1,295 @@
+<html>
+<head>
+<title>module xdc.rov.Model</title>
+<meta name="description" content="The ROV Model is the core of ROV. The Model must be started in order to retrieve ROV views for any modules">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.rov.</span><span class="xdoc-id">Model</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/CallStack.html" title="module CallStack"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/package.html" title="package xdc.rov"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html">index URL</a></div>
+<p class="xdocHdrSummary">The ROV Model is the core of ROV. The Model must be started in order to
+  retrieve ROV views for any modules</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<div class="xdocBrief">
+The Model has a compatibility key. Any changes or additions to the public
+  interfaces of the ROV core will result in a bump of the model version 
+  number.
+</div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/rov/Model-src.html"><span class="xdocLabelFile">xdc/rov/Model.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> Model = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.rov.Model'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#vers">Model.<span class="xdoc-id">vers</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;ROV API version number</span></span></a> = <i><span class="xdoc-kw2">Int</span></i> 4;
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.I.Call.Back.Inst">Model.<span class="xdoc-id">getICallBackInst</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>() <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/ICallBack.html#.Instance" title="xdc.rov.ICallBack.Instance">ICallBack.Instance</a></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.I.Call.Stack.Inst">Model.<span class="xdoc-id">getICallStackInst</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>() <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/ICallStack.html#.Instance" title="xdc.rov.ICallStack.Instance">ICallStack.Instance</a></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.I.O.F.Reader.Inst">Model.<span class="xdoc-id">getIOFReaderInst</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.I.Symbol.Table.Inst">Model.<span class="xdoc-id">getISymbolTableInst</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>() <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/ISymbolTable.html#.Instance" title="xdc.rov.ISymbolTable.Instance">ISymbolTable.Instance</a></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Memory.Image.Inst">Model.<span class="xdoc-id">getMemoryImageInst</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Module.List">Model.<span class="xdoc-id">getModuleList</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#set.I.Call.Stack.Inst">Model.<span class="xdoc-id">setICallStackInst</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Called only during Model initialization</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/ICallStack.html#.Instance" title="xdc.rov.ICallStack.Instance">ICallStack.Instance</a></i> <span class="xdoc-id">cs</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#start">Model.<span class="xdoc-id">start</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Start the ROV Model</span></span></a>(<i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">vers</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">executable</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">recap</span>, <i><a class="xdoc-link" href="../../xdc/rov/ISymbolTable.html#.Instance" title="xdc.rov.ISymbolTable.Instance">ISymbolTable.Instance</a></i> <span class="xdoc-id">sym</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">mem</span>, <i><a class="xdoc-link" href="../../xdc/rov/ICallBack.html#.Instance" title="xdc.rov.ICallBack.Instance">ICallBack.Instance</a></i> <span class="xdoc-id">callBack</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="vers"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">Model.</span><span class="xdoc-id">vers</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#vers">index URL</a></div>
+<p class="xdocHdrSummaryDcl">ROV API version number</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">vers</span> = <i><span class="xdoc-kw2">Int</span></i> 4;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Model.start will throw an exception if the version parameter does not
+  equal the Model's current version. The version number is changed based
+  on modifications to the public APIs (in xdc.rov.Program) that would
+  potentially break compatibility with clients.</div>
+<div class="xdocText">This allows the Model to verify compatibility with its client.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.I.Call.Back.Inst"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Model.</span><span class="xdoc-id">getICallBackInst</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#get.I.Call.Back.Inst">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">getICallBackInst</span>() <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/ICallBack.html#.Instance" title="xdc.rov.ICallBack.Instance">ICallBack.Instance</a></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.I.Call.Stack.Inst"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Model.</span><span class="xdoc-id">getICallStackInst</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#get.I.Call.Stack.Inst">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">getICallStackInst</span>() <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/ICallStack.html#.Instance" title="xdc.rov.ICallStack.Instance">ICallStack.Instance</a></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.I.O.F.Reader.Inst"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Model.</span><span class="xdoc-id">getIOFReaderInst</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#get.I.O.F.Reader.Inst">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">getIOFReaderInst</span>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.I.Symbol.Table.Inst"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Model.</span><span class="xdoc-id">getISymbolTableInst</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#get.I.Symbol.Table.Inst">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">getISymbolTableInst</span>() <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/ISymbolTable.html#.Instance" title="xdc.rov.ISymbolTable.Instance">ISymbolTable.Instance</a></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Memory.Image.Inst"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Model.</span><span class="xdoc-id">getMemoryImageInst</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#get.Memory.Image.Inst">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">getMemoryImageInst</span>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Module.List"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Model.</span><span class="xdoc-id">getModuleList</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#get.Module.List">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">getModuleList</span>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="set.I.Call.Stack.Inst"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Model.</span><span class="xdoc-id">setICallStackInst</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#set.I.Call.Stack.Inst">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Called only during Model initialization</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">setICallStackInst</span>(<i><a class="xdoc-link" href="../../xdc/rov/ICallStack.html#.Instance" title="xdc.rov.ICallStack.Instance">ICallStack.Instance</a></i> <span class="xdoc-id">cs</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This method is called to "bind" an optional stack call stack parser
+  and is called by the same client that calls 
+ <tt><a class="xdoc-link" href="Model.html#start" title="start">Model.start()</a></tt>.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="start"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Model.</span><span class="xdoc-id">start</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/Model.html#start">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Start the ROV Model</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Model.<span class="xdoc-id">start</span>(<i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">vers</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">executable</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">recap</span>, <i><a class="xdoc-link" href="../../xdc/rov/ISymbolTable.html#.Instance" title="xdc.rov.ISymbolTable.Instance">ISymbolTable.Instance</a></i> <span class="xdoc-id">sym</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">mem</span>, <i><a class="xdoc-link" href="../../xdc/rov/ICallBack.html#.Instance" title="xdc.rov.ICallBack.Instance">ICallBack.Instance</a></i> <span class="xdoc-id">callBack</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">vers</span>
+<span class="xdocChildSum">&#151;&nbsp;Model.start will throw an exception if the version
+                parameter does not equal the Model's current
+                <tt><a class="xdoc-link" href="Model.html#vers" title="vers">version</a></tt>.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">recap</span>
+<span class="xdocChildSum">&#151;&nbsp;Capsule of the ROV recap file. Retrieve this with
+                <tt>xdc.loadCapsule(recapFilePath)</tt>.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">executable</span>
+<span class="xdocChildSum">&#151;&nbsp;The path to the executable file</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">sym</span>
+<span class="xdocChildSum">&#151;&nbsp;an object that implements the xdc.rov.ISymbolTable
+                     interface used to read symbols defined by the
+                     executable</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">mem</span>
+<span class="xdocChildSum">&#151;&nbsp;an object that implements the xdc.rov.IMemoryImage
+                     interface used to read target memory</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">callBack</span>
+<span class="xdocChildSum">&#151;&nbsp;an object that implements the xdc.rov.ICallback
+                     interface used to report progress status</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The ROV Model requires instances of an ISymbolTable, an IMemoryImage, 
+  and an ICallBack. It also requires the ROV recap file, which can be
+  located using the xdc.rov.Recap module.</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:39 GMT</div>
+</div></div></body>
+</html>

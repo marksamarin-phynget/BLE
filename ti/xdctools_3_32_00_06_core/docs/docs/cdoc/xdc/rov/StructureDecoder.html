@@ -1,0 +1,326 @@
+<html>
+<head>
+<title>module xdc.rov.StructureDecoder</title>
+<meta name="description" content="Module for retrieving and decoding target structures">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.rov.</span><span class="xdoc-id">StructureDecoder</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/package.html" title="package xdc.rov"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewInfo.html" title="module ViewInfo"><img class="xdocHdrArrow" src="../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StructureDecoder.html">index URL</a></div>
+<p class="xdocHdrSummary">Module for retrieving and decoding target structures</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<div class="xdocBrief">
+The StructureDecoder is responsible for decoding target data given the
+  raw target bytes and the data's type as defined in XDC. It also contains
+  APIs for retrieving data from the target given the data's address.
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/rov/StructureDecoder-src.html"><span class="xdocLabelFile">xdc/rov/StructureDecoder.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> StructureDecoder = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.rov.StructureDecoder'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Buffer">StructureDecoder.<span class="xdoc-id">Buffer</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Target buffer</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Buffer" title="xdc.rov.StructureDecoder.Buffer"><span class="xdoc-id">buffer</span></a> = <i><span class="xdoc-kw2">Any</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Buffer" title="xdc.rov.StructureDecoder.Buffer"><span class="xdoc-id">addr</span></a> = <i><span class="xdoc-kw2">Int</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Buffer" title="xdc.rov.StructureDecoder.Buffer"><span class="xdoc-id">off</span></a> = <i><span class="xdoc-kw2">Int</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class='xdocSynHdr'>per-instance config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> StructureDecoder.<a class="xdocSynGo" href="#per-instance_config_parameters"><span class="xdoc-id">Params</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Instance config-params object</span></span></a>;
+</div>
+<div class='xdocSynHdr'>per-instance creation</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> inst = StructureDecoder.<a class="xdocSynGo" href="#per-instance_creation"><span class="xdoc-id">create</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Create an instance-object</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">mem</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">targConfig</span>, params);
+</div>
+<div class='xdocSynHdr'>per-instance functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#decode.Struct">inst.<span class="xdoc-id">decodeStruct</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Decode an entire structure by decoding each of the structure's fields</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">structType</span>, <i><a class="xdoc-link" href="../../xdc/rov/StructureDecoder.html#.Buffer" title="xdc.rov.StructureDecoder.Buffer">StructureDecoder.Buffer</a></i> <span class="xdoc-id">buffer</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">inStr</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#decode.Struct.Array">inst.<span class="xdoc-id">decodeStructArray</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Decode an array of structures</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">structType</span>, <i><a class="xdoc-link" href="../../xdc/rov/StructureDecoder.html#.Buffer" title="xdc.rov.StructureDecoder.Buffer">StructureDecoder.Buffer</a></i> <span class="xdoc-id">buffer</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">len</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Array">inst.<span class="xdoc-id">fetchArray</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieve and decode an array of structures from the target</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">structType</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">len</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">isScalar</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Struct">inst.<span class="xdoc-id">fetchStruct</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieve and decode a structure from the target</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">structType</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The StructureDecoder is responsible for decoding target data given the
+  raw target bytes and the data's type as defined in XDC. It also contains
+  APIs for retrieving data from the target given the data's address.</div>
+<div class="xdocText">The StructureDecoder relies on the TargetDecoder to decode the raw target 
+  bytes, but is itself responsible for decoding the structure layout. The 
+  decodeStruct API takes as an argument the structure's type representation
+  in the XDC object model, and refers to this object to determine the size 
+  and offsets of the structure's fields.</div>
+<div class="xdocText">The object returned by decodeStruct is not the typed Java representation of
+  the structure, but rather a typeless JavaScript object which simply
+  contains all of the same fields. This allows ROV to control the type of the
+  fields, and specifically to represent arrays as addresses rather than as
+  objects.</div>
+<div class="xdocText">All of the 'decode' methods are essentially private methods. The intended
+  interface to the StructureDecoder is through the 'fetch' APIs.</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Buffer"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">StructureDecoder.</span><span class="xdoc-id">Buffer</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StructureDecoder.html#.Buffer">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Target buffer</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> StructureDecoder.<span class="xdoc-id">Buffer</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">buffer</span> = <i><span class="xdoc-kw2">Any</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">addr</span> = <i><span class="xdoc-kw2">Int</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">off</span> = <i><span class="xdoc-kw2">Int</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This structure encapsulates a buffer of target memory (<tt>buffer</tt>), 
+  the buffer's original target address (<tt>addr</tt>), and a running offset
+  into that buffer (<tt>off</tt>).</div>
+<div class="xdocText">Decoding a structure is a recursive process, since the structure may
+  include fields which are also structures. As <tt>StructureDecoder</tt> 
+  decodes each field, it updates the <tt>off</tt> field to move to the next
+  field.</div>
+<div class="xdocText">The original address of the buffer is stored as well so that each
+  structure field can be given a <tt>$addr</tt> property with its target 
+  address.</div>
+<a class="xdocAnchor" id="per-instance_config_parameters"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdocSynSum">Instance Config Parameters</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StructureDecoder.html#per-instance_config_parameters">index URL</a></div>
+<p class="xdocHdrSummary"></p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> StructureDecoder.<span class="xdoc-id">Params</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Instance config-params object</div>
+</div>
+<a class="xdocAnchor" id="per-instance_creation"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdocSynSum">Static Instance Creation</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StructureDecoder.html#per-instance_creation">index URL</a></div>
+<p class="xdocHdrSummary"></p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> StructureDecoder.<a class="xdoc-link" href="../../xdc/rov/StructureDecoder.html#metaper-instance_config_parameters" title="xdc.rov.StructureDecoder.Params">Params</a>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Allocate instance config-params</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>params.<i>config</i> = <b>&nbsp;&nbsp;...</b>
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Assign individual configs</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> inst = StructureDecoder.<span class="xdoc-id">create</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">mem</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">targConfig</span>, params);
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Create an instance-object</div>
+</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The StructureDecoder requires a MemoryImage instance and the target
+  configuration object from the ROV recap file; i.e.,
+  recap.build.target.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="decode.Struct"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StructureDecoder.</span><span class="xdoc-id">decodeStruct</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StructureDecoder.html#decode.Struct">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Decode an entire structure by decoding each of the structure's fields</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">decodeStruct</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">structType</span>, <i><a class="xdoc-link" href="../../xdc/rov/StructureDecoder.html#.Buffer" title="xdc.rov.StructureDecoder.Buffer">StructureDecoder.Buffer</a></i> <span class="xdoc-id">buffer</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">inStr</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText"><DL><DT> <tt>structType</tt></DT><DD>
+           Structure type. Not just a string, it is the XDC object 
+           model representation of the type.
+</DD><DT> <tt>buffer</tt></DT><DD>
+           Buffer of target memory containing raw data.
+</DD><DT> <tt>inStr</tt></DT><DD>
+           Optional structure to fill in. Otherwise decodeStruct will
+           create a new one.
+</DD></DL></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="decode.Struct.Array"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StructureDecoder.</span><span class="xdoc-id">decodeStructArray</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StructureDecoder.html#decode.Struct.Array">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Decode an array of structures</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">decodeStructArray</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">structType</span>, <i><a class="xdoc-link" href="../../xdc/rov/StructureDecoder.html#.Buffer" title="xdc.rov.StructureDecoder.Buffer">StructureDecoder.Buffer</a></i> <span class="xdoc-id">buffer</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">len</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This API exists to perform some optimizations when decoding an array
+  of a single type of object.</div>
+<div class="xdocText"><DL><DT> <tt>structType</tt></DT><DD>
+           Structure type of the elements in the array. Not just a 
+           string, it is the XDC object model representation of the 
+           type.
+</DD><DT> <tt>buffer</tt></DT><DD>
+           Buffer of target memory containing raw data.
+</DD><DT> <tt>len</tt></DT><DD>
+           Number of elements in the array.
+</DD></DL></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Array"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StructureDecoder.</span><span class="xdoc-id">fetchArray</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StructureDecoder.html#fetch.Array">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieve and decode an array of structures from the target</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">fetchArray</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">structType</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">len</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">isScalar</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText"><DL><DT> <tt>structType</tt></DT><DD>
+           Structure type. Not just a string, it is the XDC object 
+           model representation of the type.
+</DD><DT> <tt>addr</tt></DT><DD>
+           Target address of the structure to retrieve.
+</DD><DT> <tt>len</tt></DT><DD>
+           Number of entries in the array.
+</DD><DT> <tt>isScalar</tt></DT><DD>
+           Whether it is an array of scalars.
+</DD><DT> <tt>addrCheck</tt></DT><DD>
+           Whether to check the memory read against the section map.
+</DD></DL></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Struct"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StructureDecoder.</span><span class="xdoc-id">fetchStruct</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StructureDecoder.html#fetch.Struct">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieve and decode a structure from the target</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">fetchStruct</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">structType</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">addr</span>, <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-id">addrCheck</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This method retrieves and decodes a structure of the given type at
+  the given address from the target.</div>
+<div class="xdocText"><DL><DT> <tt>structType</tt></DT><DD>
+            Structure type. Not just a string, it is the XDC object
+            model representation of the type.
+</DD><DT> <tt>addr</tt></DT><DD>
+            Target address of the structure to retrieve.
+</DD><DT> <tt>addrCheck</tt></DT><DD>
+            Whether to check the memory read against the section map.
+</DD></DL></div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:39 GMT</div>
+</div></div></body>
+</html>

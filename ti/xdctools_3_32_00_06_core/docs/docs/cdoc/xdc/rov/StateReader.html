@@ -1,0 +1,255 @@
+<html>
+<head>
+<title>module xdc.rov.StateReader</title>
+<meta name="description" content="These APIs are all designed so that they will not re-read data that has already been read in">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.rov.</span><span class="xdoc-id">StateReader</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Program.html" title="module Program"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/package.html" title="package xdc.rov"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StateReader.html">index URL</a></div>
+<p class="xdocHdrSummary">These APIs are all designed so that they will not re-read data that has already been read in</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<div class="xdocBrief">
+The StateReader has three similar APIs for reading instance state:
+    fetchInstState 
+    fetchHandleState
+    getInstDesc
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/rov/StateReader-src.html"><span class="xdocLabelFile">xdc/rov/StateReader.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> StateReader = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.rov.StateReader'</span>);
+</div>
+<div class='xdocSynHdr'>per-instance config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> StateReader.<a class="xdocSynGo" href="#per-instance_config_parameters"><span class="xdoc-id">Params</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Instance config-params object</span></span></a>;
+</div>
+<div class='xdocSynHdr'>per-instance creation</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> inst = StateReader.<a class="xdocSynGo" href="#per-instance_creation"><span class="xdoc-id">create</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Create an instance-object</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/ISymbolTable.html#.Instance" title="xdc.rov.ISymbolTable.Instance">ISymbolTable.Instance</a></i> <span class="xdoc-id">symTable</span>, <i><a class="xdoc-link" href="../../xdc/rov/StructureDecoder.html#.Instance" title="xdc.rov.StructureDecoder.Instance">StructureDecoder.Instance</a></i> <span class="xdoc-id">strDec</span>, params);
+</div>
+<div class='xdocSynHdr'>per-instance functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.All.Inst.States">inst.<span class="xdoc-id">fetchAllInstStates</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;This function makes sure that all of the instance state structures for
+  this module have been scanned in. It does not call any view$init
+  functions</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Handle.State">inst.<span class="xdoc-id">fetchHandleState</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;The fetchInstState API needs to know whether the given instance
+  is static or dynamic. If we just have a handle to an instance, we first
+  need to determine whether it is static or dynamic</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>, <i><span class="xdoc-kw2">Long</span></i> <span class="xdoc-id">instAddr</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Instance.Desc" title="xdc.rov.Program.ROVInstanceDesc">Program.ROVInstanceDesc</a>*</i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Inst.State">inst.<span class="xdoc-id">fetchInstState</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;This function scans in a single instance's state, and associates
+  various metadata (used by the view$init functions) with the instance
+  object.
+  Returns the inst object for Program.scanHandle</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>, <i><span class="xdoc-kw2">Long</span></i> <span class="xdoc-id">instAddr</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">staticIndex</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Instance.Desc" title="xdc.rov.Program.ROVInstanceDesc">Program.ROVInstanceDesc</a>*</i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Module.State">inst.<span class="xdoc-id">fetchModuleState</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Scans the given module's module state structure. If the structure has 
+  already been scanned, this function returns immediately</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Inst.Desc">inst.<span class="xdoc-id">getInstDesc</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Takes a decoded state structure and creates an Program.ROVInstanceDesc
+  for it. Also retrieves the label for the instance</span></span></a>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">staticIndex</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Instance.Desc" title="xdc.rov.Program.ROVInstanceDesc">Program.ROVInstanceDesc</a>*</i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The StateReader has three similar APIs for reading instance state:
+    fetchInstState 
+    fetchHandleState
+    getInstDesc</div>
+<div class="xdocText">fetchInstState takes an instance address and its index into the array of
+  static instances (or -1 if dynamic). This is called by fetchAllInstStates,
+  knows the index because it's iterating over the list.</div>
+<div class="xdocText">fetchHandleState just takes an instance address. It looks through the list
+  of instances to determine the index, then calls down to fetchInstState.
+  This API is called by Program.scanHandle.</div>
+<div class="xdocText">getInstDesc takes a decoded instance state structure and the index. Both
+  fetch functions ultimately call down to this API. It is also called
+  directly by Program.scanObject for scanning embedded objects.</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<a class="xdocAnchor" id="per-instance_config_parameters"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdocSynSum">Instance Config Parameters</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StateReader.html#per-instance_config_parameters">index URL</a></div>
+<p class="xdocHdrSummary"></p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> StateReader.<span class="xdoc-id">Params</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Instance config-params object</div>
+</div>
+<a class="xdocAnchor" id="per-instance_creation"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdocSynSum">Static Instance Creation</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StateReader.html#per-instance_creation">index URL</a></div>
+<p class="xdocHdrSummary"></p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> StateReader.<a class="xdoc-link" href="../../xdc/rov/StateReader.html#metaper-instance_config_parameters" title="xdc.rov.StateReader.Params">Params</a>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Allocate instance config-params</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>params.<i>config</i> = <b>&nbsp;&nbsp;...</b>
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Assign individual configs</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> inst = StateReader.<span class="xdoc-id">create</span>(<i><a class="xdoc-link" href="../../xdc/rov/ISymbolTable.html#.Instance" title="xdc.rov.ISymbolTable.Instance">ISymbolTable.Instance</a></i> <span class="xdoc-id">symTable</span>, <i><a class="xdoc-link" href="../../xdc/rov/StructureDecoder.html#.Instance" title="xdc.rov.StructureDecoder.Instance">StructureDecoder.Instance</a></i> <span class="xdoc-id">strDec</span>, params);
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Create an instance-object</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.All.Inst.States"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StateReader.</span><span class="xdoc-id">fetchAllInstStates</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StateReader.html#fetch.All.Inst.States">index URL</a></div>
+<p class="xdocHdrSummaryDcl">This function makes sure that all of the instance state structures for
+  this module have been scanned in. It does not call any view$init
+  functions</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">fetchAllInstStates</span>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Handle.State"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StateReader.</span><span class="xdoc-id">fetchHandleState</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StateReader.html#fetch.Handle.State">index URL</a></div>
+<p class="xdocHdrSummaryDcl">The fetchInstState API needs to know whether the given instance
+  is static or dynamic. If we just have a handle to an instance, we first
+  need to determine whether it is static or dynamic</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">fetchHandleState</span>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>, <i><span class="xdoc-kw2">Long</span></i> <span class="xdoc-id">instAddr</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Instance.Desc" title="xdc.rov.Program.ROVInstanceDesc">Program.ROVInstanceDesc</a>*</i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Inst.State"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StateReader.</span><span class="xdoc-id">fetchInstState</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StateReader.html#fetch.Inst.State">index URL</a></div>
+<p class="xdocHdrSummaryDcl">This function scans in a single instance's state, and associates
+  various metadata (used by the view$init functions) with the instance
+  object.
+  Returns the inst object for Program.scanHandle</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">fetchInstState</span>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>, <i><span class="xdoc-kw2">Long</span></i> <span class="xdoc-id">instAddr</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">staticIndex</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Instance.Desc" title="xdc.rov.Program.ROVInstanceDesc">Program.ROVInstanceDesc</a>*</i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Module.State"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StateReader.</span><span class="xdoc-id">fetchModuleState</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StateReader.html#fetch.Module.State">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Scans the given module's module state structure. If the structure has 
+  already been scanned, this function returns immediately</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">fetchModuleState</span>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Inst.Desc"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">StateReader.</span><span class="xdoc-id">getInstDesc</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StateReader.html" title="module StateReader"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/StateReader.html#get.Inst.Desc">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Takes a decoded state structure and creates an Program.ROVInstanceDesc
+  for it. Also retrieves the label for the instance</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">getInstDesc</span>(<i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Module.Desc" title="xdc.rov.Program.ROVModuleDesc">Program.ROVModuleDesc</a>*</i> <span class="xdoc-id">mod</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>, <i><span class="xdoc-kw2">Int</span></i> <span class="xdoc-id">staticIndex</span>) <i>returns</i> <i><a class="xdoc-link" href="../../xdc/rov/Program.html#.R.O.V.Instance.Desc" title="xdc.rov.Program.ROVInstanceDesc">Program.ROVInstanceDesc</a>*</i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:39 GMT</div>
+</div></div></body>
+</html>

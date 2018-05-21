@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.tools.product.trexgen.Main</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/*
+</span>     2    <span class="comment"> *  Copyright 2015 by Texas Instruments Incorporated.
+</span>     3    <span class="comment"> *
+</span>     4    <span class="comment"> */</span>
+     5    
+     6    <span class="xdoc">/*!
+</span>     7    <span class="xdoc"> *  ======== Main ========
+</span>     8    <span class="xdoc"> *  Command-line tool for generating projectspec files for RTSC content
+</span>     9    <span class="xdoc"> *
+</span>    10    <span class="xdoc"> *  The `trexgen` tool allows RTSC content producers to
+</span>    11    <span class="xdoc"> *  create projectspec files that allow their content to be
+</span>    12    <span class="xdoc"> *  integrated in the CCS Resource Explorer environment. As input,
+</span>    13    <span class="xdoc"> *  the tool requires
+</span>    14    <span class="xdoc"> *  <b>@p(blist)</b>
+</span>    15    <span class="xdoc"> *      - a RTSC module implementing {<b>@link</b> xdc.tools.product.IProduct}
+</span>    16    <span class="xdoc"> *  <b>@p</b>
+</span>    17    <span class="xdoc"> *  Refer to {<b>@link</b> ./doc-files/ExampleProduct.xdc ExampleProduct}
+</span>    18    <span class="xdoc"> *  for an implementation of {<b>@link</b> xdc.tools.product.IProduct IProduct}.
+</span>    19    <span class="xdoc"> *
+</span>    20    <span class="xdoc"> *  The tool generates starter examples that will show up
+</span>    21    <span class="xdoc"> *  in the Resource explorer. This is accomplished by implementing
+</span>    22    <span class="xdoc"> *  {<b>@link</b> xdc.tools.product.IProductTemplate IProductTemplate} and setting
+</span>    23    <span class="xdoc"> *  the {<b>@link</b> xdc.tools.product.IProduct#templateModule templateModule}
+</span>    24    <span class="xdoc"> *  configuration parameter of the {<b>@link</b> xdc.tools.product.IProduct IProduct}
+</span>    25    <span class="xdoc"> *  implementation to the name of the implementation module.
+</span>    26    <span class="xdoc"> *  Refer to {<b>@link</b> ./doc-files/Examples.xdc Examples}
+</span>    27    <span class="xdoc"> *  for a sample implementation of {<b>@link</b>
+</span>    28    <span class="xdoc"> *  xdc.tools.product.IProductTemplate IProductTemplate}.
+</span>    29    <span class="xdoc"> *
+</span>    30    <span class="xdoc"> *  The tool operates on a product that is either specified by the `-p`
+</span>    31    <span class="xdoc"> *  option or is present in the folder from which the tool is executed.
+</span>    32    <span class="xdoc"> *  The tool will create the resources sub-folder in the output directory
+</span>    33    <span class="xdoc"> *  specified with `-o` option. If the `-o`
+</span>    34    <span class="xdoc"> *  option is not specified the resources is created in the product root
+</span>    35    <span class="xdoc"> *  directory.
+</span>    36    <span class="xdoc"> *
+</span>    37    <span class="xdoc"> *  The tool will search the repositories specified in the module
+</span>    38    <span class="xdoc"> *  implementing {<b>@link</b> xdc.tools.product.IProduct} for RTSC platforms.
+</span>    39    <span class="xdoc"> *  This search can be disabled by specifying the`--disable_repo_search`
+</span>    40    <span class="xdoc"> *  option. The user needs to ensure that the repositories are installed
+</span>    41    <span class="xdoc"> *  in the product root directory before using the tool.
+</span>    42    <span class="xdoc"> *
+</span>    43    <span class="xdoc"> *  <b>@a(Example)</b>
+</span>    44    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    45    <span class="xdoc"> *      xs xdc.tools.product.trexgen
+</span>    46    <span class="xdoc"> *                      -p exampleprod_1_0_0_00
+</span>    47    <span class="xdoc"> *                      -m xdc.tools.product.plugingen.examples.ExampleProduct
+</span>    48    <span class="xdoc"> *  <b>@p</b>
+</span>    49    <span class="xdoc"> */</span>
+    50    <span class=key>metaonly</span> <span class=key>module</span> Main <span class=key>inherits</span> xdc.tools.ICmd
+    51    {
+    52        <span class=key>override</span> <span class=key>config</span> String usage[] = [
+    53            <span class="string">'[-p product_root_directory]'</span>,
+    54            <span class="string">' -m module'</span>,
+    55            <span class="string">'[-o outdir]'</span>
+    56        ];
+    57    
+    58    <span class=key>instance</span>:
+    59    
+    60        <span class="xdoc">/*!
+</span>    61    <span class="xdoc">     *  ======== productDir ========
+</span>    62    <span class="xdoc">     *  Product root directory
+</span>    63    <span class="xdoc">     *
+</span>    64    <span class="xdoc">     *  This option names the product root directory that is used by the
+</span>    65    <span class="xdoc">     *  tool to generate the projectspec files.  For example, it's declared
+</span>    66    <span class="xdoc">     *  repositories are added to the package path and are searched for
+</span>    67    <span class="xdoc">     *  contributed platforms.
+</span>    68    <span class="xdoc">     *
+</span>    69    <span class="xdoc">     *  If the '-o' option is not specified, the tool generates the resources
+</span>    70    <span class="xdoc">     *  directory in the product root directory.
+</span>    71    <span class="xdoc">     *
+</span>    72    <span class="xdoc">     *  If this option is not specified, the product root directory is
+</span>    73    <span class="xdoc">     *  assumed to be `./`.
+</span>    74    <span class="xdoc">     *
+</span>    75    <span class="xdoc">     */</span>
+    76        @CommandOption(<span class="string">"p"</span>)
+    77        <span class=key>config</span> String productDir = <span class="string">"./"</span>;
+    78    
+    79        <span class="xdoc">/*!
+</span>    80    <span class="xdoc">     *  ======== productModule ========
+</span>    81    <span class="xdoc">     *  Input description of the plug-in to be specified
+</span>    82    <span class="xdoc">     *
+</span>    83    <span class="xdoc">     *  This required option names a module that implements
+</span>    84    <span class="xdoc">     *  `{<b>@link</b> xdc.tools.product.IProduct}`.
+</span>    85    <span class="xdoc">     */</span>
+    86        @CommandOption(<span class="string">"m"</span>)
+    87        <span class=key>config</span> String productModule;
+    88    
+    89        <span class="xdoc">/*!
+</span>    90    <span class="xdoc">     *  ======== outputDir ========
+</span>    91    <span class="xdoc">     *  Output directory in which the plugin will be generated.
+</span>    92    <span class="xdoc">     *
+</span>    93    <span class="xdoc">     *  This option names the directory in which the project spec
+</span>    94    <span class="xdoc">     *  will be generated in a sub-directory named `eclipse`.
+</span>    95    <span class="xdoc">     *  If this option is not specified the tool will generate
+</span>    96    <span class="xdoc">     *  the plugin in the product root directory specified with
+</span>    97    <span class="xdoc">     *  the '-p' option.
+</span>    98    <span class="xdoc">     */</span>
+    99        @CommandOption(<span class="string">"o"</span>)
+   100        <span class=key>config</span> String outputDir = <span class=key>null</span>;
+   101    
+   102        <span class="xdoc">/*!
+</span>   103    <span class="xdoc">     *  ======== generationFormat ========
+</span>   104    <span class="xdoc">     *  Plugin generation format
+</span>   105    <span class="xdoc">     */</span>
+   106        @CommandOption(<span class="string">"generation_format"</span>)
+   107        <span class=key>config</span> String generationFormat = <span class=key>null</span>;
+   108    
+   109        <span class="xdoc">/*!
+</span>   110    <span class="xdoc">     *  ======== run ========
+</span>   111    <span class="xdoc">     */</span>
+   112        <span class=key>override</span> Any run(xdc.tools.Cmdr.Instance cmdr, String args[]);
+   113    }
+   114    <span class="comment">/*
+</span>   115    <span class="comment"> *  @(#) xdc.tools.product.trexgen; 1, 0, 0,68; 12-8-2015 17:33:51; /db/ztree/library/trees/xdctools/xdctools-g03x/src/
+</span>   116    <span class="comment"> */</span>
+   117    
+</pre>
+</body></html>

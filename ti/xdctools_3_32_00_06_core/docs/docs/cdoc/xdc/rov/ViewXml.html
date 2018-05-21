@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>module xdc.rov.ViewXml</title>
+<meta name="description" content="This module sits on top of the ROV core to convert ROV views into XML. This is useful for test scripts and command-line based ROV tools">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.rov.</span><span class="xdoc-id">ViewXml</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewInfo.html" title="module ViewInfo"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/package.html" title="package xdc.rov"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewXml.html">index URL</a></div>
+<p class="xdocHdrSummary">This module sits on top of the ROV core to convert ROV views into
+  XML. This is useful for test scripts and command-line based ROV tools</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/rov/ViewXml-src.html"><span class="xdocLabelFile">xdc/rov/ViewXml.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> ViewXml = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.rov.ViewXml'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#list.Modules">ViewXml.<span class="xdoc-id">listModules</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Returns the list of modules in XML form</span></span></a>() <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#process.Command">ViewXml.<span class="xdoc-id">processCommand</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;This API allows the client to interact with the ROV core and retrieve
+  ROV views</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">cmd</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#retrieve.View">ViewXml.<span class="xdoc-id">retrieveView</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Retrieves the view in XML form for the given module and tab</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="list.Modules"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">ViewXml.</span><span class="xdoc-id">listModules</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewXml.html" title="module ViewXml"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewXml.html#list.Modules">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Returns the list of modules in XML form</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>ViewXml.<span class="xdoc-id">listModules</span>() <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="process.Command"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">ViewXml.</span><span class="xdoc-id">processCommand</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewXml.html" title="module ViewXml"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewXml.html#process.Command">index URL</a></div>
+<p class="xdocHdrSummaryDcl">This API allows the client to interact with the ROV core and retrieve
+  ROV views</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>ViewXml.<span class="xdoc-id">processCommand</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">cmd</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">It takes String commands of the following forms.
+  1. "lm" - List Modules. 
+     This returns an XML list of all of the modules in the executable's
+     configuration and the views they support.
+  2. "m &lt;module name&gt; &lt;tab name&gt;" - Retrieve tab view for module.
+  3. "cc" - Clear cache.
+     This command clears the ROV core's cache of views. This command
+     should be sent whenever the target state changes.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="retrieve.View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">ViewXml.</span><span class="xdoc-id">retrieveView</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewXml.html" title="module ViewXml"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewXml.html#retrieve.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Retrieves the view in XML form for the given module and tab</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>ViewXml.<span class="xdoc-id">retrieveView</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">modName</span>, <i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">tabName</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:39 GMT</div>
+</div></div></body>
+</html>

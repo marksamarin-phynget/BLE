@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.rov.Model</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    <span class="xdoc">/*!
+</span>    13    <span class="xdoc"> *  ======== Model ========
+</span>    14    <span class="xdoc"> *  The ROV Model is the core of ROV. The Model must be started in order to
+</span>    15    <span class="xdoc"> *  retrieve ROV views for any modules.
+</span>    16    <span class="xdoc"> *
+</span>    17    <span class="xdoc"> *  The Model has a compatibility key. Any changes or additions to the public
+</span>    18    <span class="xdoc"> *  interfaces of the ROV core will result in a bump of the model version 
+</span>    19    <span class="xdoc"> *  number.
+</span>    20    <span class="xdoc"> */</span>
+    21    <span class=key>metaonly</span> <span class=key>module</span> Model {
+    22    
+    23        <span class="xdoc">/*!
+</span>    24    <span class="xdoc">     *  ======== vers ========
+</span>    25    <span class="xdoc">     *  ROV API version number
+</span>    26    <span class="xdoc">     *  
+</span>    27    <span class="xdoc">     *  Model.start will throw an exception if the version parameter does not
+</span>    28    <span class="xdoc">     *  equal the Model's current version. The version number is changed based
+</span>    29    <span class="xdoc">     *  on modifications to the public APIs (in xdc.rov.Program) that would
+</span>    30    <span class="xdoc">     *  potentially break compatibility with clients.
+</span>    31    <span class="xdoc">     *
+</span>    32    <span class="xdoc">     *  This allows the Model to verify compatibility with its client. 
+</span>    33    <span class="xdoc">     */</span>
+    34        <span class=key>config</span> Int vers = 4;
+    35        
+    36        <span class="xdoc">/*!
+</span>    37    <span class="xdoc">     *  ======== start ========
+</span>    38    <span class="xdoc">     *  Start the ROV Model
+</span>    39    <span class="xdoc">     *
+</span>    40    <span class="xdoc">     *  The ROV Model requires instances of an ISymbolTable, an IMemoryImage, 
+</span>    41    <span class="xdoc">     *  and an ICallBack. It also requires the ROV recap file, which can be
+</span>    42    <span class="xdoc">     *  located using the xdc.rov.Recap module.
+</span>    43    <span class="xdoc">     *
+</span>    44    <span class="xdoc">     *  <b>@param(vers)</b> Model.start will throw an exception if the version
+</span>    45    <span class="xdoc">     *                parameter does not equal the Model's current
+</span>    46    <span class="xdoc">     *                `{<b>@link</b> #vers version}`. 
+</span>    47    <span class="xdoc">     *
+</span>    48    <span class="xdoc">     *  <b>@param(recap)</b> Capsule of the ROV recap file. Retrieve this with
+</span>    49    <span class="xdoc">     *                `xdc.loadCapsule(recapFilePath)`.
+</span>    50    <span class="xdoc">     *
+</span>    51    <span class="xdoc">     *  <b>@param(executable)</b> The path to the executable file
+</span>    52    <span class="xdoc">     *
+</span>    53    <span class="xdoc">     *  <b>@param(sym)</b>        an object that implements the xdc.rov.ISymbolTable
+</span>    54    <span class="xdoc">     *                     interface used to read symbols defined by the
+</span>    55    <span class="xdoc">     *                     executable
+</span>    56    <span class="xdoc">     *
+</span>    57    <span class="xdoc">     *  <b>@param(mem)</b>        an object that implements the xdc.rov.IMemoryImage
+</span>    58    <span class="xdoc">     *                     interface used to read target memory
+</span>    59    <span class="xdoc">     *
+</span>    60    <span class="xdoc">     *  <b>@param(callBack)</b>   an object that implements the xdc.rov.ICallback
+</span>    61    <span class="xdoc">     *                     interface used to report progress status
+</span>    62    <span class="xdoc">     */</span>
+    63        Void start(Int vers, String executable, Any recap, 
+    64                   ISymbolTable.Instance sym, Any mem, 
+    65                   ICallBack.Instance callBack);
+    66    
+    67        <span class="comment">/*
+</span>    68    <span class="comment">     *  ======== getICallStackInst ========
+</span>    69    <span class="comment">     *  Called by clients to get the optional call stack parser.
+</span>    70    <span class="comment">     *
+</span>    71    <span class="comment">     *  Returns `null` in the event that there is no call stack parser; i.e.,
+</span>    72    <span class="comment">     *  there is no implementation of this functionality in the current
+</span>    73    <span class="comment">     *  `{@link Model}` context.
+</span>    74    <span class="comment">     */</span>
+    75        ICallStack.Instance getICallStackInst();
+    76    
+    77        <span class="xdoc">/*!
+</span>    78    <span class="xdoc">     *  ======== setICallStackInst ========
+</span>    79    <span class="xdoc">     *  Called only during Model initialization
+</span>    80    <span class="xdoc">     *
+</span>    81    <span class="xdoc">     *  This method is called to "bind" an optional stack call stack parser
+</span>    82    <span class="xdoc">     *  and is called by the same client that calls 
+</span>    83    <span class="xdoc">     * `{<b>@link</b> #start Model.start()}`.
+</span>    84    <span class="xdoc">     */</span>
+    85        <span class=key>void</span> setICallStackInst(ICallStack.Instance cs);
+    86        
+    87        <span class="xdoc">/*!
+</span>    88    <span class="xdoc">     *  ======== getISymbolTableInst ========
+</span>    89    <span class="xdoc">     */</span>
+    90        ISymbolTable.Instance getISymbolTableInst();
+    91    
+    92        <span class="xdoc">/*!
+</span>    93    <span class="xdoc">     *  ======== getMemoryImageInst ========
+</span>    94    <span class="xdoc">     */</span>
+    95        <span class=key>function</span> getMemoryImageInst();
+    96        
+    97        <span class="xdoc">/*!
+</span>    98    <span class="xdoc">     *  ======== getICallBackInst ========
+</span>    99    <span class="xdoc">     */</span>
+   100        ICallBack.Instance getICallBackInst();
+   101        
+   102        <span class="xdoc">/*!
+</span>   103    <span class="xdoc">     *  ======== getIOFReaderInst ========
+</span>   104    <span class="xdoc">     */</span>
+   105        <span class=key>function</span> getIOFReaderInst();
+   106    
+   107        <span class="xdoc">/*!
+</span>   108    <span class="xdoc">     *  ======== getModuleList ========
+</span>   109    <span class="xdoc">     */</span>
+   110        Any getModuleList();
+   111    }
+   112    <span class="comment">/*
+</span>   113    <span class="comment"> *  @(#) xdc.rov; 1, 0, 1,0; 12-9-2015 17:36:22; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>   114    <span class="comment"> */</span>
+   115    
+</pre>
+</body></html>

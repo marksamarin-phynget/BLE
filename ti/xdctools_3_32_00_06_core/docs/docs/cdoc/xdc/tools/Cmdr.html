@@ -1,0 +1,417 @@
+<html>
+<head>
+<title>module xdc.tools.Cmdr</title>
+<meta name="description" content="Command line tool context">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.tools.</span><span class="xdoc-id">Cmdr</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/ICmd.html" title="interface ICmd"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/package.html" title="package xdc.tools"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html">index URL</a></div>
+<p class="xdocHdrSummary">Command line tool context</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/tools/Cmdr-src.html"><span class="xdocLabelFile">xdc/tools/Cmdr.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> Cmdr = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.tools.Cmdr'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><i>values of type <a class="xdocSynGo" href="#.Context">Cmdr.<span class="xdoc-id">Context</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.Context" title="xdc.tools.Cmdr.Context">Cmdr.<span class="xdoc-id">SHELL</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.Context" title="xdc.tools.Cmdr.Context">Cmdr.<span class="xdoc-id">SCRIPT</span></a>;
+</div>
+<div class='xdocSynHdr'>per-instance config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> Cmdr.<a class="xdocSynGo" href="#per-instance_config_parameters"><span class="xdoc-id">Params</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Instance config-params object</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>params.<a class="xdocSynGo" href="#tid"><span class="xdoc-id">tid</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;</span></span></a> = <i><span class="xdoc-kw2">Int</span></i> 0;
+</div>
+<div class='xdocSynHdr'>per-instance creation</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> inst = Cmdr.<a class="xdocSynGo" href="#per-instance_creation"><span class="xdoc-id">create</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Create an instance-object</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">cmdmod</span>, params);
+</div>
+<div class='xdocSynHdr'>per-instance functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#error">inst.<span class="xdoc-id">error</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Throw an error exception with the specified message</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#getopts">inst.<span class="xdoc-id">getopts</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Parse command-line arguments into config params</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">inst</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">args</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#info">inst.<span class="xdoc-id">info</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Output informational message to stdout</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#time">inst.<span class="xdoc-id">time</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Output elapsed time since command start to stderr</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#usage">inst.<span class="xdoc-id">usage</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Output command usage message to stderr</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#verbose">inst.<span class="xdoc-id">verbose</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Set verbose flag as specified</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">flag</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#warning">inst.<span class="xdoc-id">warning</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Output specified warning message to stderr</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Context"></a>
+<a class="xdocAnchor" id=".S.H.E.L.L"></a>
+<a class="xdocAnchor" id=".S.C.R.I.P.T"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">enum</span> <span class="xdoc-id">Cmdr.</span><span class="xdoc-id">Context</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#.Context">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><i>values of type Cmdr.<span class="xdoc-id">Context</span></i>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> Cmdr.<span class="xdoc-id">SHELL</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> Cmdr.<span class="xdoc-id">SCRIPT</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="per-instance_config_parameters"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdocSynSum">Instance Config Parameters</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#per-instance_config_parameters">index URL</a></div>
+<p class="xdocHdrSummary"></p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> Cmdr.<span class="xdoc-id">Params</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Instance config-params object</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>params.<span class="xdoc-id">tid</span> = <i><span class="xdoc-kw2">Int</span></i> 0;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="tid"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">Cmdr.Params.</span><span class="xdoc-id">tid</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#tid">index URL</a></div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> Cmdr.<span class="xdoc-id">Params</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>params.<span class="xdoc-id">tid</span> = <i><span class="xdoc-kw2">Int</span></i> 0;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="per-instance_creation"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdocSynSum">Static Instance Creation</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#per-instance_creation">index URL</a></div>
+<p class="xdocHdrSummary"></p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> Cmdr.<a class="xdoc-link" href="../../xdc/tools/Cmdr.html#metaper-instance_config_parameters" title="xdc.tools.Cmdr.Params">Params</a>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Allocate instance config-params</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>params.<i>config</i> = <b>&nbsp;&nbsp;...</b>
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Assign individual configs</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> inst = Cmdr.<span class="xdoc-id">create</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">cmdmod</span>, params);
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Create an instance-object</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="error"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Cmdr.</span><span class="xdoc-id">error</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#error">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Throw an error exception with the specified message</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">error</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">If <tt>msg</tt> is null or the empty string (""), the message
+  <tt>"fatal error"</tt> is used.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="getopts"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Cmdr.</span><span class="xdoc-id">getopts</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#getopts">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Parse command-line arguments into config params</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">getopts</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">inst</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">args</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">inst</span>
+<span class="xdocChildSum">&#151;&nbsp;instance with config parameters to set</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">args</span>
+<span class="xdocChildSum">&#151;&nbsp;an array of command-line arguments</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This function accepts an array of command-line arguments, and
+  uses them to set the values of config parameters in a module
+  instance. Parsing is controlled by the XDC declarations of the
+  instance config params.</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">USAGE</div>
+<div class="xdocText">The following command-line argument syntaxes are supported,
+  following the syntax supported by GNU getopt() and getopt_long():</div>
+<div class="xdocText"><PRE class="Example">    -f                a boolean flag with short name
+    -f value          a number or string with short name
+    -fvalue
+    -f=value
+    --longname        a boolean flag with long name
+    --longname value  a number or string with long name
+    --longname=value  a number or string with long name
+</PRE></div>
+<div class="xdocText">In addition the following non-standard syntaxes are supported:</div>
+<div class="xdocText"><PRE class="Example">    -f:value
+    --longnamevalue
+    --longname:value
+</PRE></div>
+<span id="xdoc-sect-4"></span>
+<div class="xdocSect">DECLARATION</div>
+<div class="xdocText">The long and short names of the config parameter are declared
+  by the @CommandOption() attribute of the XDC spec language. For
+  example to declare a boolean flag with a short name of "-f" and
+  a long name of "--flag", and a default value of false:</div>
+<div class="xdocText"><PRE class="Example">     @ CommandOption("f,flag")
+     config Bool myFlag = false;
+</PRE></div>
+<div class="xdocText">Options of type Bool with no argument are assigned the value
+  "true". The types String and Int can also be used, and always
+  require an argument to be given on the command line.</div>
+<span id="xdoc-sect-5"></span>
+<div class="xdocSect">COMBINING SHORT FLAGS</div>
+<div class="xdocText">Short-name options can be combined on the command line where there
+  is no ambiguity, for example the following usages are equivalent:</div>
+<div class="xdocText"><PRE class="Example">    -a -b -c -f filename
+    -abcf filename
+</PRE></div>
+<span id="xdoc-sect-6"></span>
+<div class="xdocSect">MULTIPLE OCCURRENCES</div>
+<div class="xdocText">If the config param is declared as an array, the option may
+  be used multiple times on the command line and each occurence
+  will be recorded. For example the following records all -I
+  options, in order:</div>
+<div class="xdocText"><PRE class="Example">    @ CommandOption("I")
+    config String includeDirs[] = [];
+</PRE></div>
+<span id="xdoc-sect-7"></span>
+<div class="xdocSect">REQUIRED OPTIONS</div>
+<div class="xdocText">If the config param has no default value declared, then it
+  is required on the command line.</div>
+<span id="xdoc-sect-8"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">The following return values are used to determine whether or not to
+  proceed with the command and, if not, what the exit status of the
+  command should be.</div>
+<div class="xdocText"><DL><DT> <tt>undefined</tt></DT><DD>
+        the command options have been successfully parsed and the 
+        command should be run.
+</DD><DT> <tt>0</tt> (zero)</DT><DD>
+        the command options have been successfully parsed and the 
+        command does not need to be run and should exit with a
+        successful exit status (0).
+</DD><DT> non-zero integral value</DT><DD>
+        an error occured in the parsing the options and the 
+        command should not be run and should exit with a non-zero
+        exit status.
+      
+</DD></DL></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="info"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Cmdr.</span><span class="xdoc-id">info</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#info">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Output informational message to stdout</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">info</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="time"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Cmdr.</span><span class="xdoc-id">time</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#time">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Output elapsed time since command start to stderr</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">time</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="usage"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Cmdr.</span><span class="xdoc-id">usage</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#usage">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Output command usage message to stderr</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">usage</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">If <tt>msg</tt> is defined and non-empty, the command name and <tt>msg</tt> are
+  output before the usage information.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="verbose"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Cmdr.</span><span class="xdoc-id">verbose</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#verbose">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Set verbose flag as specified</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">verbose</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">flag</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="warning"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Cmdr.</span><span class="xdoc-id">warning</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/tools/Cmdr.html" title="module Cmdr"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/tools/Cmdr.html#warning">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Output specified warning message to stderr</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>inst.<span class="xdoc-id">warning</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">msg</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:46 GMT</div>
+</div></div></body>
+</html>

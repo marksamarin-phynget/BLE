@@ -1,0 +1,627 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.rov.Program</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    
+    13    <span class="xdoc">/*!
+</span>    14    <span class="xdoc"> *  ======== Program ========
+</span>    15    <span class="xdoc"> *  Root object for the ROV model
+</span>    16    <span class="xdoc"> *
+</span>    17    <span class="xdoc"> *  This module is the main access point for all ROV operations.
+</span>    18    <span class="xdoc"> *  The Program APIs are used to retrieve the views for the
+</span>    19    <span class="xdoc"> *  requested modules.
+</span>    20    <span class="xdoc"> */</span>
+    21    <span class=key>metaonly</span> <span class=key>module</span> Program {
+    22    
+    23        <span class="xdoc">/*!
+</span>    24    <span class="xdoc">     *  ======== FetchDesc ========
+</span>    25    <span class="xdoc">     *  Description of data to fetch
+</span>    26    <span class="xdoc">     *
+</span>    27    <span class="xdoc">     *  A FetchDesc object is required as the first argument of the
+</span>    28    <span class="xdoc">     *  `{<b>@link</b> #fetchStruct}` and `{<b>@link</b> #fetchArray}` methods.
+</span>    29    <span class="xdoc">     *  The FetchDesc tells ROV the type of the data to be
+</span>    30    <span class="xdoc">     *  fetched so it knows how much data to read and how to decode it.
+</span>    31    <span class="xdoc">     *
+</span>    32    <span class="xdoc">     *  Every reference-type field in a state structure has a FetchDesc
+</span>    33    <span class="xdoc">     *  generated for it, with the name `&lt;field name&gt;$fetchDesc`.
+</span>    34    <span class="xdoc">     *
+</span>    35    <span class="xdoc">     *  For example, the instance structure
+</span>    36    <span class="xdoc">     *  <b>@p(code)</b>
+</span>    37    <span class="xdoc">     *      struct Instance_State {
+</span>    38    <span class="xdoc">     *          Char stack[];
+</span>    39    <span class="xdoc">     *      ];
+</span>    40    <span class="xdoc">     *  <b>@p</b>
+</span>    41    <span class="xdoc">     *  will have defined `obj.stack$fetchDesc`, which can be used to fetch
+</span>    42    <span class="xdoc">     *  the array:
+</span>    43    <span class="xdoc">     *  <b>@p(code)</b>
+</span>    44    <span class="xdoc">     *      var data = Program.fetchArray(obj.stack$fetchDesc, obj.stack, len);
+</span>    45    <span class="xdoc">     *  <b>@p</b>
+</span>    46    <span class="xdoc">     *
+</span>    47    <span class="xdoc">     *  <b>@field(type)</b>     the fully qualified name of a specified type; i.e.,
+</span>    48    <span class="xdoc">     *                   a type declared in some .xdc file.  For example,
+</span>    49    <span class="xdoc">     *                   "xdc.runtime.Types.Timestamp64".
+</span>    50    <span class="xdoc">     *  <b>@field(isScalar)</b> if fetching an array, are the elements of the array
+</span>    51    <span class="xdoc">     *                   really just one of the "scalar structs" defined by
+</span>    52    <span class="xdoc">     *                   xdc.rov.support.ScalarStructs.
+</span>    53    <span class="xdoc">     *  
+</span>    54    <span class="xdoc">     *  <b>@see</b> #fetchStruct
+</span>    55    <span class="xdoc">     *  <b>@see</b> #fetchArray
+</span>    56    <span class="xdoc">     */</span>
+    57        <span class=key>metaonly</span> <span class=key>struct</span> FetchDesc {
+    58            String type;
+    59            Bool   isScalar;
+    60        }
+    61        
+    62        <span class="xdoc">/*!
+</span>    63    <span class="xdoc">     *  ======== InstDataView ========
+</span>    64    <span class="xdoc">     *  Instance view data returned from a scan
+</span>    65    <span class="xdoc">     *
+</span>    66    <span class="xdoc">     *  <b>@see</b> #scanInstanceDataView
+</span>    67    <span class="xdoc">     */</span>
+    68        <span class=key>metaonly</span> <span class=key>struct</span> InstDataView {
+    69            String label;
+    70            Any    elements[];
+    71        }
+    72        
+    73        <span class="xdoc">/*!
+</span>    74    <span class="xdoc">     *  ======== InstDataViewArr ========
+</span>    75    <span class="xdoc">     *  Array of all instance view data objects
+</span>    76    <span class="xdoc">     *
+</span>    77    <span class="xdoc">     *  <b>@see</b> #scanInstanceDataView
+</span>    78    <span class="xdoc">     */</span>
+    79        <span class=key>typedef</span> InstDataView InstDataViewArr[];
+    80    
+    81        <span class="xdoc">/*!
+</span>    82    <span class="xdoc">     *  ======== ModDataView ========
+</span>    83    <span class="xdoc">     *  Module view data returned from a scan
+</span>    84    <span class="xdoc">     *
+</span>    85    <span class="xdoc">     *  <b>@see</b> #scanModuleDataView
+</span>    86    <span class="xdoc">     */</span>
+    87        <span class=key>metaonly</span> <span class=key>struct</span> ModDataView {
+    88            Any elements[];
+    89        }
+    90    
+    91        <span class="xdoc">/*!
+</span>    92    <span class="xdoc">     *  ======== TreeNode ========
+</span>    93    <span class="xdoc">     *  Node for a generic "tree table" view
+</span>    94    <span class="xdoc">     *
+</span>    95    <span class="xdoc">     *  <b>@see</b> #scanTreeTableView
+</span>    96    <span class="xdoc">     *  <b>@see</b> ViewInfo#TREE_TABLE
+</span>    97    <span class="xdoc">     */</span>
+    98        <span class=key>metaonly</span> <span class=key>struct</span> TreeNode {
+    99            String   label;
+   100            TreeNode children[];
+   101            Any      properties[];
+   102        }
+   103        
+   104        <span class="xdoc">/*!
+</span>   105    <span class="xdoc">     *  ======== TreeNodeArr ========
+</span>   106    <span class="xdoc">     *  Array of tree table nodes
+</span>   107    <span class="xdoc">     *  
+</span>   108    <span class="xdoc">     *  <b>@see</b> #scanTreeTableView
+</span>   109    <span class="xdoc">     *  <b>@see</b> ViewInfo#TREE_TABLE
+</span>   110    <span class="xdoc">     */</span>
+   111        <span class=key>typedef</span> TreeNode TreeNodeArr[];
+   112        
+   113        <span class="xdoc">/*!
+</span>   114    <span class="xdoc">     *  ========= RawView ========
+</span>   115    <span class="xdoc">     *  Raw module view
+</span>   116    <span class="xdoc">     *
+</span>   117    <span class="xdoc">     *  This is the structure returned by the `{<b>@link</b> scanRawView}` method.
+</span>   118    <span class="xdoc">     *  It contains the module's state, the instance states, and the module
+</span>   119    <span class="xdoc">     *  configuration fields and values.
+</span>   120    <span class="xdoc">     */</span>
+   121        <span class=key>metaonly</span> <span class=key>struct</span> RawView {
+   122            Any modState;
+   123            Any instStates[];
+   124            Any modCfg;
+   125        }
+   126        
+   127        <span class="comment">/* -------- Scan Functions -------- */</span>
+   128        
+   129        <span class="xdoc">/*! 
+</span>   130    <span class="xdoc">     *  ======== scanInstanceView ========
+</span>   131    <span class="xdoc">     *  Retrieve the instance-type views for a module
+</span>   132    <span class="xdoc">     *
+</span>   133    <span class="xdoc">     *  Returns an array of Instance_View structures, each structure 
+</span>   134    <span class="xdoc">     *  representing an instance of the module.
+</span>   135    <span class="xdoc">     *
+</span>   136    <span class="xdoc">     *  <b>@param(modName)</b>  Full module name to return the views for.
+</span>   137    <span class="xdoc">     *  <b>@param(tabName)</b>  Name of the tab to retrieve the views for.
+</span>   138    <span class="xdoc">     *
+</span>   139    <span class="xdoc">     *  <b>@a(Returns)</b>  Array of Instance_View structures, one for each isntance.
+</span>   140    <span class="xdoc">     */</span>
+   141        Any scanInstanceView(String modName, String tabName);
+   142        
+   143        <span class="xdoc">/*!
+</span>   144    <span class="xdoc">     *  ======== scanModuleView ========
+</span>   145    <span class="xdoc">     *  Retrieve module-type view for a module.
+</span>   146    <span class="xdoc">     *
+</span>   147    <span class="xdoc">     *  <b>@param(modName)</b>  Full module name to return the view for.
+</span>   148    <span class="xdoc">     *  <b>@param(tabName)</b>  Name of the tab to retreive the view for.
+</span>   149    <span class="xdoc">     *
+</span>   150    <span class="xdoc">     *  @(returns)  Module_View structure.
+</span>   151    <span class="xdoc">     */</span>
+   152        Any scanModuleView(String modName, String tabName);
+   153        
+   154        <span class="xdoc">/*!
+</span>   155    <span class="xdoc">     *  ======== scanInstanceDataView ========
+</span>   156    <span class="xdoc">     *
+</span>   157    <span class="xdoc">     */</span>
+   158        InstDataViewArr scanInstanceDataView(String modName, String tabName);
+   159    
+   160        <span class="xdoc">/*!
+</span>   161    <span class="xdoc">     *  ======== scanModuleDataView ========
+</span>   162    <span class="xdoc">     *
+</span>   163    <span class="xdoc">     */</span>    
+   164        ModDataView scanModuleDataView(String modName, String tabName);
+   165        
+   166        <span class="xdoc">/*!
+</span>   167    <span class="xdoc">     *  ======== scanRawView ========
+</span>   168    <span class="xdoc">     *  Retrieve the raw view for a module.
+</span>   169    <span class="xdoc">     *
+</span>   170    <span class="xdoc">     *  <b>@param(modName)</b>  Full module name to return the raw view for.
+</span>   171    <span class="xdoc">     *
+</span>   172    <span class="xdoc">     *  @(returns) A RawView structure which contains the raw data.
+</span>   173    <span class="xdoc">     */</span>
+   174        RawView scanRawView(String modName);
+   175        
+   176        <span class="xdoc">/*!
+</span>   177    <span class="xdoc">     *  ======== scanTreeTableView ========
+</span>   178    <span class="xdoc">     */</span>
+   179        TreeNodeArr scanTreeTableView(String modName, String tabName);
+   180        
+   181        <span class="xdoc">/*!
+</span>   182    <span class="xdoc">     *  ======== scanTreeView ========
+</span>   183    <span class="xdoc">     */</span>
+   184        Any scanTreeView(String modName, String tabName);
+   185        
+   186        <span class="xdoc">/*!
+</span>   187    <span class="xdoc">     *  ======== scanHandle ========
+</span>   188    <span class="xdoc">     *  Scan single instance of a module
+</span>   189    <span class="xdoc">     *
+</span>   190    <span class="xdoc">     *  Used from a view$init function to scan a single instance of a 
+</span>   191    <span class="xdoc">     *  different module given that instance's address.
+</span>   192    <span class="xdoc">     *
+</span>   193    <span class="xdoc">     *  <b>@param(modName)</b>   Full module name to return the raw view for.
+</span>   194    <span class="xdoc">     *  <b>@param(instAddr)</b>  Address of instance to scan.
+</span>   195    <span class="xdoc">     *  <b>@param(tabName)</b>   Name of the tab to retrieve the view for.
+</span>   196    <span class="xdoc">     *  
+</span>   197    <span class="xdoc">     *  <b>@a(Returns)</b> An Instance_View object for the requested view.
+</span>   198    <span class="xdoc">     */</span>
+   199        Any scanHandleView(String modName, Ptr instAddr, String tabName);
+   200        
+   201        <span class="xdoc">/*! 
+</span>   202    <span class="xdoc">     *  ======== scanObjectView ========
+</span>   203    <span class="xdoc">     *  Scan view for an embedded object
+</span>   204    <span class="xdoc">     *
+</span>   205    <span class="xdoc">     *  Called from a view$init function to retrieve the specified view for
+</span>   206    <span class="xdoc">     *  an embedded object.
+</span>   207    <span class="xdoc">     *
+</span>   208    <span class="xdoc">     *  Since XDC has no way of knowing what embedded objects are present in
+</span>   209    <span class="xdoc">     *  a system, embedded objects do not appear in the list of a module's 
+</span>   210    <span class="xdoc">     *  instances until they have been scanned in this way. 
+</span>   211    <span class="xdoc">     *
+</span>   212    <span class="xdoc">     *  Calling Program.scanObjectView will not read any additional data from
+</span>   213    <span class="xdoc">     *  the target, since the state structure was already read as part of 
+</span>   214    <span class="xdoc">     *  reading it's parent structure.
+</span>   215    <span class="xdoc">     *
+</span>   216    <span class="xdoc">     *  <b>@param(modName)</b>  Full module name to return the view for.
+</span>   217    <span class="xdoc">     *  <b>@param(obj)</b>      Actual object to retrieve the view for.
+</span>   218    <span class="xdoc">     *  <b>@param(tabName)</b>  Name of the tab to retrieve the view for.
+</span>   219    <span class="xdoc">     *
+</span>   220    <span class="xdoc">     *  <b>@a(Returns)</b> An Instance_View object for the requested view.
+</span>   221    <span class="xdoc">     */</span>
+   222        Any scanObjectView(String modName, Any obj, String tabName);
+   223        
+   224    
+   225        <span class="comment">/* -------- Fetch Functions -------- */</span>
+   226        
+   227        <span class="xdoc">/*!
+</span>   228    <span class="xdoc">     *  ======== fetchStruct ========
+</span>   229    <span class="xdoc">     *  Retrieve the specified structure from the target
+</span>   230    <span class="xdoc">     *
+</span>   231    <span class="xdoc">     *  <b>@param(desc)</b>  Fetch descriptor for the structure, indicating the type
+</span>   232    <span class="xdoc">     *                of the structure.
+</span>   233    <span class="xdoc">     *  <b>@param(addr)</b>  Address of the structure to fetch.
+</span>   234    <span class="xdoc">     *  <b>@param(addrCheck)</b>  Optional, defaults to true. Indicates whether the
+</span>   235    <span class="xdoc">     *                     memory image should validate the read by comparing
+</span>   236    <span class="xdoc">     *                     the address to section information.
+</span>   237    <span class="xdoc">     *
+</span>   238    <span class="xdoc">     *  <b>@a(Returns)</b>  Returns the requested structure as a javascript object.
+</span>   239    <span class="xdoc">     */</span>
+   240        Any fetchStruct(FetchDesc desc, Ptr addr, Bool addrCheck = <span class=key>true</span>);
+   241        
+   242        <span class="xdoc">/*!
+</span>   243    <span class="xdoc">     *  ======== fetchArray ========
+</span>   244    <span class="xdoc">     *  Retrieve the specified array from the target
+</span>   245    <span class="xdoc">     *
+</span>   246    <span class="xdoc">     *  <b>@param(desc)</b>  Fetch descriptor for the array, indicating the type of
+</span>   247    <span class="xdoc">     *                data in the array.
+</span>   248    <span class="xdoc">     *  <b>@param(addr)</b>  Address of the array to fetch.
+</span>   249    <span class="xdoc">     *  <b>@param(length)</b>  The number of arrray elements to fetch.
+</span>   250    <span class="xdoc">     *  <b>@param(addrCheck)</b>  Optional, defaults to true. Indicates whether the
+</span>   251    <span class="xdoc">     *                     memory image should validate the read by comparing
+</span>   252    <span class="xdoc">     *                     the address to section information.
+</span>   253    <span class="xdoc">     *
+</span>   254    <span class="xdoc">     *  <b>@a(Returns)</b>  Returns a JavaScript array with the data in it.
+</span>   255    <span class="xdoc">     */</span>
+   256        Any fetchArray(FetchDesc desc, Ptr addr, Int len, Bool addrCheck = <span class=key>true</span>);
+   257        
+   258        <span class="xdoc">/*!
+</span>   259    <span class="xdoc">     *  ======== fetchString ========
+</span>   260    <span class="xdoc">     *  Retrieve a string from the target
+</span>   261    <span class="xdoc">     *
+</span>   262    <span class="xdoc">     *  <b>@param(addr)</b>  Address of the string.
+</span>   263    <span class="xdoc">     *  <b>@param(addrCheck)</b>  Optional, defaults to true. Indicates whether the
+</span>   264    <span class="xdoc">     *                     memory image should validate the read by comparing
+</span>   265    <span class="xdoc">     *                     the address to section information.
+</span>   266    <span class="xdoc">     *
+</span>   267    <span class="xdoc">     *  <b>@a(Returns)</b>  Requested string.
+</span>   268    <span class="xdoc">     */</span>
+   269        String fetchString(Ptr addr, Bool addrCheck = <span class=key>true</span>);
+   270        
+   271        <span class="xdoc">/*!
+</span>   272    <span class="xdoc">     *  ======== fetchStaticString ========
+</span>   273    <span class="xdoc">     *  Retrieves a static string from the executable.
+</span>   274    <span class="xdoc">     *
+</span>   275    <span class="xdoc">     *  This API makes use of an object file reader to improve the string
+</span>   276    <span class="xdoc">     *  reading performance--it reads the string from the file rather than
+</span>   277    <span class="xdoc">     *  performing a target memory read. For this reason, it should only be
+</span>   278    <span class="xdoc">     *  used on static strings and not dynamic ones.
+</span>   279    <span class="xdoc">     *
+</span>   280    <span class="xdoc">     *  <b>@param(addr)</b>  Address of the string.
+</span>   281    <span class="xdoc">     *
+</span>   282    <span class="xdoc">     *  <b>@a(Returns)</b>  Requested string.
+</span>   283    <span class="xdoc">     */</span>
+   284        String fetchStaticString(Ptr addr);
+   285        
+   286        <span class="xdoc">/*!
+</span>   287    <span class="xdoc">     *  ======== getModuleConfig ========
+</span>   288    <span class="xdoc">     *  Get a module's configuration state
+</span>   289    <span class="xdoc">     *
+</span>   290    <span class="xdoc">     *  Returns an object with all of the module configuration values used
+</span>   291    <span class="xdoc">     *  in configuring the application.
+</span>   292    <span class="xdoc">     *
+</span>   293    <span class="xdoc">     *  This object includes the common$ config params.
+</span>   294    <span class="xdoc">     *
+</span>   295    <span class="xdoc">     *  <b>@param(modName)</b>  Full module name to get the configs for.
+</span>   296    <span class="xdoc">     *  
+</span>   297    <span class="xdoc">     *  <b>@a(Returns)</b>  Object containing all of the module configs and
+</span>   298    <span class="xdoc">     *               their values.
+</span>   299    <span class="xdoc">     */</span>
+   300        Any getModuleConfig(String modName);
+   301        
+   302        <span class="xdoc">/*!
+</span>   303    <span class="xdoc">     *  ======== getPrivateData ========
+</span>   304    <span class="xdoc">     *  Retrieves module's private ROV data.
+</span>   305    <span class="xdoc">     *  
+</span>   306    <span class="xdoc">     *  This API returns an object which can be used to store private data
+</span>   307    <span class="xdoc">     *  across different ROV API calls. The object is reset at every
+</span>   308    <span class="xdoc">     *  breakpoint.
+</span>   309    <span class="xdoc">     *
+</span>   310    <span class="xdoc">     *  This object is also passed as the context to all view init functions,
+</span>   311    <span class="xdoc">     *  so it can also be accessed using 'this'. However, the context changes
+</span>   312    <span class="xdoc">     *  when you call other APIs in your module; that is when you will need
+</span>   313    <span class="xdoc">     *  this API. It can also be used to support metaonly APIs which are called
+</span>   314    <span class="xdoc">     *  by other modules.
+</span>   315    <span class="xdoc">     */</span>
+   316        Any getPrivateData(String modName);
+   317        
+   318        <span class="xdoc">/*!
+</span>   319    <span class="xdoc">     *  ======== lookupDataSymbol ========
+</span>   320    <span class="xdoc">     *  Lookup symbolic names for an address
+</span>   321    <span class="xdoc">     *
+</span>   322    <span class="xdoc">     *  Uses the ISymbolTable to look up the symbols at the given address.
+</span>   323    <span class="xdoc">     *
+</span>   324    <span class="xdoc">     *  This API is separate from lookupFuncName to address paging concerns.
+</span>   325    <span class="xdoc">     *  Use lookupFuncName to get function names (or any symbols in PROGRAM
+</span>   326    <span class="xdoc">     *  memory) and use lookupDataSymbol to get data symbols (for symbols in
+</span>   327    <span class="xdoc">     *  DATA memory).
+</span>   328    <span class="xdoc">     *
+</span>   329    <span class="xdoc">     *  <b>@param(addr)</b>  Address of symbols
+</span>   330    <span class="xdoc">     *
+</span>   331    <span class="xdoc">     *  <b>@a(Returns)</b>  Array of symbols at the requested address.
+</span>   332    <span class="xdoc">     */</span>
+   333        Any lookupDataSymbol(Int addr);
+   334    
+   335        <span class="xdoc">/*!
+</span>   336    <span class="xdoc">     *  ======== lookupFuncName ========
+</span>   337    <span class="xdoc">     *  Lookup function names for an address.
+</span>   338    <span class="xdoc">     *
+</span>   339    <span class="xdoc">     *  Uses the ISymbolTable to look up the symbols at the given address.
+</span>   340    <span class="xdoc">     *
+</span>   341    <span class="xdoc">     *  This API is separate from lookupDataSymbol to address paging concerns.
+</span>   342    <span class="xdoc">     *  Use lookupFuncName to get function names (or any symbols in PROGRAM
+</span>   343    <span class="xdoc">     *  memory) and use lookupDataSymbol to get data symbols (for symbols in
+</span>   344    <span class="xdoc">     *  DATA memory).
+</span>   345    <span class="xdoc">     *
+</span>   346    <span class="xdoc">     *  <b>@param(addr)</b>  Address of symbols
+</span>   347    <span class="xdoc">     *
+</span>   348    <span class="xdoc">     *  <b>@a(Returns)</b>  Array of symbols at the requested address.
+</span>   349    <span class="xdoc">     */</span>
+   350        Any lookupFuncName(Int addr);
+   351        
+   352        <span class="xdoc">/*!
+</span>   353    <span class="xdoc">     *  ======== getSymbolValue ========
+</span>   354    <span class="xdoc">     *  Returns the value for the given symbol.
+</span>   355    <span class="xdoc">     *
+</span>   356    <span class="xdoc">     *  Returns -1 if the symbol does not exist.
+</span>   357    <span class="xdoc">     *
+</span>   358    <span class="xdoc">     *  <b>@param(symName)</b>  Name of symbol
+</span>   359    <span class="xdoc">     * 
+</span>   360    <span class="xdoc">     *  <b>@a(Returns)</b>  Address or value of symbol, or -1 if symbol does not exist
+</span>   361    <span class="xdoc">     */</span>
+   362        Int getSymbolValue(String symName);
+   363        
+   364        <span class="xdoc">/*!
+</span>   365    <span class="xdoc">     *  ======== displayError ========
+</span>   366    <span class="xdoc">     *
+</span>   367    <span class="xdoc">     */</span>
+   368        Void displayError(Any view, String fieldName, String errorMsg); 
+   369        
+   370        <span class="xdoc">/*!
+</span>   371    <span class="xdoc">     *  ======== ptrToHex ========
+</span>   372    <span class="xdoc">     *  Convert pointer representation to hex string
+</span>   373    <span class="xdoc">     *
+</span>   374    <span class="xdoc">     *  Convenience function for converting the 'at' symbol representation
+</span>   375    <span class="xdoc">     *  of a pointer to the form 0x80005846.
+</span>   376    <span class="xdoc">     */</span>
+   377        String ptrToHex(Any ptr);
+   378        
+   379        <span class="xdoc">/*!
+</span>   380    <span class="xdoc">     *  ======== getShortName ========
+</span>   381    <span class="xdoc">     *  Convert canonical instance names to a short name
+</span>   382    <span class="xdoc">     *
+</span>   383    <span class="xdoc">     *  Parses the full canonical instance name for the shorter name given 
+</span>   384    <span class="xdoc">     *  by the user. If there is no shorter name, then it returns an empty
+</span>   385    <span class="xdoc">     *  string "".
+</span>   386    <span class="xdoc">     *
+</span>   387    <span class="xdoc">     *  <b>@param(name)</b>  Full canonical instance name.
+</span>   388    <span class="xdoc">     *
+</span>   389    <span class="xdoc">     *  <b>@a(Returns)</b>  The short name, if the user specified one. Empty string
+</span>   390    <span class="xdoc">     *               otherwise.
+</span>   391    <span class="xdoc">     */</span>
+   392        String getShortName(String name);
+   393    
+   394        <span class="xdoc">/*!
+</span>   395    <span class="xdoc">     *  ======== debugPrint ========
+</span>   396    <span class="xdoc">     *  Print API which will only print the message if debug printing is
+</span>   397    <span class="xdoc">     *  enabled.
+</span>   398    <span class="xdoc">     */</span>
+   399        Void debugPrint(String msg);
+   400        
+   401        <span class="xdoc">/*!
+</span>   402    <span class="xdoc">     *  ======== timestamp ========
+</span>   403    <span class="xdoc">     *  API for printing timestamp messages for performance analysis.
+</span>   404    <span class="xdoc">     */</span>
+   405        Void timestamp(String msg);
+   406           
+   407        <span class="xdoc">/*!
+</span>   408    <span class="xdoc">     *  ======== setTimestampFunc ========
+</span>   409    <span class="xdoc">     *  Sets API to be used for printing timestamp.
+</span>   410    <span class="xdoc">     */</span>
+   411        Void setTimestampFunc(Any func);
+   412        
+   413        <span class="xdoc">/*!
+</span>   414    <span class="xdoc">     *  ======== newViewStruct ========
+</span>   415    <span class="xdoc">     *  Creates a new instance of the view structure for the specified view.
+</span>   416    <span class="xdoc">     *
+</span>   417    <span class="xdoc">     *  This API is called for views where the view structure is not already 
+</span>   418    <span class="xdoc">     *  passed in as an argument to the view init function.
+</span>   419    <span class="xdoc">     *
+</span>   420    <span class="xdoc">     *  It is necessary to instantiate a view structure in this way so that ROV
+</span>   421    <span class="xdoc">     *  is given an oppportunity to initialize the status-reporting mechanisms
+</span>   422    <span class="xdoc">     *  of the view structure (to support, e.g., Program.displayError).
+</span>   423    <span class="xdoc">     */</span>
+   424        Any newViewStruct(String modName, String tabName);
+   425        
+   426        <span class="xdoc">/*!
+</span>   427    <span class="xdoc">     *  ======== StatusEntry ========
+</span>   428    <span class="xdoc">     *  Single entry in the ROV status table.
+</span>   429    <span class="xdoc">     *
+</span>   430    <span class="xdoc">     *  ROV maintains a table of all errors, warnings, etc. encountered while
+</span>   431    <span class="xdoc">     *  processing views. This table is cleared on each call to clear cache
+</span>   432    <span class="xdoc">     *  (e.g., at each breakpoint).
+</span>   433    <span class="xdoc">     */</span>
+   434        <span class=key>metaonly</span> <span class=key>struct</span> StatusEntry {
+   435            String mod;
+   436            String tab;
+   437            String inst;
+   438            String field;
+   439            String message;
+   440        }
+   441        
+   442        <span class="xdoc">/*!
+</span>   443    <span class="xdoc">     *  ======== getStatusTable ========
+</span>   444    <span class="xdoc">     *  Returns the current table of all encountered status messages.
+</span>   445    <span class="xdoc">     *
+</span>   446    <span class="xdoc">     *  This table is reset with every call to 'resetMods'. (e.g., at every
+</span>   447    <span class="xdoc">     *  breakpoint).
+</span>   448    <span class="xdoc">     */</span>
+   449        Any getStatusTable();
+   450        
+   451        <span class="comment">/* -------- Used By ROV -------- */</span>
+   452           
+   453        <span class="xdoc">/*!
+</span>   454    <span class="xdoc">     *  <b>@_nodoc</b>  
+</span>   455    <span class="xdoc">     *  ======== moduleNames ========
+</span>   456    <span class="xdoc">     *  Array of all the module names in the application.
+</span>   457    <span class="xdoc">     */</span>
+   458        <span class=key>readonly</span> <span class=key>config</span> String moduleNames[<span class=key>length</span>];
+   459        
+   460        <span class="xdoc">/*!
+</span>   461    <span class="xdoc">     *  <b>@_nodoc</b>  
+</span>   462    <span class="xdoc">     *  ======== getModuleDesc ========
+</span>   463    <span class="xdoc">     *  Used to retrieve the module descriptor object for the requested module.
+</span>   464    <span class="xdoc">     */</span>
+   465        ROVModuleDesc *getModuleDesc(String modName);
+   466        
+   467        <span class="xdoc">/*!
+</span>   468    <span class="xdoc">     *  <b>@_nodoc</b>  
+</span>   469    <span class="xdoc">     *  ======== getViewType ========
+</span>   470    <span class="xdoc">     *  This is a helper method which returns whether a given tabName is a
+</span>   471    <span class="xdoc">     *  module-level view, instance-level view, or raw view.
+</span>   472    <span class="xdoc">     */</span>
+   473        String getViewType(String modName, String tabName);
+   474    
+   475        <span class="xdoc">/*!
+</span>   476    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   477    <span class="xdoc">     *  ======== Tab ========
+</span>   478    <span class="xdoc">     *  The type is an enum, but we can't use an enum from another module,
+</span>   479    <span class="xdoc">     *  so just use the String value of the type.
+</span>   480    <span class="xdoc">     */</span>
+   481        <span class=key>metaonly</span> <span class=key>struct</span> Tab {
+   482            String name;
+   483            String type;
+   484        }
+   485        
+   486        <span class="xdoc">/*!
+</span>   487    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   488    <span class="xdoc">     *  ======== Tabs ========
+</span>   489    <span class="xdoc">     */</span>
+   490        <span class=key>typedef</span> Tab Tabs[];
+   491        
+   492        <span class="xdoc">/*!
+</span>   493    <span class="xdoc">     *  <b>@_nodoc</b>  
+</span>   494    <span class="xdoc">     *  ======== getSupportedTabs ========
+</span>   495    <span class="xdoc">     *  Returns a string array of the tab names supported by the module.
+</span>   496    <span class="xdoc">     */</span>
+   497        Tabs getSupportedTabs(String modName);
+   498    
+   499        <span class="xdoc">/*!
+</span>   500    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   501    <span class="xdoc">     *  ======== getAbortFlag ========
+</span>   502    <span class="xdoc">     *  In CCS, indicates whether the abort flag has been set.
+</span>   503    <span class="xdoc">     */</span>
+   504        Bool getAbortFlag();
+   505        
+   506        <span class="xdoc">/*!
+</span>   507    <span class="xdoc">     *  <b>@_nodoc</b>  
+</span>   508    <span class="xdoc">     *  ======== resetMods ========
+</span>   509    <span class="xdoc">     *  Used to clear the cache of all scanned data and views. Should be called
+</span>   510    <span class="xdoc">     *  whenever the target data has changed.
+</span>   511    <span class="xdoc">     */</span>
+   512        Void resetMods();
+   513        
+   514        <span class="xdoc">/*!
+</span>   515    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   516    <span class="xdoc">     *  ======== moduleIdToName ========
+</span>   517    <span class="xdoc">     *  Used by xdc.runtime.Log.decode
+</span>   518    <span class="xdoc">     */</span>
+   519        String moduleIdToName(Int mid);
+   520        
+   521        <span class="xdoc">/*!
+</span>   522    <span class="xdoc">     *  ======== exToString ========
+</span>   523    <span class="xdoc">     *  Helper function for formatting exceptions into strings with filename 
+</span>   524    <span class="xdoc">     *  and line number.
+</span>   525    <span class="xdoc">     */</span>
+   526        String exToString(Any e);
+   527        
+   528        <span class="xdoc">/*!
+</span>   529    <span class="xdoc">     *  <b>@_nodoc</b>  
+</span>   530    <span class="xdoc">     *  ========= ROVModuleDesc ========
+</span>   531    <span class="xdoc">     *  Structure containing all ROV-related data about an individual module.
+</span>   532    <span class="xdoc">     *
+</span>   533    <span class="xdoc">     *  An instance of this structure is created for each module in the system.
+</span>   534    <span class="xdoc">     *  As various Program.scan APIs are called, this structure is gradually
+</span>   535    <span class="xdoc">     *  filled in with data.
+</span>   536    <span class="xdoc">     *
+</span>   537    <span class="xdoc">     *  The structure's fields:
+</span>   538    <span class="xdoc">     *    name         The module's name
+</span>   539    <span class="xdoc">     *    addr         Address of the state object. Redundant with state.$addr,
+</span>   540    <span class="xdoc">     *                 but available so that address is present even if fetch 
+</span>   541    <span class="xdoc">     *                 of state fails.
+</span>   542    <span class="xdoc">     *    loadFailed   Indicates that the 'useModule' call on this module threw
+</span>   543    <span class="xdoc">     *                 an exception.
+</span>   544    <span class="xdoc">     *    loadFailedMsg The exception message from the 'useModule' call
+</span>   545    <span class="xdoc">     *    cfg          Object containing all of the mod's configuration values
+</span>   546    <span class="xdoc">     *    state        Raw module state object
+</span>   547    <span class="xdoc">     *    instances    Array of ROVInstanceDesc objects representing the mod's
+</span>   548    <span class="xdoc">     *                 instances.
+</span>   549    <span class="xdoc">     *    objects      Array of ROVInstanceDesc objects representing instances 
+</span>   550    <span class="xdoc">     *                 of the module which are embedded in other objects.
+</span>   551    <span class="xdoc">     *    viewMap      Contains the module-level views. The key to the map is 
+</span>   552    <span class="xdoc">     *                 the string tab name for the view, and the value is the 
+</span>   553    <span class="xdoc">     *                 an instance of Module_View.
+</span>   554    <span class="xdoc">     *    errorMap     For each view, contains any error that was encountered
+</span>   555    <span class="xdoc">     *                 in processing the view outside of what was reported by
+</span>   556    <span class="xdoc">     *                 the module. For example, an unhandled exception from the
+</span>   557    <span class="xdoc">     *                 view code would be stored here.
+</span>   558    <span class="xdoc">     */</span>
+   559        <span class=key>metaonly</span> <span class=key>struct</span> ROVModuleDesc {
+   560            String name;
+   561            Any addr;
+   562            Bool loadFailed;
+   563            String loadFailedMsg;
+   564            Any cfg;
+   565            Any useMod;
+   566            Any viewInfo;
+   567            Any state;
+   568            
+   569            Any staticInstAddrs[];
+   570            Any dynInstAddrs[];
+   571            Bool readAllAddrs;
+   572            
+   573            ROVInstanceDesc *instances[];
+   574            Any viewMap[string];
+   575            String errorMap[string];
+   576            
+   577            String error; <span class=comment>// Deprecated, replaced by errorMap</span>
+   578            
+   579            Any instMap;
+   580            
+   581            Any userPrivate;
+   582        };
+   583        
+   584        <span class="xdoc">/*!
+</span>   585    <span class="xdoc">     *  <b>@_nodoc</b>  
+</span>   586    <span class="xdoc">     *  ========= ROVInstanceDesc ========
+</span>   587    <span class="xdoc">     *  Structure containing all ROV-related data about an individual instance.
+</span>   588    <span class="xdoc">     *
+</span>   589    <span class="xdoc">     *  The ROVInstanceDesc objects are stored in the 'instances' array of the
+</span>   590    <span class="xdoc">     *  respective module's ROVModuleDesc structure.
+</span>   591    <span class="xdoc">     *
+</span>   592    <span class="xdoc">     *  The structure's fields:
+</span>   593    <span class="xdoc">     *    state     Raw instance state object
+</span>   594    <span class="xdoc">     *    addr      Address of the state object. Redundant with state.$addr,
+</span>   595    <span class="xdoc">     *              but available so that address is present even if fetch of
+</span>   596    <span class="xdoc">     *              statefails.
+</span>   597    <span class="xdoc">     *    viewMap   Contains the instance-level views. The key to the map is
+</span>   598    <span class="xdoc">     *              the string tab name for the view, and the value is the 
+</span>   599    <span class="xdoc">     *              an instance of Instance_View.
+</span>   600    <span class="xdoc">     *    errorMap  For each view, contains any error that was encountered
+</span>   601    <span class="xdoc">     *              in processing the view outside of what was reported by
+</span>   602    <span class="xdoc">     *              the module. For example, an unhandled exception from the
+</span>   603    <span class="xdoc">     *              view code would be stored here.
+</span>   604    <span class="xdoc">     */</span>
+   605        <span class=key>metaonly</span> <span class=key>struct</span> ROVInstanceDesc {
+   606            Any    state;
+   607            Any    addr;
+   608            Any    viewMap[string];
+   609            String errorMap[string];
+   610            
+   611            String error; <span class=comment>// Deprecated, replaced by errorMap</span>
+   612        };
+   613    
+   614    }
+   615    <span class="comment">/*
+</span>   616    <span class="comment"> *  @(#) xdc.rov; 1, 0, 1,0; 12-9-2015 17:36:22; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>   617    <span class="comment"> */</span>
+   618    
+</pre>
+</body></html>

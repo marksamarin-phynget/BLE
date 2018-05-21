@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.bld.Repository</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    <span class="comment">/*
+</span>    13    <span class="comment"> *  ======== Repository.xdc ========
+</span>    14    <span class="comment"> */</span>
+    15    <span class=key>package</span> xdc.bld;
+    16    
+    17    <span class="xdoc">/*!
+</span>    18    <span class="xdoc"> *  ======== Repository ========
+</span>    19    <span class="xdoc"> *  Model of a package repository
+</span>    20    <span class="xdoc"> */</span>
+    21    <span class=key>metaonly</span> <span class=key>module</span> Repository {
+    22    
+    23        <span class="xdoc">/*!
+</span>    24    <span class="xdoc">     *  ======== Attrs ========
+</span>    25    <span class="xdoc">     *  Optional attributes for a repository
+</span>    26    <span class="xdoc">     *
+</span>    27    <span class="xdoc">     *  <b>@field(releases)</b>  This array contains releases that will contain the
+</span>    28    <span class="xdoc">     *          repository.  Thus, a single repository can be part of any set 
+</span>    29    <span class="xdoc">     *          of releases.  Each repository is always added to the 
+</span>    30    <span class="xdoc">     *          package's "default release" in addition to any releases
+</span>    31    <span class="xdoc">     *          specified in the releases array.
+</span>    32    <span class="xdoc">     *
+</span>    33    <span class="xdoc">     *  <b>@field(search)</b> By default, the release archives of all packages added
+</span>    34    <span class="xdoc">     *          to a repository are required to exist in the package's release
+</span>    35    <span class="xdoc">     *          output directory at the time the repository is created.
+</span>    36    <span class="xdoc">     *
+</span>    37    <span class="xdoc">     *          However, if this flag is set to `true`, each package's release
+</span>    38    <span class="xdoc">     *          will be searched for at the time that the makefile for the
+</span>    39    <span class="xdoc">     *          package containing this repository is created.  This allows
+</span>    40    <span class="xdoc">     *          package releases that exist before this repository is being
+</span>    41    <span class="xdoc">     *          built to more easily be added to this repository.
+</span>    42    <span class="xdoc">     *
+</span>    43    <span class="xdoc">     *          For example, package release archives can be moved to arbitrary
+</span>    44    <span class="xdoc">     *          directories after they are created but before a package containing
+</span>    45    <span class="xdoc">     *          a repository that includes these releases is built.
+</span>    46    <span class="xdoc">     *
+</span>    47    <span class="xdoc">     *          Package releases are searched for by looking in the following
+</span>    48    <span class="xdoc">     *          locations (in order): the package's release archive output
+</span>    49    <span class="xdoc">     *          directory, along the specified `archivePath`, and finally along
+</span>    50    <span class="xdoc">     *          the current package path.
+</span>    51    <span class="xdoc">     *
+</span>    52    <span class="xdoc">     *          If a package release archive cannot be found in the package's 
+</span>    53    <span class="xdoc">     *          release output directory or along the `archivePath`, the package
+</span>    54    <span class="xdoc">     *          path will be searched for the package itself (not its release 
+</span>    55    <span class="xdoc">     *          archive).  So, if the package appears on the package path _and_ 
+</span>    56    <span class="xdoc">     *          it's a released package with the specified release name, the 
+</span>    57    <span class="xdoc">     *          package will simply be copied into this repository.
+</span>    58    <span class="xdoc">     *
+</span>    59    <span class="xdoc">     *          Finally, if the package release can't be found, and error is
+</span>    60    <span class="xdoc">     *          thrown.
+</span>    61    <span class="xdoc">     *
+</span>    62    <span class="xdoc">     *  <b>@field(archivePath)</b> This ';' separated list of directories is used to
+</span>    63    <span class="xdoc">     *          find package release archives when the `search` flag is set to
+</span>    64    <span class="xdoc">     *          `true`.  If `archivePath` is `null`, no search path will be
+</span>    65    <span class="xdoc">     *          used and the package release itself (not the archive) may be found
+</span>    66    <span class="xdoc">     *          along the package path.
+</span>    67    <span class="xdoc">     *
+</span>    68    <span class="xdoc">     *  <b>@see</b> #attrs
+</span>    69    <span class="xdoc">     */</span>
+    70        <span class=key>struct</span> Attrs {
+    71            Release.Instance releases[];    <span class="xdoc">/*! releases this repo is a part of */</span>
+    72            Bool             search;        <span class="xdoc">/*! true =&gt; search path for packages */</span>
+    73            String           archivePath;   <span class="xdoc">/*! search path for package archives */</span>
+    74        };
+    75    
+    76    <span class=key>instance</span>:
+    77        <span class="xdoc">/*!
+</span>    78    <span class="xdoc">     *  ======== create ========
+</span>    79    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>    80    <span class="xdoc">     *  Instances should only be created via PackageContents.addRepository()
+</span>    81    <span class="xdoc">     */</span>
+    82        create();
+    83    
+    84        <span class="xdoc">/*!
+</span>    85    <span class="xdoc">     *  ======== name ========
+</span>    86    <span class="xdoc">     *  The repository's directory name
+</span>    87    <span class="xdoc">     */</span>
+    88        <span class=key>config</span> String name;
+    89    
+    90        <span class="xdoc">/*!
+</span>    91    <span class="xdoc">     *  ======== attrs ========
+</span>    92    <span class="xdoc">     *  The repository's attributes
+</span>    93    <span class="xdoc">     */</span>
+    94        <span class=key>config</span> Attrs attrs;
+    95    
+    96        <span class="xdoc">/*!
+</span>    97    <span class="xdoc">     *  ======== addPackages ========
+</span>    98    <span class="xdoc">     *  Add specified package releases to this repository
+</span>    99    <span class="xdoc">     *
+</span>   100    <span class="xdoc">     *  <b>@param(names)</b> An array of strings naming package releases to be added
+</span>   101    <span class="xdoc">     *          to the repository.  Package releases are named as follows:
+</span>   102    <span class="xdoc">     *          <b>@p(code)</b>
+</span>   103    <span class="xdoc">     *              &lt;pkgName&gt;:&lt;releaseName&gt;
+</span>   104    <span class="xdoc">     *          <b>@p</b>
+</span>   105    <span class="xdoc">     *          where `&lt;pkgName&gt;` is the name of the package to add to the
+</span>   106    <span class="xdoc">     *          repository and `&lt;releaseName&gt;` is the name of one of that
+</span>   107    <span class="xdoc">     *          package's releases.  A package release name may be either the
+</span>   108    <span class="xdoc">     *          archive file name (relative to the package's base directory)
+</span>   109    <span class="xdoc">     *          of the release archive or the name used create the release in
+</span>   110    <span class="xdoc">     *          package named `&lt;pkgName&gt;`.
+</span>   111    <span class="xdoc">     *
+</span>   112    <span class="xdoc">     *          For example, if the package `ti.bios` had a release named
+</span>   113    <span class="xdoc">     *          `exports/ti_bios,src`, the following statements would add
+</span>   114    <span class="xdoc">     *          this release to the repository named `packages`:
+</span>   115    <span class="xdoc">     *          <b>@p(code)</b>
+</span>   116    <span class="xdoc">     *              var r = Pkg.addRepository("packages");
+</span>   117    <span class="xdoc">     *              r.addPackages(["ti.bios:exports/ti_bios,src"]);
+</span>   118    <span class="xdoc">     *          <b>@p</b>
+</span>   119    <span class="xdoc">     *
+</span>   120    <span class="xdoc">     *          Alternatively, one can specify the archive file name:
+</span>   121    <span class="xdoc">     *          <b>@p(code)</b>
+</span>   122    <span class="xdoc">     *              var r = Pkg.addRepository("packages");
+</span>   123    <span class="xdoc">     *              r.addPackages(["ti.bios:exports/ti_bios,src.tar"]);
+</span>   124    <span class="xdoc">     *          <b>@p</b>
+</span>   125    <span class="xdoc">     *
+</span>   126    <span class="xdoc">     *          It is possible to get a list of release archive names from a
+</span>   127    <span class="xdoc">     *          package via the
+</span>   128    <span class="xdoc">     *          `{<b>@link</b> xdc.bld.BuildEnvironment#getReleaseDescs()}`
+</span>   129    <span class="xdoc">     *          method.  For example, to get the physical archive name of the
+</span>   130    <span class="xdoc">     *          default release of the `ti.bios` package, the following loop
+</span>   131    <span class="xdoc">     *          can be added to a build script:
+</span>   132    <span class="xdoc">     *          <b>@p(code)</b>
+</span>   133    <span class="xdoc">     *              var archiveName;
+</span>   134    <span class="xdoc">     *              var rels = Build.getReleaseDescs('ti.bios');
+</span>   135    <span class="xdoc">     *              for (var j = 0; j &lt; rels.length; j++) {
+</span>   136    <span class="xdoc">     *                  if (rels[j].label == "default") {
+</span>   137    <span class="xdoc">     *                      archiveName = rels[j].aname;
+</span>   138    <span class="xdoc">     *                      break;
+</span>   139    <span class="xdoc">     *                  }
+</span>   140    <span class="xdoc">     *              }
+</span>   141    <span class="xdoc">     *              // archiveName is now set to the file name of the ti.bios
+</span>   142    <span class="xdoc">     *              // default release archive (or undefined)
+</span>   143    <span class="xdoc">     *          <b>@p</b>
+</span>   144    <span class="xdoc">     *
+</span>   145    <span class="xdoc">     *  <b>@see</b> xdc.bld.BuildEnvironment#getReleaseDescs()
+</span>   146    <span class="xdoc">     */</span>
+   147        Void addPackages(String names[]);
+   148    }
+   149    <span class="comment">/*
+</span>   150    <span class="comment"> *  @(#) xdc.bld; 1, 0, 2,0; 12-9-2015 17:35:10; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>   151    <span class="comment"> */</span>
+   152    
+</pre>
+</body></html>

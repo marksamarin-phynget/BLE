@@ -1,0 +1,1100 @@
+<html>
+<head>
+<title>interface xdc.tools.product.IProduct</title>
+<meta name="description" content="Interface specifying product details">
+<link rel="stylesheet" type="text/css" href="../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">xdc.tools.product.</span><span class="xdoc-id">IProduct</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/package.html" title="package xdc.tools.product"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html">index URL</a></div>
+<p class="xdocHdrSummary">Interface specifying product details</p>
+<ul class="xdocToc">
+</ul>
+<div class="xdocBrief">
+This interface allows products describe themselves for the benefit
+  of development tools such as IDE's.  For example, a tool
+  can read the information provided by a product that implements this
+  interface and generate an eclipse plugin that leverages the product's
+  "resources".
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> summary</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">IProduct</span> {<b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <a class="xdoc-link" href="../../../xdc/tools/product/package.html" title="xdc.tools.product">xdc.tools.product</a>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">IProduct</span> {
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Help.Toc"><span class="xdoc-id">HelpToc</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Help table of contents (TOC) element</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Help.Toc"><span class="xdoc-id">label</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Help element description</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Help.Toc"><span class="xdoc-id">filePath</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Path to help doc</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#.Help.Toc"><span class="xdoc-id">tocFile</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Indicates whether element is a TOC file</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Macro.Descriptor"><span class="xdoc-id">MacroDescriptor</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Macro Descriptor structure</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Macro.Descriptor"><span class="xdoc-id">name</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Macro name</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Macro.Descriptor"><span class="xdoc-id">desc</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Macro description</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Plugin.Descriptor"><span class="xdoc-id">PluginDescriptor</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Plugin Descriptor structure</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Plugin.Descriptor"><span class="xdoc-id">id</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Plugin id</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Plugin.Descriptor"><span class="xdoc-id">version</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Plugin version</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Plugin.Descriptor"><span class="xdoc-id">path</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Plugin path</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Target"><span class="xdoc-id">Target</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Structure containing information on RTSC targets</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Target"><span class="xdoc-id">sourceFile</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Name of a file with target mapping</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Url.Descriptor"><span class="xdoc-id">UrlDescriptor</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;URL Descriptor structure</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Url.Descriptor"><span class="xdoc-id">url</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Uniform Resource Locator(URL)</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Url.Descriptor"><span class="xdoc-id">text</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Summary text for the URL</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Url.Descriptor"><span class="xdoc-id">targetText</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;(optional) Summary for target portion</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class='xdocSynHdr'>module-wide config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#bundle.Name"><span class="xdoc-id">bundleName</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Product bundle name</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#company.Name"><span class="xdoc-id">companyName</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Name of company releasing product</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#copy.Right.Notice"><span class="xdoc-id">copyRightNotice</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Copyright notice for product</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#docs.Loc.Arr"><span class="xdoc-id">docsLocArr</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Directories containing documents in the product</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">Bool</span>&nbsp;<a class="xdocSynGo" href="#exclusive"><span class="xdoc-id">exclusive</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;This product is a singleton</span></span></a> = <span class="xdoc-kw2">false</span>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Plugin.Descriptor" title="xdc.tools.product.IProduct.PluginDescriptor">IProduct.PluginDescriptor</a>&nbsp;<a class="xdocSynGo" href="#external.Plugins"><span class="xdoc-id">externalPlugins</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;External plugins delivered with the product</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#external.Requirements"><span class="xdoc-id">externalRequirements</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;External plugins required by this product</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Help.Toc" title="xdc.tools.product.IProduct.HelpToc">IProduct.HelpToc</a>&nbsp;<a class="xdocSynGo" href="#help.Toc.Arr"><span class="xdoc-id">helpTocArr</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Array of table of contents elements in product</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#icon"><span class="xdoc-id">icon</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Icon to be displayed alongside the product description</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#id"><span class="xdoc-id">id</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;A unique product id</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Url.Descriptor" title="xdc.tools.product.IProduct.UrlDescriptor">IProduct.UrlDescriptor</a>&nbsp;<a class="xdocSynGo" href="#license.Descriptor"><span class="xdoc-id">licenseDescriptor</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;License information for product</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Macro.Descriptor" title="xdc.tools.product.IProduct.MacroDescriptor">IProduct.MacroDescriptor</a>&nbsp;<a class="xdocSynGo" href="#macro"><span class="xdoc-id">macro</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Macro associated with the product</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#name"><span class="xdoc-id">name</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Product name</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#other.Files"><span class="xdoc-id">otherFiles</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Array of paths to files or directories to copy into the product</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#platform.Source.File"><span class="xdoc-id">platformSourceFile</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;File with available RTSC platforms</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Url.Descriptor" title="xdc.tools.product.IProduct.UrlDescriptor">IProduct.UrlDescriptor</a>&nbsp;<a class="xdocSynGo" href="#product.Descriptor"><span class="xdoc-id">productDescriptor</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Product description</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#product.View.Module"><span class="xdoc-id">productViewModule</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Name of module implementing <span class="xdoc-link" href="../../../xdc/tools/product/IProductView.html" title="xdc.tools.product.IProductView">xdc.tools.product.IProductView</span></span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#project.Spec.Path"><span class="xdoc-id">projectSpecPath</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Directory containing project spec files</span></span></a> = "resources";
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#repository.Arr"><span class="xdoc-id">repositoryArr</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Repositories contained in the product</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Target" title="xdc.tools.product.IProduct.Target">IProduct.Target</a>&nbsp;<a class="xdocSynGo" href="#target.File"><span class="xdoc-id">targetFile</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;File with available RTSC target modules</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#template.Module"><span class="xdoc-id">templateModule</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Name of module implementing <span class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html" title="xdc.tools.product.IProductTemplate">xdc.tools.product.IProductTemplate</span></span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#toc.Index.File"><span class="xdoc-id">tocIndexFile</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Top level help index file</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Url.Descriptor" title="xdc.tools.product.IProduct.UrlDescriptor">IProduct.UrlDescriptor</a>&nbsp;<a class="xdocSynGo" href="#update.Site"><span class="xdoc-id">updateSite</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Update site for product</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#version"><span class="xdoc-id">version</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Product version</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This interface allows products describe themselves for the benefit
+  of development tools such as IDE's.  For example, a tool
+  can read the information provided by a product that implements this
+  interface and generate an eclipse plugin that leverages the product's
+  "resources".</div>
+<div class="xdocText">By expressing the product's information in this interface, a product
+  can be delivered into multiple development tools without explicit
+  knowledge of these tools.  For example, an online "product repository"
+  can extract sufficient information from this interface to enable it
+  to provide a searchable catalog of interesting products.</div>
+<div class="xdocText">This is an experimental interface and is subject to change</div>
+<div id="xdocSep">
+</div>
+<div id="xdocElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Help.Toc"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">HelpToc</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#.Help.Toc">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Help table of contents (TOC) element</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">HelpToc</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">label</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Help element description</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">filePath</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Path to help doc</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">tocFile</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Indicates whether element is a TOC file</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">label</span>
+<span class="xdocChildSum">&#151;&nbsp;Summary description of help element which
+                   is displayed in the global table of contents.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">filePath</span>
+<span class="xdocChildSum">&#151;&nbsp;Relative path to help documentation file or a
+                   secondary table of contents file or a URL. Relative
+                   paths are relative to the directories specified in
+                   <a class="xdoc-link" href="IProduct.html#docs.Loc.Arr" title="docsLocArr">docsLocArr</a>; files are searched for, in
+                   order, within each directory and the first file
+                   found that matches the name is used.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">tocFile</span>
+<span class="xdocChildSum">&#151;&nbsp;Flag indicates whether the element is a
+                   table of contents (TOC) file. Tools may
+                   process TOC files in a special way. For
+                   example, a tool to generate eclipse plugins
+                   must copy the TOC file to the plugin folder
+                   for integrating with eclipse help.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">A help TOC element defines a file, URL, or a secondary table of
+  contents that is referenced from a global table of contents.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Macro.Descriptor"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">MacroDescriptor</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#.Macro.Descriptor">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Macro Descriptor structure</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">MacroDescriptor</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">name</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Macro name</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">desc</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Macro description</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Plugin.Descriptor"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">PluginDescriptor</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#.Plugin.Descriptor">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Plugin Descriptor structure</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">PluginDescriptor</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">id</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Plugin id</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">version</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Plugin version</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">path</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Plugin path</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">id</span>
+<span class="xdocChildSum">&#151;&nbsp;Plugin id</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">version</span>
+<span class="xdocChildSum">&#151;&nbsp;Plugin version</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">path</span>
+<span class="xdocChildSum">&#151;&nbsp;Path to plugin relative to <tt>IProduct</tt> implementation</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Target"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">Target</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#.Target">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Structure containing information on RTSC targets</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Target</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">sourceFile</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Name of a file with target mapping</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">sourceFile</span>
+<span class="xdocChildSum">&#151;&nbsp;The path to a file that defines the mapping
+                              in a JSON file</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Products specify the mapping between device names and/or device
+  family names and a RTSC target module in a JSON file located in the
+  product itself. The field <tt>sourceFile</tt> contains the file name including
+  the path relative to the top directory of the product.</div>
+<div class="xdocText">The content of the file is read whenever a product is used in a project
+  and the information from the file is leveraged by tools to derive an
+  appropriate RTSC target when given a device name, device family,
+  endiness, and OMF selection (COFF verses ELF).</div>
+<div class="xdocText">The JSON file contains objects, and each object is matched against the
+  device and build options selected for a particular project. If all
+  object attributes, except for the target specification, are matched by
+  supplied options, the target represented by the object is returned.
+  Objects are matched against the options in the order they are listed in
+  the JSON file. As soon as a match is found, the search stops.</div>
+<div class="xdocText">Currently used object attributes that are matched against build options
+  are <tt>deviceFamily</tt>, <tt>deviceName</tt>, <tt>deviceVariant</tt>, <tt>endianness</tt> and
+  <tt>elf</tt>. Object attributes that specify a target are <tt>packageName</tt> and
+  <tt>baseTargetName</tt>, where <tt>packageName</tt> is the name of a package that
+  contains targets, while <tt>baseTargetName</tt> is a name of a target module
+  in that package.</div>
+<div class="xdocText">In particular, if the device name and family name selected for a project
+  match <tt>deviceNamePattern</tt> and <tt>deviceFamilyPattern</tt> in an object, the
+  target name generated will be:</div>
+<div class="xdocText"><PRE class="Example">      &lt;packageName&gt;[.elf].&lt;baseTargetName&gt;[_big_endian]
+</PRE></div>
+<div class="xdocText">The strings ".elf" and "_big_endian" are added if the corresponding
+  project options are specified.</div>
+<div class="xdocText">Suppose, for example, a product specifies the following target mapping:</div>
+<div class="xdocText"><PRE class="Example">  {
+      deviceName:          "MSP430F5.*",
+      deviceFamily:        "MSP430.*",
+      packageName:         "ti.targets.msp430",
+      baseTargetName:      "MSP430X"
+  }
+</PRE></div>
+<div class="xdocText">If the device specified is "<tt>MSP430F5529</tt>", the family is "<tt>MSP430</tt>",
+  and the OMF is COFF, the generated target will be:</div>
+<div class="xdocText"><PRE class="Example">      ti.targets.msp430.MSP430X
+</PRE></div>
+<div class="xdocText">On the other hand, if the OMF is ELF the target will be:</div>
+<div class="xdocText"><PRE class="Example">      ti.targets.msp430.elf.MSP430X
+</PRE></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Url.Descriptor"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">UrlDescriptor</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#.Url.Descriptor">index URL</a></div>
+<p class="xdocHdrSummaryDcl">URL Descriptor structure</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">UrlDescriptor</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">url</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Uniform Resource Locator(URL)</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">text</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Summary text for the URL</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">targetText</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;(optional) Summary for target portion</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">url</span>
+<span class="xdocChildSum">&#151;&nbsp;Uniform Resource Locator(URL)</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">text</span>
+<span class="xdocChildSum">&#151;&nbsp;Summary text for the URL</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">targetText</span>
+<span class="xdocChildSum">&#151;&nbsp;Optional summary text for any target content
+                      portion</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="bundle.Name"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">bundleName</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#bundle.Name">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Product bundle name</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">bundleName</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Product bundle name is embedded in the top level folder name of
+  the product. Example: The top level folder for XDCtools version 
+  3.16.02.31-eng is <tt>xdctools_3_16_02_31-eng</tt>. In this case the 
+  bundle name is <tt>xdctools</tt>.
+  The bundle name is used by tools to discover the product 
+  installed on a filesystem.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="company.Name"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">companyName</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#company.Name">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Name of company releasing product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">companyName</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Example : "Texas Instruments"</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="copy.Right.Notice"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">copyRightNotice</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#copy.Right.Notice">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Copyright notice for product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">copyRightNotice</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="docs.Loc.Arr"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">docsLocArr</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#docs.Loc.Arr">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Directories containing documents in the product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">docsLocArr</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Directories are specified relative to the product installation
+  directory.  These directories are searched when resolving URI links
+  to specific pages within the docs.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="exclusive"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">exclusive</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#exclusive">index URL</a></div>
+<p class="xdocHdrSummaryDcl">This product is a singleton</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">Bool</span>&nbsp;<span class="xdoc-id">exclusive</span> = <span class="xdoc-kw2">false</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This flag indicates whether multiple versions of this product are
+  accessable within the IDE or whether only the latest version is
+  available.</div>
+<div class="xdocText">When flag is set to <tt>true</tt> it indicates that only one 
+  version of the product can be active in the system. Otherwise
+  the system can handle multiple versions of the same product.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="external.Plugins"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">externalPlugins</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#external.Plugins">index URL</a></div>
+<p class="xdocHdrSummaryDcl">External plugins delivered with the product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Plugin.Descriptor" title="xdc.tools.product.IProduct.PluginDescriptor">IProduct.PluginDescriptor</a>&nbsp;<span class="xdoc-id">externalPlugins</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="external.Requirements"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">externalRequirements</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#external.Requirements">index URL</a></div>
+<p class="xdocHdrSummaryDcl">External plugins required by this product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">externalRequirements</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="help.Toc.Arr"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">helpTocArr</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#help.Toc.Arr">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Array of table of contents elements in product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Help.Toc" title="xdc.tools.product.IProduct.HelpToc">IProduct.HelpToc</a>&nbsp;<span class="xdoc-id">helpTocArr</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Tools generating table of contents are required
+  to preserve the order of elements specified in this array.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="icon"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">icon</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#icon">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Icon to be displayed alongside the product description</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">icon</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">In TIREX, this file is used in the top page, where all products are
+  listed, with their icons and names under icons.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="id"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">id</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#id">index URL</a></div>
+<p class="xdocHdrSummaryDcl">A unique product id</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">id</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">For example, product developers may choose to  follow namespace
+  conventions for Java packages or Eclipse plugins to specify a
+  unique id like <tt>org.eclipse.rtsc.xdctools.product</tt>.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="license.Descriptor"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">licenseDescriptor</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#license.Descriptor">index URL</a></div>
+<p class="xdocHdrSummaryDcl">License information for product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Url.Descriptor" title="xdc.tools.product.IProduct.UrlDescriptor">IProduct.UrlDescriptor</a>&nbsp;<span class="xdoc-id">licenseDescriptor</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">VALUES</div>
+<div class="xdocChild"><span class="xdocChildId">url</span>
+<span class="xdocChildSum">&#151;&nbsp;field should contain the URL containing the 
+  license text.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">text</span>
+<span class="xdocChildSum">&#151;&nbsp;field should contain a summary description of the license</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="macro"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">macro</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#macro">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Macro associated with the product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Macro.Descriptor" title="xdc.tools.product.IProduct.MacroDescriptor">IProduct.MacroDescriptor</a>&nbsp;<span class="xdoc-id">macro</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Product macros are often used in IDEs for providing
+  portable build environments. A unique macro name should
+  be selected for the product.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="name"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">name</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#name">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Product name</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">name</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">String containing product name eg. System BIOS</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="other.Files"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">otherFiles</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#other.Files">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Array of paths to files or directories to copy into the product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">otherFiles</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">A product may need to contain "arbitrary" files important to its
+  operation. For example a product may provide text, images and video
+  files that provide templates or branding information for the product.
+  These files may then be consumed by tools like IDE's via
+  hooks defined in the IDE framework.</div>
+<div class="xdocText">The source file path is defined relative to the directory containing
+  the implementation  of <tt>IProduct</tt>.  All files or directories are
+  copied to the base directory of the plugin; e.g.,
+  "../branding/about.ini" is copied to "about.ini" at the top of the
+  plugin.</div>
+<div class="xdocText">Path names that begin with the prefix "tc:" are copied into "target
+  content" plugin whereas path names with any other prefix (such as
+  "ui:" or no prefix) are copied into the "IDE plugin".</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="platform.Source.File"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">platformSourceFile</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#platform.Source.File">index URL</a></div>
+<p class="xdocHdrSummaryDcl">File with available RTSC platforms</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">platformSourceFile</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This parameter points to a JSON file that contains names of platform
+  packages, and project properties that must be matched for a specific
+  platform to be selected.
+  The file path is relative to the top directory of the product.
+  The RTSC platforms should be delivered in the repositories defined in
+  <a class="xdoc-link" href="IProduct.html#repository.Arr" title="repositoryArr">repositoryArr</a></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="product.Descriptor"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">productDescriptor</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#product.Descriptor">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Product description</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Url.Descriptor" title="xdc.tools.product.IProduct.UrlDescriptor">IProduct.UrlDescriptor</a>&nbsp;<span class="xdoc-id">productDescriptor</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">VALUES</div>
+<div class="xdocChild"><span class="xdocChildId">url</span>
+<span class="xdocChildSum">&#151;&nbsp;the <tt>url</tt> field should contain a product-specific "home"
+  page URL or, if there is none, the URL of organization
+  releasing the product.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">text</span>
+<span class="xdocChildSum">&#151;&nbsp;the <tt>text</tt> field should contain summary description of
+  the target content portion of the product.</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="product.View.Module"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">productViewModule</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#product.View.Module">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Name of module implementing <a class="xdoc-link" href="../../../xdc/tools/product/IProductView.html" title="xdc.tools.product.IProductView">xdc.tools.product.IProductView</a></p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">productViewModule</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Products must provide a module that implements the
+  <a class="xdoc-link" href="../../../xdc/tools/product/IProductView.html" title="xdc.tools.product.IProductView">xdc.tools.product.IProductView</a> interface.  This
+  module defines the "top-level" modules that are visible to the user
+  and must be delivered in the repositories defined in
+  <a class="xdoc-link" href="IProduct.html#repository.Arr" title="repositoryArr">repositoryArr</a>.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="project.Spec.Path"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">projectSpecPath</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#project.Spec.Path">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Directory containing project spec files</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">projectSpecPath</span> = "resources";
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This path is relative to the product install location.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="repository.Arr"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">repositoryArr</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#repository.Arr">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Repositories contained in the product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">repositoryArr</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Repositories are specified relative to the product installation
+  directory.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="target.File"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">targetFile</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#target.File">index URL</a></div>
+<p class="xdocHdrSummaryDcl">File with available RTSC target modules</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Target" title="xdc.tools.product.IProduct.Target">IProduct.Target</a>&nbsp;<span class="xdoc-id">targetFile</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The RTSC target modules should be delivered
+  in the repositories defined in <a class="xdoc-link" href="IProduct.html#repository.Arr" title="repositoryArr">repositoryArr</a></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="template.Module"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">templateModule</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#template.Module">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Name of module implementing <a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html" title="xdc.tools.product.IProductTemplate">xdc.tools.product.IProductTemplate</a></p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">templateModule</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Products that deliver examples provide a module that implements the
+  <a class="xdoc-link" href="../../../xdc/tools/product/IProductTemplate.html" title="xdc.tools.product.IProductTemplate">xdc.tools.product.IProductTemplate</a> interface.  This module
+  must be delivered in one of the repositories defined in
+  <a class="xdoc-link" href="IProduct.html#repository.Arr" title="repositoryArr">repositoryArr</a>.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="toc.Index.File"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">tocIndexFile</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#toc.Index.File">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Top level help index file</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">tocIndexFile</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">In eclipse help, for example, this file is displayed when the
+  product's top-level entry is selected in eclipse's help table of
+  contents.  If this file is not provided a very basic list of links
+  to the entries listed in <tt>@{link #helpTocArr}</tt> is displayed.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="update.Site"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">updateSite</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#update.Site">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Update site for product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <a class="xdoc-link" href="../../../xdc/tools/product/IProduct.html#.Url.Descriptor" title="xdc.tools.product.IProduct.UrlDescriptor">IProduct.UrlDescriptor</a>&nbsp;<span class="xdoc-id">updateSite</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">VALUES</div>
+<div class="xdocChild"><span class="xdocChildId">url</span>
+<span class="xdocChildSum">&#151;&nbsp;the <tt>url</tt> field should contain the URL containing
+  product upgrades.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">text</span>
+<span class="xdocChildSum">&#151;&nbsp;the <tt>text</tt> field should contain summary description of
+  the update site</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="version"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProduct.</span><span class="xdoc-id">version</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProduct.html" title="interface IProduct"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProduct.html#version">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Product version</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProduct-src.html"><span class="xdocLabelFile">xdc/tools/product/IProduct.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">version</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The product version should follow the format
+  -<tt>major.minor.service.qualifier</tt>  where
+  <tt>major</tt>,<tt>minor</tt> and <tt>service</tt> are integers and
+  <tt>qualifier</tt> is a string. Example - 3.16.02.31-eng.</div>
+<div class="xdocText">Products may  specify their own guidelines for
+  updating <tt>major</tt>,<tt>minor</tt>,<tt>service</tt> and <tt>qualifier</tt> portions of the
+  version number as long as they are unique for the product.
+  Products may also choose to follow popular versioning conventions
+  like those followed for versioning Eclipse plugins.</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:48 GMT</div>
+</div></div></body>
+</html>

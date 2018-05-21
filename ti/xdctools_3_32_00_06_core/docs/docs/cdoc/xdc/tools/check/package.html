@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>package xdc.tools.check</title>
+<meta name="description" content="Check compatibility of specified packages">
+<link rel="stylesheet" type="text/css" href="../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.check</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/check/Main.html" title="module Main"><img class="xdocHdrArrow" src="../../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/check/package.html">index URL</a></div>
+<p class="xdocHdrSummary">Check compatibility of specified packages</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-1">USAGE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-2">OPTIONS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-3">DETAILS</a></li>
+</ul>
+<div class="xdocBrief">
+This tools scans the specified repositories looking for package
+  incompatibilities.
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/check/package-src.html"><span class="xdocLabelFile">xdc/tools/check/package.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.check</span> [1, 0, 0] {
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">module</span> <a class='xdocSynGo' href='../../../xdc/tools/check/Main.html' title='xdc.tools.check.Main'><span class="xdoc-id">Main</span>;</a>
+</div>
+<div class='xdocSynSum'><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Command implementation</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">USAGE</div>
+<div class="xdocText"><tt>xs xdc.tools.check [--help]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-[ax]] [-v] [-t target] [-e exclude_pattern] [-H header] [repository ...]</tt></div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">OPTIONS</div>
+<div class="xdocText"><dl><dt><tt>-a</tt></dt><dd>Return an array of strings</dd><dt><tt>-v</tt></dt><dd>Print informative messages during execution</dd><dt><tt>-x</tt></dt><dd>Return a Results struct as XML</dd><dt><tt>-H</tt></dt><dd>Prepend Header label to output</dd><dt><tt>-e</tt></dt><dd>Exclude packages or targets from checks<p>  Do not check compatibility of packages or targets whose names match
+  the regular expression <tt>exclude</tt>.
+</p></dd><dt><tt>-m</tt></dt><dd>Allow checking multiple versions of the same package<p>  By default, when a package appears in more than repository named on
+  the command line, this tool only checks the first occurance
+  of the package.  Setting this option forces all versions of all
+  packages in the specified repositories to be included in the checks.
+</p></dd><dt><tt>-t</tt></dt><dd>Target to check<p>  During the compatibility checks this tool ensures that for all
+  targets used by all packages are compatible with the latest target
+  referenced by any package.  If this option is set, the check tool
+  will only validate compatibility for the specified target.  In
+  addition, if the target string contains a target compatibility key,
+  all packages that reference the target will be checked for
+  compatibility with the specified key.
+</p><p>  The format of this string is either
+</p><p><PRE class="Example">      &lt;target_name&gt;:&lt;target_key&gt;
+</PRE></p><p>  or 
+</p><p><PRE class="Example">      &lt;target_name&gt;
+</PRE></p><p>  where <tt>&lt;target_name&gt;</tt> is the full name of a target and <tt>&lt;target_key&gt;</tt>
+  is an optional target-specific compatibility key.  The optional
+  target compatibility key can be used to validate the set of packages
+  against a specific compiler tool chain.
+</p></dd></div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This tools scans the specified repositories looking for package
+  incompatibilities.</div>
+<div class="xdocText">By default, if a package appears in more than one repository, only the
+  package in the first repository is added to the set of packages to check.
+  This allows one to check the consistency of all packages that can be found
+  along a specified package path by simply listing the package path
+  repositories on the command line.</div>
+<div class="xdocText">This tool performs the following checks:</div>
+<div class="xdocText"><UL><LI> the latest version of each target used by any package is compatible
+        with all other versions used; and
+</LI><LI> the "built-with" versions of all packages are compatible with the
+        versions of the packages contained in the specified repositories
+</LI></UL></div>
+<div class="xdocText">If no repositories are specified, the repositories named in the current
+  package path are checked.</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:47 GMT</div>
+</div></div></body>
+</html>

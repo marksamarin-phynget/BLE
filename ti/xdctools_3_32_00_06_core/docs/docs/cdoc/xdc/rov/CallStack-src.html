@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.rov.CallStack</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    
+    13    <span class="xdoc">/*!
+</span>    14    <span class="xdoc"> *  ======== CallStack ========
+</span>    15    <span class="xdoc"> *  Provide call stack support to module ROV views
+</span>    16    <span class="xdoc"> *
+</span>    17    <span class="xdoc"> *  This module provides methods that enable module ROV views
+</span>    18    <span class="xdoc"> *  to specify current CPU registers and get the corresponding
+</span>    19    <span class="xdoc"> *  stack traceback for the current executable.
+</span>    20    <span class="xdoc"> *
+</span>    21    <span class="xdoc"> *  While the methods of this module are currently
+</span>    22    <span class="xdoc"> *  similar to the `ICallStack` interface, it is important to
+</span>    23    <span class="xdoc"> *  note that this module does not have instance methods; the
+</span>    24    <span class="xdoc"> *  `ICallStack` interface defines an interface for instance
+</span>    25    <span class="xdoc"> *  objects that enable the implementation of this module.
+</span>    26    <span class="xdoc"> *
+</span>    27    <span class="xdoc"> *  This module uses the `{<b>@link</b> xdc.rov.ICallStack}` instance
+</span>    28    <span class="xdoc"> *  provided by `{<b>@link</b> xdc.rov.Model}`.
+</span>    29    <span class="xdoc"> */</span>
+    30    <span class=key>metaonly</span> <span class=key>module</span> CallStack
+    31    {
+    32        <span class="xdoc">/*!
+</span>    33    <span class="xdoc">     *  ======== clearRegisters ========
+</span>    34    <span class="xdoc">     *  Clear all register settings
+</span>    35    <span class="xdoc">     */</span>
+    36        Void clearRegisters();
+    37    
+    38        <span class="xdoc">/*!
+</span>    39    <span class="xdoc">     *  ======== fetchRegisters ========
+</span>    40    <span class="xdoc">     *  Set a device register necessary for stack trace back analysis
+</span>    41    <span class="xdoc">     */</span>
+    42        Void fetchRegisters(String names[]);
+    43    
+    44        <span class="xdoc">/*!
+</span>    45    <span class="xdoc">     *  ======== getRegister ========
+</span>    46    <span class="xdoc">     *  Set a device register necessary for stack trace back analysis
+</span>    47    <span class="xdoc">     */</span>
+    48        Long getRegister(String name);
+    49    
+    50        <span class="xdoc">/*!
+</span>    51    <span class="xdoc">     *  ======== setRegister ========
+</span>    52    <span class="xdoc">     *  Set a device register necessary for stack trace back analysis
+</span>    53    <span class="xdoc">     */</span>
+    54        Void setRegister(String name, Long value);
+    55    
+    56        <span class="xdoc">/*!
+</span>    57    <span class="xdoc">     *  ======== toText ========
+</span>    58    <span class="xdoc">     *  Create a string represenation of the call stack
+</span>    59    <span class="xdoc">     */</span>
+    60        String toText();
+    61    }
+    62    <span class="comment">/*
+</span>    63    <span class="comment"> *  @(#) xdc.rov; 1, 0, 1,0; 12-9-2015 17:36:22; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>    64    <span class="comment"> */</span>
+    65    
+</pre>
+</body></html>

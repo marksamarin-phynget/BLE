@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>module xdc.Warnings</title>
+<meta name="description" content="Conditional warnings manager">
+<link rel="stylesheet" type="text/css" href="../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.</span><span class="xdoc-id">Warnings</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../xdc/IPackage.html" title="interface IPackage"><img class="xdocHdrArrow" src="../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../xdc/package.html" title="package xdc"><img class="xdocHdrArrow" src="../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../index.html#xdc/Warnings.html">index URL</a></div>
+<p class="xdocHdrSummary">Conditional warnings manager</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../xdc/Warnings-src.html"><span class="xdocLabelFile">xdc/Warnings.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> Warnings = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.Warnings'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.L.O.G.I.D">Warnings.<span class="xdoc-id">LOGID</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Multiple Log events with the same ID</span></span></a> = {
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Warning">Warnings.<span class="xdoc-id">Warning</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Warning descriptor</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Warning" title="xdc.Warnings.Warning"><span class="xdoc-id">id</span></a> = <i><span class="xdoc-kw2">Int</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Warning" title="xdc.Warnings.Warning"><span class="xdoc-id">msg</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.Warning.Params">Warnings.<span class="xdoc-id">WarningParams</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Structure passed to $logWarning</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Warning.Params" title="xdc.Warnings.WarningParams"><span class="xdoc-id">warning</span></a> = <i><a class="xdoc-link" href="../xdc/Warnings.html#.Warning" title="xdc.Warnings.Warning">Warnings.Warning</a></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.Warning.Params" title="xdc.Warnings.WarningParams"><span class="xdoc-id">args</span></a> = <i><span class="xdoc-kw2">String</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#disable">Warnings.<span class="xdoc-id">disable</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Internal function that disables warnings</span></span></a>(<i><span class="xdoc-kw2">String</span>[<span class="xdoc-kw2"></span>]</i> <span class="xdoc-id">ids</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Message">Warnings.<span class="xdoc-id">getMessage</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Internal function that creates an actual output message</span></span></a>(<i><a class="xdoc-link" href="../xdc/Warnings.html#.Warning.Params" title="xdc.Warnings.WarningParams">Warnings.WarningParams</a></i> <span class="xdoc-id">prms</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">NODOC</div>
+<div class="xdocText">This module declares all warnings generated by the packages in the xdc.*
+  name space. Each warning is identified with an ID, a positive integer
+  number. A warning message allows conversion specifiers that can be replaced 
+  with actual strings at the time a warning message is generated.
+  The purpose of IDs is to let users find warning documentation in this module
+  and also to allow warnings to be disabled based on their IDs.</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".L.O.G.I.D"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">const</span> <span class="xdoc-id">Warnings.</span><span class="xdoc-id">LOGID</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../xdc/Warnings.html" title="module Warnings"><img class="xdocHdrArrow" src="../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../index.html#xdc/Warnings.html#.L.O.G.I.D">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Multiple Log events with the same ID</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">const</span> Warnings.<span class="xdoc-id">LOGID</span> = {
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">If two Log events share a message, they are automatically assigned
+  the same ID because IDs also serve as pointers to an array that holds
+  a compact representation of message strings. To avoid duplication of
+  strings, if a string already exists in the array, the ID of the 
+  existing copy is used.</div>
+<div class="xdocText">This warning can be useful for package producers who unintentionally
+  declare two events with the same message, which could be combined
+  into one common Log event.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Warning"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Warnings.</span><span class="xdoc-id">Warning</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../xdc/Warnings.html" title="module Warnings"><img class="xdocHdrArrow" src="../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../index.html#xdc/Warnings.html#.Warning">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Warning descriptor</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> Warnings.<span class="xdoc-id">Warning</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">id</span> = <i><span class="xdoc-kw2">Int</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">msg</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Warnings are defined as instances of this structure, and also that's
+  how the warnings are kept internally.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Warning.Params"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">Warnings.</span><span class="xdoc-id">WarningParams</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../xdc/Warnings.html" title="module Warnings"><img class="xdocHdrArrow" src="../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../index.html#xdc/Warnings.html#.Warning.Params">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Structure passed to $logWarning</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> Warnings.<span class="xdoc-id">WarningParams</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">warning</span> = <i><a class="xdoc-link" href="../xdc/Warnings.html#.Warning" title="xdc.Warnings.Warning">Warnings.Warning</a></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">args</span> = <i><span class="xdoc-kw2">String</span>[<span class="xdoc-kw2"></span>]</i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Currently, the only parameter assigned to a warning is an array of
+  strings to replace conversion specifiers in <tt>Warning</tt>s. In the future,
+  a caller can identify a module where the warning is defined, which will
+  allow any package to introduce new warnings.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="disable"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Warnings.</span><span class="xdoc-id">disable</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../xdc/Warnings.html" title="module Warnings"><img class="xdocHdrArrow" src="../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../index.html#xdc/Warnings.html#disable">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Internal function that disables warnings</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Warnings.<span class="xdoc-id">disable</span>(<i><span class="xdoc-kw2">String</span>[<span class="xdoc-kw2"></span>]</i> <span class="xdoc-id">ids</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">ids</span>
+<span class="xdocChildSum">&#151;&nbsp;array of IDs</span>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Message"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">Warnings.</span><span class="xdoc-id">getMessage</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../xdc/Warnings.html" title="module Warnings"><img class="xdocHdrArrow" src="../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../index.html#xdc/Warnings.html#get.Message">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Internal function that creates an actual output message</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>Warnings.<span class="xdoc-id">getMessage</span>(<i><a class="xdoc-link" href="../xdc/Warnings.html#.Warning.Params" title="xdc.Warnings.WarningParams">Warnings.WarningParams</a></i> <span class="xdoc-id">prms</span>) <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">ARGUMENTS</div>
+<div class="xdocChild"><span class="xdocChildId">prms</span>
+<span class="xdocChildSum">&#151;&nbsp;WarningParams structure passed by the warning
+                  generation code</span>
+</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:37 GMT</div>
+</div></div></body>
+</html>

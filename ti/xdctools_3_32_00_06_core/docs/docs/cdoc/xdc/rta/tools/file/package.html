@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>package xdc.rta.tools.file</title>
+<meta name="description" content="Tool for reading and decoding RTA data from a file">
+<link rel="stylesheet" type="text/css" href="../../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.rta.tools.file</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../../xdc/rta/tools/file/Main.html" title="module Main"><img class="xdocHdrArrow" src="../../../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../../index.html#xdc/rta/tools/file/package.html">index URL</a></div>
+<p class="xdocHdrSummary">Tool for reading and decoding RTA data from a file</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-1">USAGE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-2">OPTIONS</a></li>
+</ul>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../../xdc/rta/tools/file/package-src.html"><span class="xdocLabelFile">xdc/rta/tools/file/package.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.rta.tools.file</span> {
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">module</span> <a class='xdocSynGo' href='../../../../xdc/rta/tools/file/Main.html' title='xdc.rta.tools.file.Main'><span class="xdoc-id">Main</span>;</a>
+</div>
+<div class='xdocSynSum'><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Command implementation</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">USAGE</div>
+<div class="xdocText"><tt>xs xdc.rta.tools.file [--help]<br />&nbsp;&nbsp;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;Usage<br />&nbsp;&nbsp;&nbsp;&nbsp;[-p] [-h] [-m] [-e executable] [-x RTA XML file] [-d data input file] [-o output text file] [-c delimter character]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--help]<br />&nbsp;&nbsp;&nbsp;&nbsp; </tt></div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">OPTIONS</div>
+<div class="xdocText"><dl><dt><tt>-p</tt></dt><dd>Whether to print the decoded records to the console<p>  You may use this tool to simply print the decoded records, or you
+  may have them redirected to a file to be processed elsewhere.
+</p></dd><dt><tt>-h</tt></dt><dd>Don't print the header when printing the decoded records</dd><dt><tt>-m</tt></dt><dd>Wait for the user to press enter before displaying the next packet<p>  Without this flag, the tool will simply print all of the records in the
+  data file to the screen. If this flag is set, then the tool will wait
+  the user to press enter in between displaying each packet.
+</p></dd><dt><tt>-e</tt></dt><dd>Path to the executable which was used to generate the data file</dd><dt><tt>-x</tt></dt><dd>Optional path to the RTA XML file</dd><dt><tt>-d</tt></dt><dd>Path to the file containing the RTA log data</dd><dt><tt>-o</tt></dt><dd>Optional path to an output file to write the decoded records to<p>  The tool will write the decoded records out as text to the specified
+  out file. The record properties will be separated with a delimeter 
+  character so that they can be imported into a spreadsheet such as 
+  Excel.
+</p></dd><dt><tt>-c</tt></dt><dd>// TODO
+  [-l output file for load data]<p>  Delimiter character to use when writing out the file.
+</p><p>  The character specified here will be inserted between each of the
+  record fields so that the file can be imported into a spreadsheet
+  such as excel.
+</p></dd></div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:54 GMT</div>
+</div></div></body>
+</html>

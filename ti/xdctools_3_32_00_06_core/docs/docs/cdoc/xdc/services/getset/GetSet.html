@@ -1,0 +1,317 @@
+<html>
+<head>
+<title>module xdc.services.getset.GetSet</title>
+<meta name="description" content="Callback notification on RTSC config parameters">
+<link rel="stylesheet" type="text/css" href="../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.services.getset.</span><span class="xdoc-id">GetSet</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/services/getset/package.html" title="package xdc.services.getset"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/services/getset/GetSet.html">index URL</a></div>
+<p class="xdocHdrSummary">Callback notification on RTSC config parameters</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-1">DETAILS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-2">SEE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<div class="xdocBrief">
+Lets user code receive a notification whenever a
+  config param of a module or instance is read or modified.
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/services/getset/GetSet-src.html"><span class="xdocLabelFile">xdc/services/getset/GetSet.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> GetSet = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.services.getset.GetSet'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#debug">GetSet.<span class="xdoc-id">debug</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Print execution trace info showing the flow of getters and setters</span></span></a> = <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-kw2">false</span>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#max.Iterations">GetSet.<span class="xdoc-id">maxIterations</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Limit the number of iterations allowed for a group to converge, to
+  help debug. The default value of 0 means no limit</span></span></a> = <i><span class="xdoc-kw2">Int</span></i> 0;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#max.Stack.Depth">GetSet.<span class="xdoc-id">maxStackDepth</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Set the maximum allowed depth of recursively nested setters, as
+  a debugging aid. The default value of 0 means no limit</span></span></a> = <i><span class="xdoc-kw2">Int</span></i> 0;
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#create.Group">GetSet.<span class="xdoc-id">createGroup</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Create a group of related setter functions</span></span></a>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#init">GetSet.<span class="xdoc-id">init</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Add support for getters and setters to all fields of an object</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#on.Get">GetSet.<span class="xdoc-id">onGet</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Add a getter function to a field</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">sel</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">getter</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#on.Set">GetSet.<span class="xdoc-id">onSet</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Add a setter function to a field</span></span></a>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">sel</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">setter</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Lets user code receive a notification whenever a
+  config param of a module or instance is read or modified.</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">SEE</div>
+<div class="xdocText"><a class="xdoc-linkFile" href="./doc-files/xdc/services/getset/package-summary.html" title="./doc-files/xdc/services/getset/package-summary.html">JavaDoc</a></div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="debug"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">GetSet.</span><span class="xdoc-id">debug</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/services/getset/GetSet.html" title="module GetSet"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/services/getset/GetSet.html#debug">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Print execution trace info showing the flow of getters and setters</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>GetSet.<span class="xdoc-id">debug</span> = <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-kw2">false</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="max.Iterations"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">GetSet.</span><span class="xdoc-id">maxIterations</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/services/getset/GetSet.html" title="module GetSet"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/services/getset/GetSet.html#max.Iterations">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Limit the number of iterations allowed for a group to converge, to
+  help debug. The default value of 0 means no limit</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>GetSet.<span class="xdoc-id">maxIterations</span> = <i><span class="xdoc-kw2">Int</span></i> 0;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="max.Stack.Depth"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">GetSet.</span><span class="xdoc-id">maxStackDepth</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/services/getset/GetSet.html" title="module GetSet"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/services/getset/GetSet.html#max.Stack.Depth">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Set the maximum allowed depth of recursively nested setters, as
+  a debugging aid. The default value of 0 means no limit</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>GetSet.<span class="xdoc-id">maxStackDepth</span> = <i><span class="xdoc-kw2">Int</span></i> 0;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="create.Group"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">GetSet.</span><span class="xdoc-id">createGroup</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/services/getset/GetSet.html" title="module GetSet"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/services/getset/GetSet.html#create.Group">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Create a group of related setter functions</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>GetSet.<span class="xdoc-id">createGroup</span>() <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The purpose of a group is to control interactions between setters.
+  If each setter acts like an interrupt, then a group is like an
+  interrupt controller that determines when setters are permitted
+  to run.</div>
+<div class="xdocText">Each group is non-reentrant. Once any setter in the group is
+  running, it runs to completion before any other setter in the
+  same group may run. This allows the setters to modify internal
+  state without interference from other setters that operate on
+  the same internal state.</div>
+<div class="xdocText">Each group runs to completion. When a setter in the group runs, it
+  might modify other config params and cause further setters in the
+  same group to run. All of these complete before control is returned
+  to the original execution flow. From the point of view of code
+  outside the group, all the setters ran as an atomic operation.</div>
+<div class="xdocText">Groups may be interrupted. When a setter modifies a config param
+  that is being monitored by a second group, the second group starts
+  running immediately. It will run to completion before returning
+  control to the first group. So the first group sees the second
+  group as atomic. This allows groups to be tested independently,
+  and combined without affecting their behavior.</div>
+<div class="xdocText">Cycles aren't permitted in the execution flow between groups. If a
+  setter gets triggered from a group that has already been interrupted,
+  it is deferred and run when control eventually returns to its own
+  group. Cycles between groups can break the appearance of atomic
+  execution, and so should be avoided when possible.</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">A Java object of class
+    <a class="xdoc-linkFile" href="./doc-files/xdc/services/getset/Group.html" title="./doc-files/xdc/services/getset/Group.html">Group</a>.
+  Can then use Group.onSet() to add functions to the group.</div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">EXAMPLE</div>
+<div class="xdocText">The following example code forces the values of the config params
+  <tt>ModA.a</tt> and <tt>ModB.b</tt> to be equal:</div>
+<div class="xdocText"><PRE class="Example">    var group = GetSet.createGroup();
+    group.onSet(ModA, "a", function aToB(){ ModB.b = ModA.a; });
+    group.onSet(ModB, "b", function bToA(){ ModA.a = ModB.b; });
+</PRE></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="init"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">GetSet.</span><span class="xdoc-id">init</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/services/getset/GetSet.html" title="module GetSet"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/services/getset/GetSet.html#init">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Add support for getters and setters to all fields of an object</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>GetSet.<span class="xdoc-id">init</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Initializes getter and setter support for every field of
+  the object. The object can be a module, instance, or structure.</div>
+<div class="xdocText">This is a convenience function. The <tt>onSet</tt> and <tt>onGet</tt> functions
+  already add support to the one field of interest. The <tt>init</tt>
+  function is useful mostly to make fields visible to global setters
+  and getters, for example for debugging.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="on.Get"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">GetSet.</span><span class="xdoc-id">onGet</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/services/getset/GetSet.html" title="module GetSet"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/services/getset/GetSet.html#on.Get">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Add a getter function to a field</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>GetSet.<span class="xdoc-id">onGet</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">sel</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">getter</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Each getter acts like an interrupt that is triggered by a read
+  a field of an object. The field could be a config param of a module
+  or an instance, or a field of a struct.</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">EXAMPLE</div>
+<div class="xdocText">The following example prints a message on any read of a
+  config param named <tt>cfg</tt> in module <tt>pkg.Mod</tt>:</div>
+<div class="xdocText"><PRE class="Example">    GetSet.onGet(Mod, "cfg", function(sel, val) {
+        // prints "pkg.Mod.cfg returned &lt;value&gt;"
+        print(this.$name + "." + sel + " returned " + val);
+    });
+</PRE></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="on.Set"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">GetSet.</span><span class="xdoc-id">onSet</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/services/getset/GetSet.html" title="module GetSet"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/services/getset/GetSet.html#on.Set">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Add a setter function to a field</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>GetSet.<span class="xdoc-id">onSet</span>(<i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">obj</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">sel</span>, <i><span class="xdoc-kw2">Any</span></i> <span class="xdoc-id">setter</span>) <i>returns</i> <i><span class="xdoc-kw2">Any</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Each setter acts like an interrupt that is triggered by modifying
+  a field of an object. The field could be a config param of a module
+  or an instance, or a field of a struct.</div>
+<div class="xdocText">Setters execute only when the field actually changes value. They do
+  not execute if the field's current value is written back to it.</div>
+<div class="xdocText">Setters may themselves modify fields, and so trigger other setters.
+  The original execution flow resumes when all fields stop changing
+  value. In the case of cycles between setters, typically this means
+  that at least one setter executes twice and makes no further
+  changes the second time through.</div>
+<div class="xdocText">If the setter throws a JavaScript Error or Java exception, then
+  the field's original value is restored. The exception bubbles back
+  through the call stack, so that if a setter caused a cascade of
+  changes, all are restored to their original values.</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">EXAMPLE</div>
+<div class="xdocText">The following example prints a message on any write to a
+  config param named <tt>cfg</tt> in module <tt>pkg.Mod</tt>:</div>
+<div class="xdocText"><PRE class="Example">    GetSet.onSet(Mod, "cfg", function(sel, val, oldVal, exception) {
+        // prints "pkg.Mod.cfg set to &lt;value&gt;"
+        print(this.$name + "." + sel + " changed to " + val);
+        // prints previous value before change
+        print("  was " + oldVal);
+    });
+</PRE></div>
+<div class="xdocText">The following example makes it an error to change <tt>Mod.cfg</tt>:</div>
+<div class="xdocText"><PRE class="Example">    GetSet.onSet(Mod, "cfg", function(sel, val, oldVal, exception) {
+        // don't throw an exception if already recovering from one
+        if (!exception) {
+            throw new Error("You'll never change me!");
+        }
+    });
+</PRE></div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:53 GMT</div>
+</div></div></body>
+</html>

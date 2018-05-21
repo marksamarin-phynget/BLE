@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.services.getset.GetSet</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* --COPYRIGHT--,EPL
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * --/COPYRIGHT--*/</span>
+    12    
+    13    <span class="xdoc">/*!
+</span>    14    <span class="xdoc"> *  Callback notification on RTSC config parameters.
+</span>    15    <span class="xdoc"> *
+</span>    16    <span class="xdoc"> *  Lets user code receive a notification whenever a
+</span>    17    <span class="xdoc"> *  config param of a module or instance is read or modified.
+</span>    18    <span class="xdoc"> *
+</span>    19    <span class="xdoc"> *  <b>@see</b> ./doc-files/xdc/services/getset/package-summary.html JavaDoc
+</span>    20    <span class="xdoc"> */</span>
+    21    <span class=key>metaonly</span> <span class=key>module</span> GetSet
+    22    {
+    23        <span class="xdoc">/*!
+</span>    24    <span class="xdoc">     *  ======== onGet ========
+</span>    25    <span class="xdoc">     *  Add a getter function to a field.
+</span>    26    <span class="xdoc">     *
+</span>    27    <span class="xdoc">     *  Each getter acts like an interrupt that is triggered by a read
+</span>    28    <span class="xdoc">     *  a field of an object. The field could be a config param of a module
+</span>    29    <span class="xdoc">     *  or an instance, or a field of a struct.
+</span>    30    <span class="xdoc">     *
+</span>    31    <span class="xdoc">     *  <b>@a(example)</b>
+</span>    32    <span class="xdoc">     *  The following example prints a message on any read of a
+</span>    33    <span class="xdoc">     *  config param named `cfg` in module `pkg.Mod`:
+</span>    34    <span class="xdoc">     *  <b>@p(code)</b>
+</span>    35    <span class="xdoc">     *    GetSet.onGet(Mod, "cfg", function(sel, val) {
+</span>    36    <span class="xdoc">     *        // prints "pkg.Mod.cfg returned &lt;value&gt;"
+</span>    37    <span class="xdoc">     *        print(this.$name + "." + sel + " returned " + val);
+</span>    38    <span class="xdoc">     *    });
+</span>    39    <span class="xdoc">     *  <b>@p</b>
+</span>    40    <span class="xdoc">     */</span>
+    41        <span class=key>function</span> onGet(obj, sel, getter);
+    42    
+    43        <span class="xdoc">/*!
+</span>    44    <span class="xdoc">     *  ======== onSet ========
+</span>    45    <span class="xdoc">     *  Add a setter function to a field.
+</span>    46    <span class="xdoc">     *
+</span>    47    <span class="xdoc">     *  Each setter acts like an interrupt that is triggered by modifying
+</span>    48    <span class="xdoc">     *  a field of an object. The field could be a config param of a module
+</span>    49    <span class="xdoc">     *  or an instance, or a field of a struct.
+</span>    50    <span class="xdoc">     *
+</span>    51    <span class="xdoc">     *  Setters execute only when the field actually changes value. They do
+</span>    52    <span class="xdoc">     *  not execute if the field's current value is written back to it.
+</span>    53    <span class="xdoc">     *
+</span>    54    <span class="xdoc">     *  Setters may themselves modify fields, and so trigger other setters.
+</span>    55    <span class="xdoc">     *  The original execution flow resumes when all fields stop changing
+</span>    56    <span class="xdoc">     *  value. In the case of cycles between setters, typically this means
+</span>    57    <span class="xdoc">     *  that at least one setter executes twice and makes no further
+</span>    58    <span class="xdoc">     *  changes the second time through.
+</span>    59    <span class="xdoc">     *
+</span>    60    <span class="xdoc">     *  If the setter throws a JavaScript Error or Java exception, then
+</span>    61    <span class="xdoc">     *  the field's original value is restored. The exception bubbles back
+</span>    62    <span class="xdoc">     *  through the call stack, so that if a setter caused a cascade of
+</span>    63    <span class="xdoc">     *  changes, all are restored to their original values.
+</span>    64    <span class="xdoc">     *
+</span>    65    <span class="xdoc">     *  <b>@a(example)</b>
+</span>    66    <span class="xdoc">     *  The following example prints a message on any write to a
+</span>    67    <span class="xdoc">     *  config param named `cfg` in module `pkg.Mod`:
+</span>    68    <span class="xdoc">     *  <b>@p(code)</b>
+</span>    69    <span class="xdoc">     *    GetSet.onSet(Mod, "cfg", function(sel, val, oldVal, exception) {
+</span>    70    <span class="xdoc">     *        // prints "pkg.Mod.cfg set to &lt;value&gt;"
+</span>    71    <span class="xdoc">     *        print(this.$name + "." + sel + " changed to " + val);
+</span>    72    <span class="xdoc">     *        // prints previous value before change
+</span>    73    <span class="xdoc">     *        print("  was " + oldVal);
+</span>    74    <span class="xdoc">     *    });
+</span>    75    <span class="xdoc">     *  <b>@p</b>
+</span>    76    <span class="xdoc">     *
+</span>    77    <span class="xdoc">     *  <b>@a(example)</b>
+</span>    78    <span class="xdoc">     *  The following example makes it an error to change `Mod.cfg`:
+</span>    79    <span class="xdoc">     *  <b>@p(code)</b>
+</span>    80    <span class="xdoc">     *    GetSet.onSet(Mod, "cfg", function(sel, val, oldVal, exception) {
+</span>    81    <span class="xdoc">     *        // don't throw an exception if already recovering from one
+</span>    82    <span class="xdoc">     *        if (!exception) {
+</span>    83    <span class="xdoc">     *            throw new Error("You'll never change me!");
+</span>    84    <span class="xdoc">     *        }
+</span>    85    <span class="xdoc">     *    });
+</span>    86    <span class="xdoc">     *  <b>@p</b>
+</span>    87    <span class="xdoc">     */</span>
+    88        <span class=key>function</span> onSet(obj, sel, setter);
+    89    
+    90        <span class="xdoc">/*!
+</span>    91    <span class="xdoc">     *  ======== createGroup ========
+</span>    92    <span class="xdoc">     *  Create a group of related setter functions.
+</span>    93    <span class="xdoc">     *
+</span>    94    <span class="xdoc">     *  The purpose of a group is to control interactions between setters.
+</span>    95    <span class="xdoc">     *  If each setter acts like an interrupt, then a group is like an
+</span>    96    <span class="xdoc">     *  interrupt controller that determines when setters are permitted
+</span>    97    <span class="xdoc">     *  to run.
+</span>    98    <span class="xdoc">     *
+</span>    99    <span class="xdoc">     *  Each group is non-reentrant. Once any setter in the group is
+</span>   100    <span class="xdoc">     *  running, it runs to completion before any other setter in the
+</span>   101    <span class="xdoc">     *  same group may run. This allows the setters to modify internal
+</span>   102    <span class="xdoc">     *  state without interference from other setters that operate on
+</span>   103    <span class="xdoc">     *  the same internal state.
+</span>   104    <span class="xdoc">     *
+</span>   105    <span class="xdoc">     *  Each group runs to completion. When a setter in the group runs, it
+</span>   106    <span class="xdoc">     *  might modify other config params and cause further setters in the
+</span>   107    <span class="xdoc">     *  same group to run. All of these complete before control is returned
+</span>   108    <span class="xdoc">     *  to the original execution flow. From the point of view of code
+</span>   109    <span class="xdoc">     *  outside the group, all the setters ran as an atomic operation.
+</span>   110    <span class="xdoc">     *
+</span>   111    <span class="xdoc">     *  Groups may be interrupted. When a setter modifies a config param
+</span>   112    <span class="xdoc">     *  that is being monitored by a second group, the second group starts
+</span>   113    <span class="xdoc">     *  running immediately. It will run to completion before returning
+</span>   114    <span class="xdoc">     *  control to the first group. So the first group sees the second
+</span>   115    <span class="xdoc">     *  group as atomic. This allows groups to be tested independently,
+</span>   116    <span class="xdoc">     *  and combined without affecting their behavior.
+</span>   117    <span class="xdoc">     *
+</span>   118    <span class="xdoc">     *  Cycles aren't permitted in the execution flow between groups. If a
+</span>   119    <span class="xdoc">     *  setter gets triggered from a group that has already been interrupted,
+</span>   120    <span class="xdoc">     *  it is deferred and run when control eventually returns to its own
+</span>   121    <span class="xdoc">     *  group. Cycles between groups can break the appearance of atomic
+</span>   122    <span class="xdoc">     *  execution, and so should be avoided when possible.
+</span>   123    <span class="xdoc">     *
+</span>   124    <span class="xdoc">     *  <b>@a(returns)</b>
+</span>   125    <span class="xdoc">     *  A Java object of class
+</span>   126    <span class="xdoc">     *    {<b>@link</b> ./doc-files/xdc/services/getset/Group.html Group}.
+</span>   127    <span class="xdoc">     *  Can then use Group.onSet() to add functions to the group.
+</span>   128    <span class="xdoc">     *
+</span>   129    <span class="xdoc">     *  <b>@a(example)</b>
+</span>   130    <span class="xdoc">     *  The following example code forces the values of the config params
+</span>   131    <span class="xdoc">     *  `ModA.a` and `ModB.b` to be equal:
+</span>   132    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   133    <span class="xdoc">     *    var group = GetSet.createGroup();
+</span>   134    <span class="xdoc">     *    group.onSet(ModA, "a", function aToB(){ ModB.b = ModA.a; });
+</span>   135    <span class="xdoc">     *    group.onSet(ModB, "b", function bToA(){ ModA.a = ModB.b; });
+</span>   136    <span class="xdoc">     *  <b>@p</b>
+</span>   137    <span class="xdoc">     */</span>
+   138        <span class=key>function</span> createGroup();
+   139    
+   140        <span class="xdoc">/*!
+</span>   141    <span class="xdoc">     *  ======== init ========
+</span>   142    <span class="xdoc">     *  Add support for getters and setters to all fields of an object.
+</span>   143    <span class="xdoc">     *
+</span>   144    <span class="xdoc">     *  Initializes getter and setter support for every field of
+</span>   145    <span class="xdoc">     *  the object. The object can be a module, instance, or structure.
+</span>   146    <span class="xdoc">     *
+</span>   147    <span class="xdoc">     *  This is a convenience function. The `onSet` and `onGet` functions
+</span>   148    <span class="xdoc">     *  already add support to the one field of interest. The `init`
+</span>   149    <span class="xdoc">     *  function is useful mostly to make fields visible to global setters
+</span>   150    <span class="xdoc">     *  and getters, for example for debugging.
+</span>   151    <span class="xdoc">     */</span>
+   152        <span class=key>function</span> init(obj);
+   153    
+   154        <span class="xdoc">/*!
+</span>   155    <span class="xdoc">     *  ======== debug ========
+</span>   156    <span class="xdoc">     *  Print execution trace info showing the flow of getters and setters.
+</span>   157    <span class="xdoc">     */</span>
+   158        <span class=key>config</span> Bool debug = <span class=key>false</span>;
+   159    
+   160        <span class="xdoc">/*!
+</span>   161    <span class="xdoc">     *  ======== maxIterations ========
+</span>   162    <span class="xdoc">     *  Limit the number of iterations allowed for a group to converge, to
+</span>   163    <span class="xdoc">     *  help debug. The default value of 0 means no limit.
+</span>   164    <span class="xdoc">     */</span>
+   165        <span class=key>config</span> <span class=key>int</span> maxIterations = 0;
+   166    
+   167        <span class="xdoc">/*!
+</span>   168    <span class="xdoc">     *  ======== maxStackDepth ========
+</span>   169    <span class="xdoc">     *  Set the maximum allowed depth of recursively nested setters, as
+</span>   170    <span class="xdoc">     *  a debugging aid. The default value of 0 means no limit.
+</span>   171    <span class="xdoc">     */</span>
+   172        <span class=key>config</span> <span class=key>int</span> maxStackDepth = 0;
+   173    }
+</pre>
+</body></html>

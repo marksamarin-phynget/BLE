@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>interface xdc.rov.ICallStack</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> * 
+</span>    11    <span class="comment"> * */</span>
+    12    <span class=key>package</span> xdc.rov
+    13    
+    14    <span class="xdoc">/*!
+</span>    15    <span class="xdoc"> *  ======== ICallStack ========
+</span>    16    <span class="xdoc"> *  A call stack interface (optionally) implementated by ROV servers
+</span>    17    <span class="xdoc"> *
+</span>    18    <span class="xdoc"> *  Instances of this interface maintain a "local" set of processor
+</span>    19    <span class="xdoc"> *  registers sufficient to enable call stack parsing - walking up the C
+</span>    20    <span class="xdoc"> *  callstack and determining all nested calls up to the current program
+</span>    21    <span class="xdoc"> *  counter (specified by the local registers).  This "local" set of
+</span>    22    <span class="xdoc"> *  registers is, of course, processor specific and must include both
+</span>    23    <span class="xdoc"> *  the program counter ("PC") and a frame pointer (processor-specific
+</span>    24    <span class="xdoc"> *  register name).
+</span>    25    <span class="xdoc"> */</span>
+    26    <span class=key>metaonly</span> <span class=key>interface</span> ICallStack {
+    27    
+    28    <span class=key>instance</span>:
+    29        <span class="comment">/*
+</span>    30    <span class="comment">     *  ======== clearRegisters ========
+</span>    31    <span class="comment">     *  Clear all local register values
+</span>    32    <span class="comment">     */</span>
+    33        Void clearRegisters();
+    34    
+    35        <span class="comment">/*
+</span>    36    <span class="comment">     *  ======== fetchRegisters ========
+</span>    37    <span class="comment">     *  Fetch the current values of the specified registers
+</span>    38    <span class="comment">     *
+</span>    39    <span class="comment">     *  This method reads the current value of the registers from the device
+</span>    40    <span class="comment">     *  (or core dump file or ...) and sets the local register set
+</span>    41    <span class="comment">     *  accordingly.  For example, if the frame pointer register is named
+</span>    42    <span class="comment">     *  "FP" the following sequence should produce a stack trace:
+</span>    43    <span class="comment">     *  @p(code)
+</span>    44    <span class="comment">     *      callstack.fetch(["PC", "FP"]);
+</span>    45    <span class="comment">     *      print(callstack.toText());
+</span>    46    <span class="comment">     *  @p
+</span>    47    <span class="comment">     */</span>
+    48        Void fetchRegisters(String names[]);
+    49    
+    50        <span class="comment">/*
+</span>    51    <span class="comment">     *  ======== getRegister ========
+</span>    52    <span class="comment">     *  Get the local value of the named register
+</span>    53    <span class="comment">     */</span>
+    54        Long getRegister(String name);
+    55    
+    56        <span class="comment">/*
+</span>    57    <span class="comment">     *  ======== setRegister ========
+</span>    58    <span class="comment">     *  Set the local value of the named register
+</span>    59    <span class="comment">     */</span>
+    60        Void setRegister(String name, Long value);
+    61    
+    62        <span class="comment">/*
+</span>    63    <span class="comment">     *  ======== toText ========
+</span>    64    <span class="comment">     *  Return entire call stack as a string
+</span>    65    <span class="comment">     *  
+</span>    66    <span class="comment">     *  Create a string representation of the current call stack based
+</span>    67    <span class="comment">     *  on the currently set register values.
+</span>    68    <span class="comment">     */</span>
+    69        String toText();
+    70    }
+    71    
+    72    <span class="comment">/*
+</span>    73    <span class="comment"> *  @(#) xdc.rov; 1, 0, 1,0; 12-9-2015 17:36:22; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>    74    <span class="comment"> */</span>
+    75    
+</pre>
+</body></html>

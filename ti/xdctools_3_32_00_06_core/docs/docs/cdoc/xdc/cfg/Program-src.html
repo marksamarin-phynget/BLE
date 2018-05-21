@@ -1,0 +1,819 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.cfg.Program</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *  Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> *
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> *
+</span>    11    <span class="comment"> * */</span>
+    12    <span class="comment">/*
+</span>    13    <span class="comment"> *  ======== Program.xdc ========
+</span>    14    <span class="comment"> */</span>
+    15    <span class=key>package</span> xdc.cfg;
+    16    
+    17    <span class="xdoc">/*!
+</span>    18    <span class="xdoc"> *  ======== Program ========
+</span>    19    <span class="xdoc"> *  The Program object for the configuration object model.
+</span>    20    <span class="xdoc"> *
+</span>    21    <span class="xdoc"> *  This module defines the "root" of the configuration object model; all
+</span>    22    <span class="xdoc"> *  "top-level" configuration settings for the executable are provided by
+</span>    23    <span class="xdoc"> *  this object. Program configuration scripts reference this module via the
+</span>    24    <span class="xdoc"> *  global variable `Program`; i.e., `Program` is implicitly initialized as
+</span>    25    <span class="xdoc"> *  follows:
+</span>    26    <span class="xdoc"> *  <b>@p(code)</b>
+</span>    27    <span class="xdoc"> *      var Program = xdc.useModule('xdc.cfg.Program');
+</span>    28    <span class="xdoc"> *  <b>@p</b>
+</span>    29    <span class="xdoc"> *
+</span>    30    <span class="xdoc"> *  After a configuration script completes successfully, the following files
+</span>    31    <span class="xdoc"> *  are generated:
+</span>    32    <span class="xdoc"> *  <b>@p(nlist)</b>
+</span>    33    <span class="xdoc"> *      - package/cfg/&lt;exe_name&gt;.c
+</span>    34    <span class="xdoc"> *      - package/cfg/&lt;exe_name&gt;.xdl
+</span>    35    <span class="xdoc"> *  <b>@p</b>
+</span>    36    <span class="xdoc"> *  where `&lt;exe_name&gt;` is the name of the executable with the final '.'
+</span>    37    <span class="xdoc"> *  character replaced with an '_'.
+</span>    38    <span class="xdoc"> *
+</span>    39    <span class="xdoc"> *  The generated C file contains code and data from each module used by the
+</span>    40    <span class="xdoc"> *  program and must be compiled and linked with the other sources to
+</span>    41    <span class="xdoc"> *  produce the final executable.  The generated linker command file must also
+</span>    42    <span class="xdoc"> *  be added during this final link step.
+</span>    43    <span class="xdoc"> *
+</span>    44    <span class="xdoc"> *  The linker command file is produced by expanding a template
+</span>    45    <span class="xdoc"> *  provided by the platform specifed during configuration and contains
+</span>    46    <span class="xdoc"> *  hardware and compiler specific directives required by the target modules
+</span>    47    <span class="xdoc"> *  that are part of the program's configuration.  This template expands
+</span>    48    <span class="xdoc"> *  other templates specified by each imported package's
+</span>    49    <span class="xdoc"> *  `{<b>@link</b> xdc.IPackage#getSects getSects}` method, for example. This allows
+</span>    50    <span class="xdoc"> *  each package participating in the configuration executable to
+</span>    51    <span class="xdoc"> *  automatically contribute a portion of the executable's linker command
+</span>    52    <span class="xdoc"> *  file.
+</span>    53    <span class="xdoc"> *
+</span>    54    <span class="xdoc"> *  You can modify or augment the contents of this file via
+</span>    55    <span class="xdoc"> *  `{<b>@link</b> xdc.cfg.Program#sectionsExclude sectionsExclude}` and
+</span>    56    <span class="xdoc"> *  `{<b>@link</b> xdc.cfg.Program#sectionsTemplate sectionsTemplate}`. It is even
+</span>    57    <span class="xdoc"> *  possible to completely replace the template used to generate this file via
+</span>    58    <span class="xdoc"> *  `{<b>@link</b> xdc.cfg.Program#linkTemplate linkTemplate}`. If a custom template
+</span>    59    <span class="xdoc"> *  is used, it should still invoke `{<b>@link</b> xdc.IPackage#getSects getSects}`
+</span>    60    <span class="xdoc"> *  methods for all loaded packages.
+</span>    61    <span class="xdoc"> *  These configuration options provide the user complete control of the linker
+</span>    62    <span class="xdoc"> *  command file.
+</span>    63    <span class="xdoc"> */</span>
+    64    
+    65    @Template(<span class="string">"./Program.xdt"</span>)
+    66    
+    67    <span class=key>metaonly</span> <span class=key>module</span> Program {
+    68    
+    69        <span class="xdoc">/*!
+</span>    70    <span class="xdoc">     *  ======== GenerationOptions ========
+</span>    71    <span class="xdoc">     *  Options that control the files generated as part of program
+</span>    72    <span class="xdoc">     *  configuration.
+</span>    73    <span class="xdoc">     *
+</span>    74    <span class="xdoc">     *  <b>@field(debuggerFiles)</b> If set to `true` in a configuration script,
+</span>    75    <span class="xdoc">     *          debugger project files will be generated as part of the
+</span>    76    <span class="xdoc">     *          configuration step.  If set to `false`, these files will not
+</span>    77    <span class="xdoc">     *          be generated.
+</span>    78    <span class="xdoc">     *
+</span>    79    <span class="xdoc">     *          If it is not set (or set to undefined) and the environment
+</span>    80    <span class="xdoc">     *          variable `environment["xdc.cfg.gen.debuggerFiles"]` is
+</span>    81    <span class="xdoc">     *          non-`null`, then the default value of this parameter is taken
+</span>    82    <span class="xdoc">     *          to be the value of the following expression:
+</span>    83    <span class="xdoc">     *          <b>@p(code)</b>
+</span>    84    <span class="xdoc">     *              environment["xdc.cfg.gen.debuggerFiles"] == "true"
+</span>    85    <span class="xdoc">     *          <b>@p</b>
+</span>    86    <span class="xdoc">     *          This makes it is possible to enable the generation of
+</span>    87    <span class="xdoc">     *          debugger project files from build scripts by passing
+</span>    88    <span class="xdoc">     *          the option `-Dxdc.cfg.gen.debuggerFiles=true` to the
+</span>    89    <span class="xdoc">     *          configuration tool (see
+</span>    90    <span class="xdoc">     *          `{<b>@link</b> xdc.bld.Executable#Attrs.xsopts}` or
+</span>    91    <span class="xdoc">     *          `{<b>@link</b> xdc.bld.PackageContents#Attrs.xsopts}`).
+</span>    92    <span class="xdoc">     *
+</span>    93    <span class="xdoc">     *          Finally, if `debuggerFiles` is not set (or set to `undefined`)
+</span>    94    <span class="xdoc">     *          and the environment variable above is not defined,
+</span>    95    <span class="xdoc">     *          the generation of debugger project files occurs only if
+</span>    96    <span class="xdoc">     *          `{<b>@link</b> xdc.cfg.Program#build.profile}` contains
+</span>    97    <span class="xdoc">     *          the string `"debug"`.  So, unless otherwise specified, debug
+</span>    98    <span class="xdoc">     *          profiles result in debugger project files being generated.
+</span>    99    <span class="xdoc">     */</span>
+   100        <span class=key>struct</span> GenerationOptions {
+   101            Bool debuggerFiles; <span class="xdoc">/*! if `true`, generate debugger "project" files */</span>
+   102        };
+   103    
+   104        <span class="xdoc">/*!
+</span>   105    <span class="xdoc">     *  ======== SectionSpec ========
+</span>   106    <span class="xdoc">     *  Map that instructs the linker where to place output sections.
+</span>   107    <span class="xdoc">     *
+</span>   108    <span class="xdoc">     *  This structure contains some fields that are specific to TI targets.
+</span>   109    <span class="xdoc">     *  On non-TI targets, such fields are ignored.
+</span>   110    <span class="xdoc">     *
+</span>   111    <span class="xdoc">     *  <b>@field(runSegment)</b> Defines the memory segment where the section is
+</span>   112    <span class="xdoc">     *          to be run.
+</span>   113    <span class="xdoc">     *
+</span>   114    <span class="xdoc">     *  <b>@field(loadSegment)</b> Defines the memory segment where the section is
+</span>   115    <span class="xdoc">     *          to be loaded. If 'runSegment' or 'loadSegment' is defined,
+</span>   116    <span class="xdoc">     *          but not both, the linker is instructed to use the defined
+</span>   117    <span class="xdoc">     *          field as the load and run allocation for the section.
+</span>   118    <span class="xdoc">     *
+</span>   119    <span class="xdoc">     *  <b>@field(runAddress)</b> Defines the memory address where the section is
+</span>   120    <span class="xdoc">     *          to be run. It is an error if both 'runSegment' and 'runAddress'
+</span>   121    <span class="xdoc">     *          are specified.
+</span>   122    <span class="xdoc">     *
+</span>   123    <span class="xdoc">     *  <b>@field(loadAddress)</b> Defines the memory address where the section is
+</span>   124    <span class="xdoc">     *          to be loaded. It is an error if both 'loadSegment' and
+</span>   125    <span class="xdoc">     *          'loadAddress' are specified. If 'runAddress' or 'loadAddress'
+</span>   126    <span class="xdoc">     *          is defined, but not both, the linker is instructed to use the
+</span>   127    <span class="xdoc">     *          defined field as the load and run address for the section.
+</span>   128    <span class="xdoc">     *
+</span>   129    <span class="xdoc">     *  <b>@field(runAlign)</b> If runSegment is specified, runAlign determines the
+</span>   130    <span class="xdoc">     *          alignment. It is an error if both 'runAlign' and 'runAddress'
+</span>   131    <span class="xdoc">     *          are specified.
+</span>   132    <span class="xdoc">     *
+</span>   133    <span class="xdoc">     *  <b>@field(loadAlign)</b> If runSegment is specified, runAlign determins the
+</span>   134    <span class="xdoc">     *          alignment. It is an error if both 'loadAlign' and 'loadAddress'
+</span>   135    <span class="xdoc">     *          are specified.
+</span>   136    <span class="xdoc">     *
+</span>   137    <span class="xdoc">     *  <b>@field(type)</b> Defines flags for special section types (COPY, DSECT,
+</span>   138    <span class="xdoc">     *          NOLOAD).
+</span>   139    <span class="xdoc">     *
+</span>   140    <span class="xdoc">     *  <b>@field(fill)</b> Defines the value to initialize an uninitialized
+</span>   141    <span class="xdoc">     *  section.
+</span>   142    <span class="xdoc">     */</span>
+   143        <span class=key>struct</span> SectionSpec {
+   144            String runSegment;  <span class="xdoc">/*! segment where section contents are run */</span>
+   145            String loadSegment; <span class="xdoc">/*! segment where section contents are loaded */</span>
+   146            UInt runAddress;    <span class="xdoc">/*! start address of section when run */</span>
+   147            UInt loadAddress;   <span class="xdoc">/*! start address of section when loaded */</span>
+   148            UInt runAlign;      <span class="xdoc">/*! alignment of section within runSegment */</span>
+   149            UInt loadAlign;     <span class="xdoc">/*! alignment of section within loadSegment */</span>
+   150            String type;        <span class="xdoc">/*! target-specific flags */</span>
+   151            UInt fill;          <span class="xdoc">/*! fill value */</span>
+   152        };
+   153    
+   154        <span class="xdoc">/*!
+</span>   155    <span class="xdoc">     *  ======== gen ========
+</span>   156    <span class="xdoc">     *  Generation options for this executable
+</span>   157    <span class="xdoc">     *
+</span>   158    <span class="xdoc">     *  This configuration parameter allows the program configuration script
+</span>   159    <span class="xdoc">     *  to control (to some extent) what files are generated as part of the
+</span>   160    <span class="xdoc">     *  configuration process.
+</span>   161    <span class="xdoc">     */</span>
+   162        <span class=key>config</span> GenerationOptions gen;
+   163    
+   164        <span class="xdoc">/*!
+</span>   165    <span class="xdoc">     *  ======== globalSection ========
+</span>   166    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   167    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   168    <span class="xdoc">     *
+</span>   169    <span class="xdoc">     *  Section where `{<b>@link</b> #globals}` are placed.
+</span>   170    <span class="xdoc">     *
+</span>   171    <span class="xdoc">     *  All globals specified in the application configuration file
+</span>   172    <span class="xdoc">     *  are placed into this section.
+</span>   173    <span class="xdoc">     *
+</span>   174    <span class="xdoc">     *  The default is `null`, which means the `{<b>@link</b> #dataSection}` is used.
+</span>   175    <span class="xdoc">     */</span>
+   176        <span class=key>config</span> String globalSection = <span class=key>null</span>;
+   177    
+   178        <span class="xdoc">/*!
+</span>   179    <span class="xdoc">     *  ======== sysStack ========
+</span>   180    <span class="xdoc">     *  The size of the executable's initial system stack
+</span>   181    <span class="xdoc">     *
+</span>   182    <span class="xdoc">     *  On architectures that maintain a separate "system stack" in addition
+</span>   183    <span class="xdoc">     *  to the normal `{<b>@link</b> #stack}`, this parameter sets its initial size
+</span>   184    <span class="xdoc">     *  (in units of chars).  This parameter is ignored for those
+</span>   185    <span class="xdoc">     *  architectures for which there is just a single stack; in other
+</span>   186    <span class="xdoc">     *  words, almost all known architectures.
+</span>   187    <span class="xdoc">     *
+</span>   188    <span class="xdoc">     *  This parameter is used on later generation TI/C55 16-bit DSPs where,
+</span>   189    <span class="xdoc">     *  in order to compatibly support 24-bit addresses, a separate
+</span>   190    <span class="xdoc">     *  system call/return stack that stores the upper address bits is
+</span>   191    <span class="xdoc">     *  employed.
+</span>   192    <span class="xdoc">     */</span>
+   193        <span class=key>config</span> UInt sysStack = 0x1000;
+   194    
+   195        <span class="xdoc">/*!
+</span>   196    <span class="xdoc">     *  ======== stack ========
+</span>   197    <span class="xdoc">     *  The size of the executable's initial stack
+</span>   198    <span class="xdoc">     *
+</span>   199    <span class="xdoc">     *  On platforms that enable control of the initial stack size (the
+</span>   200    <span class="xdoc">     *  stack that exists immediately after reset), this parameter specifies
+</span>   201    <span class="xdoc">     *  its initial size (in units of chars).
+</span>   202    <span class="xdoc">     */</span>
+   203        <span class=key>config</span> UInt stack = 0x1000;
+   204    
+   205        <span class="xdoc">/*!
+</span>   206    <span class="xdoc">     *  ======== heap ========
+</span>   207    <span class="xdoc">     *  The size of the executable's initial heap
+</span>   208    <span class="xdoc">     *
+</span>   209    <span class="xdoc">     *  On platforms that enable control of the size of the heap managed by
+</span>   210    <span class="xdoc">     *  the run-time support function malloc(), this parameter specifies
+</span>   211    <span class="xdoc">     *  its initial size (in units of chars).
+</span>   212    <span class="xdoc">     */</span>
+   213        <span class=key>config</span> UInt heap = 0x1000;
+   214    
+   215        <span class="xdoc">/*!
+</span>   216    <span class="xdoc">     *  ======== argSize ========
+</span>   217    <span class="xdoc">     *  The size allocated for command line args to the executable
+</span>   218    <span class="xdoc">     *
+</span>   219    <span class="xdoc">     *  On platforms that require static allocation of space to hold
+</span>   220    <span class="xdoc">     *  command line arguments, this parameter specifies its maximum size
+</span>   221    <span class="xdoc">     *  (in units of chars).
+</span>   222    <span class="xdoc">     *
+</span>   223    <span class="xdoc">     *  Command line arguments are passed to C's `main` function when it's
+</span>   224    <span class="xdoc">     *  declared via the prototype: `int main(int argc, char *argv[])`.  the
+</span>   225    <span class="xdoc">     *  `argv` array points to an array of strings allocated from the
+</span>   226    <span class="xdoc">     *  memory block whose size is controlled by `argSize`.
+</span>   227    <span class="xdoc">     *
+</span>   228    <span class="xdoc">     *  Setting `argSize` to 0 means that no `argv` array will be allocated
+</span>   229    <span class="xdoc">     *  and the application `main()` function should be declared as
+</span>   230    <span class="xdoc">     *  `int main(void)`.
+</span>   231    <span class="xdoc">     */</span>
+   232        <span class=key>config</span> UInt argSize = 0x200;
+   233    
+   234        <span class="xdoc">/*!
+</span>   235    <span class="xdoc">     *  ======== execCmd ========
+</span>   236    <span class="xdoc">     *  The command used to run this executable
+</span>   237    <span class="xdoc">     *
+</span>   238    <span class="xdoc">     *  This string is used to create a command that runs the executable
+</span>   239    <span class="xdoc">     *  from the command line.  If it is not set by the configuration script,
+</span>   240    <span class="xdoc">     *  it is set by the program's platform package (during program
+</span>   241    <span class="xdoc">     *  configuration).
+</span>   242    <span class="xdoc">     *
+</span>   243    <span class="xdoc">     *  This command is run as follows:
+</span>   244    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   245    <span class="xdoc">     *      execCmd &lt;prog&gt; &lt;args&gt;
+</span>   246    <span class="xdoc">     *  <b>@p</b>
+</span>   247    <span class="xdoc">     *  where, `&lt;prog&gt;` is the name of the executable and `&lt;args&gt;` are
+</span>   248    <span class="xdoc">     *  the arguments specified in the test (if any).
+</span>   249    <span class="xdoc">     *
+</span>   250    <span class="xdoc">     *  <b>@a(Note)</b>
+</span>   251    <span class="xdoc">     *  This parameter is ignored if the exec command is specified as part
+</span>   252    <span class="xdoc">     *  of the test; see `{<b>@link</b> xdc.bld.Test#Attrs}`.
+</span>   253    <span class="xdoc">     */</span>
+   254        <span class=key>config</span> String execCmd;
+   255    
+   256        <span class="xdoc">/*!
+</span>   257    <span class="xdoc">     *  ======== linkTemplate ========
+</span>   258    <span class="xdoc">     *  The template for the Program's linker command file
+</span>   259    <span class="xdoc">     *
+</span>   260    <span class="xdoc">     *  A template is used to create the linker command file for each
+</span>   261    <span class="xdoc">     *  program.  It can be optionally specified by setting this
+</span>   262    <span class="xdoc">     *  configuration parameter in the program's configuration script.  If
+</span>   263    <span class="xdoc">     *  `linkTemplate` it is not set or set to `null`, the template is
+</span>   264    <span class="xdoc">     *  obtained from the platform associated with this program (i.e., the
+</span>   265    <span class="xdoc">     *  platform named by the `{<b>@link</b> #platform}` config in this module).
+</span>   266    <span class="xdoc">     *  See `{<b>@link</b> xdc.platform.IPlatform#getLinkTemplate IPlatform.getLinkTemplate}`.
+</span>   267    <span class="xdoc">     *
+</span>   268    <span class="xdoc">     *  The `linkTemplate` string names a package path relative path; e.g.,
+</span>   269    <span class="xdoc">     *  if the linker template you want to specify is
+</span>   270    <span class="xdoc">     *  `"templates/big_n_hairy.xdt"` in the package `myCompany.myPackage`,
+</span>   271    <span class="xdoc">     *  `linkTemplate` should be set to:
+</span>   272    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   273    <span class="xdoc">     *      "myCompany/myPackage/templates/big_n_hairy.xdt"
+</span>   274    <span class="xdoc">     *  <b>@p</b>
+</span>   275    <span class="xdoc">     *  If `linkTemplate` begins with the string `"./"`, the file is NOT
+</span>   276    <span class="xdoc">     *  searched for along the package path; instead the file name is taken
+</span>   277    <span class="xdoc">     *  to specify a file relative to the current working directory.
+</span>   278    <span class="xdoc">     *
+</span>   279    <span class="xdoc">     *  In any case, if `linkTemplate` is non-`null`, the file must exist; 
+</span>   280    <span class="xdoc">     *  otherwise, the configuration step will fail.
+</span>   281    <span class="xdoc">     *
+</span>   282    <span class="xdoc">     *  <b>@see</b> #sectionsTemplate, #sectionsExclude, #memoryExclude
+</span>   283    <span class="xdoc">     */</span>
+   284        <span class=key>config</span> String linkTemplate = <span class=key>null</span>;
+   285    
+   286        <span class="xdoc">/*!
+</span>   287    <span class="xdoc">     *  ======== main ========
+</span>   288    <span class="xdoc">     *  The main entry point for the program
+</span>   289    <span class="xdoc">     *
+</span>   290    <span class="xdoc">     *  This parameter is optionally set by the user's program
+</span>   291    <span class="xdoc">     *  configuration script.  If it is not set, then a "legacy" `main()`
+</span>   292    <span class="xdoc">     *  function is assumed to be linked into the program; otherwise,
+</span>   293    <span class="xdoc">     *  the value of `main` is used as the "main" entry point to the
+</span>   294    <span class="xdoc">     *  program.
+</span>   295    <span class="xdoc">     */</span>
+   296        <span class=key>config</span> Int (*main)(Int, Char*[]);
+   297    
+   298        <span class="xdoc">/*!
+</span>   299    <span class="xdoc">     *  ======== sectMap ========
+</span>   300    <span class="xdoc">     *  A section name to SectionSpec mapping
+</span>   301    <span class="xdoc">     *
+</span>   302    <span class="xdoc">     *  This is a program specific mapping of output section names to
+</span>   303    <span class="xdoc">     *  {<b>@link</b> #SectionSpec} objects. The map supports mapping of section
+</span>   304    <span class="xdoc">     *  names to memory names; see {<b>@link</b> xdc.platform.IPlatform#sectMap}.
+</span>   305    <span class="xdoc">     *
+</span>   306    <span class="xdoc">     *  This parameter enables program configurations to place named
+</span>   307    <span class="xdoc">     *  sections in platform specific memory regions.  During generation of
+</span>   308    <span class="xdoc">     *  the linker command file, sections are mapped to named memories by
+</span>   309    <span class="xdoc">     *  first consulting this table; if the table does not contain a mapping,
+</span>   310    <span class="xdoc">     *  the target classifies each section as either "code", "data" or
+</span>   311    <span class="xdoc">     *  "stack" {<b>@link</b> xdc.bld.ITarget#sectMap} and the platform defines a
+</span>   312    <span class="xdoc">     *  memory region for each of these section types
+</span>   313    <span class="xdoc">     *  ({<b>@link</b> xdc.platform.IPlatform#codeMemory}/
+</span>   314    <span class="xdoc">     *  {<b>@link</b> xdc.platform.IPlatform#dataMemory}).  If
+</span>   315    <span class="xdoc">     *  this does not produce a result, an error is generated.
+</span>   316    <span class="xdoc">     *  It is important to note that `sectMap` does not contain the complete
+</span>   317    <span class="xdoc">     *  section allocation for the program. It only contains the entries
+</span>   318    <span class="xdoc">     *  explicitly added to `sectMap`. To get the complete section
+</span>   319    <span class="xdoc">     *  allocation, a user should call {<b>@link</b> #getSectMap}.
+</span>   320    <span class="xdoc">     *
+</span>   321    <span class="xdoc">     *  Suppose for example that the platform defines a memory segment
+</span>   322    <span class="xdoc">     *  named "DDR2".  The following configuration statement places
+</span>   323    <span class="xdoc">     *  everything from the ".text" section into the "DDR2" segment.
+</span>   324    <span class="xdoc">     *
+</span>   325    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   326    <span class="xdoc">     *      Program.sectMap[".text"] = new Program.SectionSpec();
+</span>   327    <span class="xdoc">     *      Program.sectMap[".text"].loadSegment = "DDR2";
+</span>   328    <span class="xdoc">     *  <b>@p</b>
+</span>   329    <span class="xdoc">     *
+</span>   330    <span class="xdoc">     *  <b>@see</b> #SectionSpec
+</span>   331    <span class="xdoc">     *  <b>@see</b> xdc.platform.IPlatform#sectMap
+</span>   332    <span class="xdoc">     *  <b>@see</b> xdc.bld.ITarget#sectMap
+</span>   333    <span class="xdoc">     */</span>
+   334        <span class=key>config</span> Any sectMap[string]; <span class="comment">/* section name =&gt; SectionSpec */</span>
+   335    
+   336        <span class="xdoc">/*!
+</span>   337    <span class="xdoc">     *  ======== sectionsExclude ========
+</span>   338    <span class="xdoc">     *  Sections to exclude from linker command file generation
+</span>   339    <span class="xdoc">     *
+</span>   340    <span class="xdoc">     *  The `sectionsExclude` string is a JavaScript regular expression
+</span>   341    <span class="xdoc">     *  that is used to identify names of sections that should NOT be
+</span>   342    <span class="xdoc">     *  be handled by the normal linker command file generation process.
+</span>   343    <span class="xdoc">     *
+</span>   344    <span class="xdoc">     *  Sections whose name matches `sectionsExclude` must be handled
+</span>   345    <span class="xdoc">     *  using a custom linker command file or by specifying a custom template
+</span>   346    <span class="xdoc">     *  (see `{<b>@link</b> #sectionsTemplate}` or `{<b>@link</b> #linkTemplate}`).
+</span>   347    <span class="xdoc">     *  <b>@a(Examples)</b>
+</span>   348    <span class="xdoc">     *  To completely override the placement of all output sections you can
+</span>   349    <span class="xdoc">     *  define `sectionsExclude` to match any string.
+</span>   350    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   351    <span class="xdoc">     *      // Note: the '.' below represents _any_ character, not just "."
+</span>   352    <span class="xdoc">     *      Program.sectionsExclude = ".*";
+</span>   353    <span class="xdoc">     *  <b>@p</b>
+</span>   354    <span class="xdoc">     *  To override output sections that begin with '.' you must specify
+</span>   355    <span class="xdoc">     *  the literal character '.' and use the '^' character to match the
+</span>   356    <span class="xdoc">     *  beginning of the string.
+</span>   357    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   358    <span class="xdoc">     *      // the sequence '^\.' matches just "." at the start of the name
+</span>   359    <span class="xdoc">     *      Program.sectionsExclude = "^\.";
+</span>   360    <span class="xdoc">     *  <b>@p</b>
+</span>   361    <span class="xdoc">     *  To override a specific sections you should be careful to supply a
+</span>   362    <span class="xdoc">     *  regular expression that matches the entire section name.  You can
+</span>   363    <span class="xdoc">     *  use '$' to match the end of the name.
+</span>   364    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   365    <span class="xdoc">     *      // match only ".const" or ".text"
+</span>   366    <span class="xdoc">     *      Program.sectionsExclude = "^\.const$|^\.text$";
+</span>   367    <span class="xdoc">     *  <b>@p</b>
+</span>   368    <span class="xdoc">     *
+</span>   369    <span class="xdoc">     *  <b>@see</b> #sectionsTemplate, #linkTemplate
+</span>   370    <span class="xdoc">     */</span>
+   371        <span class=key>config</span> String sectionsExclude = <span class=key>null</span>;
+   372    
+   373        <span class="xdoc">/*!
+</span>   374    <span class="xdoc">     *  ======== memoryExclude ========
+</span>   375    <span class="xdoc">     *  Exclude memory definitions from linker command file generation
+</span>   376    <span class="xdoc">     *
+</span>   377    <span class="xdoc">     *  This parameter accepts boolean values. If true, it disables default
+</span>   378    <span class="xdoc">     *  memory definitions from being added to the generated linker command
+</span>   379    <span class="xdoc">     *  file.
+</span>   380    <span class="xdoc">     *
+</span>   381    <span class="xdoc">     *  This allows the user to define a custom memory map in a separate file
+</span>   382    <span class="xdoc">     *  and add it to the linker's command line.
+</span>   383    <span class="xdoc">     *
+</span>   384    <span class="xdoc">     *  <b>@see</b> #sectionsTemplate, #sectionsExclude, #linkTemplate
+</span>   385    <span class="xdoc">     */</span>
+   386        <span class=key>config</span> Bool memoryExclude = <span class=key>false</span>;
+   387    
+   388        <span class="xdoc">/*!
+</span>   389    <span class="xdoc">     *  ======== sectionsTemplate ========
+</span>   390    <span class="xdoc">     *  Replace the sections portion of the generated linker command file
+</span>   391    <span class="xdoc">     *
+</span>   392    <span class="xdoc">     *  The `sectionsTemplate` string names a template that is used to replace
+</span>   393    <span class="xdoc">     *  the "`SECTIONS`" content to the generated linker command file.  This
+</span>   394    <span class="xdoc">     *  is useful especially when excluding specific sections via
+</span>   395    <span class="xdoc">     *  `{<b>@link</b> #sectionsExclude}` or when taking full control of the linker
+</span>   396    <span class="xdoc">     *  command file via `{<b>@link</b> #linkTemplate}` is unnecessary.  The original
+</span>   397    <span class="xdoc">     *  "`SECTIONS`" content is computed and passed as an argument to this
+</span>   398    <span class="xdoc">     *  template, which makes it relatively simple to perform small changes to
+</span>   399    <span class="xdoc">     *  the "`SECTIONS`" content without having to explicitly handle every
+</span>   400    <span class="xdoc">     *  section required by the compiler toolchain.
+</span>   401    <span class="xdoc">     *
+</span>   402    <span class="xdoc">     *  The `sectionsTemplate` string names a package path relative path; e.g.,
+</span>   403    <span class="xdoc">     *  if the linker template you want to specify is
+</span>   404    <span class="xdoc">     *  `"templates/mySections.xdt"` in the package `myCompany.myPackage`,
+</span>   405    <span class="xdoc">     *  `sectionsTemplate` should be set to:
+</span>   406    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   407    <span class="xdoc">     *      "myCompany/myPackage/templates/mySections.xdt"
+</span>   408    <span class="xdoc">     *  <b>@p</b>
+</span>   409    <span class="xdoc">     *  If `sectionsTemplate` begins with the string `"./"`, the file is NOT
+</span>   410    <span class="xdoc">     *  searched for along the package path; instead the file name is taken
+</span>   411    <span class="xdoc">     *  to specify a file relative to the current working directory.
+</span>   412    <span class="xdoc">     *
+</span>   413    <span class="xdoc">     *  In any case, if `sectionsTemplate` is non-`null`, the file must exist;
+</span>   414    <span class="xdoc">     *  otherwise, the configuration step will fail.
+</span>   415    <span class="xdoc">     *
+</span>   416    <span class="xdoc">     *  During expansion of this template, there are three "parameters"
+</span>   417    <span class="xdoc">     *  that can be referenced to generate new content.
+</span>   418    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   419    <span class="xdoc">     *      - `this`
+</span>   420    <span class="xdoc">     *          reference to the `{<b>@link</b> Program}` object
+</span>   421    <span class="xdoc">     *      - `$args[0]`
+</span>   422    <span class="xdoc">     *         is the complete section map derived from
+</span>   423    <span class="xdoc">     *         `{<b>@link</b> Program#sectMap}`; some special sections relevant to
+</span>   424    <span class="xdoc">     *         XDCtools are added to the map defined by `Program.sectMap`.
+</span>   425    <span class="xdoc">     *      - `$args[1]`
+</span>   426    <span class="xdoc">     *         is a string that contains the content that would have been
+</span>   427    <span class="xdoc">     *         placed in the `SECTIONS` portion of the generated linker
+</span>   428    <span class="xdoc">     *         command file.  This allows templates to easily modify this
+</span>   429    <span class="xdoc">     *         content or simply add statements before or after it.
+</span>   430    <span class="xdoc">     *  <b>@p</b>
+</span>   431    <span class="xdoc">     *  <b>@a(Example)</b>
+</span>   432    <span class="xdoc">     *  The following template, specific to TI compiler tools, adds start
+</span>   433    <span class="xdoc">     *  and size symbols for the `.stack` section and ensures that the stack
+</span>   434    <span class="xdoc">     *  is the first section to be allocated in its designated memory segment.
+</span>   435    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   436    <span class="xdoc">     *    %// first output allocation for the .stack section
+</span>   437    <span class="xdoc">     *    %var sectMap = $args[0];
+</span>   438    <span class="xdoc">     *    %var stack = sectMap[".stack"];
+</span>   439    <span class="xdoc">     *       .stack: &gt;`stack.loadSegment` START(_stack_start) SIZE(_stack_size)
+</span>   440    <span class="xdoc">     *    %
+</span>   441    <span class="xdoc">     *    %// now append the normally generated content
+</span>   442    <span class="xdoc">     *    `$args[1]`
+</span>   443    <span class="xdoc">     *  <b>@p</b>
+</span>   444    <span class="xdoc">     *  Note: this example requires that the `.stack` section be excluded
+</span>   445    <span class="xdoc">     *  from the normal generation via `{<b>@link</b> sectionsExclude}`; otherwise
+</span>   446    <span class="xdoc">     *  this section will be specified twice by the template shown above.
+</span>   447    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   448    <span class="xdoc">     *      Program.sectionsExclude = "^\.stack$";
+</span>   449    <span class="xdoc">     *  <b>@p</b>
+</span>   450    <span class="xdoc">     *
+</span>   451    <span class="xdoc">     *  <b>@see</b> #sectionsExclude, #linkTemplate
+</span>   452    <span class="xdoc">     */</span>
+   453        <span class=key>config</span> String sectionsTemplate = <span class=key>null</span>;
+   454    
+   455        <span class="xdoc">/*!
+</span>   456    <span class="xdoc">     *  ======== system ========
+</span>   457    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   458    <span class="xdoc">     *  A facade for the {<b>@link</b> xdc.runtime.System#SupportProxy} parameter
+</span>   459    <span class="xdoc">     *
+</span>   460    <span class="xdoc">     *  The program configuration script may select an implementation of
+</span>   461    <span class="xdoc">     *  the `xdc.runtime.ISystemSupport` interface and "bind" it by setting
+</span>   462    <span class="xdoc">     *  this parameter. If the module assigned to this parameter does not
+</span>   463    <span class="xdoc">     *  inherit from `xdc.runtime.ISystemSupport`, the configuration will fail.
+</span>   464    <span class="xdoc">     *
+</span>   465    <span class="xdoc">     *  If this parameter is not set (or set to `undefined`), then a default
+</span>   466    <span class="xdoc">     *  implementation is used: `xdc.runtime.SysStd` or, if
+</span>   467    <span class="xdoc">     *  `Program.build.target.os` is `null`, `xdc.runtime.SysMin`.  Recall that
+</span>   468    <span class="xdoc">     *  `Program.build.target.os` is specified in the Build Object Model;
+</span>   469    <span class="xdoc">     *  `Program.build.target` is the target specified when the executable was
+</span>   470    <span class="xdoc">     *  added to the package.
+</span>   471    <span class="xdoc">     *
+</span>   472    <span class="xdoc">     *  If this parameter is set to `null`, then the `System` module is not
+</span>   473    <span class="xdoc">     *  linked into the application (unless 'Memory' is used); any references
+</span>   474    <span class="xdoc">     *  to `System`'s methods will result in a linker error.  By setting this
+</span>   475    <span class="xdoc">     *  parameter to `null`, one is asserting that `System`'s methods will not
+</span>   476    <span class="xdoc">     *  be used.
+</span>   477    <span class="xdoc">     */</span>
+   478        <span class=key>config</span> Any system;
+   479    
+   480        <span class="xdoc">/*!
+</span>   481    <span class="xdoc">     *  ======== name ========
+</span>   482    <span class="xdoc">     *  The name of the executable file
+</span>   483    <span class="xdoc">     *
+</span>   484    <span class="xdoc">     *  This is the full file name (relative to the package's base) of the
+</span>   485    <span class="xdoc">     *  executable that results from this configuration.
+</span>   486    <span class="xdoc">     *
+</span>   487    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   488    <span class="xdoc">     *  This parameter is set by the generated program configuration script
+</span>   489    <span class="xdoc">     *  and must not be modified.
+</span>   490    <span class="xdoc">     */</span>
+   491        <span class=key>config</span> String name;
+   492    
+   493        <span class="xdoc">/*!
+</span>   494    <span class="xdoc">     *  ======== cfgBase ========
+</span>   495    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   496    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   497    <span class="xdoc">     */</span>
+   498        <span class=key>config</span> String cfgBase;
+   499    
+   500        <span class="xdoc">/*!
+</span>   501    <span class="xdoc">     *  ======== buildPackage ========
+</span>   502    <span class="xdoc">     *  The name of the executable's package
+</span>   503    <span class="xdoc">     *
+</span>   504    <span class="xdoc">     *  This is the full package name (relative to the package's repository)
+</span>   505    <span class="xdoc">     *  of the package that contains the executable being configured.
+</span>   506    <span class="xdoc">     *
+</span>   507    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   508    <span class="xdoc">     *  This parameter is set by the generated program configuration script
+</span>   509    <span class="xdoc">     *  and must not be modified.
+</span>   510    <span class="xdoc">     */</span>
+   511        <span class=key>config</span> String buildPackage;
+   512    
+   513        <span class="xdoc">/*!
+</span>   514    <span class="xdoc">     *  ======== endian ========
+</span>   515    <span class="xdoc">     *  The endianess of the executable
+</span>   516    <span class="xdoc">     *
+</span>   517    <span class="xdoc">     *  This parameter is an alias for `build.target.model.dataModel` and is
+</span>   518    <span class="xdoc">     *  set to one of the following values: `"big"`, `"little"`, or `null`.
+</span>   519    <span class="xdoc">     *
+</span>   520    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   521    <span class="xdoc">     *  This parameter is set by the generated program configuration script
+</span>   522    <span class="xdoc">     *  and must not be modified.
+</span>   523    <span class="xdoc">     */</span>
+   524        <span class=key>config</span> String endian = <span class=key>null</span>;
+   525    
+   526        <span class="xdoc">/*!
+</span>   527    <span class="xdoc">     *  ======== codeModel ========
+</span>   528    <span class="xdoc">     *  The memory model for code
+</span>   529    <span class="xdoc">     *
+</span>   530    <span class="xdoc">     *  This parameter is an alias for `build.target.model.codeModel` and is
+</span>   531    <span class="xdoc">     *  set to one of the following target-specific values: `"near"`, `"far"`,
+</span>   532    <span class="xdoc">     *  `"large"`, or `null`.
+</span>   533    <span class="xdoc">     *
+</span>   534    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   535    <span class="xdoc">     *  This parameter is set by the generated program configuration script
+</span>   536    <span class="xdoc">     *  and must not be modified.
+</span>   537    <span class="xdoc">     */</span>
+   538        <span class=key>config</span> String codeModel = <span class=key>null</span>;
+   539    
+   540        <span class="xdoc">/*!
+</span>   541    <span class="xdoc">     *  ======== dataModel ========
+</span>   542    <span class="xdoc">     *  The memory model for data
+</span>   543    <span class="xdoc">     *
+</span>   544    <span class="xdoc">     *  This parameter is an alias for `build.target.model.dataModel` and is
+</span>   545    <span class="xdoc">     *  set to one of the following target-specific values: `"near"`, `"far"`,
+</span>   546    <span class="xdoc">     *  `"large"`, or `null`.
+</span>   547    <span class="xdoc">     *
+</span>   548    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   549    <span class="xdoc">     *  This parameter is set by the generated program configuration script
+</span>   550    <span class="xdoc">     *  and must not be modified.
+</span>   551    <span class="xdoc">     */</span>
+   552        <span class=key>config</span> String dataModel = <span class=key>null</span>;
+   553    
+   554        <span class="xdoc">/*!
+</span>   555    <span class="xdoc">     *  ======== build ========
+</span>   556    <span class="xdoc">     *  This program's build attributes
+</span>   557    <span class="xdoc">     *
+</span>   558    <span class="xdoc">     *  This parameter allows arbitrary build attributes to be carried
+</span>   559    <span class="xdoc">     *  forward from the Build Object Model (BOM) into the configuration
+</span>   560    <span class="xdoc">     *  model for program configuration scripts to read.
+</span>   561    <span class="xdoc">     *
+</span>   562    <span class="xdoc">     *  Conceptually, this config parameter should be declared as follows:
+</span>   563    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   564    <span class="xdoc">     *      struct BuildAttrs inherits xdc.bld.Executable.Attrs {
+</span>   565    <span class="xdoc">     *          config xdc.bld.ITarget.Module target;
+</span>   566    <span class="xdoc">     *      };
+</span>   567    <span class="xdoc">     *  <b>@p</b>
+</span>   568    <span class="xdoc">     *  All parameters of the target associated with the executable being
+</span>   569    <span class="xdoc">     *  configured are available through '`Program.build.target`'. Any config
+</span>   570    <span class="xdoc">     *  parameter set in the BOM's `{<b>@link</b> xdc.bld.Executable#attrs}` is also
+</span>   571    <span class="xdoc">     *  available through `{<b>@link</b> #build}`.  For example, the name of the
+</span>   572    <span class="xdoc">     *  target is `Program.build.target.name` and the name of the
+</span>   573    <span class="xdoc">     *  executable's configuration script is `Program.build.cfgScript`.
+</span>   574    <span class="xdoc">     *
+</span>   575    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   576    <span class="xdoc">     *  This parameter is set by the generated program configuration script
+</span>   577    <span class="xdoc">     *  and must not be modified.
+</span>   578    <span class="xdoc">     */</span>
+   579        <span class=key>config</span> Any build;   <span class="comment">/*  BuildAttrs */</span>
+   580    
+   581        <span class="xdoc">/*!
+</span>   582    <span class="xdoc">     *  ======== cpu ========
+</span>   583    <span class="xdoc">     *  The execution context "seen" by the executable.
+</span>   584    <span class="xdoc">     *
+</span>   585    <span class="xdoc">     *  Since the execution context is largely determined by the CPU that
+</span>   586    <span class="xdoc">     *  runs the executable, this configuration parameter allows scripts with
+</span>   587    <span class="xdoc">     *  access to the program object to conditionally configure based on CPU
+</span>   588    <span class="xdoc">     *  characteristics (e.g., ISA or revision of a chip).
+</span>   589    <span class="xdoc">     *
+</span>   590    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   591    <span class="xdoc">     *  This parameter is set by the platform's implementation of
+</span>   592    <span class="xdoc">     *  `xdc.IPackage` (i.e., `package.xs`).
+</span>   593    <span class="xdoc">     */</span>
+   594        <span class=key>config</span> xdc.platform.IExeContext.Instance cpu;
+   595    
+   596        <span class="xdoc">/*!
+</span>   597    <span class="xdoc">     *  ======== platformName ========
+</span>   598    <span class="xdoc">     *  The name of the executable's platform
+</span>   599    <span class="xdoc">     *
+</span>   600    <span class="xdoc">     *  This field is the name of the platform instance used to create the
+</span>   601    <span class="xdoc">     *  executable; e.g., `"ti.platforms.sim55xx"`, or
+</span>   602    <span class="xdoc">     *  `"ti.platforms.sim6xxx:TMS320C6416"`.
+</span>   603    <span class="xdoc">     *
+</span>   604    <span class="xdoc">     *  Platform instance names have the form:
+</span>   605    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   606    <span class="xdoc">     *      &lt;platform_pkg&gt;:&lt;instance_id&gt;
+</span>   607    <span class="xdoc">     *  <b>@p</b>
+</span>   608    <span class="xdoc">     *  where `&lt;platform_pkg&gt;` is the name of the platform package 
+</span>   609    <span class="xdoc">     *  responsible for creating the platform instance and the optional
+</span>   610    <span class="xdoc">     *  "`:&lt;instance_id&gt;`" is a suffix that uniquely identifies the creation
+</span>   611    <span class="xdoc">     *  parameters for this instance.
+</span>   612    <span class="xdoc">     *
+</span>   613    <span class="xdoc">     *  The creation parameters are the values specified by the map
+</span>   614    <span class="xdoc">     *  `{<b>@link</b> xdc.bld.BuildEnvironment#platformTable}`;
+</span>   615    <span class="xdoc">     *  if this map does not contain the platform instance name, the
+</span>   616    <span class="xdoc">     *  instance is created with default values that are specific to the
+</span>   617    <span class="xdoc">     *  platform.
+</span>   618    <span class="xdoc">     *
+</span>   619    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   620    <span class="xdoc">     *  This parameter is set by the generated program configuration script
+</span>   621    <span class="xdoc">     *  and must not be modified.
+</span>   622    <span class="xdoc">     */</span>
+   623        <span class=key>config</span> String platformName;
+   624    
+   625        <span class="xdoc">/*!
+</span>   626    <span class="xdoc">     *  ======== platform ========
+</span>   627    <span class="xdoc">     *  The executable's platform instance object
+</span>   628    <span class="xdoc">     *
+</span>   629    <span class="xdoc">     *  The platform instance that provided an execution context for the
+</span>   630    <span class="xdoc">     *  executable being configured.
+</span>   631    <span class="xdoc">     *
+</span>   632    <span class="xdoc">     *  <b>@a(readonly)</b>
+</span>   633    <span class="xdoc">     *  This parameter is set by the generated program configuration script
+</span>   634    <span class="xdoc">     *  and must not be modified.
+</span>   635    <span class="xdoc">     */</span>
+   636        <span class=key>config</span> xdc.platform.IPlatform.Instance platform;
+   637    
+   638        <span class="xdoc">/*!
+</span>   639    <span class="xdoc">     *  ======== global ========
+</span>   640    <span class="xdoc">     *  Global variable declarations
+</span>   641    <span class="xdoc">     *
+</span>   642    <span class="xdoc">     *  Assignments to this hash table become global symbols that can be
+</span>   643    <span class="xdoc">     *  used to directly reference objects.  These objects are declared
+</span>   644    <span class="xdoc">     *  in a generated header that is indirectly included by the header
+</span>   645    <span class="xdoc">     *  `xdc/cfg/global.h`.
+</span>   646    <span class="xdoc">     *
+</span>   647    <span class="xdoc">     *  Configuration scripts define symbols by adding new properties to
+</span>   648    <span class="xdoc">     *  `global`.
+</span>   649    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   650    <span class="xdoc">     *      Program.global.myInstance = Mod.create();
+</span>   651    <span class="xdoc">     *      Program.global.myString = "hello world";
+</span>   652    <span class="xdoc">     *  <b>@p</b>
+</span>   653    <span class="xdoc">     *
+</span>   654    <span class="xdoc">     *  Programs can reference the symbols defined in `global` by including
+</span>   655    <span class="xdoc">     *  the C/C++ header `xdc/cfg/global.h` as follows:
+</span>   656    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   657    <span class="xdoc">     *      #include &lt;pkg/Mod.h&gt;
+</span>   658    <span class="xdoc">     *      #include &lt;xdc/cfg/global.h&gt;
+</span>   659    <span class="xdoc">     *         :
+</span>   660    <span class="xdoc">     *      Mod_fxn(myInstance, ...);
+</span>   661    <span class="xdoc">     *      printf("greetings: %s\n", myString);
+</span>   662    <span class="xdoc">     *  <b>@p</b>
+</span>   663    <span class="xdoc">     *
+</span>   664    <span class="xdoc">     *  To compile sources that include `xdc/cfg/global.h`, one symbol must be
+</span>   665    <span class="xdoc">     *  defined before including this header:
+</span>   666    <span class="xdoc">     *  <b>@p(dlist)</b>
+</span>   667    <span class="xdoc">     *      - `xdc_cfg__header__`
+</span>   668    <span class="xdoc">     *          the package qualified name of the executable-specific C/C++
+</span>   669    <span class="xdoc">     *          header generated by the program configuration tool; e.g.,
+</span>   670    <span class="xdoc">     *          `local/examples/package/cfg/mycfg_x62.h`.
+</span>   671    <span class="xdoc">     *  <b>@p</b>
+</span>   672    <span class="xdoc">     *  For example, to compile sources that reference the values declared in
+</span>   673    <span class="xdoc">     *  `{<b>@link</b> #global}` for a TI C6x target with a generated
+</span>   674    <span class="xdoc">     *  configuration header named `package/cfg/mycfg_x62.h` in a package
+</span>   675    <span class="xdoc">     *  named `local.examples` the following command line is sufficient:
+</span>   676    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   677    <span class="xdoc">     *      cl6x -Dxdc_cfg__header__=local/examples/package/cfg/mycfg_x62.h ...
+</span>   678    <span class="xdoc">     *  <b>@p</b>
+</span>   679    <span class="xdoc">     *
+</span>   680    <span class="xdoc">     *  The `xdc_cfg__header__` symbol is automatically defined when you use
+</span>   681    <span class="xdoc">     *  the the XDC Build Engine (`{<b>@link</b> xdc.bld}`) to create executables; see
+</span>   682    <span class="xdoc">     *  `{<b>@link</b> xdc.bld.Executable#addObjects}`
+</span>   683    <span class="xdoc">     *
+</span>   684    <span class="xdoc">     *  <b>@see</b> xdc.bld.Executable#addObjects
+</span>   685    <span class="xdoc">     */</span>
+   686        <span class=key>config</span> Any global[string];
+   687    
+   688        <span class="xdoc">/*!
+</span>   689    <span class="xdoc">     *  ======== symbol ========
+</span>   690    <span class="xdoc">     *  Global symbol specifications
+</span>   691    <span class="xdoc">     *
+</span>   692    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   693    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   694    <span class="xdoc">     *
+</span>   695    <span class="xdoc">     *  This map contains symbol definitions that are used to define aliases
+</span>   696    <span class="xdoc">     *  or constants.  Symbol names are the C symbol names; i.e., compiler name
+</span>   697    <span class="xdoc">     *  mangling, such as the addition of a leading "_", is performed
+</span>   698    <span class="xdoc">     *  automatically.
+</span>   699    <span class="xdoc">     *
+</span>   700    <span class="xdoc">     *  <b>@a(Examples)</b>
+</span>   701    <span class="xdoc">     *  To define a symbolic constant:
+</span>   702    <span class="xdoc">     *  <b>@p(code)</b>
+</span>   703    <span class="xdoc">     *      Program.symbol["ONE"] = 1;
+</span>   704    <span class="xdoc">     *  <b>@p</b>
+</span>   705    <span class="xdoc">     *  The line above causes the symbol "ONE" to be defined in the linker
+</span>   706    <span class="xdoc">     *  command file to be equal to 1.  Note this in contrast to defining a
+</span>   707    <span class="xdoc">     *  variable whose value is 1; symbols do not occupy space, they are just
+</span>   708    <span class="xdoc">     *  symbolic constants defined in the symbol table of the executable.
+</span>   709    <span class="xdoc">     *
+</span>   710    <span class="xdoc">     *  This is currently used by xdc.runtime.Startup to define symbols
+</span>   711    <span class="xdoc">     *  optionally referenced by boot files that support early startup
+</span>   712    <span class="xdoc">     *  "reset" functions.
+</span>   713    <span class="xdoc">     */</span>
+   714        <span class=key>config</span> Any symbol[string];
+   715    
+   716        <span class="xdoc">/*!
+</span>   717    <span class="xdoc">     *  ======== exportModule ========
+</span>   718    <span class="xdoc">     *  Force all the symbols of a module to be part of a configuration
+</span>   719    <span class="xdoc">     *
+</span>   720    <span class="xdoc">     *  Although a call xdc.useModule() will force some of a module's methods
+</span>   721    <span class="xdoc">     *  to be part of a configuration, the linker is still free to omit any
+</span>   722    <span class="xdoc">     *  symbols that are not referenced.  Use of exportModule will force all
+</span>   723    <span class="xdoc">     *  methods of the specified module to be available.
+</span>   724    <span class="xdoc">     */</span>
+   725        Void exportModule(String modName);
+   726    
+   727        <span class="xdoc">/*!
+</span>   728    <span class="xdoc">     *  ======== getSectMap ========
+</span>   729    <span class="xdoc">     *  Return the complete mapping of section names to `{<b>@link</b> #SectionSpec}`
+</span>   730    <span class="xdoc">     *  entries
+</span>   731    <span class="xdoc">     *
+</span>   732    <span class="xdoc">     *  The returned map is assembled from `{<b>@link</b> xdc.bld.ITarget#sectMap}`,
+</span>   733    <span class="xdoc">     *  `{<b>@link</b> xdc.platform.IPlatform#sectMap}`,
+</span>   734    <span class="xdoc">     *  `{<b>@link</b> xdc.platform.IPlatform#codeMemory}`,
+</span>   735    <span class="xdoc">     *  `{<b>@link</b> xdc.platform.IPlatform#dataMemory}`,
+</span>   736    <span class="xdoc">     *  `{<b>@link</b> xdc.platform.IPlatform#stackMemory}` and `{<b>@link</b> #sectMap}`.
+</span>   737    <span class="xdoc">     *  The function can be called at any time during configuration, but if
+</span>   738    <span class="xdoc">     *  it is called before all packages had a chance to change `sectMap`,
+</span>   739    <span class="xdoc">     *  the returned map may not correspond to the actual section
+</span>   740    <span class="xdoc">     *  allocation as configured in the linker command file.
+</span>   741    <span class="xdoc">     *
+</span>   742    <span class="xdoc">     *  <b>@a(returns)</b>
+</span>   743    <span class="xdoc">     *  `getSectMap` returns a map with section names as keys and
+</span>   744    <span class="xdoc">     *  `{<b>@link</b> #SectionSpec}` entries as values.
+</span>   745    <span class="xdoc">     */</span>
+   746        <span class=key>function</span> getSectMap();
+   747    
+   748        <span class="xdoc">/*!
+</span>   749    <span class="xdoc">     *  ======== importAssembly ========
+</span>   750    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   751    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   752    <span class="xdoc">     */</span>
+   753        Void importAssembly(String asmName);
+   754    
+   755        <span class="xdoc">/*!
+</span>   756    <span class="xdoc">     *  ======== targetModules ========
+</span>   757    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   758    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   759    <span class="xdoc">     *
+</span>   760    <span class="xdoc">     *  This function returns a list of target modules. The list is completed
+</span>   761    <span class="xdoc">     *  only after all packages are closed, and runtime.finalized() is closed,
+</span>   762    <span class="xdoc">     *  so the only time when this function can be safely called is from
+</span>   763    <span class="xdoc">     *  within module$static$init and instance$static$init functions, package
+</span>   764    <span class="xdoc">     *  validate() functions, and templates.
+</span>   765    <span class="xdoc">     *
+</span>   766    <span class="xdoc">     *  This function is currently used by xdc.runtime modules to retrieve a
+</span>   767    <span class="xdoc">     *  list of modules that use xdc.runtime services. The list therefore does
+</span>   768    <span class="xdoc">     *  not include modules that have the attribute `<b>@NoRuntime</b>`.
+</span>   769    <span class="xdoc">     */</span>
+   770        <span class=key>function</span> targetModules();
+   771    
+   772        <span class="xdoc">/*!
+</span>   773    <span class="xdoc">     *  ======== freezeRomConfig ========
+</span>   774    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   775    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   776    <span class="xdoc">     */</span>
+   777        Void freezeRomConfig(String modName, String cfgName);
+   778    
+   779        <span class="xdoc">/*!
+</span>   780    <span class="xdoc">     *  ======== freezeRomConfig2 ========
+</span>   781    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   782    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   783    <span class="xdoc">     */</span>
+   784        <span class=key>function</span> freezeRomConfig2(mod, cfgName);
+   785    
+   786        <span class="xdoc">/*!
+</span>   787    <span class="xdoc">     *  ======== freezeRomParams ========
+</span>   788    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   789    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   790    <span class="xdoc">     */</span>
+   791        <span class=key>function</span> freezeRomParams(mod);
+   792    
+   793        <span class="xdoc">/*!
+</span>   794    <span class="xdoc">     *  ======== frozenRomConfig ========
+</span>   795    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   796    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   797    <span class="xdoc">     */</span>
+   798        Bool frozenRomConfig(String modName, String cfgName);
+   799    
+   800        <span class="xdoc">/*!
+</span>   801    <span class="xdoc">     *  ======== frozenRomConfig2 ========
+</span>   802    <span class="xdoc">     *  UNDER CONSTRUCTION
+</span>   803    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>   804    <span class="xdoc">     */</span>
+   805        <span class=key>function</span> frozenRomConfig2(mod, cfgName);
+   806    }
+   807    <span class="comment">/*
+</span>   808    <span class="comment"> *  @(#) xdc.cfg; 1, 0, 2,0; 12-9-2015 17:35:37; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>   809    <span class="comment"> */</span>
+   810    
+</pre>
+</body></html>

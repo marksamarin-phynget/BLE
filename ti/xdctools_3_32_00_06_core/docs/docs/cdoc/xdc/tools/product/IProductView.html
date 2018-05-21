@@ -1,0 +1,253 @@
+<html>
+<head>
+<title>interface xdc.tools.product.IProductView</title>
+<meta name="description" content="Define a product as a logical group of RTSC modules">
+<link rel="stylesheet" type="text/css" href="../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">xdc.tools.product.</span><span class="xdoc-id">IProductView</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductTemplate.html" title="interface IProductTemplate"><img class="xdocHdrArrow" src="../../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/package.html" title="package xdc.tools.product"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductView.html">index URL</a></div>
+<p class="xdocHdrSummary">Define a product as a logical group of RTSC modules</p>
+<ul class="xdocToc">
+</ul>
+<div class="xdocBrief">
+This interface allows a product to define logical groups of RTSC
+  modules delivered with it. Implementations of this interface are
+  typically consumed within development environments like IDE's to
+  render a graphical tree view of the product consisting of these
+  groups.
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> summary</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductView-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductView.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">IProductView</span> {<b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductView-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductView.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <a class="xdoc-link" href="../../../xdc/tools/product/package.html" title="xdc.tools.product">xdc.tools.product</a>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">interface</span> <span class="xdoc-id">IProductView</span> {
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <a class="xdocSynGo" href="#.Product.Elem.Desc"><span class="xdoc-id">ProductElemDesc</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;ProductElemDesc structure</span></span></a> {
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Product.Elem.Desc"><span class="xdoc-id">elemName</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Name of group or module</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Product.Elem.Desc"><span class="xdoc-id">moduleName</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Name of module</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#.Product.Elem.Desc"><span class="xdoc-id">iconFileName</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Icon file name representing element</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductView.html#.Product.Elem.Desc" title="xdc.tools.product.IProductView.ProductElemDesc">IProductView.ProductElemDesc</a>&nbsp;<a class="xdocSynGo" href="#.Product.Elem.Desc"><span class="xdoc-id">elemArray</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Array of <tt>ProductElemDesc</tt></span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt>};
+</div>
+<div class='xdocSynHdr'>module-wide config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#home.Module"><span class="xdoc-id">homeModule</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Top-level module for this product</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<a class="xdocSynGo" href="#links.To.Array"><span class="xdoc-id">linksToArray</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Array of IDs of products accessable from this product's home module</span></span></a>[<span class="xdoc-kw2"></span>];
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductView.html#.Product.Elem.Desc" title="xdc.tools.product.IProductView.ProductElemDesc">IProductView.ProductElemDesc</a>&nbsp;<a class="xdocSynGo" href="#get.Product.Descriptor"><span class="xdoc-id">getProductDescriptor</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Return this product's tree view</span></span></a>();
+</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This interface allows a product to define logical groups of RTSC
+  modules delivered with it. Implementations of this interface are
+  typically consumed within development environments like IDE's to
+  render a graphical tree view of the product consisting of these
+  groups.</div>
+<div class="xdocText">This is an experimental interface and is subject to change.</div>
+<div id="xdocSep">
+</div>
+<div id="xdocElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".Product.Elem.Desc"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">IProductView.</span><span class="xdoc-id">ProductElemDesc</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductView.html" title="interface IProductView"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductView.html#.Product.Elem.Desc">index URL</a></div>
+<p class="xdocHdrSummaryDcl">ProductElemDesc structure</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductView-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductView.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">struct</span> <span class="xdoc-id">ProductElemDesc</span> {
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">elemName</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Name of group or module</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">moduleName</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Name of module</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">iconFileName</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Icon file name representing element</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductView.html#.Product.Elem.Desc" title="xdc.tools.product.IProductView.ProductElemDesc">IProductView.ProductElemDesc</a>&nbsp;<span class="xdoc-id">elemArray</span>[<span class="xdoc-kw2"></span>];
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Array of <tt>ProductElemDesc</tt></div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>};
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">elemName</span>
+<span class="xdocChildSum">&#151;&nbsp;Name of element. Elements can be either
+                          groups or modules</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">moduleName</span>
+<span class="xdocChildSum">&#151;&nbsp;In case of a leaf node this field will
+                          contain the module name. For intermediate
+                          tree nodes the module name will be set to 
+                          <tt>null</tt></span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">iconFileName</span>
+<span class="xdocChildSum">&#151;&nbsp;The name of the icon file that is associated
+                          with this element.  In xdctools 3.23, this path
+                          must be relative to the package containing the
+                          <tt>IProductView</tt> implementation.</span>
+</div>
+<div class="xdocChildText">In xdctools 3.24.01 (or above), this path may
+                          be relative or absolute.  If it's relative,
+                          it's first searched for in the package
+                          containing the <tt>IProductView</tt> implementation
+                          module and, if this fails, the relative path
+                          is searched via <tt>xdc.findFile()</tt>.  If the icon
+                          is still not found, a default icon will be
+                          used.</div>
+<div class="xdocChild"><span class="xdocChildId">elemArray</span>
+<span class="xdocChildSum">&#151;&nbsp;Array used to define children of a node.</span>
+</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This structure is used to define the logical tree "view" of a
+  product. This view is composed of elements that are either modules
+  or groups: modules at the leaves of the tree and groups elsewhere.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="home.Module"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProductView.</span><span class="xdoc-id">homeModule</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductView.html" title="interface IProductView"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductView.html#home.Module">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Top-level module for this product</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductView-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductView.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">homeModule</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">The <tt>homeModule</tt> is a distinguished "top-level" module that is used
+  by GUI's as a starting point, or "home page", to navigate to the
+  other content managed by this product.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="links.To.Array"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">IProductView.</span><span class="xdoc-id">linksToArray</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductView.html" title="interface IProductView"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductView.html#links.To.Array">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Array of IDs of products accessable from this product's home module</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductView-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductView.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">config</span> <span class="xdoc-kw2">String</span>&nbsp;<span class="xdoc-id">linksToArray</span>[<span class="xdoc-kw2"></span>];
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This array of product IDs is used to determine a hierarchical
+  relationship between products and if a product's modules can be
+  reached from another product's home page. If product A "links to"
+  product B, then product B's home page can be closed so long as
+  product A's home page is open.</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Product.Descriptor"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">IProductView.</span><span class="xdoc-id">getProductDescriptor</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/product/IProductView.html" title="interface IProductView"><img class="xdocHdrArrow" src="../../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/product/IProductView.html#get.Product.Descriptor">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Return this product's tree view</p>
+<span id='spec-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-iddcl">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/product/IProductView-src.html"><span class="xdocLabelFile">xdc/tools/product/IProductView.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynXdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><a class="xdoc-link" href="../../../xdc/tools/product/IProductView.html#.Product.Elem.Desc" title="xdc.tools.product.IProductView.ProductElemDesc">IProductView.ProductElemDesc</a>&nbsp;<span class="xdoc-id">getProductDescriptor</span>();
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This method is typically invoked by development tools like IDE's 
+  to get the product view tree structure.</div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">RETURNS</div>
+<div class="xdocText">Returns root node of tree of <tt><a class="xdoc-link" href="IProductView.html#.Product.Elem.Desc" title="ProductElemDesc">ProductElemDesc</a></tt> structures</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:48 GMT</div>
+</div></div></body>
+</html>

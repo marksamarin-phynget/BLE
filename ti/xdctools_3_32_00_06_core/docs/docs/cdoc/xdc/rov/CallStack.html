@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>module xdc.rov.CallStack</title>
+<meta name="description" content="Provide call stack support to module ROV views">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.rov.</span><span class="xdoc-id">CallStack</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ICallStack.html" title="interface ICallStack"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/package.html" title="package xdc.rov"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/Model.html" title="module Model"><img class="xdocHdrArrow" src="../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/CallStack.html">index URL</a></div>
+<p class="xdocHdrSummary">Provide call stack support to module ROV views</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<div class="xdocBrief">
+This module provides methods that enable module ROV views
+  to specify current CPU registers and get the corresponding
+  stack traceback for the current executable.
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/rov/CallStack-src.html"><span class="xdocLabelFile">xdc/rov/CallStack.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> CallStack = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.rov.CallStack'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide functions</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#clear.Registers">CallStack.<span class="xdoc-id">clearRegisters</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Clear all register settings</span></span></a>() <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#fetch.Registers">CallStack.<span class="xdoc-id">fetchRegisters</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Set a device register necessary for stack trace back analysis</span></span></a>(<i><span class="xdoc-kw2">String</span>[<span class="xdoc-kw2"></span>]</i> <span class="xdoc-id">names</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#get.Register">CallStack.<span class="xdoc-id">getRegister</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Set a device register necessary for stack trace back analysis</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">name</span>) <i>returns</i> <i><span class="xdoc-kw2">Long</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#set.Register">CallStack.<span class="xdoc-id">setRegister</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Set a device register necessary for stack trace back analysis</span></span></a>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">name</span>, <i><span class="xdoc-kw2">Long</span></i> <span class="xdoc-id">value</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><a class="xdocSynGo" href="#to.Text">CallStack.<span class="xdoc-id">toText</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Create a string represenation of the call stack</span></span></a>() <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This module provides methods that enable module ROV views
+  to specify current CPU registers and get the corresponding
+  stack traceback for the current executable.</div>
+<div class="xdocText">While the methods of this module are currently
+  similar to the <tt>ICallStack</tt> interface, it is important to
+  note that this module does not have instance methods; the
+  <tt>ICallStack</tt> interface defines an interface for instance
+  objects that enable the implementation of this module.</div>
+<div class="xdocText">This module uses the <tt><a class="xdoc-link" href="../../xdc/rov/ICallStack.html" title="xdc.rov.ICallStack">xdc.rov.ICallStack</a></tt> instance
+  provided by <tt><a class="xdoc-link" href="../../xdc/rov/Model.html" title="xdc.rov.Model">xdc.rov.Model</a></tt>.</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="clear.Registers"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">CallStack.</span><span class="xdoc-id">clearRegisters</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/CallStack.html" title="module CallStack"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/CallStack.html#clear.Registers">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Clear all register settings</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>CallStack.<span class="xdoc-id">clearRegisters</span>() <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="fetch.Registers"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">CallStack.</span><span class="xdoc-id">fetchRegisters</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/CallStack.html" title="module CallStack"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/CallStack.html#fetch.Registers">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Set a device register necessary for stack trace back analysis</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>CallStack.<span class="xdoc-id">fetchRegisters</span>(<i><span class="xdoc-kw2">String</span>[<span class="xdoc-kw2"></span>]</i> <span class="xdoc-id">names</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="get.Register"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">CallStack.</span><span class="xdoc-id">getRegister</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/CallStack.html" title="module CallStack"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/CallStack.html#get.Register">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Set a device register necessary for stack trace back analysis</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>CallStack.<span class="xdoc-id">getRegister</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">name</span>) <i>returns</i> <i><span class="xdoc-kw2">Long</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="set.Register"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">CallStack.</span><span class="xdoc-id">setRegister</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/CallStack.html" title="module CallStack"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/CallStack.html#set.Register">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Set a device register necessary for stack trace back analysis</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>CallStack.<span class="xdoc-id">setRegister</span>(<i><span class="xdoc-kw2">String</span></i> <span class="xdoc-id">name</span>, <i><span class="xdoc-kw2">Long</span></i> <span class="xdoc-id">value</span>) <i>returns</i> <i><span class="xdoc-kw2">Void</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="to.Text"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-id">CallStack.</span><span class="xdoc-id">toText</span>()&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;module-wide</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/CallStack.html" title="module CallStack"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/CallStack.html#to.Text">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Create a string represenation of the call stack</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt>CallStack.<span class="xdoc-id">toText</span>() <i>returns</i> <i><span class="xdoc-kw2">String</span></i>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:39 GMT</div>
+</div></div></body>
+</html>

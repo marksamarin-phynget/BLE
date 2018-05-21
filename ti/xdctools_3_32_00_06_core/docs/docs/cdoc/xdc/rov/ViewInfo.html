@@ -1,0 +1,299 @@
+<html>
+<head>
+<title>module xdc.rov.ViewInfo</title>
+<meta name="description" content="Describes the ROV views supported by a particular module">
+<link rel="stylesheet" type="text/css" href="../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">metaonly </span><span class="xdoc-kw1">module</span> <span class="xdoc-id">xdc.rov.</span><span class="xdoc-id">ViewInfo</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/StructureDecoder.html" title="module StructureDecoder"><img class="xdocHdrArrow" src="../../Arrow_left.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/package.html" title="package xdc.rov"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewXml.html" title="module ViewXml"><img class="xdocHdrArrow" src="../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewInfo.html">index URL</a></div>
+<p class="xdocHdrSummary">Describes the ROV views supported by a particular module</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#meta-synop">Configuration settings</a></li>
+<li class="xdocToc2"><a class="xdocToc" href="#xdocMetaElems">Individual elements</a></li>
+</ul>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../xdc/rov/ViewInfo-src.html"><span class="xdocLabelFile">xdc/rov/ViewInfo.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynM">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">var</span> ViewInfo = <span class="xdoc-kw3">xdc.useModule</span>(<span class="xdoc-id">'xdc.rov.ViewInfo'</span>);
+</div>
+<div class='xdocSynHdr'>module-wide constants & types</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><i>values of type <a class="xdocSynGo" href="#.View.Type">ViewInfo.<span class="xdoc-id">ViewType</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;ROV view type</span></span></a></i>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.<span class="xdoc-id">INSTANCE</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.<span class="xdoc-id">MODULE</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.<span class="xdoc-id">INSTANCE_DATA</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.<span class="xdoc-id">MODULE_DATA</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.<span class="xdoc-id">RAW</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.<span class="xdoc-id">TREE_TABLE</span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> <a class="xdocSynGo" href="#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.<span class="xdoc-id">TREE</span></a>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> <a class="xdocSynGo" href="#.View">ViewInfo.<span class="xdoc-id">View</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;ROV View descriptor</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.View" title="xdc.rov.ViewInfo.View"><span class="xdoc-id">type</span></a> = <i><a class="xdoc-link" href="../../xdc/rov/ViewInfo.html#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.ViewType</a></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.View" title="xdc.rov.ViewInfo.View"><span class="xdoc-id">viewInitFxn</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<a class="xdocSynGo" href="#.View" title="xdc.rov.ViewInfo.View"><span class="xdoc-id">structName</span></a> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class='xdocSynHdr'>per-instance config parameters</div>
+
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> ViewInfo.<a class="xdocSynGo" href="#per-instance_config_parameters"><span class="xdoc-id">Params</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Instance config-params object</span></span></a>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>params.<a class="xdocSynGo" href="#show.Raw.Tab"><span class="xdoc-id">showRawTab</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Control whether the "raw view" is available</span></span></a> = <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-kw2">true</span>;
+</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>params.<a class="xdocSynGo" href="#view.Map"><span class="xdoc-id">viewMap</span><span class="xdocSynHoverShadow"><span class="xdocSynHover">//&nbsp;Specifies all of the ROV views for the module</span></span></a> = <i><a class="xdoc-link" href="../../xdc/rov/ViewInfo.html#.View" title="xdc.rov.ViewInfo.View">ViewInfo.View</a>[<span class="xdoc-kw1">string</span>]</i> <span class="xdoc-kw2">undefined</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+</div>
+<div id="xdocSep">
+</div>
+<div id="xdocMetaElems">
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".View.Type"></a>
+<a class="xdocAnchor" id=".I.N.S.T.A.N.C.E"></a>
+<a class="xdocAnchor" id=".M.O.D.U.L.E"></a>
+<a class="xdocAnchor" id=".I.N.S.T.A.N.C.E_.D.A.T.A"></a>
+<a class="xdocAnchor" id=".M.O.D.U.L.E_.D.A.T.A"></a>
+<a class="xdocAnchor" id=".R.A.W"></a>
+<a class="xdocAnchor" id=".T.R.E.E_.T.A.B.L.E"></a>
+<a class="xdocAnchor" id=".T.R.E.E"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">enum</span> <span class="xdoc-id">ViewInfo.</span><span class="xdoc-id">ViewType</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewInfo.html" title="module ViewInfo"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewInfo.html#.View.Type">index URL</a></div>
+<p class="xdocHdrSummaryDcl">ROV view type</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><i>values of type ViewInfo.<span class="xdoc-id">ViewType</span></i>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> ViewInfo.<span class="xdoc-id">INSTANCE</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> ViewInfo.<span class="xdoc-id">MODULE</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> ViewInfo.<span class="xdoc-id">INSTANCE_DATA</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> ViewInfo.<span class="xdoc-id">MODULE_DATA</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> ViewInfo.<span class="xdoc-id">RAW</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> ViewInfo.<span class="xdoc-id">TREE_TABLE</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">const</span> ViewInfo.<span class="xdoc-id">TREE</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText"><DL><DT> INSTANCE</DT><DD>
+          basic instance information (one row per instance).  The view
+          init function is passed two arguments: (1) an instance of the
+          view structure, and (2) the instance state structure of the
+          instance to view.
+</DD><DT> INSTANCE_DATA</DT><DD>
+          instance-specific data tables (many rows per instance).  The
+          view init function is passed two arguments:(1) an instance of
+          the xdc.rov.Program.InstDataView structure, and (2) an instance
+          state structure for the instance to view.
+</DD><DT> MODULE</DT><DD>
+          basic module information (one row per module).  The view
+          init function is passed two arguments: (1) an instance of the
+          view structure, and (2) the module state structure of the
+          module to view.
+</DD><DT> MODULE_DATA</DT><DD>
+          module-specific data tables (many rows per module).  The
+          view init function is passed one argument: a
+          Program.ModDataView structure.
+</DD><DT> RAW</DT><DD>
+         This is a reserved view type used by ROV to display raw data.
+</DD><DT> TREE_TABLE</DT><DD>
+         The view init function is passed no arguments and is expected
+         to return a new initialized xdc.rov.Program.TreeNode structure
+         or <tt>null</tt> in the event that there is nothing to display.
+</DD><DT> TREE</DT><DD>
+         The view init function is passed no arguments and is expected
+         to return a new initialized JavaScript hash table or <tt>null</tt>
+         in the event that there is nothing to display.
+</DD></DL></div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id=".View"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">struct</span> <span class="xdoc-id">ViewInfo.</span><span class="xdoc-id">View</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewInfo.html" title="module ViewInfo"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewInfo.html#.View">index URL</a></div>
+<p class="xdocHdrSummaryDcl">ROV View descriptor</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> <i>obj</i> = <span class="xdoc-kw1">new</span> ViewInfo.<span class="xdoc-id">View</span>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">type</span> = <i><a class="xdoc-link" href="../../xdc/rov/ViewInfo.html#.View.Type" title="xdc.rov.ViewInfo.ViewType">ViewInfo.ViewType</a></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">viewInitFxn</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><i>obj</i>.<span class="xdoc-id">structName</span> = <i><span class="xdoc-kw2">String</span></i><b>&nbsp;&nbsp;...</b>
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">FIELDS</div>
+<div class="xdocChild"><span class="xdocChildId">type</span>
+<span class="xdocChildSum">&#151;&nbsp;the view type which control the type of arguments
+                        passed to the <tt>viewInitFxn</tt></span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">viewInitFxn</span>
+<span class="xdocChildSum">&#151;&nbsp;the name of a function that converts raw target
+                        data into a human readable "view structure".
+                        This name is the name of a metaonly function
+                        defined in the module's <tt>.xs</tt> file.</span>
+</div>
+<div class="xdocChild"><span class="xdocChildId">structName</span>
+<span class="xdocChildSum">&#151;&nbsp;the name of the view structure populated by
+                        the <tt>viewInitFxn</tt>.  This name is a name defined
+                        the module's <tt>.xdc</tt> file.</span>
+</div>
+<a class="xdocAnchor" id="per-instance_config_parameters"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdocSynSum">Instance Config Parameters</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewInfo.html" title="module ViewInfo"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewInfo.html#per-instance_config_parameters">index URL</a></div>
+<p class="xdocHdrSummary"></p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> ViewInfo.<span class="xdoc-id">Params</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt></tt>//&nbsp;Instance config-params object</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>params.<span class="xdoc-id">showRawTab</span> = <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-kw2">true</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Control whether the "raw view" is available</div>
+<div class="xdocSynCode">
+<tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>params.<span class="xdoc-id">viewMap</span> = <i><a class="xdoc-link" href="../../xdc/rov/ViewInfo.html#.View" title="xdc.rov.ViewInfo.View">ViewInfo.View</a>[<span class="xdoc-kw1">string</span>]</i> <span class="xdoc-kw2">undefined</span>;
+</div>
+<div class='xdocSynSum'><tt></tt><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Specifies all of the ROV views for the module</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="show.Raw.Tab"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">ViewInfo.Params.</span><span class="xdoc-id">showRawTab</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewInfo.html" title="module ViewInfo"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewInfo.html#show.Raw.Tab">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Control whether the "raw view" is available</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> ViewInfo.<span class="xdoc-id">Params</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>params.<span class="xdoc-id">showRawTab</span> = <i><span class="xdoc-kw2">Bool</span></i> <span class="xdoc-kw2">true</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<a class="xdocAnchor" id="view.Map"></a>
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">config</span> <span class="xdoc-id">ViewInfo.Params.</span><span class="xdoc-id">viewMap</span>&nbsp;&nbsp;<small><span class="xdocSynSum">//&nbsp;instance</span></small></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../xdc/rov/ViewInfo.html" title="module ViewInfo"><img class="xdocHdrArrow" src="../../Arrow_up.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../index.html#xdc/rov/ViewInfo.html#view.Map">index URL</a></div>
+<p class="xdocHdrSummaryDcl">Specifies all of the ROV views for the module</p>
+<span id='meta-synop'></span>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id-meta2dcl"></span></tt>Configuration settings</td>
+<td class="xdocLabelRight"></td>
+</tr></table>
+<div class="xdocSynMdcl">
+<div class="xdocSynCode">
+<tt></tt><tt></tt><span class="xdoc-kw1">var</span> params = <span class="xdoc-kw1">new</span> ViewInfo.<span class="xdoc-id">Params</span>;
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt><b>&nbsp;&nbsp;...</b>
+</div>
+<div class="xdocSynCode">
+<tt></tt><tt></tt>params.<span class="xdoc-id">viewMap</span> = <i><a class="xdoc-link" href="../../xdc/rov/ViewInfo.html#.View" title="xdc.rov.ViewInfo.View">ViewInfo.View</a>[<span class="xdoc-kw1">string</span>]</i> <span class="xdoc-kw2">undefined</span>;
+</div>
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">Maps module-specific view names to an appropriate View descriptor.</div>
+</div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:39 GMT</div>
+</div></div></body>
+</html>

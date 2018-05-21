@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.tools.repoman.sg.Main</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    <span class="comment">/* 
+</span>     2    <span class="comment"> *Copyright (c) 2008 Texas Instruments and others.
+</span>     3    <span class="comment"> *  All rights reserved. This program and the accompanying materials
+</span>     4    <span class="comment"> *  are made available under the terms of the Eclipse Public License v1.0
+</span>     5    <span class="comment"> *  which accompanies this distribution, and is available at
+</span>     6    <span class="comment"> *  http://www.eclipse.org/legal/epl-v10.html
+</span>     7    <span class="comment"> * 
+</span>     8    <span class="comment"> *  Contributors:
+</span>     9    <span class="comment"> *      Texas Instruments - initial implementation
+</span>    10    <span class="comment"> *
+</span>    11    <span class="comment"> * */</span>
+    12    
+    13    <span class="xdoc">/*!
+</span>    14    <span class="xdoc"> *  ======== Main ========
+</span>    15    <span class="xdoc"> *  Graphical interface to repoman tool
+</span>    16    <span class="xdoc"> *
+</span>    17    <span class="xdoc"> *  For more information about how to use this tool, see the
+</span>    18    <span class="xdoc"> *  {<b>@link</b> http://rtsc.eclipse.org/docs-tip/Command_-_xdc.tools.repoman.sg xdc.tools.repoman.sg User's Guide}.
+</span>    19    <span class="xdoc"> *
+</span>    20    <span class="xdoc"> *  <b>@see</b> xdc.tools.repoman
+</span>    21    <span class="xdoc"> */</span>
+    22    <span class=key>metaonly</span> <span class=key>module</span> Main <span class=key>inherits</span> xdc.tools.ICmd {
+    23    
+    24        <span class=key>override</span> <span class=key>config</span> String usage[] = [
+    25           <span class="string">'[--packagepath PATH]'</span>
+    26        ];
+    27        <span class="xdoc">/*!
+</span>    28    <span class="xdoc">     *  ======== createPartControl ========
+</span>    29    <span class="xdoc">     *  <b>@_nodoc</b>
+</span>    30    <span class="xdoc">     */</span>
+    31        <span class=key>function</span> createPartControl(parent);
+    32    <span class=key>instance</span>:
+    33        <span class=xdoc>//! repositories to scan for packages</span>
+    34        @CommandOption(<span class="string">'packagepath'</span>)
+    35        <span class=key>config</span> string pathArg = <span class=key>null</span>;
+    36    }
+    37    <span class="comment">/*
+</span>    38    <span class="comment"> *  @(#) xdc.tools.repoman.sg; 1, 0, 0,283; 12-8-2015 17:33:56; /db/ztree/library/trees/xdctools/xdctools-g03x/src/
+</span>    39    <span class="comment"> */</span>
+    40    
+</pre>
+</body></html>

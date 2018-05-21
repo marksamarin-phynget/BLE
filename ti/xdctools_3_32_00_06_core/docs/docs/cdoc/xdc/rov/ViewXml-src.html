@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>module xdc.rov.ViewXml</title>
+<meta name="googlebot" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="../../src.css"/>
+</head>
+<body>
+<pre class=src>
+     1    
+     2    <span class="xdoc">/*!
+</span>     3    <span class="xdoc"> *  ======== ViewXml ========
+</span>     4    <span class="xdoc"> *  This module sits on top of the ROV core to convert ROV views into
+</span>     5    <span class="xdoc"> *  XML. This is useful for test scripts and command-line based ROV tools.
+</span>     6    <span class="xdoc"> */</span>
+     7    <span class=key>metaonly</span> <span class=key>module</span> ViewXml {
+     8        
+     9        <span class="xdoc">/*!
+</span>    10    <span class="xdoc">     *  ======== processCommand ========
+</span>    11    <span class="xdoc">     *  This API allows the client to interact with the ROV core and retrieve
+</span>    12    <span class="xdoc">     *  ROV views.
+</span>    13    <span class="xdoc">     *
+</span>    14    <span class="xdoc">     *  It takes String commands of the following forms.
+</span>    15    <span class="xdoc">     *  1. "lm" - List Modules. 
+</span>    16    <span class="xdoc">     *     This returns an XML list of all of the modules in the executable's
+</span>    17    <span class="xdoc">     *     configuration and the views they support.
+</span>    18    <span class="xdoc">     *  2. "m &lt;module name&gt; &lt;tab name&gt;" - Retrieve tab view for module.
+</span>    19    <span class="xdoc">     *  3. "cc" - Clear cache.
+</span>    20    <span class="xdoc">     *     This command clears the ROV core's cache of views. This command
+</span>    21    <span class="xdoc">     *     should be sent whenever the target state changes.     
+</span>    22    <span class="xdoc">     */</span>
+    23        String processCommand(String cmd);
+    24        
+    25        <span class="xdoc">/*!
+</span>    26    <span class="xdoc">     *  ======== listModules ========
+</span>    27    <span class="xdoc">     *  Returns the list of modules in XML form.
+</span>    28    <span class="xdoc">     */</span>
+    29        String listModules();
+    30        
+    31        <span class="xdoc">/*!
+</span>    32    <span class="xdoc">     *  ======== retrieveView ========
+</span>    33    <span class="xdoc">     *  Retrieves the view in XML form for the given module and tab.
+</span>    34    <span class="xdoc">     */</span>
+    35        String retrieveView(String modName, String tabName);
+    36    }
+    37    <span class="comment">/*
+</span>    38    <span class="comment"> *  @(#) xdc.rov; 1, 0, 1,0; 12-9-2015 17:36:23; /db/ztree/library/trees/xdc/xdc-B06/src/packages/
+</span>    39    <span class="comment"> */</span>
+    40    
+</pre>
+</body></html>

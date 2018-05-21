@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>package xdc.tools.configuro</title>
+<meta name="description" content="Command-line configuration tool">
+<link rel="stylesheet" type="text/css" href="../../../xdoc.css" />
+</head>
+<body><div id="xdocWrapper"><div id="xdocContent">
+<table class="xdocHdr"><tr>
+<td class="xdocHdrTitle"><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.configuro</span></td>
+<td class="xdocHdrArrow">
+<a class="xdocHdrLink" href="../../../xdc/tools/configuro/Main.html" title="module Main"><img class="xdocHdrArrow" src="../../../Arrow_right.png"/></a></td>
+</table>
+<div class=xdocHdrIndex><a class=xdocHdrIndex title="right-click to capture" href="../../../index.html#xdc/tools/configuro/package.html">index URL</a></div>
+<p class="xdocHdrSummary">Command-line configuration tool</p>
+<ul class="xdocToc">
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-1">USAGE</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-2">OPTIONS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-3">DETAILS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-4">INPUTS</a></li>
+<li class="xdocToc"><a class="xdocToc" href="#xdoc-sect-5">OUTPUTS</a></li>
+</ul>
+<div class="xdocBrief">
+This command allows RTSC content, in the form of reusable modules built
+  using the XDCtools tooling, to be imported into a system integrator's
+  embedded application. It is the recommended method for integrating RTSC
+  content into non-RTSC application build environments.
+[&nbsp;<a class="xdocBrief" href="#xdoc-desc">more</a>&nbsp;...&nbsp;]
+</div>
+<table class="xdocLabel"><tr>
+<td class="xdocLabelLeft"><tt><span class="xdoc-id">XDCspec</span></tt> declarations</td>
+<td class="xdocLabelRight">sourced in <a class="xdocLink" href="../../../xdc/tools/configuro/package-src.html"><span class="xdocLabelFile">xdc/tools/configuro/package.xdc</span></a></td>
+</tr></table>
+<div class="xdocSynX">
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">requires</span> <a class="xdoc-link" href="../../../xdc/tools/mkpkg/package.html" title="xdc.tools.mkpkg">xdc.tools.mkpkg</a>;
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt></tt><span class="xdoc-kw1">package</span> <span class="xdoc-id">xdc.tools.configuro</span> [1, 0, 0] {
+</div>
+<div class="xdocSynSpacer">&nbsp;</div>
+<div class="xdocSynCode">
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt><span class="xdoc-kw1">module</span> <a class='xdocSynGo' href='../../../xdc/tools/configuro/Main.html' title='xdc.tools.configuro.Main'><span class="xdoc-id">Main</span>;</a>
+</div>
+<div class='xdocSynSum'><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>//&nbsp;Command implementation</div>
+<div class="xdocSynCode">
+<tt></tt>}
+</div>
+</div>
+<span id="xdoc-desc"></span>
+<span id="xdoc-sect-1"></span>
+<div class="xdocSect">USAGE</div>
+<div class="xdocText"><tt>xs xdc.tools.configuro [--help]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-v | -q]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-@ optionsfile]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-o outdir]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-b config_bld | -c codegen_dir | --cb]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-t target] [-p platform[:instance]] [-r profile]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-Dname=value]<br />&nbsp;&nbsp;&nbsp;&nbsp;[-w | -x regexp]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--rtsName pkg_name]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--cfgArgs args_string]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--linkTemplate linker_template]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--pkg] [--generationOnly]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--compileOptions compile_options_string]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--linkOptions linker_options_string]<br />&nbsp;&nbsp;&nbsp;&nbsp;[--oc compiler.opt] [--ol linker.cmd]<br />&nbsp;&nbsp;&nbsp;&nbsp;infile.cfg</tt></div>
+<span id="xdoc-sect-2"></span>
+<div class="xdocSect">OPTIONS</div>
+<div class="xdocText"><dl><dt><tt>-o</tt></dt><dd>Pathname of the output directory<p>  A directory containing the generated build artifacts, in particular
+  the <tt>compiler.opt</tt> and <tt>linker.cmd</tt> files.
+</p><p>  The last component of the output directory path must be a valid
+  ANSI C identifier; i.e., it must consist entirely of alphanumeric or
+  '_' characters and must not start with a number.  So, the names
+  '0app' and 'app-test' are not valid but '0app/config' and
+  'app-test/config' are valid.
+</p><p>  By default, the output directory has the same name as the
+  configuration script, minus the <tt>.cfg</tt> extension, within the same
+  parent directory as this script.  As a result, the directory name
+  constraint above applies to the name of the configuration script.
+</p></dd><dt><tt>-t</tt></dt><dd>Name of the RTSC target module<p>  The name of a RTSC target module to use, for example
+  <tt>ti.targets.C64P</tt>.
+</p><p>  If no <tt>config.bld</tt> file is given, then this is a required
+  parameter.
+</p><p>  If a <tt>config.bld</tt> file is given then this parameter is optional,
+  and by default the target will be
+  <a class="xdoc-link" href="../../../xdc/bld/BuildEnvironment.html#targets" title="xdc.bld.BuildEnvironment.targets"><tt>Build.targets[0]</tt></a> from the
+  user's <tt>config.bld</tt>. If <tt>Build.targets</tt> contains more than one entry,
+  then this option can be used to override that default.
+</p></dd><dt><tt>-c</tt></dt><dd>Root directory of the code generation tools<p>  The path to the installation directory of the compiler and linker
+  for the selected target. The definition of "installation directory"
+  can vary from compiler to compiler, but is most commonly the
+  directory that contains a "bin" subdirectory.
+</p><p>  If no <tt>config.bld</tt> file is given, then this is a required
+  parameter.
+</p><p>  If a <tt>config.bld</tt> file is given then this parameter is optional,
+  and by default the compiler will be the one configured there.
+  This option can still be used, to override the default established
+  in <tt>config.bld</tt>.
+</p></dd><dt><tt>-p</tt></dt><dd>Name of the RTSC platform package (and optionally instance)<p>  The name of a RTSC platform package to use, using the syntax
+  <tt>my.pkg.name</tt> or <tt>my.pkg.name:instanceName</tt>. For example,
+  <tt>ti.platforms.sim64Pxx</tt> or <tt>ti.platforms.generic:custom</tt>.
+</p><p>  This is an optional parameter, and by default the platform is
+  the one that the selected target names as its default. The user
+  may override this default in their <tt>config.bld</tt> or by using this
+  parameter.
+</p><p>  The optional <tt>:instanceName</tt> suffix names a pre-configured variant
+  of the platform, which can be set up either in the user's
+  <tt>config.bld</tt> or in the platform package itself. For more details, see
+  <a class="xdoc-link" href="../../../xdc/bld/BuildEnvironment.html#platform.Table" title="xdc.bld.BuildEnvironment.platformTable"><tt>Build.platformTable</tt></a>
+  and the <a class="xdoc-link" href="../../../xdc/platform/IPlatform.html" title="xdc.platform.IPlatform"><tt>IPlatform</tt></a> interface.
+</p></dd><dt><tt>-r</tt></dt><dd>Build profile to use<p>  The name of the build profile to use for the RTSC content, for
+  example 'release' or 'debug'. The list of allowed profiles is
+  determined by the RTSC target module named.
+</p></dd><dt><tt>-b</tt></dt><dd>Read build environment from the named <tt>config.bld</tt> file<p>  A <tt>config.bld</tt> file can optionally be used to hold the values
+  of the target, compiler root directory, platform, and other
+  more advanced options. This is a convenient way to share a common
+  build environment between multiple projects.
+</p><p>  The format of the file is JavaScript statements with the XDCscript
+  extensions. The script should set the properties of the
+  <a class="xdoc-link" href="../../../xdc/bld/BuildEnvironment.html" title="xdc.bld.BuildEnvironment"><tt>Build</tt></a> global object.
+</p><p>  If no <tt>config.bld</tt> file is given then the target and compiler
+  root directory are required command-line parameters.
+</p></dd><dt><tt>--cb</tt></dt><dd>Use a <tt>config.bld</tt> found along the package path<p>  Find a <tt>config.bld</tt> by searching the package path, instead of
+  via an explicit pathname. Looks for a file named <tt>config.bld</tt> in
+  any of the directories named along the package path, in order. The
+  directories are not searched recursively.
+</p></dd><dt><tt>-D</tt></dt><dd>Set a Java property in the configuration script<p>  Allows values to be injected from the command line into the
+  <tt>config.bld</tt> file. For example, the option <tt>-Dmyprop=myval</tt>
+  creates a property named <tt>myprop</tt> with string value <tt>"myval"</tt>.
+  This can be read in <tt>config.bld</tt> using the XDCscript syntax
+  <tt>environment["myprop"]</tt>.
+</p></dd><dt><tt>--rtsName</tt></dt><dd>Set the name of the RTSC runtime package<p>  The name of a package containing pre-built libraries containing
+  the <a class="xdoc-link" href="../../../xdc/runtime/package.html" title="xdc.runtime">xdc.runtime</a> modules.  If this parameter is <tt>null</tt> (or
+  <tt>undefined</tt>) the name of the rts package is taken from the target
+  (<tt><a class="xdoc-link" href="../../../xdc/bld/ITarget.html#rts.Name" title="xdc.bld.ITarget.rtsName">xdc.bld.ITarget.rtsName</a></tt>).  If this parameter is set to
+  the empty string (""), then no rts package is included in the
+  configuration.  Finally, if this parameter is non-<tt>null</tt> and
+  non-empty, it should be the name of a package along the package
+  path that can supply pre-built versions of the modules in the
+  <tt><a class="xdoc-link" href="../../../xdc/runtime/package.html" title="xdc.runtime">xdc.runtime</a></tt> package.
+</p></dd><dt><tt>--cfgArgs</tt></dt><dd>Optional arguments passed to configuration script<p>  This option lets the user pass values into the configuration script
+  from the command line. The argument is an expression in JavaScript
+  syntax.  Its value is available in the configuration script under the
+  name <tt>Program.build.cfgArgs</tt>.
+</p><p>  The JavaScript expression is evaluated in the configuration domain
+  after the platform package is imported, immediately before calling
+  the user's configuration script.
+</p><p>  This string has the same effect as the <tt>cfgArgs</tt> string in
+  <tt><a class="xdoc-link" href="../../../xdc/bld/Executable.html#.Attrs" title="xdc.bld.Executable.Attrs">xdc.bld.Executable.Attrs</a></tt>.
+</p><p>  You can pass multiple values to configuration scripts using the
+  syntax of a JavaScript <tt>Object</tt> constant:
+</p><p><PRE class="Example">      xs xdc.tools.configuro --cfgArgs '{foo:"hello", bar:2}' ... app.cfg
+</PRE></p><p>  The configuration script can read the various fields as, e.g.:
+</p><p><PRE class="Example">      if (Program.build.cfgArgs.foo == "hello") {
+          :
+      }
+</PRE></p></dd><dt><tt>--linkTemplate</tt></dt><dd>Linker command file template<p>  If this option is provided it overrides the template supplied by
+  the platform, giving the caller complete control over the generated
+  linker command file.
+</p></dd><dt><tt>-v</tt></dt><dd>Show verbose details during build<p>  This option produces the same verbose output as the <tt>xdc</tt> command
+  with the <tt>XDCOPTIONS=v</tt> parameter.
+</p></dd><dt><tt>-q</tt></dt><dd>Minimize details during build<p>  This option produces the same output as the <tt>xdc</tt> command
+  with the <tt>XDCOPTIONS=qq</tt> parameter.
+</p></dd><dt><tt>-x</tt></dt><dd>Exclude packages matching regexp from compatibility checking<p>  A JavaScript regular expression that is used to select packages that
+  should be excluded from the set of packages checked during
+  configuration.
+</p></dd><dt><tt>-w</tt></dt><dd>Treat package version incompatibilites as warnings<p>  If set to "<tt>true</tt>", force any incompatibilities detected to be
+  treated as warnings only; otherwise incompatibilities are fatal.
+</p></dd><dt><tt>--pkg</tt></dt><dd>Create the build model generated output files but do not build<p>  This option creates the output directory and key generated files
+  but does not process the user's configuration script. It is used
+  by internal tooling to snapshot the RTSC build settings implied by
+  the configuro command line parameters.
+</p></dd><dt><tt>--generationOnly</tt></dt><dd>Create the configuration generated source files but do not build<p>  This option runs the configuration step but does not compile the
+  generated source files.  This option is used 
+  by internal tooling to eliminate unnecessary build steps.
+</p></dd><dt><tt>--compileOptions</tt></dt><dd>Add compile options for C files in the configuration package<p>  This option accepts one or more compiler options that are added to
+  the compiler command line when compiling C files in the generated
+  configuration package.
+  If multiple compiler options are given, the whole string containing
+  options must be surrounded by quotes.
+</p></dd><dt><tt>--linkOptions</tt></dt><dd>Add linker options for libraries in the configuration package<p>  This option accepts one or more linker options which are used to
+  pull in the correct libraries during link.
+  If multiple linker options are given, the whole string containing
+  options must be surrounded by quotes.
+</p></dd><dt><tt>--oc</tt></dt><dd>Set the name of the compiler options file (default is "compiler.opt")</dd><dt><tt>--ol</tt></dt><dd>Set the name of the linker command file (default is "linker.cmd")</dd></div>
+<span id="xdoc-sect-3"></span>
+<div class="xdocSect">DETAILS</div>
+<div class="xdocText">This command allows RTSC content, in the form of reusable modules built
+  using the XDCtools tooling, to be imported into a system integrator's
+  embedded application. It is the recommended method for integrating RTSC
+  content into non-RTSC application build environments.</div>
+<div class="xdocText">Configuro lets the system integrator identify and customize the RTSC
+  content they wish to use, and computes a set of libraries, command-line
+  flags and other artifacts to include in their application build. By
+  changing the values of configuration settings, the integrator can
+  trade off the functionality, memory footprint, and even performance of
+  the RTSC content to best meet the needs of their application.</div>
+<span id="xdoc-sect-4"></span>
+<div class="xdocSect">INPUTS</div>
+<div class="xdocText"></div>
+<div class="xdocText"><DL><DT> <tt>infile.cfg</tt></DT><DD>
+      A user-supplied configuration script that names a set of RTSC
+      modules, and optionally changes their configuration settings.
+</DD></DL></div>
+<span id="xdoc-sect-5"></span>
+<div class="xdocSect">OUTPUTS</div>
+<div class="xdocText"></div>
+<div class="xdocText"><DL><DT> <tt>outdir/</tt></DT><DD>
+      A directory containing all generated build artifacts.
+</DD><DT> <tt>outdir/compiler.opt</tt></DT><DD>
+      A file containing C compiler command-line flags. These flags must
+      included on the compiler command line for any C source file that
+      directly accesses the RTSC content. The flags define the header file
+      include paths, and machine-mode compiler flags to ensure object code
+      compatibility between all included content.
+</DD><DT> <tt>outdir/linker.cmd</tt></DT><DD>
+      A file containing linker command-line flags. These flags must be
+      included on the linker command line for the final link of the
+      application. The flags list needed libraries and object files,
+      and on some platforms define the embedded system memory map.
+</DD></DL></div>
+<div class="xdocText">For example:</div>
+<div class="xdocText"><PRE class="Example">      xs xdc.tools.configuro myconfig.cfg
+</PRE></div>
+<div id="xdocDate">generated on Thu, 10 Dec 2015 19:47:47 GMT</div>
+</div></div></body>
+</html>
