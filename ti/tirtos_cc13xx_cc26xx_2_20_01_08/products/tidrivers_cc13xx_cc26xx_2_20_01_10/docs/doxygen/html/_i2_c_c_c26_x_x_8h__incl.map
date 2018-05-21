@@ -1,0 +1,7 @@
+<map id="I2CCC26XX.h" name="I2CCC26XX.h">
+<area shape="rect" href="$_i2_c_8h.html" title="I2C driver interface. " alt="" coords="367,165,474,189" />
+<area shape="rect" href="$_p_i_n_c_c26_x_x_8h.html" title="Device&#45;specific pin &amp; GPIO driver for CC26xx family [def]. " alt="" coords="458,83,639,107" />
+<area shape="rect" href="$_power_8h.html" title="Power manager interface. " alt="" coords="165,83,287,107" />
+<area shape="rect" href="$_p_i_n_8h.html" title="Generic PIN &amp; GPIO driver. " alt="" coords="751,165,861,189" />
+<area shape="rect" href="$_list_8h.html" title="Linked List interface for use in drivers. " alt="" coords="159,165,293,189" />
+</map>

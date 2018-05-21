@@ -1,0 +1,4 @@
+<map id="I2CSlave_Params" name="I2CSlave_Params">
+<area shape="rect" href="$struct_i2_c_slave___config.html" title="I2CSlave Global configuration. " alt="" coords="164,9,284,33" />
+<area shape="rect" href="$struct_i2_c_slave___fxn_table.html" title="The definition of a I2CSlave function table that contains the required set of functions to control a ..." alt="" coords="202,171,341,195" />
+</map>

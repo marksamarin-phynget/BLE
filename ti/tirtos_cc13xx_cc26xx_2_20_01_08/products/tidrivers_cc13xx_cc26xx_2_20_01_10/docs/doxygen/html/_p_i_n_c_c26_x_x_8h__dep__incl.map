@@ -1,0 +1,8 @@
+<map id="PINCC26XX.h" name="PINCC26XX.h">
+<area shape="rect" href="$_a_d_c_c_c26_x_x_8h.html" title="ADC driver implementation for the ADC peripheral on CC26XX. " alt="" coords="7,83,119,107" />
+<area shape="rect" href="$_a_d_c_buf_c_c26_x_x_8h.html" title="ADCBuf driver implementation for a CC26XX analog&#45;to&#45;digital converter. " alt="" coords="143,83,274,107" />
+<area shape="rect" href="$_i2_c_c_c26_x_x_8h.html" title="I2C driver implementation for a CC26XX I2C controller. " alt="" coords="298,83,402,107" />
+<area shape="rect" href="$_p_d_m_c_c26_x_x__util_8h.html" title="PDM utility includes helper functions for configuring the CC26XX I2S controller. " alt="" coords="426,83,565,107" />
+<area shape="rect" href="$_s_p_i_c_c26_x_x_d_m_a_8h.html" title="SPI driver implementation for a CC26XX SPI controller using the UDMA controller. " alt="" coords="589,83,725,107" />
+<area shape="rect" href="$_u_a_r_t_c_c26_x_x_8h.html" title="UART driver implementation for a CC26XX UART controller. " alt="" coords="749,83,869,107" />
+</map>

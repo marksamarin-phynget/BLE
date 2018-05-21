@@ -1,0 +1,12 @@
+<map id="Power.h" name="Power.h">
+<area shape="rect" href="$_a_d_c_c_c26_x_x_8h.html" title="ADC driver implementation for the ADC peripheral on CC26XX. " alt="" coords="58,158,170,182" />
+<area shape="rect" href="$_a_d_c_buf_c_c26_x_x_8h.html" title="ADCBuf driver implementation for a CC26XX analog&#45;to&#45;digital converter. " alt="" coords="186,233,317,257" />
+<area shape="rect" href="$_crypto_c_c26_x_x_8h.html" title="Crypto driver implementation for a CC26XX Crypto controller. " alt="" coords="773,84,896,108" />
+<area shape="rect" href="$_u_d_m_a_c_c26_x_x_8h.html" title="UDMACC26XX driver implementation. " alt="" coords="194,158,317,182" />
+<area shape="rect" href="$_s_p_i_c_c26_x_x_d_m_a_8h.html" title="SPI driver implementation for a CC26XX SPI controller using the UDMA controller. " alt="" coords="341,233,477,257" />
+<area shape="rect" href="$_i2_c_c_c26_x_x_8h.html" title="I2C driver implementation for a CC26XX I2C controller. " alt="" coords="920,84,1024,108" />
+<area shape="rect" href="$_p_d_m_c_c26_x_x_8h.html" title="PDM driver implementation for a CC26XX PDM controller. " alt="" coords="442,158,554,182" />
+<area shape="rect" href="$_p_d_m_c_c26_x_x__util_8h.html" title="PDM utility includes helper functions for configuring the CC26XX I2S controller. " alt="" coords="578,158,717,182" />
+<area shape="rect" href="$_power_c_c26_x_x_8h.html" title="Power manager interface for CC26XX. " alt="" coords="344,84,466,108" />
+<area shape="rect" href="$_u_a_r_t_c_c26_x_x_8h.html" title="UART driver implementation for a CC26XX UART controller. " alt="" coords="1048,84,1168,108" />
+</map>

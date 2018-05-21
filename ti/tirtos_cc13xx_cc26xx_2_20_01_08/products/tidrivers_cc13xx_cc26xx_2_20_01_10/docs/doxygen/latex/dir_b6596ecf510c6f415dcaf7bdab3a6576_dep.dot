@@ -1,0 +1,9 @@
+digraph "remotecontrol" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_bba4f83f581bdc46454983254f1d0913 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="mw" fontname="Helvetica", fontsize="10", URL="dir_bba4f83f581bdc46454983254f1d0913.html"]
+  dir_b6596ecf510c6f415dcaf7bdab3a6576 [shape=box, label="remotecontrol", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_b6596ecf510c6f415dcaf7bdab3a6576.html"];
+  }
+}

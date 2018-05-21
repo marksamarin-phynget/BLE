@@ -1,0 +1,9 @@
+digraph "sensors" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_bba4f83f581bdc46454983254f1d0913 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="mw" fontname="Helvetica", fontsize="10", URL="dir_bba4f83f581bdc46454983254f1d0913.html"]
+  dir_60f528451dee6090ff9c6a8a2988c9f7 [shape=box, label="sensors", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_60f528451dee6090ff9c6a8a2988c9f7.html"];
+  }
+}

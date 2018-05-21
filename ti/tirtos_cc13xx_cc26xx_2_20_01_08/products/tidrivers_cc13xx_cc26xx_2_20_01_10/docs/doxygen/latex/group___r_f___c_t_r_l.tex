@@ -1,0 +1,25 @@
+\subsection{R\+F\+\_\+\+C\+T\+R\+L}
+\label{group___r_f___c_t_r_l}\index{R\+F\+\_\+\+C\+T\+R\+L@{R\+F\+\_\+\+C\+T\+R\+L}}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___r_f___c_t_r_l_ga24096530a8da4bde84275bc9c76b2cee}{R\+F\+\_\+\+C\+T\+R\+L\+\_\+\+S\+E\+T\+\_\+\+I\+N\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+T\+I\+M\+E\+O\+U\+T}~0
+\begin{DoxyCompactList}\small\item\em Control code used by R\+F\+\_\+control to set inactivity timeout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+R\+F\+\_\+\+C\+T\+R\+L\+\_\+$\ast$ macros are control codes defined in the \hyperlink{_r_f_8h}{R\+F.\+h} driver implementation and need to\+: 
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <ti/drivers/rf/RF.h>}
+\end{DoxyCode}
+ 
+
+\subsubsection{Macro Definition Documentation}
+\index{R\+F\+\_\+\+C\+T\+R\+L@{R\+F\+\_\+\+C\+T\+R\+L}!R\+F\+\_\+\+C\+T\+R\+L\+\_\+\+S\+E\+T\+\_\+\+I\+N\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+T\+I\+M\+E\+O\+U\+T@{R\+F\+\_\+\+C\+T\+R\+L\+\_\+\+S\+E\+T\+\_\+\+I\+N\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+T\+I\+M\+E\+O\+U\+T}}
+\index{R\+F\+\_\+\+C\+T\+R\+L\+\_\+\+S\+E\+T\+\_\+\+I\+N\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+T\+I\+M\+E\+O\+U\+T@{R\+F\+\_\+\+C\+T\+R\+L\+\_\+\+S\+E\+T\+\_\+\+I\+N\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+T\+I\+M\+E\+O\+U\+T}!R\+F\+\_\+\+C\+T\+R\+L@{R\+F\+\_\+\+C\+T\+R\+L}}
+\paragraph[{R\+F\+\_\+\+C\+T\+R\+L\+\_\+\+S\+E\+T\+\_\+\+I\+N\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+T\+I\+M\+E\+O\+U\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+F\+\_\+\+C\+T\+R\+L\+\_\+\+S\+E\+T\+\_\+\+I\+N\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+T\+I\+M\+E\+O\+U\+T~0}\label{group___r_f___c_t_r_l_ga24096530a8da4bde84275bc9c76b2cee}
+
+
+Control code used by R\+F\+\_\+control to set inactivity timeout. 
+
+Setting this control allows R\+F to power down the radio upon completion of a radio command after a specified timeout period (in us) With this control code {\bfseries arg} is a pointer to the timeout variable and returns R\+F\+\_\+\+Stat\+Success. 

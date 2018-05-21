@@ -1,0 +1,4 @@
+<map id="ADCBuf_Params" name="ADCBuf_Params">
+<area shape="rect" href="$struct_a_d_c_buf___config.html" title="ADCBuf Global configuration. " alt="" coords="115,9,230,33" />
+<area shape="rect" href="$struct_a_d_c_buf___fxn_table.html" title="The definition of an ADCBuf function table that contains the required set of functions to control a s..." alt="" coords="217,230,347,254" />
+</map>

@@ -1,0 +1,11 @@
+<map id="DisplaySharp_Object" name="DisplaySharp_Object">
+<area shape="rect" href="$struct_display_sharp_color__t.html" title="Foreground and background color struct, compatible with GrLib. " alt="" coords="8,190,152,214" />
+<area shape="rect" href="$struct_p_i_n___state__s.html" title="underlying data structure for type PIN_State " alt="" coords="176,190,272,214" />
+<area shape="rect" href="$structt_context.html" title="tContext" alt="" coords="377,190,446,214" />
+<area shape="rect" href="$structt_rectangle.html" title="tRectangle" alt="" coords="208,100,293,124" />
+<area shape="rect" href="$structt_font.html" title="This structure describes a font used for drawing text onto the screen. " alt="" coords="330,100,381,124" />
+<area shape="rect" href="$structt_display.html" title="This structure defines the characteristics of a display driver. " alt="" coords="434,100,504,124" />
+<area shape="rect" href="$structt_display_fxns.html" title="This structure defines the implementation of a display driver. " alt="" coords="421,9,517,33" />
+<area shape="rect" href="$struct_s_p_i___config.html" title="SPI Global configuration. " alt="" coords="590,190,678,214" />
+<area shape="rect" href="$struct_s_p_i___fxn_table.html" title="The definition of a SPI function table that contains the required set of functions to control a speci..." alt="" coords="644,369,748,393" />
+</map>

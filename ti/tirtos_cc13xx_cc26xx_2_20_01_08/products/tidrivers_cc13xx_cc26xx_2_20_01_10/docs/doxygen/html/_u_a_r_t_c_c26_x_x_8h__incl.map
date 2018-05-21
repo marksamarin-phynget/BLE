@@ -1,0 +1,7 @@
+<map id="UARTCC26XX.h" name="UARTCC26XX.h">
+<area shape="rect" href="$_u_a_r_t_8h.html" title="UART driver interface. " alt="" coords="109,165,232,189" />
+<area shape="rect" href="$_p_i_n_c_c26_x_x_8h.html" title="Device&#45;specific pin &amp; GPIO driver for CC26xx family [def]. " alt="" coords="600,84,781,108" />
+<area shape="rect" href="$_power_8h.html" title="Power manager interface. " alt="" coords="312,84,434,108" />
+<area shape="rect" href="$_p_i_n_8h.html" title="Generic PIN &amp; GPIO driver. " alt="" coords="768,165,877,189" />
+<area shape="rect" href="$_list_8h.html" title="Linked List interface for use in drivers. " alt="" coords="306,165,440,189" />
+</map>
