@@ -1,4 +1,0 @@
-BUILD_VERBOSITY_LEVEL=VERBOSE
-com.ti.ccstudio.project.core.internal.tools.CodegenToolDiscoveryManager.INACTIVE_TOOL_DISCOVERY_PATH_ENTRIES=C\:/BLE/App/ccsv7/tools/compiler;C\:/BLE/App;
-com.ti.common.project.core.products.ProductDiscoveryManager.INACTIVE_TOOL_DISCOVERY_PATH_ENTRIES=C\:/ti;C\:/Program Files (x86)/Texas Instruments;C\:/BLE/App;
-eclipse.preferences.version=1
