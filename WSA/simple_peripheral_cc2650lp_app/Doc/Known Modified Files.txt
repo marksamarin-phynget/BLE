@@ -1,4 +1,6 @@
-Known Mods
+Known Mods in TI libraries - this was manually determined, there may be more.
+
+This is why the original TI libraries must not be used, use only the libraries added to the repository.
 
 CODE
 D:\Dropbox\Phyn\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\tidrivers_cc13xx_cc26xx_2_20_01_10\packages\ti\drivers\uart\UARTCC26XX.c
