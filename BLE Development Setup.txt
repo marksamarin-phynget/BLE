@@ -1,0 +1,70 @@
+PWD BLE board Software Development Setup
+
+
+1)  Clone BLE repository to selected directory (<BLE_Home>)
+
+    The repository is publicly available currently located at:
+        
+        https://github.com/marksamarin-phynget/BLE.git
+
+	
+    
+2) Install Code Composer V7.4 to C:\ti\CCS740
+
+	Browse to: http://processors.wiki.ti.com/index.php/Download_CCS#Code_Composer_Studio_Version_7_Downloads
+	
+    * For Processor support, select: SimpleLink CC13xx and CC26xx Wireless MCUs
+	
+    * For Debug support, select TI XDS and Spectrum Digital Probes
+	
+	When starting CCS, select <BLE_Home>/WSA as you workspace directory.
+    
+    
+
+3)  SETUP CCS TOOLS (RTOS, XDCTOOLS)
+
+	In CCS, go to Window->Preferences-Code Composer Studio->Products    
+	and uninstall any packages automatically added by the CCS install (such XDCTOOLS packages)
+
+	(You do not need to restart CCS yet)
+	
+	Add <BLE_Home>\BLE\ti to the to discovery path and press the Rediscover button.
+	
+	select the following tools for install:
+	
+        <BLE_Home>\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08
+        <BLE_Home>\BLE\ti\\xdctools_3_32_00_06_core
+  
+    For convenience, uncheck the "search for new installable products..." box.
+	
+    Important:  Do not use the original RTOS and BLE stack any libraries downloaded from TI as there have been modifications.
+                The original downloads are available from ti.com if needed for comparison purposes.
+   
+
+   
+4) Import the BLE application (and stack project if desired) into your workspace:
+ 
+	Project->Import CCS Projects->Select Search Directory, browse to:
+		
+        <BLE_Home>/BLE/WSA
+   
+    and select:
+    
+        simple_peripheral_cc2650lp_app 
+        simple_peripheral_cc2650lp_stack (if desired)
+        
+        
+5)  If done correctly, the simple_peripheral_cc2650lp_app should build completely now.  
+    
+    Verify this by locating the executable hex file time stamp at: 
+	
+		C:\BLE\WSA\simple_peripheral_cc2650lp_app\FlashROM \simple_peripheral_cc2650lp_app.hex  
+   
+   
+    If the project fails to build, pay close attention to 
+    
+        - the paths and Linked Resources under Project->Properties 
+        - the compiler include paths
+        - the package paths as described in 3)
+    
+    
