@@ -15,90 +15,90 @@ XDCCFGDIR = package/cfg/
 # in the event that some included BOM script changes.
 #
 ifneq (clean,$(MAKECMDGOALS))
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/utils.js:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/utils.js
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xdc.tci:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xdc.tci
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/template.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/template.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/om2.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/om2.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen2.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen2.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/Warnings.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/Warnings.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/IPackage.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/IPackage.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/package.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/package.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Clock.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Clock.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Trace.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Trace.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/bld.js:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/bld.js
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/BuildEnvironment.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/BuildEnvironment.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/PackageContents.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/PackageContents.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/_gen.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/_gen.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Library.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Library.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Executable.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Executable.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Repository.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Repository.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Configuration.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Configuration.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Script.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Script.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Manifest.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Manifest.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Utils.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Utils.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget2.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget2.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget3.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget3.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITargetFilter.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITargetFilter.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/package.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/package.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/utils.js:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/utils.js
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xdc.tci:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xdc.tci
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/template.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/template.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/om2.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/om2.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen2.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen2.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/Warnings.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/Warnings.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/IPackage.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/IPackage.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/package.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/package.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Clock.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Clock.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Trace.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Trace.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/bld.js:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/bld.js
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/BuildEnvironment.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/BuildEnvironment.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/PackageContents.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/PackageContents.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/_gen.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/_gen.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Library.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Library.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Executable.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Executable.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Repository.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Repository.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Configuration.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Configuration.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Script.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Script.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Manifest.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Manifest.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Utils.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Utils.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget2.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget2.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget3.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget3.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITargetFilter.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITargetFilter.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/package.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/package.xs
 package.mak: config.bld
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/ITarget.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/ITarget.xs
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_large.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_large.xs
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_float.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_float.xs
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/package.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/package.xs
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/IArm.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/IArm.xs
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/package.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/package.xs
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/ITarget.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/ITarget.xs
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_large.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_large.xs
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_float.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_float.xs
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/package.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/package.xs
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/IArm.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/IArm.xs
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/package.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/package.xs
 package.mak: package.bld
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.opt.xdt:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.opt.xdt
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/File.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/File.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/package.xs:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/package.xs
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.defs.xdt:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.defs.xdt
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/package.xs.xdt:
-package.mak: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/package.xs.xdt
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.opt.xdt:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.opt.xdt
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/File.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/File.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/package.xs:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/package.xs
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.defs.xdt:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.defs.xdt
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/package.xs.xdt:
+package.mak: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/package.xs.xdt
 endif
 
 ti.targets.arm.elf.M3.rootDir ?= D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS
-ti.targets.arm.elf.packageBase ?= D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/
+ti.targets.arm.elf.packageBase ?= D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/
 .PRECIOUS: $(XDCCFGDIR)/%.oem3
 .PHONY: all,em3 .dlls,em3 .executables,em3 test,em3
 all,em3: .executables,em3
@@ -128,74 +128,74 @@ package/%.xdc.inc package/%_configPkg.c package/%.defs.h: %.xdc $(PKGCFGS)
 	@$(MSG) generating interfaces for package configPkg" (because $@ is older than $(firstword $?))" ...
 	$(XSRUN) -f xdc/services/intern/cmd/build.xs $(MK_IDLOPTS) -m package/package.xdc.dep -i package/package.xdc.inc package.xdc
 
-.dlls,em3 .dlls: app_ble.pem3
+.dlls,em3 .dlls: cc2640.pem3
 
--include package/cfg/app_ble_pem3.mak
--include package/cfg/app_ble_pem3.cfg.mak
+-include package/cfg/cc2640_pem3.mak
+-include package/cfg/cc2640_pem3.cfg.mak
 ifeq (,$(MK_NOGENDEPS))
--include package/cfg/app_ble_pem3.dep
+-include package/cfg/cc2640_pem3.dep
 endif
-app_ble.pem3: package/cfg/app_ble_pem3.xdl
+cc2640.pem3: package/cfg/cc2640_pem3.xdl
 	@
 
 
 ifeq (,$(wildcard .libraries,em3))
-app_ble.pem3 package/cfg/app_ble_pem3.c: .libraries,em3
+cc2640.pem3 package/cfg/cc2640_pem3.c: .libraries,em3
 endif
 
-package/cfg/app_ble_pem3.c package/cfg/app_ble_pem3.h package/cfg/app_ble_pem3.xdl: override _PROG_NAME := app_ble.xem3
-package/cfg/app_ble_pem3.c: package/cfg/app_ble_pem3.cfg
-package/cfg/app_ble_pem3.xdc.inc: package/cfg/app_ble_pem3.xdl
-package/cfg/app_ble_pem3.xdl package/cfg/app_ble_pem3.c: .interfaces
+package/cfg/cc2640_pem3.c package/cfg/cc2640_pem3.h package/cfg/cc2640_pem3.xdl: override _PROG_NAME := cc2640.xem3
+package/cfg/cc2640_pem3.c: package/cfg/cc2640_pem3.cfg
+package/cfg/cc2640_pem3.xdc.inc: package/cfg/cc2640_pem3.xdl
+package/cfg/cc2640_pem3.xdl package/cfg/cc2640_pem3.c: .interfaces
 
 clean:: clean,em3
-	-$(RM) package/cfg/app_ble_pem3.cfg
-	-$(RM) package/cfg/app_ble_pem3.dep
-	-$(RM) package/cfg/app_ble_pem3.c
-	-$(RM) package/cfg/app_ble_pem3.xdc.inc
+	-$(RM) package/cfg/cc2640_pem3.cfg
+	-$(RM) package/cfg/cc2640_pem3.dep
+	-$(RM) package/cfg/cc2640_pem3.c
+	-$(RM) package/cfg/cc2640_pem3.xdc.inc
 
 clean,em3::
-	-$(RM) app_ble.pem3
-.executables,em3 .executables: app_ble.xem3
+	-$(RM) cc2640.pem3
+.executables,em3 .executables: cc2640.xem3
 
-app_ble.xem3: |app_ble.pem3
+cc2640.xem3: |cc2640.pem3
 
--include package/cfg/app_ble.xem3.mak
-app_ble.xem3: package/cfg/app_ble_pem3.oem3 
+-include package/cfg/cc2640.xem3.mak
+cc2640.xem3: package/cfg/cc2640_pem3.oem3 
 	$(RM) $@
 	@$(MSG) lnkem3 $@ ...
 	$(RM) $(XDCCFGDIR)/$@.map
-	$(ti.targets.arm.elf.M3.rootDir)/bin/armcl -fs $(XDCCFGDIR)$(dir $@). -q -u _c_int00 --silicon_version=7M3 -z --strict_compatibility=on  -o $@ package/cfg/app_ble_pem3.oem3   package/cfg/app_ble_pem3.xdl  -w -c -m $(XDCCFGDIR)/$@.map -l $(ti.targets.arm.elf.M3.rootDir)/lib/libc.a
+	$(ti.targets.arm.elf.M3.rootDir)/bin/armcl -fs $(XDCCFGDIR)$(dir $@). -q -u _c_int00 --silicon_version=7M3 -z --strict_compatibility=on  -o $@ package/cfg/cc2640_pem3.oem3   package/cfg/cc2640_pem3.xdl  -w -c -m $(XDCCFGDIR)/$@.map -l $(ti.targets.arm.elf.M3.rootDir)/lib/libc.a
 	
-app_ble.xem3: export C_DIR=
-app_ble.xem3: PATH:=$(ti.targets.arm.elf.M3.rootDir)/bin/;$(PATH)
-app_ble.xem3: Path:=$(ti.targets.arm.elf.M3.rootDir)/bin/;$(PATH)
+cc2640.xem3: export C_DIR=
+cc2640.xem3: PATH:=$(ti.targets.arm.elf.M3.rootDir)/bin/;$(PATH)
+cc2640.xem3: Path:=$(ti.targets.arm.elf.M3.rootDir)/bin/;$(PATH)
 
-app_ble.test test,em3 test: app_ble.xem3.test
+cc2640.test test,em3 test: cc2640.xem3.test
 
-app_ble.xem3.test:: app_ble.xem3
+cc2640.xem3.test:: cc2640.xem3
 ifeq (,$(_TESTLEVEL))
-	@$(MAKE) -R -r --no-print-directory -f $(XDCROOT)/packages/xdc/bld/xdc.mak _TESTLEVEL=1 app_ble.xem3.test
+	@$(MAKE) -R -r --no-print-directory -f $(XDCROOT)/packages/xdc/bld/xdc.mak _TESTLEVEL=1 cc2640.xem3.test
 else
 	@$(MSG) running $<  ...
-	$(call EXEC.app_ble.xem3, ) 
+	$(call EXEC.cc2640.xem3, ) 
 endif
 
 clean,em3::
-	-$(RM) $(wildcard .tmp,app_ble.xem3,*)
+	-$(RM) $(wildcard .tmp,cc2640.xem3,*)
 
 
 clean:: clean,em3
 
 clean,em3::
-	-$(RM) app_ble.xem3
+	-$(RM) cc2640.xem3
 %,copy:
 	@$(if $<,,$(MSG) don\'t know how to build $*; exit 1)
 	@$(MSG) cp $< $@
 	$(RM) $@
 	$(CP) $< $@
-app_ble_pem3.oem3,copy : package/cfg/app_ble_pem3.oem3
-app_ble_pem3.sem3,copy : package/cfg/app_ble_pem3.sem3
+cc2640_pem3.oem3,copy : package/cfg/cc2640_pem3.oem3
+cc2640_pem3.sem3,copy : package/cfg/cc2640_pem3.sem3
 
 $(XDCCFGDIR)%.c $(XDCCFGDIR)%.h $(XDCCFGDIR)%.xdl: $(XDCCFGDIR)%.cfg $(XDCROOT)/packages/xdc/cfg/Main.xs | .interfaces
 	@$(MSG) "configuring $(_PROG_NAME) from $< ..."

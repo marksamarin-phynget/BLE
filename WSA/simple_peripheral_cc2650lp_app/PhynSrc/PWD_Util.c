@@ -64,7 +64,8 @@ void BLE_EnableBootloader(void)
 {
 
     U8  uCCFGArea[128];
-    U32 uFlashOpResult, uSectorSize;
+    U32 volatile uFlashOpResult;   // volatile to avoid unused var warning
+    U32 uSectorSize;
 
     // reenable Bootloader
     uSectorSize = FlashSectorSizeGet();

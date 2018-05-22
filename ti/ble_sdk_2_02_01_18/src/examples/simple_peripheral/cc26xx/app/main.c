@@ -38,21 +38,8 @@ bleUserCfg_t user0Cfg = BLE_USER_CFG;
 
 #endif // USE_DEFAULT_USER_CFG
 
-// No Display for PWD
-//#include <ti/mw/display/Display.h>
-//extern Display_Handle dispHandle;
-
-
-//char sVerString[] __attribute__((__at__(0x1FF80))) = "BLE App V0.00";
-
-extern void AssertHandler(uint8 assertCause, uint8 assertSubcause);
-
-
 PIN_State zBlueLedState, zRedLedState;
 PIN_Handle hBlueLed, hRedled;
-
-PIN_Handle PIN_open(PIN_State* pState, const PIN_Config aPinList[]);
-
 U16 CRC16(U32 uStartAddr, U32 uLength, U16 uSeed);
 
 #include <GPTimerCC26XX.h>
@@ -139,14 +126,9 @@ int main()
 
         // Calculate CRCs
         uAppCRC       = HapiCrc32((U8 *)APP_START_ADDR, APP_SIZE,                   0);
-        //uAppCRC       = HapiCrc32(0x0000, 0xF00000, 0); // reverse - CRASH
-        uCodeCRC       = HapiCrc32((U8 *)APP_START_ADDR, APP_SIZE-1,                   0);
-
-
         uBLEStackCRC  = HapiCrc32((U8 *)BLE_STACK_ADDR, BLE_STACK_SIZE,             0);
-        //uCodeCRC      = HapiCrc32((U8 *)APP_START_ADDR, BLE_STACK_SIZE + APP_SIZE,  0);
-        uNVDCRC      = HapiCrc32((U8 *)APP_START_ADDR, BLE_STACK_SIZE + APP_SIZE -1,  0);
-        //uNVDCRC       = HapiCrc32((U8 *)NVD_ADDR,       NVD_SIZE,                   0);
+        uCodeCRC      = HapiCrc32((U8 *)APP_START_ADDR, BLE_STACK_SIZE + APP_SIZE,  0);
+        uNVDCRC       = HapiCrc32((U8 *)NVD_ADDR,       NVD_SIZE,                   0);
 
 
         // Task setup

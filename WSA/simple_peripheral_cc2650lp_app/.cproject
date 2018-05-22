@@ -73,7 +73,7 @@
 									<listOptionValue builtIn="false" value="${SRC_BLE_CORE}/rom"/>
 									<listOptionValue builtIn="false" value="${CC26XXWARE}"/>
 									<listOptionValue builtIn="false" value="${SRC_EX}/common/cc26xx/rcosc"/>
-									<listOptionValue builtIn="false" value="${PROJECT_LOC}/../../ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/timer"/>
+									<listOptionValue builtIn="false" value="${TI_RTOS_DRIVERS_BASE}/ti/drivers/timer"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_16.9.compilerID.DEFINE.904878863" name="Pre-define NAME (--define, -D)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_16.9.compilerID.DEFINE" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="${COM_TI_RTSC_TIRTOSCC13XX_CC26XX_SYMBOLS}"/>
@@ -159,7 +159,7 @@
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.XDC_PATH.104947145" name="Package repositories (--xdcpath)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.XDC_PATH" valueType="stringList">
 									<listOptionValue builtIn="false" value="${COM_TI_RTSC_TIRTOSCC13XX_CC26XX_REPOS}"/>
 									<listOptionValue builtIn="false" value="${TARGET_CONTENT_BASE}"/>
-									<listOptionValue builtIn="false" value="D:\Dropbox\Phyn\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08"/>
+									<listOptionValue builtIn="false" value="D:\GitHub\BLE_Reload\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08"/>
 								</option>
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.TARGET.1441126434" name="Target (-t)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.TARGET" value="ti.targets.arm.elf.M3" valueType="string"/>
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM.1320120222" name="Platform (-p)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM" value="ti.platforms.simplelink:CC2640F128" valueType="string"/>

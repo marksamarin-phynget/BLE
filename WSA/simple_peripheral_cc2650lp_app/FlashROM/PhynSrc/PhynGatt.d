@@ -34,12 +34,12 @@ PhynSrc/PhynGatt.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16
 PhynSrc/PhynGatt.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
 PhynSrc/PhynGatt.obj: ../PhynSrc/PhynDefs.h
 PhynSrc/PhynGatt.obj: ../PhynSrc/PhynSerial.h
-PhynSrc/PhynGatt.obj: D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h
+PhynSrc/PhynGatt.obj: D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h
 PhynSrc/PhynGatt.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
 PhynSrc/PhynGatt.obj: D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stddef.h
-PhynSrc/PhynGatt.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/std.h
-PhynSrc/PhynGatt.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/M3.h
-PhynSrc/PhynGatt.obj: D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/std.h
+PhynSrc/PhynGatt.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/std.h
+PhynSrc/PhynGatt.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/M3.h
+PhynSrc/PhynGatt.obj: D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/std.h
 PhynSrc/PhynGatt.obj: D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.h
 PhynSrc/PhynGatt.obj: ../PhynSrc/PhynGatt.h
 PhynSrc/PhynGatt.obj: ../PhynSrc/PWD_Util.h
@@ -78,12 +78,12 @@ D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdio
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 
 ../PhynSrc/PhynDefs.h: 
 ../PhynSrc/PhynSerial.h: 
-D:/Dropbox/Phyn/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h: 
+D:/GitHub/BLE_Reload/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/std.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 
 D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stddef.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/std.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/M3.h: 
-D:/Dropbox/Phyn/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/std.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/std.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/M3.h: 
+D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/std.h: 
 D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx/peripheral.h: 
 ../PhynSrc/PhynGatt.h: 
 ../PhynSrc/PWD_Util.h: 

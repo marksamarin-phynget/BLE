@@ -1,4 +1,4 @@
-May 21, 2018 3:29:43 PM org.eclipse.rtsc.xdctools.ui.logger.XDCLogger LogException
+May 22, 2018 8:06:02 AM org.eclipse.rtsc.xdctools.ui.logger.XDCLogger LogException
 SEVERE: msg.error.UnknownException
 java.lang.NullPointerException
 	at org.eclipse.rtsc.xdctools.parsers.ErrorParser.processLine(Unknown Source)

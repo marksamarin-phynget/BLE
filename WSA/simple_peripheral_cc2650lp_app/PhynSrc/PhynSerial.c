@@ -150,7 +150,8 @@ void Process_Serial_Command()
 
                 #ifdef WD_ENABLED
                     sprintf(sText, "Stack: %d/%d bytes = %6.2f%%    WD: LOAD:%d  Low:%d",   uStackUsedBytes, uStackSizeBytes, fStackUsedPct,
-                #else                                                                        WATCHDOG_SET_VALUE, uLowestWDValue);
+                                                                                            WATCHDOG_SET_VALUE, uLowestWDValue);
+                #else
                     sprintf(sText, "Stack: %d/%d bytes = %6.2f%%    WD:DISABLED",   uStackUsedBytes, uStackSizeBytes, fStackUsedPct);
                 #endif
 

@@ -511,19 +511,19 @@
 		</variable>
 		<variable>
 			<name>ROM</name>
-			<value>$%7BPARENT-5-ORG_PROJ_DIR%7D/src/rom</value>
+			<value>$%7BBLE_ROOT%7D/src/rom</value>
 		</variable>
 		<variable>
 			<name>SRC_BLE_CORE</name>
-			<value>$%7BPARENT-5-ORG_PROJ_DIR%7D/src</value>
+			<value>$%7BBLE_ROOT%7D/src</value>
 		</variable>
 		<variable>
 			<name>SRC_COMMON</name>
-			<value>$%7BPARENT-5-ORG_PROJ_DIR%7D/src/components</value>
+			<value>$%7BBLE_ROOT%7D/src/components</value>
 		</variable>
 		<variable>
 			<name>SRC_EX</name>
-			<value>$%7BPARENT-5-ORG_PROJ_DIR%7D/src</value>
+			<value>$%7BBLE_ROOT%7D/src</value>
 		</variable>
 		<variable>
 			<name>TI</name>
@@ -539,7 +539,7 @@
 		</variable>
 		<variable>
 			<name>TOOLS_BLE</name>
-			<value>$%7BPARENT-5-ORG_PROJ_DIR%7D/tools</value>
+			<value>$%7BBLE_ROOT%7D/tools</value>
 		</variable>
 		<variable>
 			<name>Z_MOVED_BLE_SOURCE</name>
