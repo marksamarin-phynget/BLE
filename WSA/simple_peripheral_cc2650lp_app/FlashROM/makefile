@@ -4,14 +4,14 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS
+CG_TOOL_ROOT := C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS
 
 GEN_OPTS__FLAG := --cmd_file="configPkg/compiler.opt"
 GEN_CMDS__FLAG := -l"configPkg/linker.cmd"
 
 ORDERED_OBJS += \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/ccs_linker_defines.cmd" \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/ccs/cc26xx_app.cmd" \
+"C:/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/ccs_linker_defines.cmd" \
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/ccs/cc26xx_app.cmd" \
 "./Application/hal_assert.obj" \
 "./Application/simple_peripheral.obj" \
 "./Application/util.obj" \
@@ -46,8 +46,8 @@ ORDERED_OBJS += \
 "./Startup/main.obj" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib" \
--l"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/rom/common_rom_releases/03282014/common_rom.symbols" \
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib" \
+-l"C:/BLE/ti/ble_sdk_2_02_01_18/src/rom/common_rom_releases/03282014/common_rom.symbols" \
 
 -include ../makefile.init
 
@@ -208,14 +208,14 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 simple_peripheral_cc2650lp_app.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armcl" --cmd_file="D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/src/config/build_components.opt" --cmd_file="D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/app/../../iar/stack/build_config.opt" --cmd_file="D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/app/../../iar/stack/../../ccs/config/ccs_compiler_defines.bcfg"  -mv7M3 --code_state=16 -me -Ooff --opt_for_speed=0 --define=CC26XX --define=CC2650DK_4XS --define=PHYN_PWD --define=USE_RCOSC --define=xTERMINAL_INTERFACE --define=DEBUG_MODE --define=xBLINKY_TEST --define=xWD_ENABLE --define=xTRACK_STATES --define=EXT_HAL_ASSERT --define=BOARD_DISPLAY_EXCLUDE_LCD --define=xBOARD_DISPLAY_EXCLUDE_UART --define=Display_DISABLE_ALL --define=HEAPMGR_SIZE=0 --define=ICALL_MAX_NUM_ENTITIES=6 --define=ICALL_MAX_NUM_TASKS=3 --define=POWER_MEASURE --define=USE_ICALL --define=xdc_runtime_Assert_DISABLE_ALL --define=xdc_runtime_Log_DISABLE_ALL -g --c99 --gcc --diag_suppress=48 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"simple_peripheral_cc2650lp_app.map" --heap_size=0 --stack_size=2048 -i"D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/lib" -i"D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include" --reread_libs --diag_suppress=10247-D --diag_suppress=16002-D --diag_wrap=off --display_error_number --warn_sections --xml_link_info="simple_peripheral_cc2650lp_app_linkInfo.xml" --rom_model --compress_dwarf=on --unused_section_elimination=on -o "simple_peripheral_cc2650lp_app.out" $(ORDERED_OBJS)
+	"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/bin/armcl" --cmd_file="C:/BLE/WSA/../ti/ble_sdk_2_02_01_18/src/config/build_components.opt" --cmd_file="C:/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/app/../../iar/stack/build_config.opt" --cmd_file="C:/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/app/../../iar/stack/../../ccs/config/ccs_compiler_defines.bcfg"  -mv7M3 --code_state=16 -me -Ooff --opt_for_speed=0 --define=CC26XX --define=CC2650DK_4XS --define=PHYN_PWD --define=USE_RCOSC --define=xTERMINAL_INTERFACE --define=DEBUG_MODE --define=xBLINKY_TEST --define=xWD_ENABLE --define=xTRACK_STATES --define=EXT_HAL_ASSERT --define=BOARD_DISPLAY_EXCLUDE_LCD --define=xBOARD_DISPLAY_EXCLUDE_UART --define=Display_DISABLE_ALL --define=HEAPMGR_SIZE=0 --define=ICALL_MAX_NUM_ENTITIES=6 --define=ICALL_MAX_NUM_TASKS=3 --define=POWER_MEASURE --define=USE_ICALL --define=xdc_runtime_Assert_DISABLE_ALL --define=xdc_runtime_Log_DISABLE_ALL -g --c99 --gcc --diag_suppress=48 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"simple_peripheral_cc2650lp_app.map" --heap_size=0 --stack_size=2048 -i"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/lib" -i"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/include" --reread_libs --diag_suppress=10247-D --diag_suppress=16002-D --diag_wrap=off --display_error_number --warn_sections --xml_link_info="simple_peripheral_cc2650lp_app_linkInfo.xml" --rom_model --compress_dwarf=on --unused_section_elimination=on -o "simple_peripheral_cc2650lp_app.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 simple_peripheral_cc2650lp_app.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armhex" --memwidth=8 --romwidth=8 --intel -o "simple_peripheral_cc2650lp_app.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/bin/armhex" --memwidth=8 --romwidth=8 --intel -o "simple_peripheral_cc2650lp_app.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -230,8 +230,8 @@ clean:
 	-@echo ' '
 
 post-build:
-	-D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armhex -order MS --memwidth=8 --romwidth=8 --intel -o      simple_peripheral_cc2650lp_app.hex simple_peripheral_cc2650lp_app.out
-	-"C:/BLE/App/ccsv7/utils/tiobj2bin/tiobj2bin" "simple_peripheral_cc2650lp_app.out" "simple_peripheral_cc2650lp_app.bin" "D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armofd" "D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armhex"
+	-C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/bin/armhex -order MS --memwidth=8 --romwidth=8 --intel -o      simple_peripheral_cc2650lp_app.hex simple_peripheral_cc2650lp_app.out
+	-"C:/ti/ccs740/ccsv7/utils/tiobj2bin/tiobj2bin" "simple_peripheral_cc2650lp_app.out" "simple_peripheral_cc2650lp_app.bin" "C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/bin/armofd" "C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/bin/armhex"
 	-@echo ' '
 
 secondary-outputs: $(BIN_OUTPUTS)

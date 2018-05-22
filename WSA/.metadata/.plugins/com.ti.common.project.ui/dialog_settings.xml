@@ -4,6 +4,6 @@
 		<item value="D:\Dropbox\Phyn\BLE\App\ccsv7\tools\compiler" key="ToolsPreferencePage.BROWSE_FILTER"/>
 	</section>
 	<section name="com.ti.common.project.ui.internal.preferences.ProductsPreferencePage">
-		<item value="D:\GitHub\BLE_Reload\BLE\ti" key="ToolsPreferencePage.BROWSE_FILTER"/>
+		<item value="C:\BLE\ti" key="ToolsPreferencePage.BROWSE_FILTER"/>
 	</section>
 </section>

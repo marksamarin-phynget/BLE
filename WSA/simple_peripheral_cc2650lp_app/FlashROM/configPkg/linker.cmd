@@ -9,19 +9,19 @@
  */
 
 
--l"D:\GitHub\BLE_Reload\BLE\WSA\simple_peripheral_cc2650lp_app\FlashROM\configPkg\package\cfg\cc2640_pem3.oem3"
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/lib/display.aem3"
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/lcd/lib/lcd.aem3"
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/grlib/lib/grlib.aem3"
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/rf/lib/rf_singleMode_cc26xxware.aem3"
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/lib/drivers_cc26xxware.aem3"
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/lib/power_cc26xx_tirtos.aem3"
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/pdm/lib/pdm_cc26xxware.aem3"
--l"D:\GitHub\BLE_Reload\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\tidrivers_cc13xx_cc26xx_2_20_01_10\packages\ti\mw\fatfs\lib\release\ti.mw.fatfs.aem3"
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/ports/lib/tirtosport.aem3"
--l"D:\GitHub\BLE_Reload\BLE\WSA\simple_peripheral_cc2650lp_app\src\sysbios\rom_sysbios.aem3"
--l"D:\GitHub\BLE_Reload\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\bios_6_46_01_38\packages\ti\targets\arm\rtsarm\lib\boot.aem3"
--l"D:\GitHub\BLE_Reload\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\bios_6_46_01_38\packages\ti\targets\arm\rtsarm\lib\auto_init.aem3"
+-l"C:\BLE\WSA\simple_peripheral_cc2650lp_app\FlashROM\configPkg\package\cfg\app_ble_pem3.oem3"
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/display/lib/display.aem3"
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/lcd/lib/lcd.aem3"
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/mw/grlib/lib/grlib.aem3"
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/rf/lib/rf_singleMode_cc26xxware.aem3"
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/lib/drivers_cc26xxware.aem3"
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/lib/power_cc26xx_tirtos.aem3"
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/pdm/lib/pdm_cc26xxware.aem3"
+-l"C:\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\tidrivers_cc13xx_cc26xx_2_20_01_10\packages\ti\mw\fatfs\lib\release\ti.mw.fatfs.aem3"
+-l"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/ports/lib/tirtosport.aem3"
+-l"C:\BLE\ti\ble_sdk_2_02_01_18\examples\cc2650lp\simple_peripheral\ccs\config\src\sysbios\rom_sysbios.aem3"
+-l"C:\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\bios_6_46_01_38\packages\ti\targets\arm\rtsarm\lib\boot.aem3"
+-l"C:\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\bios_6_46_01_38\packages\ti\targets\arm\rtsarm\lib\auto_init.aem3"
 
 --retain="*(xdc.meta)"
 
@@ -121,7 +121,7 @@ ti_sysbios_family_arm_m3_Hwi_nvic = 0xe000e000;
 
 /* Content from ti.sysbios.heaps (null): */
 
-/* Content from ti.sysbios.rom.cortexm.cc26xx (D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/rom/cortexm/cc26xx/golden/CC26xx/CC26xx_link_ti.xdt): */
+/* Content from ti.sysbios.rom.cortexm.cc26xx (C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/rom/cortexm/cc26xx/golden/CC26xx/CC26xx_link_ti.xdt): */
 
 -u xdc_runtime_Error_policy__C
 -u xdc_runtime_IModule_Interface__BASE__C
