@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<section name="Workbench">
-	<section name="com.ti.ccstudio.project.ui.internal.preferences.CodegenToolsPreferencePage">
-		<item value="D:\Dropbox\Phyn\BLE\App\ccsv7\tools\compiler" key="ToolsPreferencePage.BROWSE_FILTER"/>
-	</section>
-	<section name="com.ti.common.project.ui.internal.preferences.ProductsPreferencePage">
-		<item value="D:\GitHub\BLE_Reload\BLE\ti" key="ToolsPreferencePage.BROWSE_FILTER"/>
-	</section>
-</section>
