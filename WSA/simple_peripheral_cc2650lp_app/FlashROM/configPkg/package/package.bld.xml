@@ -4,18 +4,18 @@
     <units>
     </units>
     <sources>
-        <srcFile name="package/cfg/app_ble_pem3.c"/>
+        <srcFile name="package/cfg/cc2640_pem3.c"/>
     </sources>
     <configscripts>
-        <srcFile name="C:/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/app_ble.cfg"/>
+        <srcFile name="C:/BLE/WSA/simple_peripheral_cc2650lp_app/cc2640.cfg"/>
     </configscripts>
     <makefiles>
         <srcFile name="package.mak" src="package.bld"/>
         <srcFile name="package/package.xdc.dep" src="package.xdc"/>
-        <srcFile name="package/cfg/app_ble_pem3.mak" src="package.bld"/>
-        <srcFile name="package/cfg/app_ble_pem3.oem3.dep" src="package/cfg/app_ble_pem3.c"/>
-        <srcFile name="package/cfg/app_ble_pem3.dep" src="package/cfg/app_ble_pem3.cfg"/>
-        <srcFile name="package/cfg/app_ble.xem3.mak" src="package.bld"/>
+        <srcFile name="package/cfg/cc2640_pem3.mak" src="package.bld"/>
+        <srcFile name="package/cfg/cc2640_pem3.oem3.dep" src="package/cfg/cc2640_pem3.c"/>
+        <srcFile name="package/cfg/cc2640_pem3.dep" src="package/cfg/cc2640_pem3.cfg"/>
+        <srcFile name="package/cfg/cc2640.xem3.mak" src="package.bld"/>
         <srcFile name="package/rel/configPkg.tar.dep" src="package/rel/configPkg.xdc.inc"/>
     </makefiles>
     <targets>
@@ -36,34 +36,34 @@
     <libraries>
     </libraries>
     <configurations>
-    <configuration name="app_ble"
-        pname="app_ble.pem3"
+    <configuration name="cc2640"
+        pname="cc2640.pem3"
         target="ti.targets.arm.elf.M3"
         platform="ti.platforms.simplelink:CC2640F128"
         profile="release"
         isPartial="false"
-        xCfgScript="package/cfg/app_ble_pem3.cfg"
-        xCfgPrefix="package/cfg/app_ble_pem3"
-        cfgScript="C:/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/app_ble.cfg"
+        xCfgScript="package/cfg/cc2640_pem3.cfg"
+        xCfgPrefix="package/cfg/cc2640_pem3"
+        cfgScript="C:/BLE/WSA/simple_peripheral_cc2650lp_app/cc2640.cfg"
         cfgArgs="null"
         />
     </configurations>
     <executables>
-    <executable name="app_ble"
-        pname="app_ble.xem3"
+    <executable name="cc2640"
+        pname="cc2640.xem3"
         target="ti.targets.arm.elf.M3"
         platform="ti.platforms.simplelink:CC2640F128"
         profile="release"
-        xCfgScript="package/cfg/app_ble_pem3.cfg"
-        xCfgPrefix="package/cfg/app_ble_pem3"
-        cfgScript="C:/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/app_ble.cfg"
+        xCfgScript="package/cfg/cc2640_pem3.cfg"
+        xCfgPrefix="package/cfg/cc2640_pem3"
+        cfgScript="C:/BLE/WSA/simple_peripheral_cc2650lp_app/cc2640.cfg"
         cfgArgs="null"
         />
     </executables>
     <tests>
-    <test exeName="app_ble.xem3"
+    <test exeName="cc2640.xem3"
         args=""
-        groupName="app_ble.xem3"
+        groupName="cc2640.xem3"
         refOutput="undefined"
         refExitCode="0"
         execArgs=""
