@@ -1,29 +1,29 @@
 
-XOPTS = -I"C:/BLE/ti/xdctools_3_32_00_06_core/packages/" -Dxdc_target_types__=C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/std.h -Dxdc_target_name__=M3
+XOPTS = -I"D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/" -Dxdc_target_types__=D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/std.h -Dxdc_target_name__=M3
 
-vpath % C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/
-vpath %.c C:/BLE/ti/xdctools_3_32_00_06_core/packages/
+vpath % D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/
+vpath %.c D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/
 
 CCOPTS    = --endian=little -mv7M3 --abi=eabi -q -ms --opt_for_speed=0  --program_level_compile -o3 -g --optimize_with_debug  -Dti_sysbios_knl_Task_minimizeLatency__D=FALSE -Dti_sysbios_family_arm_cc26xx_Boot_driverlibVersion=2 -Dti_sysbios_knl_Clock_stopCheckNext__D=TRUE -Dti_sysbios_family_arm_m3_Hwi_enableException__D=TRUE -Dti_sysbios_family_arm_m3_Hwi_disablePriority__D=32U -Dti_sysbios_family_arm_m3_Hwi_numSparseInterrupts__D=0U
 
-XDC_ROOT  = C:/BLE/ti/xdctools_3_32_00_06_core/packages/
+XDC_ROOT  = D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/
 
-BIOS_ROOT = C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/
+BIOS_ROOT = D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/
 
 BIOS_DEFS =  -Dti_sysbios_BIOS_swiEnabled__D=TRUE -Dti_sysbios_BIOS_taskEnabled__D=TRUE -Dti_sysbios_BIOS_clockEnabled__D=TRUE -Dti_sysbios_BIOS_runtimeCreatesEnabled__D=TRUE -Dti_sysbios_knl_Task_moduleStateCheckFlag__D=FALSE -Dti_sysbios_knl_Task_objectCheckFlag__D=FALSE -Dti_sysbios_hal_Hwi_DISABLE_ALL_HOOKS -Dti_sysbios_knl_Swi_DISABLE_ALL_HOOKS -Dti_sysbios_BIOS_smpEnabled__D=FALSE -Dti_sysbios_Build_useHwiMacros -Dti_sysbios_knl_Swi_numPriorities__D=6 -Dti_sysbios_knl_Task_deleteTerminatedTasks__D=FALSE -Dti_sysbios_knl_Task_numPriorities__D=6 -Dti_sysbios_knl_Task_checkStackFlag__D=FALSE -Dti_sysbios_knl_Task_initStackFlag__D=TRUE -Dti_sysbios_knl_Task_DISABLE_ALL_HOOKS -Dti_sysbios_knl_Clock_TICK_SOURCE=ti_sysbios_knl_Clock_TickSource_TIMER -Dti_sysbios_knl_Clock_TICK_MODE=ti_sysbios_knl_Clock_TickMode_DYNAMIC -Dti_sysbios_hal_Core_delegate_getId=ti_sysbios_hal_CoreNull_getId__E -Dti_sysbios_hal_Core_delegate_interruptCore=ti_sysbios_hal_CoreNull_interruptCore__E -Dti_sysbios_hal_Core_delegate_lock=ti_sysbios_hal_CoreNull_lock__E -Dti_sysbios_hal_Core_delegate_unlock=ti_sysbios_hal_CoreNull_unlock__E -Dti_sysbios_hal_Core_numCores__D=1 -Dti_sysbios_hal_CoreNull_numCores__D=1 -Dti_sysbios_utils_Load_taskEnabled__D=TRUE -Dti_sysbios_utils_Load_swiEnabled__D=FALSE -Dti_sysbios_utils_Load_hwiEnabled__D=FALSE -Dti_sysbios_family_arm_m3_Hwi_dispatcherSwiSupport__D=TRUE -Dti_sysbios_family_arm_m3_Hwi_dispatcherTaskSupport__D=TRUE -Dti_sysbios_family_arm_m3_Hwi_dispatcherAutoNestingSupport__D=TRUE -Dti_sysbios_family_arm_m3_Hwi_dispatcherIrpTrackingSupport__D=TRUE -Dti_sysbios_knl_Semaphore_supportsEvents__D=FALSE -Dti_sysbios_knl_Semaphore_supportsPriority__D=FALSE -Dxdc_runtime_Assert_DISABLE_ALL -Dxdc_runtime_Log_DISABLE_ALL
 
-BIOS_INC  = -I"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/"
+BIOS_INC  = -I"D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/"
 
-TARGET_INC = -I"C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/"
+TARGET_INC = -I"D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/"
 
-INCS = $(BIOS_INC) $(TARGET_INC)  --include_path="D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc" --include_path="C:/BLE/WSA/simple_peripheral_cc2650lp_app/PhynSrc" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/include" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/app" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/inc" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/icall/inc" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/profiles/dev_info" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/profiles/simple_profile/cc26xx" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/profiles/simple_profile" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/components/heapmgr" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/controller/cc26xx/inc" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/target" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/cc26xx" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/inc" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/components/services/src/sdata" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/components/services/src/saddr" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/components/icall/src/inc" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/inc" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/rom" --include_path="C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393" --include_path="C:/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc" --include_path="C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/timer"  -IC:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ 
+INCS = $(BIOS_INC) $(TARGET_INC)  --include_path="D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc" --include_path="D:/GitHub/052318/BLE/WSA/simple_peripheral_cc2650lp_app/PhynSrc" --include_path="C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/app" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/inc" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/icall/inc" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles/cc26xx" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/profiles/roles" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/profiles/dev_info" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/profiles/simple_profile/cc26xx" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/profiles/simple_profile" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/heapmgr" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/controller/cc26xx/inc" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/target" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/cc26xx" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/inc" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/osal/src/inc" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/services/src/sdata" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/services/src/saddr" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/icall/src/inc" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/inc" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/rom" --include_path="D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393" --include_path="D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/rcosc" --include_path="D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/timer"  -ID:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ 
 
-CC = C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/bin/armcl -c $(CCOPTS) -I C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/include
-ASM = C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/bin/armcl -c $(CCOPTS) -I C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/include
-AR = C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS/bin/armar rq
+CC = C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armcl -c $(CCOPTS) -I C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include
+ASM = C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armcl -c $(CCOPTS) -I C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include
+AR = C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armar rq
 
-DEL = C:/BLE/ti/xdctools_3_32_00_06_core/packages/../bin/rm -f
-CP = C:/BLE/ti/xdctools_3_32_00_06_core/packages/../bin/cp -f
+DEL = D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/../bin/rm -f
+CP = D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/../bin/cp -f
 
 define RM
 	$(if $(wildcard $1),$(DEL) $1,:)
@@ -100,7 +100,7 @@ rom_sysbios.obj: BIOS.c knl/Clock.c knl/Idle.c knl/Intrinsics.c knl/Event.c knl/
 rom_sysbios.aem3: rom_sysbios.obj m3_Hwi_asm.obj m3_Hwi_asm_switch.obj m3_IntrinsicsSupport_asm.obj m3_TaskSupport_asm.obj
 	@-$(call RM, $@)
 	@echo arem3 $^ ...
-	@$(AR) $@ $^ C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/rom/cortexm/cc26xx/golden/CC26xx/rom_sysbios_config.obj
+	@$(AR) $@ $^ D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/sysbios/rom/cortexm/cc26xx/golden/CC26xx/rom_sysbios_config.obj
 
 clean:
 	@$(DEL) ..\makefile.libs

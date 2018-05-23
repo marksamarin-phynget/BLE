@@ -84,6 +84,12 @@ void Process_Serial_Command()
     BLE_MESSAGE_CODES_ENUM eResponse;
 
     extern U32              uAppCRC, uBLEStackCRC, uNVDCRC, uCodeCRC;
+    extern U32              uAppCRC1;
+
+    extern U32 uStackUsedBytes;
+    extern U32 uStackSizeBytes;
+    extern F32 fStackUsedPct;
+
     extern I8               sFW_Version[DEVINFO_STR_ATTR_LEN + 1];
     extern U8               devInfoSerialNumber[DEVINFO_STR_ATTR_LEN+1];
     extern U8               devInfoModelNumber[DEVINFO_STR_ATTR_LEN+1];
@@ -91,6 +97,8 @@ void Process_Serial_Command()
     extern U32              uLowestWDValue;
     I32 i;
     volatile F32 f=1.01;
+
+
 
     uIdx = ((sCommandLn[0]-'\x30') * 10) + sCommandLn[1]-'\x30';
     uCmd = ((sCommandLn[3]-'\x30') * 10) + sCommandLn[4]-'\x30';
@@ -142,9 +150,7 @@ void Process_Serial_Command()
               GET STATS Command
             ***********************************************************************************************/
             case WIFI_MESSAGE_CODE_GET_STATS:
-                extern U32 uStackUsedBytes;
-                extern U32 uStackSizeBytes;
-                extern F32 fStackUsedPct;
+
 
                 BLE_StackCheck();
 
@@ -189,6 +195,7 @@ void Process_Serial_Command()
               CRC Query
             ***********************************************************************************************/
             case WIFI_MESSAGE_CODE_GET_CRC:
+
                 sprintf(sText, "Code:%08x  APP:%08x  BLE Stack:%08x  NVD:%08x", uCodeCRC, uAppCRC, uBLEStackCRC, uNVDCRC );
                 eResponse = BLE_MESSAGE_CODE_CRC_REPORT;
             break;

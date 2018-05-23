@@ -6,10 +6,10 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/icall/stack/ble_user_config.c \
-D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/icall_startup.c \
-D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/stack/osal_icall_ble.c \
-D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/rom/rom_jt.c 
+D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/icall/stack/ble_user_config.c \
+D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/icall_startup.c \
+D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/stack/osal_icall_ble.c \
+D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/rom/rom_jt.c 
 
 C_DEPS += \
 ./Startup/ble_user_config.d \
@@ -36,9 +36,9 @@ C_DEPS__QUOTED += \
 "Startup\rom_jt.d" 
 
 C_SRCS__QUOTED += \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/icall/stack/ble_user_config.c" \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/icall_startup.c" \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/stack/osal_icall_ble.c" \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/rom/rom_jt.c" 
+"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/icall/stack/ble_user_config.c" \
+"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/icall_startup.c" \
+"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/stack/osal_icall_ble.c" \
+"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/rom/rom_jt.c" 
 
 

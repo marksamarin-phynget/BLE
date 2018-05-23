@@ -74,7 +74,7 @@ B32 bHeartbeatEnable = bTRUE;   // Only turned of in Assert
 
 
 U32 uAppCRC, uBLEStackCRC,  uNVDCRC, uCodeCRC;        // Holds various CRC32 values, uCodeCRC should match bootloader CRC
-
+U32 uAppCRC1;
 
 //****** VERSIONING
 #include "devinfoservice.h"
@@ -126,6 +126,7 @@ int main()
 
         // Calculate CRCs
         uAppCRC       = HapiCrc32((U8 *)APP_START_ADDR, APP_SIZE,                   0);
+        uAppCRC1      = HapiCrc32((U8 *)APP_START_ADDR, APP_SIZE,                   2);
         uBLEStackCRC  = HapiCrc32((U8 *)BLE_STACK_ADDR, BLE_STACK_SIZE,             0);
         uCodeCRC      = HapiCrc32((U8 *)APP_START_ADDR, BLE_STACK_SIZE + APP_SIZE,  0);
         uNVDCRC       = HapiCrc32((U8 *)NVD_ADDR,       NVD_SIZE,                   0);

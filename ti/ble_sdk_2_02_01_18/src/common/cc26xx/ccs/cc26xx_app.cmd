@@ -138,7 +138,7 @@ SECTIONS
     	.nonretenvar
 	} LOAD_END(heapStart)
 
-	.stack          :   >  SRAM (HIGH) LOAD_START(heapEnd), fill = 0x55
+	.stack          :   >  SRAM (HIGH) LOAD_START(heapEnd)
 }
 
 /* Create global constant that points to top of stack */

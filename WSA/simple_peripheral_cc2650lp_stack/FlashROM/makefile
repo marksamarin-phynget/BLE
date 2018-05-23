@@ -4,13 +4,13 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS
+CG_TOOL_ROOT := C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/ccs_linker_defines.cmd" \
+"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/ccs_linker_defines.cmd" \
 "./HAL/Common/hal_assert.obj" \
 "./HAL/Target/CC2650/Drivers/hal_flash_wrapper.obj" \
 "./HAL/Target/CC2650/Drivers/hal_rtc_wrapper.obj" \
@@ -35,13 +35,13 @@ ORDERED_OBJS += \
 "./Startup/osal_icall_ble.obj" \
 "./Startup/rom_jt.obj" \
 "./TOOLS/onboard.obj" \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/lib_linker.cmd" \
-"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/ccs/cc26xx_stack.cmd" \
+"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/lib_linker.cmd" \
+"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/ccs/cc26xx_stack.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
--l"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/lib_linker.cmd" \
--l"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/rom/ble_rom_releases/04242014/ble_rom_patch.symbols" \
--l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib" \
+-l"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/lib_linker.cmd" \
+-l"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/rom/ble_rom_releases/04242014/ble_rom_patch.symbols" \
+-l"D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib" \
 
 -include ../makefile.init
 
@@ -191,7 +191,7 @@ main-build: $(OBJS) $(GEN_CMDS)
 simple_peripheral_cc2650lp_stack.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armcl" --cmd_file="D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/src/config/build_components.opt" --cmd_file="D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/build_config.opt"  -mv7M3 --code_state=16 -me -O4 --opt_for_speed=0 --define=BLE_NO_SECURITY --define=CC26XX --define=CC26XXWARE --define=DATA= --define=EXT_HAL_ASSERT --define=FLASH_ROM_BUILD --define=GATT_NO_CLIENT --define=INCLUDE_AES_DECRYPT --define=NEAR_FUNC= --define=OSAL_CBTIMER_NUM_TASKS=1 --define=OSAL_SNV=1 --define=xPOWER_SAVING --define=USE_ICALL --define=xDEBUG --define=xDEBUG_ENC --define=xDEBUG_GPIO --define=xDEBUG_SW_TRACE --define=xPM_DISABLE_PWRDOWN --define=xTESTMODES --define=xTEST_BLEBOARD --c99 --diag_suppress=48 --diag_suppress=16004 --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"simple_peripheral_cc2650lp_stack.map" --heap_size=0 --stack_size=256 -i"D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/lib" -i"D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include" --reread_libs --diag_suppress=16002-D --diag_suppress=10247-D --diag_suppress=10325-D --diag_suppress=10229-D --diag_wrap=off --display_error_number --warn_sections --xml_link_info="simple_peripheral_cc2650lp_stack_linkInfo.xml" --entry_point=startup_entry --rom_model --compress_dwarf=on --unused_section_elimination=on -o "simple_peripheral_cc2650lp_stack.out" $(ORDERED_OBJS)
+	"C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armcl" --cmd_file="D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/src/config/build_components.opt" --cmd_file="D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/build_config.opt"  -mv7M3 --code_state=16 -me -O4 --opt_for_speed=0 --define=BLE_NO_SECURITY --define=CC26XX --define=CC26XXWARE --define=DATA= --define=EXT_HAL_ASSERT --define=FLASH_ROM_BUILD --define=GATT_NO_CLIENT --define=INCLUDE_AES_DECRYPT --define=NEAR_FUNC= --define=OSAL_CBTIMER_NUM_TASKS=1 --define=OSAL_SNV=1 --define=xPOWER_SAVING --define=USE_ICALL --define=xDEBUG --define=xDEBUG_ENC --define=xDEBUG_GPIO --define=xDEBUG_SW_TRACE --define=xPM_DISABLE_PWRDOWN --define=xTESTMODES --define=xTEST_BLEBOARD --c99 --diag_suppress=48 --diag_suppress=16004 --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"simple_peripheral_cc2650lp_stack.map" --heap_size=0 --stack_size=256 -i"C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/lib" -i"C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include" --reread_libs --diag_suppress=16002-D --diag_suppress=10247-D --diag_suppress=10325-D --diag_suppress=10229-D --diag_wrap=off --display_error_number --warn_sections --xml_link_info="simple_peripheral_cc2650lp_stack_linkInfo.xml" --entry_point=startup_entry --rom_model --compress_dwarf=on --unused_section_elimination=on -o "simple_peripheral_cc2650lp_stack.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -199,7 +199,7 @@ simple_peripheral_cc2650lp_stack.out: $(OBJS) $(GEN_CMDS)
 simple_peripheral_cc2650lp_stack.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armhex" --memwidth=8 --romwidth=8 --intel -o "simple_peripheral_cc2650lp_stack.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armhex" --memwidth=8 --romwidth=8 --intel -o "simple_peripheral_cc2650lp_stack.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -213,12 +213,12 @@ clean:
 	-@echo ' '
 
 pre-build:
-	-"D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/tools/lib_search/lib_search.exe" D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/build_config.opt "D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/tools/lib_search/params_split_cc2640.xml" D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/src/../blelib "D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/../../ccs/config/lib_linker.cmd"
+	-"D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/tools/lib_search/lib_search.exe" D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/build_config.opt "D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/tools/lib_search/params_split_cc2640.xml" D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/src/../blelib "D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/../../ccs/config/lib_linker.cmd"
 	-@echo ' '
 
 post-build:
-	-D:/Dropbox/Phyn/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armhex -order MS --memwidth=8 --romwidth=8 --intel -o simple_peripheral_cc2650lp_stack.hex simple_peripheral_cc2650lp_stack.out
-	-D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/tools/frontier/frontier.exe ccs D:/GitHub/BLE_Reload/BLE/WSA/simple_peripheral_cc2650lp_stack/FlashROM/simple_peripheral_cc2650lp_stack_linkInfo.xml D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/../../ccs/config/ccs_compiler_defines.bcfg D:/GitHub/BLE_Reload/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/../../ccs/config/ccs_linker_defines.cmd
+	-C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armhex -order MS --memwidth=8 --romwidth=8 --intel -o simple_peripheral_cc2650lp_stack.hex simple_peripheral_cc2650lp_stack.out
+	-D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/tools/frontier/frontier.exe ccs D:/GitHub/052318/BLE/WSA/simple_peripheral_cc2650lp_stack/FlashROM/simple_peripheral_cc2650lp_stack_linkInfo.xml D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/../../ccs/config/ccs_compiler_defines.bcfg D:/GitHub/052318/BLE/WSA/../ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/iar/stack/../../ccs/config/ccs_linker_defines.cmd
 	-@echo ' '
 
 .PHONY: all clean dependents

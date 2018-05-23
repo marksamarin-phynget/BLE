@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -llibc.a -l"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/lib_linker.cmd" -l"D:/GitHub/BLE_Reload/BLE/ti/ble_sdk_2_02_01_18/src/rom/ble_rom_releases/04242014/ble_rom_patch.symbols" -l"D:/GitHub/BLE_Reload/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib"
+LIBS := -llibc.a -l"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/lib_linker.cmd" -l"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/rom/ble_rom_releases/04242014/ble_rom_patch.symbols" -l"D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib"
 

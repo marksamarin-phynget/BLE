@@ -11,7 +11,7 @@ var makeAssembly = false;
 var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
-        cfgScript: 'C:/BLE/WSA/simple_peripheral_cc2650lp_app/cc2640.cfg',
+        cfgScript: 'D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/app_ble.cfg',
         profile: 'release',
         cfgHome: 'configPkg',
 });
@@ -20,7 +20,7 @@ exeOpts.cfgArgs = 'null';
 exeOpts.cfgArgsEncoded = true;
 
 var exe = Pkg[makeAssembly ? 'addAssembly': 'addExecutable'](
-    'cc2640',
+    'app_ble',
     targ,
     platform,
     exeOpts
@@ -40,10 +40,10 @@ else {
 }
 
 var thisObj = {
-    cfg:        '../cc2640.cfg',
-    outputPath: 'C:/BLE/WSA/simple_peripheral_cc2650lp_app/FlashROM/configPkg',
-    exeName:    'cc2640' + suffix,
-    exeIntName: 'cc2640' + suffix.replace('.', '_'),
+    cfg:        'D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/app_ble.cfg',
+    outputPath: 'D:/GitHub/052318/BLE/WSA/simple_peripheral_cc2650lp_app/FlashROM/configPkg',
+    exeName:    'app_ble' + suffix,
+    exeIntName: 'app_ble' + suffix.replace('.', '_'),
     targ:       targ,
     linkerCommandFile: 'linker.cmd',
     compilerOptFile: 'compiler.opt',
