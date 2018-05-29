@@ -1,7 +1,7 @@
 ******************************************************************************
-                  TI ARM Linker PC v16.9.7                     
+                  TI ARM Linker PC v16.9.6                     
 ******************************************************************************
->> Linked Wed May 23 10:42:23 2018
+>> Linked Wed May 23 12:09:37 2018
 
 OUTPUT FILE NAME:   <simple_peripheral_cc2650lp_app.out>
 ENTRY POINT SYMBOL: "ResetISR"  address: 0000b0e5
@@ -1618,8 +1618,8 @@ vtable_ram
 *          0    00000000    00000008     DSECT
                   00000000    00000008     boot.aem3 : boot.oem3 (.bootVecs)
 
-xdc.meta   0    00000000    000000f8     COPY SECTION
-                  00000000    000000f8     app_ble_pem3.oem3 (xdc.meta)
+xdc.meta   0    00000000    000000ea     COPY SECTION
+                  00000000    000000ea     app_ble_pem3.oem3 (xdc.meta)
 
 xdc.noload 
 *          0    00000000    00000000     COPY SECTION
@@ -1696,12 +1696,64 @@ MODULE SUMMARY
     +--+---------------------------------+-------+---------+---------+
        Total:                            1284    176       357    
                                                                   
-    D:\GitHub\052318\BLE\WSA\simple_peripheral_cc2650lp_app\FlashROM\configPkg\package\cfg\
+    C:\BLE\WSA\simple_peripheral_cc2650lp_app\FlashROM\configPkg\package\cfg\
        app_ble_pem3.oem3                 416     1459      3366   
     +--+---------------------------------+-------+---------+---------+
        Total:                            416     1459      3366   
                                                                   
-    C:\BLE\App\ccsv7\tools\compiler\ti-cgt-arm_16.9.7.LTS\lib\rtsv7M3_T_le_eabi.lib
+    C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib
+       setup.obj                         1682    0         0      
+       sys_ctrl.obj                      712     0         8      
+       osc.obj                           472     0         20     
+       interrupt.obj                     52      0         200    
+       chipinfo.obj                      228     0         0      
+       ddi.obj                           180     0         0      
+       rfc.obj                           168     0         0      
+       flash.obj                         56      0         0      
+       trng.obj                          52      0         0      
+       aon_rtc.obj                       44      0         0      
+       adi.obj                           40      0         0      
+       aon_batmon.obj                    40      0         0      
+       cpu.obj                           24      0         0      
+       vims.obj                          14      0         0      
+       driverlib_release.obj             0       0         1      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            3764    0         229    
+                                                                  
+    C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/lib/drivers_cc26xxware.aem3
+       PowerCC26XX.oem3                  2204    76        272    
+       PowerCC26XX_calibrateRCOSC.oem3   1400    0         0      
+       List.oem3                         82      0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            3686    76        272    
+                                                                  
+    C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/lib/power_cc26xx_tirtos.aem3
+       PowerCC26XX_tirtos.oem3           188     0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            188     0         0      
+                                                                  
+    C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/ports/lib/tirtosport.aem3
+       HwiP_tirtos.oem3                  4       0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            4       0         0      
+                                                                  
+    C:\BLE\ti\ble_sdk_2_02_01_18\examples\cc2650lp\simple_peripheral\ccs\config\src\sysbios\rom_sysbios.aem3
+       rom_sysbios.obj                   730     0         0      
+       rom_sysbios_config.obj            12      0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            742     0         0      
+                                                                  
+    C:\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\bios_6_46_01_38\packages\ti\targets\arm\rtsarm\lib\auto_init.aem3
+       auto_init.oem3                    160     0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            160     0         0      
+                                                                  
+    C:\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\bios_6_46_01_38\packages\ti\targets\arm\rtsarm\lib\boot.aem3
+       boot.oem3                         68      0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            68      0         0      
+                                                                  
+    C:\ti\ccs740\ccsv7\tools\compiler\ti-cgt-arm_16.9.6.LTS\lib\rtsv7M3_T_le_eabi.lib
        _printfi.obj                      4358    0         0      
        ull_div_t2.obj                    500     0         0      
        fd_add_t2.obj                     438     0         0      
@@ -1742,58 +1794,6 @@ MODULE SUMMARY
        stkdepth_vars.obj                 0       0         4      
     +--+---------------------------------+-------+---------+---------+
        Total:                            8154    257       28     
-                                                                  
-    D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib
-       setup.obj                         1682    0         0      
-       sys_ctrl.obj                      712     0         8      
-       osc.obj                           472     0         20     
-       interrupt.obj                     52      0         200    
-       chipinfo.obj                      228     0         0      
-       ddi.obj                           180     0         0      
-       rfc.obj                           168     0         0      
-       flash.obj                         56      0         0      
-       trng.obj                          52      0         0      
-       aon_rtc.obj                       44      0         0      
-       adi.obj                           40      0         0      
-       aon_batmon.obj                    40      0         0      
-       cpu.obj                           24      0         0      
-       vims.obj                          14      0         0      
-       driverlib_release.obj             0       0         1      
-    +--+---------------------------------+-------+---------+---------+
-       Total:                            3764    0         229    
-                                                                  
-    D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/lib/drivers_cc26xxware.aem3
-       PowerCC26XX.oem3                  2204    76        272    
-       PowerCC26XX_calibrateRCOSC.oem3   1400    0         0      
-       List.oem3                         82      0         0      
-    +--+---------------------------------+-------+---------+---------+
-       Total:                            3686    76        272    
-                                                                  
-    D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/lib/power_cc26xx_tirtos.aem3
-       PowerCC26XX_tirtos.oem3           188     0         0      
-    +--+---------------------------------+-------+---------+---------+
-       Total:                            188     0         0      
-                                                                  
-    D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/tidrivers_cc13xx_cc26xx_2_20_01_10/packages/ti/drivers/ports/lib/tirtosport.aem3
-       HwiP_tirtos.oem3                  4       0         0      
-    +--+---------------------------------+-------+---------+---------+
-       Total:                            4       0         0      
-                                                                  
-    D:\GitHub\052318\BLE\ti\ble_sdk_2_02_01_18\examples\cc2650lp\simple_peripheral\ccs\config\src\sysbios\rom_sysbios.aem3
-       rom_sysbios.obj                   730     0         0      
-       rom_sysbios_config.obj            12      0         0      
-    +--+---------------------------------+-------+---------+---------+
-       Total:                            742     0         0      
-                                                                  
-    D:\GitHub\052318\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\bios_6_46_01_38\packages\ti\targets\arm\rtsarm\lib\auto_init.aem3
-       auto_init.oem3                    160     0         0      
-    +--+---------------------------------+-------+---------+---------+
-       Total:                            160     0         0      
-                                                                  
-    D:\GitHub\052318\BLE\ti\tirtos_cc13xx_cc26xx_2_20_01_08\products\bios_6_46_01_38\packages\ti\targets\arm\rtsarm\lib\boot.aem3
-       boot.oem3                         68      0         0      
-    +--+---------------------------------+-------+---------+---------+
-       Total:                            68      0         0      
                                                                   
        Stack:                            0       0         1280   
        Linker Generated:                 464     1092      0      
@@ -2560,12 +2560,12 @@ UNDEFED   SHT$$INIT_ARRAY$$Limit
 0000d6fd  Util_stopClock                                                            
 10015a85  ZERO                                                                      
 00000000  __ASM__                                                                   
-00000072  __ISA__                                                                   
-00000084  __PLAT__                                                                  
+00000064  __ISA__                                                                   
+00000076  __PLAT__                                                                  
 20004348  __STACK_END                                                               
 00000500  __STACK_SIZE                                                              
 20004348  __STACK_TOP                                                               
-000000ab  __TARG__                                                                  
+0000009d  __TARG__                                                                  
 0000e5c0  __TI_CINIT_Base                                                           
 0000e628  __TI_CINIT_Limit                                                          
 0000e578  __TI_Handler_Table_Base                                                   
@@ -2582,7 +2582,7 @@ ffffffff  __TI_prof_data_size
 ffffffff  __TI_prof_data_start                                                      
 0000e1e0  __TI_static_base__                                                        
 0000da9d  __TI_zero_init                                                            
-000000d0  __TRDR__                                                                  
+000000c2  __TRDR__                                                                  
 00008419  __aeabi_cdcmpeq                                                           
 00008419  __aeabi_cdcmple                                                           
 0000849f  __aeabi_cdrcmple                                                          
@@ -3368,10 +3368,10 @@ address   name
 00000001  xdc_runtime_Startup__EXECFXN__C                                           
 00000001  xdc_runtime_Startup__RESETFXN__C                                          
 0000003d  ICall_heapInit                                                            
-00000072  __ISA__                                                                   
-00000084  __PLAT__                                                                  
-000000ab  __TARG__                                                                  
-000000d0  __TRDR__                                                                  
+00000064  __ISA__                                                                   
+00000076  __PLAT__                                                                  
+0000009d  __TARG__                                                                  
+000000c2  __TRDR__                                                                  
 000000fd  List_head                                                                 
 00000100  ti_sysbios_knl_Task_Object__PARAMS__C                                     
 0000013c  ti_sysbios_knl_Mailbox_Object__PARAMS__C                                  

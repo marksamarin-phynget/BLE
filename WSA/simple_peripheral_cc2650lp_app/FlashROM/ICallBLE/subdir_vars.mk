@@ -6,8 +6,8 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/icall/app/ble_user_config.c \
-D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/icall/app/icall_api.c 
+C:/BLE/ti/ble_sdk_2_02_01_18/src/icall/app/ble_user_config.c \
+C:/BLE/ti/ble_sdk_2_02_01_18/src/icall/app/icall_api.c 
 
 C_DEPS += \
 ./ICallBLE/ble_user_config.d \
@@ -26,7 +26,7 @@ C_DEPS__QUOTED += \
 "ICallBLE\icall_api.d" 
 
 C_SRCS__QUOTED += \
-"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/icall/app/ble_user_config.c" \
-"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/icall/app/icall_api.c" 
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/icall/app/ble_user_config.c" \
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/icall/app/icall_api.c" 
 
 

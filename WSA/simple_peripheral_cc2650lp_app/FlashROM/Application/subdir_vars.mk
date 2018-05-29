@@ -6,9 +6,9 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c \
-D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/app/simple_peripheral.c \
-D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/util.c 
+C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c \
+C:/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/app/simple_peripheral.c \
+C:/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/util.c 
 
 C_DEPS += \
 ./Application/hal_assert.d \
@@ -31,8 +31,8 @@ C_DEPS__QUOTED += \
 "Application\util.d" 
 
 C_SRCS__QUOTED += \
-"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c" \
-"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/app/simple_peripheral.c" \
-"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/util.c" 
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/common/hal_assert.c" \
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/examples/simple_peripheral/cc26xx/app/simple_peripheral.c" \
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/common/cc26xx/util.c" 
 
 

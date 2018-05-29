@@ -15,90 +15,90 @@ XDCCFGDIR = package/cfg/
 # in the event that some included BOM script changes.
 #
 ifneq (clean,$(MAKECMDGOALS))
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/utils.js:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/utils.js
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xdc.tci:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xdc.tci
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/template.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/template.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/om2.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/om2.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen2.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen2.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/Warnings.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/Warnings.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/IPackage.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/IPackage.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/package.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/package.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Clock.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Clock.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Trace.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Trace.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/bld.js:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/bld.js
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/BuildEnvironment.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/BuildEnvironment.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/PackageContents.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/PackageContents.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/_gen.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/_gen.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Library.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Library.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Executable.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Executable.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Repository.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Repository.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Configuration.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Configuration.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Script.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Script.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Manifest.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Manifest.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Utils.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Utils.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget2.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget2.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget3.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget3.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITargetFilter.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITargetFilter.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/package.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/package.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/utils.js:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/utils.js
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xdc.tci:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xdc.tci
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/template.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/template.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/om2.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/om2.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen2.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/xmlgen2.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/Warnings.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/Warnings.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/IPackage.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/IPackage.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/package.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/package.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Clock.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Clock.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Trace.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/global/Trace.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/bld.js:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/bld.js
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/BuildEnvironment.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/BuildEnvironment.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/PackageContents.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/PackageContents.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/_gen.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/_gen.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Library.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Library.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Executable.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Executable.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Repository.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Repository.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Configuration.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Configuration.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Script.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Script.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Manifest.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Manifest.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Utils.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/Utils.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget2.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget2.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget3.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITarget3.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITargetFilter.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/ITargetFilter.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/package.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/bld/package.xs
 package.mak: config.bld
-D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/ITarget.xs:
-package.mak: D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/ITarget.xs
-D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_large.xs:
-package.mak: D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_large.xs
-D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_float.xs:
-package.mak: D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_float.xs
-D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/package.xs:
-package.mak: D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/package.xs
-D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/IArm.xs:
-package.mak: D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/IArm.xs
-D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/package.xs:
-package.mak: D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/package.xs
+C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/ITarget.xs:
+package.mak: C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/ITarget.xs
+C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_large.xs:
+package.mak: C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_large.xs
+C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_float.xs:
+package.mak: C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/C28_float.xs
+C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/package.xs:
+package.mak: C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/package.xs
+C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/IArm.xs:
+package.mak: C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/IArm.xs
+C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/package.xs:
+package.mak: C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/package.xs
 package.mak: package.bld
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.opt.xdt:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.opt.xdt
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/File.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/File.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/package.xs:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/package.xs
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.defs.xdt:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.defs.xdt
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt
-D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/package.xs.xdt:
-package.mak: D:/GitHub/052318/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/package.xs.xdt
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.opt.xdt:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.opt.xdt
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/File.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/File.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/package.xs:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/services/io/package.xs
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.defs.xdt:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/compiler.defs.xdt
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt
+C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/package.xs.xdt:
+package.mak: C:/BLE/ti/xdctools_3_32_00_06_core/packages/xdc/tools/configuro/template/package.xs.xdt
 endif
 
-ti.targets.arm.elf.M3.rootDir ?= C:/BLE/App/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS
-ti.targets.arm.elf.packageBase ?= D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/
+ti.targets.arm.elf.M3.rootDir ?= C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-arm_16.9.6.LTS
+ti.targets.arm.elf.packageBase ?= C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/bios_6_46_01_38/packages/ti/targets/arm/elf/
 .PRECIOUS: $(XDCCFGDIR)/%.oem3
 .PHONY: all,em3 .dlls,em3 .executables,em3 test,em3
 all,em3: .executables,em3
