@@ -53,25 +53,59 @@ extern "C"
 {
 #endif
 
-/*********************************************************************
- * INCLUDES
- */
+// Advertising interval when device is discoverable (units of 625us, 160=100ms)
+#define DEFAULT_ADVERTISING_INTERVAL          160
 
-/*********************************************************************
-*  EXTERNAL VARIABLES
-*/
+// Limited discoverable mode advertises for 30.72s, and then stops
+// General discoverable mode advertises indefinitely
+#define DEFAULT_DISCOVERABLE_MODE             GAP_ADTYPE_FLAGS_GENERAL
 
-/*********************************************************************
- * CONSTANTS
- */
+// Minimum connection interval (units of 1.25ms, 80=100ms) if automatic
+// parameter update request is enabled
+#define DEFAULT_DESIRED_MIN_CONN_INTERVAL     80
 
-/*********************************************************************
- * MACROS
- */
+// Maximum connection interval (units of 1.25ms, 800=1000ms) if automatic
+// parameter update request is enabled
+#define DEFAULT_DESIRED_MAX_CONN_INTERVAL     800
 
-/*********************************************************************
- * FUNCTIONS
- */
+// Slave latency to use if automatic parameter update request is enabled
+#define DEFAULT_DESIRED_SLAVE_LATENCY         0
+
+// Supervision timeout value (units of 10ms, 1000=10s) if automatic parameter
+// update request is enabled
+#define DEFAULT_DESIRED_CONN_TIMEOUT          1000
+
+// Whether to enable automatic parameter update request when a connection is
+// formed
+#define DEFAULT_ENABLE_UPDATE_REQUEST         GAPROLE_LINK_PARAM_UPDATE_INITIATE_BOTH_PARAMS
+
+// Connection Pause Peripheral time value (in seconds)
+#define DEFAULT_CONN_PAUSE_PERIPHERAL         6
+
+// How often to perform periodic event (in msec)
+#define SBP_PERIODIC_EVT_PERIOD               50
+
+// Task configuration
+#define SBP_TASK_PRIORITY                     1
+
+
+#ifndef SBP_TASK_STACK_SIZE
+#define SBP_TASK_STACK_SIZE                   1000  /* MJS 644 */
+#endif
+
+// Internal Events for RTOS application
+#define SBP_STATE_CHANGE_EVT                  0x0001
+#define SBP_CHAR_CHANGE_EVT                   0x0002
+#define SBP_PERIODIC_EVT                      0x0004
+#define SBP_CONN_EVT_END_EVT                  0x0008
+
+#define APP_NEW_MSG                           0x0010
+#define APP_NEW_CMD                           0x0020
+
+#define APP_REQ_RSSI                          0x0040
+
+#define MT_NEW_MSG                            0x0100
+
 
 /*
  * Task creation function for the Simple BLE Peripheral.

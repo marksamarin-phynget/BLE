@@ -6,9 +6,9 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_flash_wrapper.c \
-D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_rtc_wrapper.c \
-D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_trng_wrapper.c 
+C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_flash_wrapper.c \
+C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_rtc_wrapper.c \
+C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_trng_wrapper.c 
 
 C_DEPS += \
 ./HAL/Target/CC2650/Drivers/hal_flash_wrapper.d \
@@ -31,8 +31,8 @@ C_DEPS__QUOTED += \
 "HAL\Target\CC2650\Drivers\hal_trng_wrapper.d" 
 
 C_SRCS__QUOTED += \
-"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_flash_wrapper.c" \
-"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_rtc_wrapper.c" \
-"D:/GitHub/052318/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_trng_wrapper.c" 
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_flash_wrapper.c" \
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_rtc_wrapper.c" \
+"C:/BLE/ti/ble_sdk_2_02_01_18/src/components/hal/src/target/_common/hal_trng_wrapper.c" 
 
 

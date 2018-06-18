@@ -4,10 +4,15 @@
 #include <driverlib/flash.h>
 #include <driverlib/watchdog.h>
 #include <ti/sysbios/family/arm/m3/Hwi.h>
+#include <string.h>
 
 //#include "PhynSerial.h"
 #include "PhynUart.h"
-//#include "PhynGatt.h"
+#include "peripheral.h"
+
+#include "simple_peripheral.h"
+
+B8 bClearEvents;
 
 
 
@@ -55,15 +60,18 @@ void UnsLongToAscii(U32 uUnsLong, char * sAsc)
 }
 
 #define BACKDOOR_ENABLE_PATTERN (0xC5FF05C5)
-#define BACKDOOR_ENABLE_ADDRESS (0x58)         /* 0x1FFFD8   (0x58=88)*/
+#define BACKDOOR_ENABLE_ADDRESS (0x58)         /* 0x1FFFD8   (0x58=88) = 0x20000-x28*/
 
 /***********************************************************************************************
  BLE_EnableBootloader
+
+     Enables the bootloader on the next reset by modifying the related CCFG area registers.
+    Due to RAM limits, we cannot preserve the entire 4K FLASH page that contains this data.
 ***********************************************************************************************/
 void BLE_EnableBootloader(void)
 {
 
-    U8  uCCFGArea[128];
+    U8  uCCFGArea[NVD_PRESERVE_BYTES];
     U32 volatile uFlashOpResult;   // volatile to avoid unused var warning
     U32 uSectorSize;
 
@@ -71,18 +79,30 @@ void BLE_EnableBootloader(void)
     uSectorSize = FlashSectorSizeGet();
 
     if (uSectorSize != 0x1000)
-        UART_Naked_Tx("00, 99,NO_RELEASE **** FLASH SECTOIR SIZE != 4K");
+        UART_Naked_Tx("00, 99,NO_RELEASE **** FLASH SECTOR SIZE != 4K");
 
     // Read in last 128 bytes of config area (only last 88 bytes used)
-    memcpy (uCCFGArea, (U8 *)0x1FF80, 128);
+    memcpy (uCCFGArea, (U8 *)(0x20000 - NVD_PRESERVE_BYTES), NVD_PRESERVE_BYTES);
+    //memcpy (uCCFGArea, (U8 *)0x1FF80, 128);
 
     // Set Enables
-    *(U32 *)(&uCCFGArea[124]) = 0xFFFFFFFF;
-    *(U32 *)(&uCCFGArea[BACKDOOR_ENABLE_ADDRESS]) = BACKDOOR_ENABLE_PATTERN;
+    *(U32 *)(&uCCFGArea[NVD_PRESERVE_BYTES-20]) = 0xFFFFFFFF;                  // IMAGE _VALID @ Address: 0x1FFFEC
+    *(U32 *)(&uCCFGArea[NVD_PRESERVE_BYTES-0x28]) = BACKDOOR_ENABLE_PATTERN;   // BOOTLOADER_CONFIG @ Address: 0x1FFFD8
 
-    // Write back modifications - Destroys addresses 0x1F000-0x1FF7F
+
+    if (bClearEvents)
+    {
+        memset(&uCCFGArea, 0xFF, MAX_EVENT_OCCURANCES_LOGGED*4);
+        bClearEvents = bFALSE;
+    }
+
+    //*(U32 *)(&uCCFGArea[124]) = 0xFFFFFFFF;
+    //*(U32 *)(&uCCFGArea[BACKDOOR_ENABLE_ADDRESS]) = BACKDOOR_ENABLE_PATTERN;
+
+    // Write back modifications - Destroys addresses 0x1F000 to (0x20000 - NVD_PRESERVE_BYTES)
     uFlashOpResult =  FlashSectorErase(0x1F000);
-    uFlashOpResult =  FlashProgram (uCCFGArea, 0x20000 - 128, 128);
+    uFlashOpResult =  FlashProgram (uCCFGArea, 0x20000 - NVD_PRESERVE_BYTES, NVD_PRESERVE_BYTES);
+    //uFlashOpResult =  FlashProgram (uCCFGArea, 0x20000 - 128, 128);
 }
 
 
@@ -100,7 +120,85 @@ B32 BLE_VerifyBootloaderIsEnabled(void)
     return bFALSE;
 }
 
+/***********************************************************************************************
+ BLE_IncrementEventCount
 
+     Enables the bootloader on the next reset by modifying the related CCFG area registers.
+    Due to RAM limits, we cannot preserve the entire 4K FLASH page that contains this data.
+***********************************************************************************************/
+I32 BLE_IncrementEventCount(EVENT_ENUM eEvent)
+{
+    U32 i, uBitMask, uLogWord, uAddr, uVal;
+
+    if (eEvent < 32)
+    {
+        uBitMask = 1 << (U32)eEvent;
+
+        // Find first non-occurrence
+        for (i=0; i<MAX_EVENT_OCCURANCES_LOGGED; i++)
+        {
+            uAddr = ONESHOT_EVENT_MASK_ADDR + i*4;
+            uVal = *(U32 *)uAddr;
+
+            if ((uVal & uBitMask) == uBitMask)
+              break;
+        }
+        // Clear the bit in the word in flash corresponding to the nth occurance of the event
+        if (i < MAX_EVENT_OCCURANCES_LOGGED)
+        {
+            uVal  &= ~uBitMask;
+            FlashProgram (&uVal, uAddr, 4);
+        }
+
+        return i+1;
+    }
+
+    return -1;
+}
+
+/***********************************************************************************************
+ BLE_GetEventCount
+***********************************************************************************************/
+I32 BLE_GetEventCount(EVENT_ENUM eEvent)
+{
+    U32 i, uBitMask, uLogWord, uAddr, uVal;
+
+    if (eEvent < 32)
+    {
+        uBitMask = 1 << (U32)eEvent;
+
+        // Find first non-occurrence
+        for (i=0; i<MAX_EVENT_OCCURANCES_LOGGED; i++)
+        {
+            uAddr = ONESHOT_EVENT_MASK_ADDR + i*4;
+            uVal = *(U32 *)uAddr;
+
+            if ((uVal & uBitMask) == uBitMask)
+              break;
+         }
+
+
+
+        // Find first non-occurrence (flag not cleared)
+        //for (i=0; i<MAX_EVENT_OCCURANCES_LOGGED; i++)
+        //    if ((*((U32 *)ONESHOT_EVENT_MASK_ADDR + i) & uBitMask) == uBitMask)
+        //       break;
+
+        return i;
+    }
+
+    return -1;
+}
+
+
+/***********************************************************************************************
+ BLE_ClearEvents
+***********************************************************************************************/
+void BLE_ClearEvents()
+{
+    bClearEvents = bTRUE;     // BLE_EnableBootloader() will erase event flags now
+    BLE_EnableBootloader();   // Erases NVD area and enables Bootloader
+}
 
 /***********************************************************************************************
  BLE_WatchdogExpired
@@ -169,15 +267,38 @@ void BLE_HitWatchdog()
 U32 uStackUsedBytes;
 U32 uStackTopAddr, uStackSizeBytes;
 F32 fStackUsedPct;
+
+
+U32 uGapTaskStackUsedBytes=0;
+F32 fGapStackUsedPct=0.0;
+extern U8 gapRoleTaskStack[];
+U32 *uGapTaskStackUsedPtr  = (U32 *)&gapRoleTaskStack[GAPROLE_TASK_STACK_SIZE-8];
+
+
+U32 uAppTaskStackUsedBytes=0;
+F32  fAppStackUsedPct = 0.0;
+extern U8 sbpTaskStack[];
+U32 *uAppTaskStackUsedPtr  = (U32 *)&sbpTaskStack[SBP_TASK_STACK_SIZE-8];
+
+U32 uUartTaskStackUsedBytes=0;
+F32 fUartStackUsedPct = 0.0;
+extern U8 UartTaskStack[];
+U32 *uUartTaskStackUsedPtr = (U32 *)&UartTaskStack[UART_TASK_STACK_SIZE-8];
+
+
+
 /***********************************************************************************************
- BLE_HitWatchdog
+ BLE_StackChecks
 ***********************************************************************************************/
 void BLE_StackCheck()
 {
     extern int __STACK_TOP, __STACK_SIZE;
     U32 uAddr;
+    U32 i;
 
-
+    /*********************************************************
+     SYSTEM STACK
+    **********************************************************/
     uStackTopAddr = (U32)&__STACK_TOP;
     uStackSizeBytes = (U32)&__STACK_SIZE;
 
@@ -190,6 +311,73 @@ void BLE_StackCheck()
     uStackUsedBytes =  uStackTopAddr - uAddr;
 
     fStackUsedPct =  (F32)uStackUsedBytes / (F32)uStackSizeBytes * 100.0;
+
+    /*********************************************************
+     GAP Task STACK
+    **********************************************************/
+    while ((U8 *)uGapTaskStackUsedPtr > gapRoleTaskStack)
+        if (*uGapTaskStackUsedPtr == 0xBEBEBEBE)
+        {
+            for (i=0;i<16;i++)
+                if (*(uGapTaskStackUsedPtr-i) != 0xBEBEBEBE)
+                {   i=99;
+                    uGapTaskStackUsedPtr--;
+                }
+
+            if (i==16)
+                break;
+        }
+        else
+            uGapTaskStackUsedPtr--;
+
+    uGapTaskStackUsedBytes = &gapRoleTaskStack[GAPROLE_TASK_STACK_SIZE] - (U8 *)uGapTaskStackUsedPtr;
+    fGapStackUsedPct = (F32)uGapTaskStackUsedBytes / (F32)GAPROLE_TASK_STACK_SIZE * 100.0;
+
+    /*********************************************************
+     App Task STACK
+    **********************************************************/
+    while ((U8 *)uAppTaskStackUsedPtr > sbpTaskStack)
+        if (*uAppTaskStackUsedPtr == 0xBEBEBEBE)
+               {
+                   for (i=0;i<16;i++)
+                       if (*(uAppTaskStackUsedPtr-i) != 0xBEBEBEBE)
+                       {   i=99;
+                       uAppTaskStackUsedPtr--;
+                       }
+
+                   if (i==16)
+                       break;
+               }
+               else
+                   uAppTaskStackUsedPtr--;
+
+    uAppTaskStackUsedBytes = &sbpTaskStack[SBP_TASK_STACK_SIZE] - (U8 *)uAppTaskStackUsedPtr;
+    fAppStackUsedPct = (F32)uAppTaskStackUsedBytes / (F32)SBP_TASK_STACK_SIZE * 100.0;
+
+    /*********************************************************
+     UART Task STACK
+    **********************************************************/
+    while ((U8 *)uUartTaskStackUsedPtr > UartTaskStack)
+        if (*uUartTaskStackUsedPtr == 0xBEBEBEBE)
+               {
+                   for (i=0;i<16;i++)
+                       if (*(uUartTaskStackUsedPtr-i) != 0xBEBEBEBE)
+                       {   i=99;
+                       uUartTaskStackUsedPtr--;
+                       }
+
+                   if (i==16)
+                       break;
+               }
+               else
+                   uUartTaskStackUsedPtr--;
+
+
+    uUartTaskStackUsedBytes = &UartTaskStack[UART_TASK_STACK_SIZE] - (U8 *)uUartTaskStackUsedPtr;
+    fUartStackUsedPct = (F32)uUartTaskStackUsedBytes / (F32)UART_TASK_STACK_SIZE * 100.0;
+
+
+
 
 }
 

@@ -1,7 +1,7 @@
 ******************************************************************************
-                  TI ARM Linker PC v16.9.7                     
+                  TI ARM Linker PC v16.9.6                     
 ******************************************************************************
->> Linked Wed May 23 08:47:55 2018
+>> Linked Mon Jun 18 12:56:20 2018
 
 OUTPUT FILE NAME:   <simple_peripheral_cc2650lp_stack.out>
 ENTRY POINT SYMBOL: "startup_entry"  address: 0000f001
@@ -406,31 +406,17 @@ MODULE SUMMARY
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   2       0         0      
                                                                          
-    C:\Users\niram\AppData\Local\Temp\
-       {A5FBB80C-F1D0-4F2E-BCAF-4C0CFD1A5F95}   104     0         4      
-    +--+----------------------------------------+-------+---------+---------+
-       Total:                                   104     0         4      
-                                                                         
-    D:\GitHub\052318\BLE\ti\ble_sdk_2_02_01_18\src\rom\ble_rom_releases\04242014\
+    C:\BLE\ti\ble_sdk_2_02_01_18\src\rom\ble_rom_releases\04242014\
        ble_rom_patch.symbols                    920     0         0      
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   920     0         0      
                                                                          
-    C:\BLE\App\ccsv7\tools\compiler\ti-cgt-arm_16.9.7.LTS\lib\rtsv7M3_T_le_eabi.lib
-       ull_div_t2.obj                           500     0         0      
-       memcpy_t2.obj                            156     0         0      
-       memset_t2.obj                            122     0         0      
-       autoinit.obj                             120     0         0      
-       copy_decompress_lzss.obj                 104     0         0      
-       cpy_tbl.obj                              76      0         0      
-       ll_mul_t2.obj                            24      0         0      
-       copy_decompress_none.obj                 14      0         0      
-       copy_zero_init.obj                       12      0         0      
-       startup.obj                              2       0         0      
+    C:\Users\MARK~1.SAM\AppData\Local\Temp\
+       {BA28E7FA-50AD-4033-856E-1906129753A1}   104     0         4      
     +--+----------------------------------------+-------+---------+---------+
-       Total:                                   1130    0         0      
+       Total:                                   104     0         4      
                                                                          
-    D:/GitHub/052318/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib
+    C:/BLE/ti/tirtos_cc13xx_cc26xx_2_20_01_08/products/cc26xxware_2_24_02_17393/driverlib/bin/ccs/driverlib.lib
        interrupt.obj                            196     0         0      
        flash.obj                                56      0         0      
        cpu.obj                                  24      0         0      
@@ -438,7 +424,7 @@ MODULE SUMMARY
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   296     0         0      
                                                                          
-    D:\GitHub\052318\BLE\ti\ble_sdk_2_02_01_18\blelib\ctrl\cc2640\cc2640_ctrl_pxxx.a
+    C:\BLE\ti\ble_sdk_2_02_01_18\blelib\ctrl\cc2640\cc2640_ctrl_pxxx.a
        ll_patch.o                               5924    2         256    
        ll_common_patch.o                        3080    0         12     
        ll_slave_end_causes_patch.o              1790    0         2      
@@ -457,12 +443,12 @@ MODULE SUMMARY
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   17378   94        318    
                                                                          
-    D:\GitHub\052318\BLE\ti\ble_sdk_2_02_01_18\blelib\hci_tl\cc26xx\cc26xx_hci_tl_none.a
+    C:\BLE\ti\ble_sdk_2_02_01_18\blelib\hci_tl\cc26xx\cc26xx_hci_tl_none.a
        hci_tl.o                                 176     0         6      
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   176     0         6      
                                                                          
-    D:\GitHub\052318\BLE\ti\ble_sdk_2_02_01_18\blelib\host\host_pxxx.a
+    C:\BLE\ti\ble_sdk_2_02_01_18\blelib\host\host_pxxx.a
        gattservapp.o                            4052    8         57     
        gatt_server.o                            2838    0         13     
        gap_linkmgr.o                            2488    0         32     
@@ -487,6 +473,20 @@ MODULE SUMMARY
        gap_devmgr.o                             176     0         9      
     +--+----------------------------------------+-------+---------+---------+
        Total:                                   26656   16        598    
+                                                                         
+    C:\ti\ccs740\ccsv7\tools\compiler\ti-cgt-arm_16.9.6.LTS\lib\rtsv7M3_T_le_eabi.lib
+       ull_div_t2.obj                           500     0         0      
+       memcpy_t2.obj                            156     0         0      
+       memset_t2.obj                            122     0         0      
+       autoinit.obj                             120     0         0      
+       copy_decompress_lzss.obj                 104     0         0      
+       cpy_tbl.obj                              76      0         0      
+       ll_mul_t2.obj                            24      0         0      
+       copy_decompress_none.obj                 14      0         0      
+       copy_zero_init.obj                       12      0         0      
+       startup.obj                              2       0         0      
+    +--+----------------------------------------+-------+---------+---------+
+       Total:                                   1130    0         0      
                                                                          
        Linker Generated:                        0       1148      0      
     +--+----------------------------------------+-------+---------+---------+

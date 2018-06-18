@@ -3,6 +3,6 @@
  *                step by the lib_search utility
  */
 
-"D:\GitHub\052318\BLE\ti\ble_sdk_2_02_01_18\blelib\host\host_pxxx.a"
-"D:\GitHub\052318\BLE\ti\ble_sdk_2_02_01_18\blelib\ctrl\cc2640\cc2640_ctrl_pxxx.a"
-"D:\GitHub\052318\BLE\ti\ble_sdk_2_02_01_18\blelib\hci_tl\cc26xx\cc26xx_hci_tl_none.a"
+"C:\BLE\ti\ble_sdk_2_02_01_18\blelib\host\host_pxxx.a"
+"C:\BLE\ti\ble_sdk_2_02_01_18\blelib\ctrl\cc2640\cc2640_ctrl_pxxx.a"
+"C:\BLE\ti\ble_sdk_2_02_01_18\blelib\hci_tl\cc26xx\cc26xx_hci_tl_none.a"

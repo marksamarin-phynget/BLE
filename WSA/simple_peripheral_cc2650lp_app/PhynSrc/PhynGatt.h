@@ -1,6 +1,8 @@
 #ifndef PWD_GATT_PROFILE_H
 #define PWD_GATT_PROFILE_H
 
+#include "gatt.h"
+
 #define PHYNGATT_NUM_ATTR_SUPPORTED 1
 
 #define PHYNPROFILE_UUID                    (0xFFE0)
@@ -46,19 +48,34 @@
 #define MSG_FROM_APP_SIZE           (256+8)
 #define MSG_TO_APP_CTR_SIZE         (1)
 #define MSG_TO_APP_SIZE             (256+8)
+#define BLE_VER_STR_LEN             (16)
 
 
+#define GRP_UUID     (0xFFC0)
+
+//#define NUM_SR_FIELDS   (1)
 //#define STRING_CHAR_UUID   0x2A3D
 
-bStatus_t Phyn_AddServices();
+#define FIELD_TIMEZONE_SIZE         (54)
+#define FIELD_COUNTRY_CODE_SIZE     (2)
+#define FIELD_SSID_SIZE             (32)
+#define FIELD_PASSPHRASE_SIZE       (64)
+#define FIELD_CLIENT_ID_SIZE        (40)
+#define FIELD_CLIENT_SECRET_SIZE    (32)
+#define FIELD_CLOUD_ENV_SIZE        (3)
+#define FIELD_CLOUD_API_SIZE        (42)
+#define FIELD_APP_VERSION_SIZE      (6)
+#define FIELD_FIRMWARE_VERSION_SIZE (9)
+#define FIELD_SERIAL_NUMBER_SIZE    (14)
+#define FIELD_SR_DATA_SIZE          (34)
+#define FIELD_SR_COUNT_SIZE         (2)
 
+bStatus_t Phyn_AddServices();
+void InitAppFields();
 
 static bStatus_t PhynProfile_WriteAttrCB(uint16_t connHandle,   gattAttribute_t  *pAttr,
                                           uint8_t  *pValue,      uint16_t         len,
                                           uint16_t offset,       uint8_t          method);
-
-//static bStatus_t PhynProfile_WriteAttrCB(U16 connHandle,  gattAttribute_t *pAttr,
-//                                         U8 *pValue, U16 len, U16 offset, U8 method);
 
 
 static bStatus_t PhynProfile_ReadAttrCB(uint16_t    connHandle, gattAttribute_t  *pAttr,
@@ -66,9 +83,14 @@ static bStatus_t PhynProfile_ReadAttrCB(uint16_t    connHandle, gattAttribute_t 
                                         uint16_t    offset,     uint16_t         maxLen,
                                         uint8_t     method);
 
-/*
-static bStatus_t PhynProfile_ReadAttrCB(  U16 connHandle,  gattAttribute_t *pAttr,
-                                          U8 *pValue, U16 *pLen, U16 offset, U16 maxLen,
-                                          U8 method);
-*/
+
+static bStatus_t ExtraProfile_ReadAttrCB(uint16_t    connHandle, gattAttribute_t  *pAttr,
+                                       uint8_t     *pValue,    uint16_t         *pLen,
+                                       uint16_t    offset,     uint16_t         maxLen,
+                                       uint8_t     method);
+
+static bStatus_t ExtraProfile_WriteAttrCB(uint16_t connHandle,   gattAttribute_t  *pAttr,
+                                         uint8_t  *pValue,      uint16_t         len,
+                                         uint16_t offset,       uint8_t          method);
+
 #endif /* PHYNGATTPROFILE_H */

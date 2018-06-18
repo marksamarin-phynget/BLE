@@ -527,7 +527,7 @@
 		</variable>
 		<variable>
 			<name>TI</name>
-			<value>file:/D:/GitHub/BLE_Reload/BLE/ti</value>
+			<value>file:/C:/BLE/ti</value>
 		</variable>
 		<variable>
 			<name>TI_RTOS_BASE</name>
@@ -540,10 +540,6 @@
 		<variable>
 			<name>TOOLS_BLE</name>
 			<value>$%7BBLE_ROOT%7D/tools</value>
-		</variable>
-		<variable>
-			<name>Z_MOVED_BLE_SOURCE</name>
-			<value>$(PROJECT_LOC)/PhynSrc/MovedSource/BLE</value>
 		</variable>
 	</variableList>
 </projectDescription>

@@ -1,6 +1,6 @@
 #
 # This file was generated based on the configuration script:
-#     D:\GitHub\052318\BLE\WSA\simple_peripheral_cc2650lp_app\cc2640.cfg
+#     C:\BLE\WSA\simple_peripheral_cc2650lp_app\Phyn_BLE.cfg
 #
 # This makefile may be included in other makefiles that need to build
 # the libraries containing the compiled source files generated as
@@ -14,7 +14,7 @@
 #
 # The absolute path to the generated source directory (at the time the
 # sources were generated) is:
-#    D:\GitHub\052318\BLE\WSA\simple_peripheral_cc2650lp_app\src
+#    C:\BLE\WSA\simple_peripheral_cc2650lp_app\src
 #
 GEN_SRC_DIR ?= ../src
 

@@ -36,6 +36,12 @@ typedef U32                     B32;
 #define NVD_ADDR       (0x1F000)
 #define NVD_SIZE       (0x1000)
 
+
+#define MAX_EVENT_OCCURANCES_LOGGED (32)
+
+#define NVD_PRESERVE_BYTES  (512)     /* This has to be balanced against the system stack usage */
+#define ONESHOT_EVENT_MASK_ADDR (0x20000 - NVD_PRESERVE_BYTES)
+
 // Watchdog Service
 #ifdef WD_ENABLE
     void BLE_HitWatchdog(void);

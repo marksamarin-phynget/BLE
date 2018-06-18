@@ -6,7 +6,7 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CFG_SRCS += \
-../cc2640.cfg 
+../Phyn_BLE.cfg 
 
 GEN_CMDS += \
 ./configPkg/linker.cmd 

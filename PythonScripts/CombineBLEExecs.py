@@ -29,19 +29,21 @@ def OpenFiles():
         print ('File: ' + FinalExec + ' Open Failure (must not pre-exist)')
         sys.exit(1)
     
-
-    buffer_64K = bytes(0x10000)
     App_Code   = App.read(0xF000)
     
-    Stack.seek(0xF000)
+	# Use stack Seek if stack binary is full image (128K)
+	# Do not use if stack binary starts at 0xF000
+    #Stack.seek(0xF000)   
     Stack_Code = Stack.read(0x10000)
     
+	#Use User config area from App
     App.seek(0x1F000)
-    NVD_Area = App.read(0x1000)
+    CFG_Area = App.read(0x1000)
     
-    Final.write(App_Code)
-    Final.write(Stack_Code)
-    Final.write(NVD_Area)
+	#Build finak Executable
+    Final.write(App_Code)         # App Binary 0-0xEFFF
+    Final.write(Stack_Code)       # Stack Binary (0xF000 - 0x1EFFF)
+    Final.write(CFG_Area)         # CFG Area (0x1F000 - 0x1FFFF)
 
     Final.close()
     return

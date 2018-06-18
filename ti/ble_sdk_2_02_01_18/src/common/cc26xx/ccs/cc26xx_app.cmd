@@ -114,8 +114,10 @@ MEMORY
 
 /* Section allocation in memory */
 
+/* MJS - Do not use Last page for code  because it gets erased for bootloader enabling in app */
 SECTIONS
 {
+/*
     .intvecs        :   >  FLASH_APP_BASE
     .text           :   >> FLASH | FLASH_LAST_PAGE
     .const          :   >> FLASH | FLASH_LAST_PAGE
@@ -126,6 +128,19 @@ SECTIONS
     .init_array     :   >> FLASH | FLASH_LAST_PAGE
     .emb_text       :   >> FLASH | FLASH_LAST_PAGE
     .ccfg           :   >  FLASH_LAST_PAGE (HIGH)
+*/
+
+    .intvecs        :   >  FLASH_APP_BASE
+    .text           :   > FLASH
+    .const          :   > FLASH
+    .constdata      :   > FLASH
+    .rodata         :   > FLASH
+    .cinit          :   > FLASH
+    .pinit          :   > FLASH
+    .init_array     :   > FLASH
+    .emb_text       :   > FLASH
+    .ccfg           :   >  FLASH_LAST_PAGE (HIGH)
+
 
 	GROUP > SRAM
 	{

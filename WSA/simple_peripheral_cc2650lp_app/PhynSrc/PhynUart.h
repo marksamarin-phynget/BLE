@@ -112,7 +112,7 @@ Typical message transaction from MT to APP
 
 
 
-#define UART_TASK_STACK_SIZE    1000
+#define UART_TASK_STACK_SIZE    1200
 #define UART_TASK_PRIORITY        2
 
 #define UART_READ_TIMEOUT   (250)  // UNITS ??

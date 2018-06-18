@@ -154,19 +154,19 @@ extern void* memcpy(void *dest, const void *src, size_t len);
  */
 
 // Device Information Service attribute
-static CONST gattAttrType_t devInfoService = { ATT_BT_UUID_SIZE, devInfoServUUID };
+//static CONST gattAttrType_t devInfoService = { ATT_BT_UUID_SIZE, devInfoServUUID };
 
 // System ID characteristic
 //static uint8 devInfoSystemIdProps = GATT_PROP_READ;
 //static uint8 devInfoSystemId[DEVINFO_SYSTEM_ID_LEN] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 // Model Number String characteristic
-static uint8 devInfoModelNumberProps = GATT_PROP_READ;
-       uint8 devInfoModelNumber[DEVINFO_STR_ATTR_LEN+1] = "Model: Not Reported";
+//static uint8 devInfoModelNumberProps = GATT_PROP_READ;
+//       uint8 devInfoModelNumber[DEVINFO_STR_ATTR_LEN+1] = "Model: Not Reported";
 
 // Serial Number String characteristic
-static uint8 devInfoSerialNumberProps = GATT_PROP_READ;
-       uint8 devInfoSerialNumber[DEVINFO_STR_ATTR_LEN+1] = "S/N:Not Reported"; // settable by WiFI board so global
+//static uint8 devInfoSerialNumberProps = GATT_PROP_READ;
+//       uint8 devInfoSerialNumber[DEVINFO_STR_ATTR_LEN+1] = "S/N:Not Reported"; // settable by WiFI board so global
 
 // Firmware Revision String characteristic
 // - Uses sFW_Version devined in main.c
@@ -183,8 +183,8 @@ static uint8 devInfoSerialNumberProps = GATT_PROP_READ;
 //static uint8 devInfoSoftwareRev[DEVINFO_STR_ATTR_LEN+1] = "Software Revision";
 
 // Manufacturer Name String characteristic
-static uint8 devInfoMfrNameProps = GATT_PROP_READ;
-static uint8 devInfoMfrName[DEVINFO_STR_ATTR_LEN+1] = "Phyn, Inc.";
+//static uint8 devInfoMfrNameProps = GATT_PROP_READ;
+//static uint8 devInfoMfrName[DEVINFO_STR_ATTR_LEN+1] = "Phyn, Inc.";
 
 // IEEE 11073-20601 Regulatory Certification Data List characteristic
 /*

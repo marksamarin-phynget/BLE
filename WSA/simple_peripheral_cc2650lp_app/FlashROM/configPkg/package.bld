@@ -11,7 +11,7 @@ var makeAssembly = false;
 var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
-        cfgScript: 'C:/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/app_ble.cfg',
+        cfgScript: 'C:/BLE/WSA/simple_peripheral_cc2650lp_app/Phyn_BLE.cfg',
         profile: 'release',
         cfgHome: 'configPkg',
 });
@@ -20,7 +20,7 @@ exeOpts.cfgArgs = 'null';
 exeOpts.cfgArgsEncoded = true;
 
 var exe = Pkg[makeAssembly ? 'addAssembly': 'addExecutable'](
-    'app_ble',
+    'Phyn_BLE',
     targ,
     platform,
     exeOpts
@@ -40,10 +40,10 @@ else {
 }
 
 var thisObj = {
-    cfg:        'C:/BLE/ti/ble_sdk_2_02_01_18/examples/cc2650lp/simple_peripheral/ccs/config/app_ble.cfg',
+    cfg:        '../Phyn_BLE.cfg',
     outputPath: 'C:/BLE/WSA/simple_peripheral_cc2650lp_app/FlashROM/configPkg',
-    exeName:    'app_ble' + suffix,
-    exeIntName: 'app_ble' + suffix.replace('.', '_'),
+    exeName:    'Phyn_BLE' + suffix,
+    exeIntName: 'Phyn_BLE' + suffix.replace('.', '_'),
     targ:       targ,
     linkerCommandFile: 'linker.cmd',
     compilerOptFile: 'compiler.opt',

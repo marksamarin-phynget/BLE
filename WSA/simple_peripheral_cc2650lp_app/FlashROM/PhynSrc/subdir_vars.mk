@@ -10,47 +10,41 @@ C_SRCS += \
 ../PhynSrc/PWD_Util.c \
 ../PhynSrc/PhynGatt.c \
 ../PhynSrc/PhynSerial.c \
-../PhynSrc/PhynUart.c \
-../PhynSrc/devinfoservice.c 
+../PhynSrc/PhynUart.c 
 
 C_DEPS += \
 ./PhynSrc/PWD_Board.d \
 ./PhynSrc/PWD_Util.d \
 ./PhynSrc/PhynGatt.d \
 ./PhynSrc/PhynSerial.d \
-./PhynSrc/PhynUart.d \
-./PhynSrc/devinfoservice.d 
+./PhynSrc/PhynUart.d 
 
 OBJS += \
 ./PhynSrc/PWD_Board.obj \
 ./PhynSrc/PWD_Util.obj \
 ./PhynSrc/PhynGatt.obj \
 ./PhynSrc/PhynSerial.obj \
-./PhynSrc/PhynUart.obj \
-./PhynSrc/devinfoservice.obj 
+./PhynSrc/PhynUart.obj 
 
 OBJS__QUOTED += \
 "PhynSrc\PWD_Board.obj" \
 "PhynSrc\PWD_Util.obj" \
 "PhynSrc\PhynGatt.obj" \
 "PhynSrc\PhynSerial.obj" \
-"PhynSrc\PhynUart.obj" \
-"PhynSrc\devinfoservice.obj" 
+"PhynSrc\PhynUart.obj" 
 
 C_DEPS__QUOTED += \
 "PhynSrc\PWD_Board.d" \
 "PhynSrc\PWD_Util.d" \
 "PhynSrc\PhynGatt.d" \
 "PhynSrc\PhynSerial.d" \
-"PhynSrc\PhynUart.d" \
-"PhynSrc\devinfoservice.d" 
+"PhynSrc\PhynUart.d" 
 
 C_SRCS__QUOTED += \
 "../PhynSrc/PWD_Board.c" \
 "../PhynSrc/PWD_Util.c" \
 "../PhynSrc/PhynGatt.c" \
 "../PhynSrc/PhynSerial.c" \
-"../PhynSrc/PhynUart.c" \
-"../PhynSrc/devinfoservice.c" 
+"../PhynSrc/PhynUart.c" 
 
 

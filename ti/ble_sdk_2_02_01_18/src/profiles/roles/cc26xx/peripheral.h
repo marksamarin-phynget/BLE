@@ -145,9 +145,17 @@ typedef enum
 #define GAPROLE_LINK_PARAM_UPDATE_WAIT_BOTH_PARAMS     4 // Wait for parameter update request, respond with best combination of local and remote parameters.
 #define GAPROLE_LINK_PARAM_UPDATE_REJECT_REQUEST       5 // Reject all parameter update requests. 
 #define GAPROLE_LINK_PARAM_UPDATE_NUM_OPTIONS          6 // Used for parameter checking.
-/*-------------------------------------------------------------------
- * MACROS
- */
+
+
+
+// Task configuration
+#define GAPROLE_TASK_PRIORITY         3
+
+#ifndef GAPROLE_TASK_STACK_SIZE
+#define GAPROLE_TASK_STACK_SIZE       1200 /*440*/
+#endif
+
+
 
 /*-------------------------------------------------------------------
  * Profile Callbacks

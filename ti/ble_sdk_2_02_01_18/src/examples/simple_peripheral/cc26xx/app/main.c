@@ -5,6 +5,8 @@
 #include <ti/drivers/power/PowerCC26XX.h>
 
 #include <ti/sysbios/BIOS.h>
+#include <ti/sysbios/knl/Task.h>
+
 #include <string.h>
 #include <stdio.h>
 
@@ -77,11 +79,11 @@ U32 uAppCRC, uBLEStackCRC,  uNVDCRC, uCodeCRC;        // Holds various CRC32 val
 U32 uAppCRC1;
 
 //****** VERSIONING
-#include "devinfoservice.h"
+#include "PhynGatt.h"
 
 #define VERSION_ADDR (0x1FF80)
 #define VERSION  (0.10)
-I8 sFW_Version[DEVINFO_STR_ATTR_LEN + 1] = "BLE App V0.11";
+I8 sBLE_FW_Version[BLE_VER_STR_LEN + 1] = "BLE App V0.11";
 I8 sMsg[256];
 
 U32 uCPURev;
@@ -90,6 +92,8 @@ const I8 sNoWatchdogMsg[]  = "00,99,NO_RELEASE - Watchdog Disabled";
 const I8 sNoRCOSCogMsg[]   = "00,99,NO_RELEASE - USE_RCOSC turned off - Is LF Crystal Operational?";
 const I8 sTerminalIfcMsg[] = "00,99,NO_RELEASE - Terminal Interface Enabled";
 const I8 sBlinkDemoMsg[]   = "00,99,NO_RELEASE - Blink Demo";
+
+I32 GapPri;
 
 /*******************************************************************************
  main
@@ -100,7 +104,39 @@ int main()
         extern U16 uProgramCRC;
 
         // Always enable the bootloader so that resets always get back there
-        BLE_EnableBootloader();
+        #ifndef NO_BOOTLOADER
+            BLE_EnableBootloader();
+        #else
+            #warning ***** BOOTLOADER DISABLED - JTAG USE ONLY *****
+        #endif
+#if 0
+        // TEST EVENT COUNTERS
+        U32 volatile uEventTest,i;
+
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+
+//        for (i=0; i < 10; i++)
+//            uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+#endif
 
         // Need Watchdog running immediately AFTER bootloader is enabled so that any setup fails got back to bootloader
         // Causes issues with RTOS setup so move to SimpleBLEPeripheral_taskFxn()
@@ -136,8 +172,15 @@ int main()
         ICall_init();                                 // Initialize ICall module (task manager)
 
         #ifndef BLINKY_TEST                           // Normal Operation - enable BLE Stack and GAP tasks
+
             ICall_createRemoteTasks();                // Create remmote Tasks (BLE Stack)
             GAPRole_createTask();                     // Creates the GAP Task
+
+            // Prevent GAP from running until it is setup
+           // extern Task_Handle GapTaskHandle;
+           // GapPri = Task_setPri(GapTaskHandle, -1);
+
+
         #else
                                                       // LED DEMO - Just blinking the LED, no BLE tasks
         #endif

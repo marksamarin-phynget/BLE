@@ -21,6 +21,7 @@
 #include "PhynUart.h"
 #include "PhynGatt.h"
 #include "PWD_Asserts.h"
+#include "simple_peripheral.h"
 
 #include "devinfoservice.h"
 
@@ -31,10 +32,22 @@ extern I8 sCommandLn[];
 
 B32 bCommandProcessed  = bTRUE;
 extern B32 bUnsolicitedMsgPend;
-
-B32 bAppMessageRead = bTRUE;
+B32    bAppMessageRead = bTRUE;
+I8     sScanName[SCANNAME_MAX_LEN+1];
+U8 bIDSet = FALSE;
 
 void Send_Serial_Response_Msg(U32 uIdx, BLE_MESSAGE_CODES_ENUM eResp, char *sAltText);
+
+extern U32 uGapTaskStackUsedBytes;
+extern F32 fGapStackUsedPct;
+
+extern U32 uAppTaskStackUsedBytes;
+extern F32 fAppStackUsedPct;
+
+extern U32 uUartStackUsedBytes;
+extern F32 fUartStackUsedPct;
+
+const I8 sNotConnected[] = "Not Connected";
 
 /*********************************************************************
 Read Tree:
@@ -82,23 +95,41 @@ void Process_Serial_Command()
     B32 bERROR = bFALSE;
     char sText[ALT_TEXT_MAX_SIZE];
     BLE_MESSAGE_CODES_ENUM eResponse;
+    U32 uKey;
 
-    extern U32              uAppCRC, uBLEStackCRC, uNVDCRC, uCodeCRC;
-    extern U32              uAppCRC1;
+    extern U32 uAppCRC, uBLEStackCRC, uNVDCRC, uCodeCRC;
+    extern U32 uAppCRC1;
 
-    extern U32 uStackUsedBytes;
-    extern U32 uStackSizeBytes;
-    extern F32 fStackUsedPct;
+    extern I8 sBLE_FW_Version[BLE_VER_STR_LEN + 1];
+    extern U8 sTZN[FIELD_TIMEZONE_SIZE+1];
+    extern U8 cCCD[FIELD_COUNTRY_CODE_SIZE+1];
+    extern U8 cSSID[FIELD_SSID_SIZE+1];
+    extern U8 cPPH[FIELD_PASSPHRASE_SIZE+1];
+    extern U8 cCLID[FIELD_CLIENT_ID_SIZE+1];
+    extern U8 cCLS[FIELD_CLIENT_SECRET_SIZE+1];
+    extern U8 cCLE[FIELD_CLOUD_ENV_SIZE+1];
+    extern U8 cCLA[FIELD_CLOUD_API_SIZE+1];
+    extern U8 cAPV[FIELD_APP_VERSION_SIZE+1];
+    extern U8 cCMD;
+    extern U8 cSTA;
+    extern U8 cFWV[FIELD_FIRMWARE_VERSION_SIZE+1];
+    extern U8 cSSN[FIELD_SERIAL_NUMBER_SIZE+1];
+    extern U8 sSR_Data[FIELD_SR_DATA_SIZE+1];
+    extern U8 sSR_Count[FIELD_SR_COUNT_SIZE+1];
 
-    extern I8               sFW_Version[DEVINFO_STR_ATTR_LEN + 1];
-    extern U8               devInfoSerialNumber[DEVINFO_STR_ATTR_LEN+1];
-    extern U8               devInfoModelNumber[DEVINFO_STR_ATTR_LEN+1];
     extern gaprole_States_t eGapState;
-    extern U32              uLowestWDValue;
+    extern U32 uLowestWDValue;
+    extern U32 uGapEventCounter, uAppEventCounter, uUartEventCounter;
+
+    extern U32 uStackSizeBytes;
+    extern U32 uStackUsedBytes, uGapTaskStackUsedBytes, uAppTaskStackUsedBytes, uUartTaskStackUsedBytes;
+    extern F32 fStackUsedPct, fGapStackUsedPct, fAppStackUsedPct, fUartStackUsedPct;
+
     I32 i;
     volatile F32 f=1.01;
+    U32 uEvent;
 
-
+    void Phyn_Set_Scan_Response_Name(I8 * sNewName);
 
     uIdx = ((sCommandLn[0]-'\x30') * 10) + sCommandLn[1]-'\x30';
     uCmd = ((sCommandLn[3]-'\x30') * 10) + sCommandLn[4]-'\x30';
@@ -107,6 +138,9 @@ void Process_Serial_Command()
         bERROR = bTRUE;
     else
     {
+
+        eResponse = (WIFI_MESSAGE_CODES_ENUM)uCmd;
+
         switch ((WIFI_MESSAGE_CODES_ENUM)uCmd)
         {
 
@@ -122,6 +156,35 @@ void Process_Serial_Command()
 
             #endif
 
+            /***********************************************************************************************
+              Increment an event
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_INC_EVENT:
+                uEvent = (sCommandLn[6] - 0x30)*10 + sCommandLn[7] - 0x30;
+                sprintf(sText, "Increment Event %02d", uEvent);
+
+                if (uEvent < MAX_EVENT_OCCURANCES_LOGGED)
+                    BLE_IncrementEventCount(uEvent);
+                else
+                    sprintf(sText, "Cannot Increment Event %02d: at Max(%d)", uEvent, MAX_EVENT_OCCURANCES_LOGGED);
+            break;
+
+            /***********************************************************************************************
+              Get event count
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_GET_EVENT_COUNT:
+                uEvent = (sCommandLn[6] - 0x30)*10 + sCommandLn[7] - 0x30;
+                sprintf(sText, "Event %02d Count = %02d",  uEvent, BLE_GetEventCount(uEvent));
+            break;
+
+
+            /***********************************************************************************************
+             Clear events
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_CLEAR_EVENT_COUNTS:
+                BLE_ClearEvents();
+                strcpy(sText, "Clear Events");
+            break;
 
             /***********************************************************************************************
               RESET Command
@@ -142,26 +205,58 @@ void Process_Serial_Command()
             case WIFI_MESSAGE_CODE_FORCE_WD_TIMEOUT:
                 sprintf(sText, "%02d,99,*** FORCING A Watchdog Trigger back to Bootloader ***", uIdx);
                 UART_Naked_Tx(sText);
-                while(1);
+
+                // Wait for WD trigger - but not forever to prevent a lockup in case of fail
+                for (i=0; i<10000000; i++)
+                    f = f * 1.00001;
+
+                sprintf(sText, "%02d,99,*** Watchdog Trigger FAILURE - Manually resetting to Bootloader ***", uIdx);
+                UART_Naked_Tx(sText);
+
+                for(i=0; i<10000; i++) f*=1.00001;
+                HapiResetDevice();
+
             break;
+
 
 
             /***********************************************************************************************
               GET STATS Command
             ***********************************************************************************************/
-            case WIFI_MESSAGE_CODE_GET_STATS:
+            case WIFI_MESSAGE_CODE_GET_STACK_INFO:
+
 
 
                 BLE_StackCheck();
 
+                sprintf(sText, "Stack Info - System:%d/%d(%6.2f%%)  Gap:%d/%d(%6.2f%%)  App:%d/%d(%6.2f%%)  UART:%d/%d(%6.2f%%)",
+                                    uStackUsedBytes, uStackSizeBytes, fStackUsedPct,
+                                    uGapTaskStackUsedBytes,  GAPROLE_TASK_STACK_SIZE, fGapStackUsedPct,
+                                    uAppTaskStackUsedBytes,  SBP_TASK_STACK_SIZE,     fAppStackUsedPct,
+                                    uUartTaskStackUsedBytes, UART_TASK_STACK_SIZE,    fUartStackUsedPct);
+
+               // eResponse = WIFI_MESSAGE_CODE_GET_STACK_INFO;
+            break;
+
+            /***********************************************************************************************
+              Get WD Info
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_GET_WD_INFO:
+
                 #ifdef WD_ENABLED
-                    sprintf(sText, "Stack: %d/%d bytes = %6.2f%%    WD: LOAD:%d  Low:%d",   uStackUsedBytes, uStackSizeBytes, fStackUsedPct,
-                                                                                            WATCHDOG_SET_VALUE, uLowestWDValue);
+                    sprintf(sText, "Watchdog Info: Load Value: %d  Low Mark:%d", WATCHDOG_SET_VALUE, uLowestWDValue);
                 #else
-                    sprintf(sText, "Stack: %d/%d bytes = %6.2f%%    WD:DISABLED",   uStackUsedBytes, uStackSizeBytes, fStackUsedPct);
+                    sprintf(sText, "Watchdog DISABLED" );
                 #endif
 
-                eResponse = BLE_MESSAGE_CODE_STATS;
+                //eResponse = WIFI_MESSAGE_CODE_GET_STACK_INFO;
+            break;
+
+            /***********************************************************************************************
+              Get Counters
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_GET_COUNTERS:
+                sprintf(sText, "Counters:  Gap Events: %d  App Events: %d  Uart Events:%d", uGapEventCounter, uAppEventCounter, uUartEventCounter);
             break;
 
             /***********************************************************************************************
@@ -197,56 +292,272 @@ void Process_Serial_Command()
             case WIFI_MESSAGE_CODE_GET_CRC:
 
                 sprintf(sText, "Code:%08x  APP:%08x  BLE Stack:%08x  NVD:%08x", uCodeCRC, uAppCRC, uBLEStackCRC, uNVDCRC );
-                eResponse = BLE_MESSAGE_CODE_CRC_REPORT;
+                //eResponse = BLE_MESSAGE_CODE_CRC_REPORT;
             break;
 
             /***********************************************************************************************
              FW Version Query
             ***********************************************************************************************/
-            case WIFI_MESSAGE_CODE_GET_FW_VER:
-                strncpy(sText, sFW_Version, DEVINFO_STR_ATTR_LEN);
-                sText[DEVINFO_STR_ATTR_LEN]=0;
-                eResponse = BLE_MESSAGE_CODE_FW_VERSION;
+            case WIFI_MESSAGE_CODE_GET_BLE_FW_VER:
+                strncpy(sText, sBLE_FW_Version, BLE_VER_STR_LEN);
+                sText[BLE_VER_STR_LEN]=0;
+                //eResponse = BLE_MESSAGE_CODE_FW_VERSION;
             break;
 
+
+
             /***********************************************************************************************
-             Get PWD Serial Number Value
+             Get Scan Response Name
             ***********************************************************************************************/
-            case WIFI_MESSAGE_CODE_GET_SERNUM:
-                strncpy(sText, (I8 *)devInfoSerialNumber, DEVINFO_STR_ATTR_LEN);
-                sText[DEVINFO_STR_ATTR_LEN]=0;
-                eResponse = BLE_MESSAGE_CODE_SERNUM_REPORT;
+            case WIFI_MESSAGE_CODE_GET_SCAN_RESP_NAME:
+                strncpy(sText, (I8 *)sScanName, SCANNAME_MAX_LEN);
+                sText[SCANNAME_MAX_LEN]=0;
+                //eResponse = BLE_MESSAGE_CODE_SCANNAME_REPORT;
             break;
 
             /***********************************************************************************************
              Set PWD Serial Number Value
             ***********************************************************************************************/
-            case WIFI_MESSAGE_CODE_SET_SERNUM:
-                strncpy((I8 *)devInfoSerialNumber, &sCommandLn[6], DEVINFO_STR_ATTR_LEN);
-                devInfoSerialNumber[DEVINFO_STR_ATTR_LEN]=0;
-                strncpy(sText, (I8 *)devInfoSerialNumber, DEVINFO_STR_ATTR_LEN);
-                sText[DEVINFO_STR_ATTR_LEN]=0;
-                eResponse = BLE_MESSAGE_CODE_SERNUM_SET;
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESP_NAME:
+                uKey = Task_disable();
+                Phyn_Set_Scan_Response_Name(&sCommandLn[6]);
+
+                extern U8 TRUE_U8;
+                extern I32 GapPri;
+
+#ifdef WAIT_FOR_ID_CHANGE
+                void GAP_Setup();
+                GAP_Setup();
+#endif
+                //extern Task_Handle GapTaskHandle;
+                //Task_setPri(GapTaskHandle, GapPri);
+
+                GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, 1,   &TRUE_U8);
+                Task_restore(uKey);
+
+                //Phyn_Set_Scan_Response_Name("ID Test");
+
+                strncpy(sText, (I8 *)sScanName, SCANNAME_MAX_LEN);
+                sText[SCANNAME_MAX_LEN]=0;
+               // eResponse = BLE_MESSAGE_CODE_SCANNAME_SET;
+
+                bIDSet = bTRUE;
             break;
 
-            /***********************************************************************************************
-             Get PWD Serial Model Value
-            ***********************************************************************************************/
-            case WIFI_MESSAGE_CODE_GET_MODEL:
-                strncpy(sText, (I8 *)devInfoModelNumber, DEVINFO_STR_ATTR_LEN);
-                sText[DEVINFO_STR_ATTR_LEN]=0;
-                eResponse = BLE_MESSAGE_CODE_PWD_MODEL_REPORT;
-            break;
 
-            /***********************************************************************************************
-             Set PWD Serial Model Value
-            ***********************************************************************************************/
-            case WIFI_MESSAGE_CODE_SET_MODEL:
-                strncpy((I8 *)devInfoModelNumber, &sCommandLn[6], DEVINFO_STR_ATTR_LEN);
-                devInfoModelNumber[DEVINFO_STR_ATTR_LEN]=0;
-                strncpy(sText, (I8 *)devInfoModelNumber, DEVINFO_STR_ATTR_LEN);
-                sText[DEVINFO_STR_ATTR_LEN]=0;
-                eResponse = BLE_MESSAGE_CODE_PWD_MODEL_SET;
+
+
+        /***********************************************************************************************
+           Get Timezone
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_TIMEZONE:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, sTZN, FIELD_TIMEZONE_SIZE);
+                sText[FIELD_TIMEZONE_SIZE]=0;
+            }
+
+        break;
+
+
+        /***********************************************************************************************
+           Get Country Code
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_COUNTRY_CODE:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, cCCD, FIELD_COUNTRY_CODE_SIZE);
+                sText[FIELD_COUNTRY_CODE_SIZE]=0;
+            }
+
+        break;
+
+        /***********************************************************************************************
+           Get SSID
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_SSID:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, cSSID, FIELD_SSID_SIZE);
+                sText[FIELD_SSID_SIZE]=0;
+            }
+
+        break;
+
+        /***********************************************************************************************
+           Get Passphrase
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_PASSPHRASE:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, cPPH, FIELD_PASSPHRASE_SIZE);
+                sText[FIELD_PASSPHRASE_SIZE]=0;
+            }
+
+        break;
+
+        /***********************************************************************************************
+           Get Client ID
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_CLIENT_ID:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, cCLID, FIELD_CLIENT_ID_SIZE);
+                sText[FIELD_CLIENT_ID_SIZE]=0;
+            }
+        break;
+
+        /***********************************************************************************************
+           Get Client Secret
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_CLIENT_SECRET:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, cCLS, FIELD_CLIENT_SECRET_SIZE);
+                sText[FIELD_CLIENT_SECRET_SIZE]=0;
+            }
+
+        break;
+
+        /***********************************************************************************************
+           Get Cloud Environment
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_CLOUD_ENV:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, cCLE, FIELD_CLOUD_ENV_SIZE);
+                sText[FIELD_CLOUD_ENV_SIZE]=0;
+            }
+
+        break;
+
+        /***********************************************************************************************
+           Set Cloud Environment
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_SET_CLOUD_ENV:
+            memcpy((I8 *)cCLE, &sCommandLn[6], FIELD_CLOUD_ENV_SIZE);
+            cCLE[FIELD_CLOUD_ENV_SIZE]=0;
+
+            strncpy(sText, (I8 *)cCLE, FIELD_CLOUD_ENV_SIZE);
+            sText[FIELD_CLOUD_ENV_SIZE]=0;
+
+        break;
+
+         /***********************************************************************************************
+           Get Cloud API Key
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_CLOUD_API_KEY:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, cCLA, FIELD_CLOUD_API_SIZE);
+                sText[FIELD_CLOUD_API_SIZE]=0;
+            }
+
+        break;
+
+        /***********************************************************************************************
+           Get APP Version
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_APP_VERSION:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                memcpy(sText, cAPV, FIELD_APP_VERSION_SIZE);
+                sText[FIELD_APP_VERSION_SIZE]=0;
+            }
+
+        break;
+
+        /***********************************************************************************************
+           Get Command
+         ***********************************************************************************************/
+        case WIFI_MESSAGE_CODE_GET_COMMAND:
+
+            if (!(GAPROLE_CONNECTED == eGapState || GAPROLE_CONNECTED_ADV == eGapState))
+            {
+                strcpy(sText, sNotConnected);
+                eResponse = BLE_MESSAGE_CODE_NOCONN;
+            }
+            else
+            {
+                sText[0] = cCMD;
+                sText[1]=0;
+            }
+        break;
+
+
+
+        /***********************************************************************************************
+           Set scan result
+         ***********************************************************************************************/
+          case WIFI_MESSAGE_CODE_SET_SCAN_RESULT:
+              strncpy((I8 *)sSR_Data, &sCommandLn[6], FIELD_SR_DATA_SIZE);
+              sSR_Data[FIELD_SR_DATA_SIZE]=0;
+              strncpy(sText, (I8 *)sSR_Data, FIELD_SR_DATA_SIZE);
+              sText[FIELD_SR_DATA_SIZE]=0;
+          break;
+
+          /***********************************************************************************************
+             Set scan result counter
+           ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_COUNTER:
+                strncpy((I8 *)sSR_Count, &sCommandLn[6], FIELD_SR_COUNT_SIZE);
+                sSR_Count[FIELD_SR_COUNT_SIZE]=0;
+                strncpy(sText, (I8 *)sSR_Count, FIELD_SR_COUNT_SIZE);
+                sText[FIELD_SR_COUNT_SIZE]=0;
             break;
 
             /***********************************************************************************************
@@ -494,6 +805,93 @@ void Log_With_U32(char *sMsg, U32 uTrailingVal)
  UNUSED/TEST
  ***********************************************************************************************/
 #if 0
+
+
+
+#if 0
+            /***********************************************************************************************
+             Get PWD Serial Number Value
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_GET_SERNUM:
+                strncpy(sText, (I8 *)devInfoSerialNumber, DEVINFO_STR_ATTR_LEN);
+                sText[DEVINFO_STR_ATTR_LEN]=0;
+                //eResponse = BLE_MESSAGE_CODE_SERNUM_REPORT;
+            break;
+
+            /***********************************************************************************************
+             Set PWD Serial Number Value
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_SET_SERNUM:
+                strncpy((I8 *)devInfoSerialNumber, &sCommandLn[6], DEVINFO_STR_ATTR_LEN);
+                devInfoSerialNumber[DEVINFO_STR_ATTR_LEN]=0;
+                strncpy(sText, (I8 *)devInfoSerialNumber, DEVINFO_STR_ATTR_LEN);
+                sText[DEVINFO_STR_ATTR_LEN]=0;
+                //eResponse = BLE_MESSAGE_CODE_SERNUM_SET;
+            break;
+
+            /***********************************************************************************************
+             Get PWD Serial Model Value
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_GET_MODEL:
+                strncpy(sText, (I8 *)devInfoModelNumber, DEVINFO_STR_ATTR_LEN);
+                sText[DEVINFO_STR_ATTR_LEN]=0;
+                //eResponse = BLE_MESSAGE_CODE_PWD_MODEL_REPORT;
+            break;
+
+            /***********************************************************************************************
+             Set PWD Serial Model Value
+            ***********************************************************************************************/
+            case WIFI_MESSAGE_CODE_SET_MODEL:
+                strncpy((I8 *)devInfoModelNumber, &sCommandLn[6], DEVINFO_STR_ATTR_LEN);
+                devInfoModelNumber[DEVINFO_STR_ATTR_LEN]=0;
+                strncpy(sText, (I8 *)devInfoModelNumber, DEVINFO_STR_ATTR_LEN);
+                sText[DEVINFO_STR_ATTR_LEN]=0;
+                //eResponse = BLE_MESSAGE_CODE_PWD_MODEL_SET;
+            break;
+#endif
+            /***********************************************************************************************
+             WIFI_MESSAGE_CODE_GET_TESTMSG_1
+            ***********************************************************************************************
+            extern U8 sExtraMsg1[];
+            case WIFI_MESSAGE_CODE_GET_TESTMSG_1:
+               strncpy(sText, (I8 *)sExtraMsg1, EXTRA1_SIZE);
+               sText[EXTRA1_SIZE]=0;
+               eResponse = WIFI_MESSAGE_CODE_GET_TESTMSG_1;
+            break;
+            */
+
+           /***********************************************************************************************
+              WIFI_MESSAGE_CODE_SET_SCAN_RESULT_X
+           ***********************************************************************************************
+            extern U8 sSR_Data[NUM_SR_FIELDS][SR_SIZE+1];
+            I32 iSRIdx;
+
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_1: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_2:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_3: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_4:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_5: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_6:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_7: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_8:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_9: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_10:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_11: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_12:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_13: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_14:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_15: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_16:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_17: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_18:
+            case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_19: case WIFI_MESSAGE_CODE_SET_SCAN_RESULT_20:
+
+
+                iSRIdx = uCmd-WIFI_MESSAGE_CODE_SET_SCAN_RESULT_1;
+                if (iSRIdx < NUM_SR_FIELDS)
+                {
+                    strncpy((I8 *)sSR_Data[iSRIdx], &sCommandLn[6], SR_SIZE);
+                    sSR_Data[iSRIdx][SR_SIZE]=0;
+                    strncpy(sText, (I8 *)sSR_Data[iSRIdx], SR_SIZE);
+
+                    sText[SR_SIZE]=0;
+                    eResponse = uIdx;
+                }
+                else
+                    bERROR = bTRUE;
+            break;
+            */
 
 
 

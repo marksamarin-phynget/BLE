@@ -120,12 +120,6 @@
 
 #define MAX_TIMEOUT_VALUE             0xFFFF
 
-// Task configuration
-#define GAPROLE_TASK_PRIORITY         3
-
-#ifndef GAPROLE_TASK_STACK_SIZE
-#define GAPROLE_TASK_STACK_SIZE       800 /*440*/
-#endif
 
 /*********************************************************************
  * TYPEDEFS
@@ -175,6 +169,9 @@ static uint16_t events = 0;
 static Clock_Struct startAdvClock;
 static Clock_Struct startUpdateClock;
 static Clock_Struct updateTimeoutClock;
+
+
+unsigned uGapEventCounter;
 
 // Task setup
 Task_Struct gapRoleTask;
@@ -822,6 +819,8 @@ bStatus_t GAPRole_TerminateConnection(void)
  *
  * @return  none
  */
+Task_Handle GapTaskHandle;
+
 void GAPRole_createTask(void)
 {
   Task_Params taskParams;
@@ -833,6 +832,9 @@ void GAPRole_createTask(void)
   taskParams.priority = GAPROLE_TASK_PRIORITY;
 
   Task_construct(&gapRoleTask, gapRole_taskFxn, &taskParams, NULL);
+
+
+  GapTaskHandle  = Task_handle(&gapRoleTask);
 }
 
 /*********************************************************************
@@ -901,8 +903,13 @@ static void gapRole_init(void)
  */
 static void gapRole_taskFxn(UArg a0, UArg a1)
 {
+  extern unsigned char bIDSet;
+
+
   // Initialize profile
   gapRole_init();
+
+//  while(!bIDSet)Task_yield();
 
   // Profile main loop
   for (;;)
@@ -921,6 +928,7 @@ static void gapRole_taskFxn(UArg a0, UArg a1)
     // message is queued to the message receive queue of the thread or when
     // ICall_signal() function is called onto the semaphore.
     ICall_Errno errno = ICall_wait(ICALL_TIMEOUT_FOREVER);
+    uGapEventCounter++;
 
     if (errno == ICALL_ERRNO_SUCCESS)
 #endif //ICALL_EVENTS
@@ -929,8 +937,7 @@ static void gapRole_taskFxn(UArg a0, UArg a1)
       ICall_ServiceEnum src;
       ICall_HciExtEvt *pMsg = NULL;
 
-      if (ICall_fetchServiceMsg(&src, &dest,
-                                (void **)&pMsg) == ICALL_ERRNO_SUCCESS)
+      if (ICall_fetchServiceMsg(&src, &dest, (void **)&pMsg) == ICALL_ERRNO_SUCCESS)
       {
         if ((src == ICALL_SERVICE_CLASS_BLE) && (dest == selfEntity))
         {

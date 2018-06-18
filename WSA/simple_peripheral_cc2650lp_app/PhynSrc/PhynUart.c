@@ -38,7 +38,7 @@ B32 bSolicitedMsgPend  = bFALSE, bUnsolicitedMsgPend = bFALSE, bUnsolicitedMsgsO
 B32 bRxTerm;      // Used by UART26XX.c but defined here so that the modified version cannot be used outside of PWD
 
 U32 uLastUartBytesRead;
-//Clock_Struct zKAClock;
+U32 uUartEventCounter;
 
 static U32  UART_Bytes_Read(void);
 
@@ -340,16 +340,19 @@ UART_taskfxn
 static void UART_taskFxn(UArg a0, UArg a1)
 {
     U32 uLen;
+    extern U32 uUartTaskCounter;
+
     extern Clock_Struct  zMsgTimeoutClock;
 
     // Application main loop
     for (;;)
     {
-
-        Semaphore_pend(UARTsem, 100);    // Service every 200ms (never post the semaphore)
+        uUartTaskCounter++;
+        Semaphore_pend(UARTsem, 100);    // Service every 100ms (never post the semaphore)
 
         if (bSolicitedMsgPend)
         {
+            uUartEventCounter++;
             uLen = strlen(sSolicitedMsg);
 
             sSolicitedMsg[uLen]=0;         // add NULL to end of tx
@@ -364,6 +367,7 @@ static void UART_taskFxn(UArg a0, UArg a1)
                uLen = strlen(sUnsolicitedMsg);
 
                sUnsolicitedMsg[uLen]=0;         // add NULL to end of tx
+               uUartEventCounter++;
 
                if (UART_Send_Msg(sUnsolicitedMsg, uLen+1))
                    bUnsolicitedMsgPend = bFALSE;
@@ -373,6 +377,7 @@ static void UART_taskFxn(UArg a0, UArg a1)
         // Read is finished when Terminator> is received or buffer full
         if (UART_Read_Is_Finished())
         {
+            uUartEventCounter++;
             uLastUartBytesRead = UART_Bytes_Read();                // Determine how many bytes came in
             Start_UART_Read(PWD_SERIAL_RXBUF_SIZE);               // Setup to read next Rx stream
             Process_Serial_Command();
