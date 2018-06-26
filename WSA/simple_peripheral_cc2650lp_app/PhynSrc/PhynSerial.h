@@ -74,21 +74,29 @@ Command: Text to App
 
 typedef enum
 {
+
+
     // System Control/Info
     WIFI_MESSAGE_CODE_CONNECTION_STATUS     = 10,   // Request Connection Status
     WIFI_MESSAGE_CODE_RESYNCHRONIZE         = 11,   // Reset Message counters and clear buffers
     WIFI_MESSAGE_CODE_FORCE_ASSERT          = 13,   // Force an APP assert
     WIFI_MESSAGE_CODE_RESET_BLE             = 14,   // Reset the BLE board
+    WIFI_MESSAGE_CODE_FORCE_GP_FAULT        = 15,   // Force a CPU GP Fault
     WIFI_MESSAGE_CODE_FORCE_WD_TIMEOUT      = 16,   // Force (test) a watchdog reset
     WIFI_MESSAGE_CODE_GET_STACK_INFO        = 17,
     WIFI_MESSAGE_CODE_GET_WD_INFO           = 18,
     WIFI_MESSAGE_CODE_GET_COUNTERS          = 19,
-    WIFI_MESSAGE_CODE_SET_SCAN_RESP_NAME    = 20,
-    WIFI_MESSAGE_CODE_GET_SCAN_RESP_NAME    = 21,
+    WIFI_MESSAGE_CODE_SET_SCAN_RESP_NAME    = 20,   // Set scan response (device) name
+    WIFI_MESSAGE_CODE_GET_SCAN_RESP_NAME    = 21,   // Get scan response (device) name
 
     WIFI_MESSAGE_CODE_INC_EVENT             = 22,
     WIFI_MESSAGE_CODE_GET_EVENT_COUNT       = 23,
     WIFI_MESSAGE_CODE_CLEAR_EVENT_COUNTS    = 24,
+
+    WIFI_MESSAGE_CODE_GET_CRC               = 25,   // Get CRCs (APP, BLE Stack, NVD)
+    WIFI_MESSAGE_CODE_GET_BLE_FW_VER        = 26,   // Get BLE FW Version
+    WIFI_MESSAGE_CODE_GET_BLE_CPU_VER       = 27,   // Get BLE CPU Version
+
 
     // Parameter Info
     WIFI_MESSAGE_CODE_GET_TIMEZONE             = 30,   // Get Timezone Attribute
@@ -104,17 +112,23 @@ typedef enum
     WIFI_MESSAGE_CODE_GET_COMMAND              = 40,   // Get  Attribute
 
     WIFI_MESSAGE_CODE_SET_STATUS               = 41,   // Set  Attribute
-    WIFI_MESSAGE_CODE_SET_FIRMWARE_VERSION     = 42,   // Set  Attribute
+    WIFI_MESSAGE_CODE_SET_WIFI_VERSION         = 42,   // Set  Attribute
     WIFI_MESSAGE_CODE_SET_SERIAL_NUMBER        = 43,   // Set  Attribute
 
     WIFI_MESSAGE_CODE_SET_SCAN_RESULT_COUNTER  = 44,   // Set  Attribute
     WIFI_MESSAGE_CODE_SET_SCAN_RESULT          = 45,   // Set  Attribute
 
 
-    // Informational
-    WIFI_MESSAGE_CODE_GET_CRC               = 50,   // Get CRCs (APP, BLE Stack, NVD)
-    WIFI_MESSAGE_CODE_GET_BLE_FW_VER        = 51,   // Get BLE FW Version
 
+    WIFI_MESSAGE_CODE_GET_GAPROLE_BD_ADDR          =  52,  //!< Device's Address. Read Only. Size is uint8_t[B_ADDR_LEN]. This item is read from the controller.
+    WIFI_MESSAGE_CODE_GET_GAPROLE_CONN_BD_ADDR     =  53,  //!< Address of connected device. Read only. Size is uint8_t[B_MAX_ADV_LEN]. Set to all zeros when not connected.
+/*
+    WIFI_MESSAGE_CODE_GET_GAPROLE_ADV_DIRECT_ADDR  =  53,  //!< Direct Advertisement Address. Read/Write. Size is uint8_t[B_ADDR_LEN]. Default is NULL.
+    WIFI_MESSAGE_CODE_GET_GAPROLE_CONNHANDLE       =  54,  //!< Connection Handle. Read Only. Size is uint16_t.
+    WIFI_MESSAGE_CODE_GET_GAPROLE_STATE            =  56,  //!< Reading this parameter will return GAP Peripheral Role State. Read Only. Size is uint8_t.
+    WIFI_MESSAGE_CODE_GET_GAPROLE_BD_ADDR_TYPE     =  57,  //!< Address type of connected device. Read only. Size is uint8_t.
+    WIFI_MESSAGE_CODE_GET_GAPROLE_CONN_TERM_REASON =  58,  //!< Reason of the last connection terminated event. Size is uint8_t.
+*/
 
 #if 0
     WIFI_MESSAGE_CODE_GET_SERNUM            = 52,   // Get Serial number string posted an BLE Characteristic
@@ -141,8 +155,6 @@ typedef enum
     WIFI_MESSAGE_CODE_APP_MSG               = 60,  // Send Data to App
     WIFI_MESSAGE_CODE_CLEAR_APP_MSG         = 61,  // Force-clear the BLE client read lockout
 
-   WIFI_MESSAGE_CODE_NUM_OF
-
 } WIFI_MESSAGE_CODES_ENUM;
 
 
@@ -155,32 +167,16 @@ typedef enum
    BLE_MESSAGE_CODE_NOTREADY                = 82,  // Connected to App but  not ready to receive msgs
    BLE_MESSAGE_CODE_READY                   = 83,  // Connected and ready to receive msgs
 
-#if 0
-   //BLE_MESSAGE_CODE_RESYNCHED               = 15,
-   BLE_MESSAGE_CODE_RESETTING               = 14,  // BLE board is resetting back to Bootloader
+   BLE_MESSAGE_CODE_SUCCESS                 = 88,
+   BLE_MESSAGE_CODE_FAIL                    = 89,
 
-   BLE_MESSAGE_CODE_CRC_REPORT              = 20,  // Returning CRCs
-   BLE_MESSAGE_CODE_FW_VERSION              = 21,  // Returning FW version data Characteristic
-   BLE_MESSAGE_CODE_SERNUM_REPORT           = 22,  // Returning  current serial number
-   BLE_MESSAGE_CODE_SERNUM_SET              = 23,  // Serial number Characteristic set
-   BLE_MESSAGE_CODE_PWD_MODEL_REPORT        = 24,  // Returning PWD Model Characteristic
-   BLE_MESSAGE_CODE_PWD_MODEL_SET           = 25,  // PWD Model Characteristic Set
-   BLE_MESSAGE_CODE_STATS                   = 26,
-   BLE_MESSAGE_CODE_SCANNAME_REPORT         = 27,
-   BLE_MESSAGE_CODE_SCANNAME_SET            = 28,
+   // message Errors
+   BLE_MESSAGE_CODE_UNRECOGNIZED_CMD        = 95,
+   BLE_MESSAGE_CODE_COMMAND_ERROR           = 96,
 
-
-
-#endif
-   BLE_MESSAGE_CODE_PRESENTED_TO_APP        = 70,  // Message posted as BLE characteristic
-
-   // Exceptions 80-89
-   BLE_MESSAGE_CODE_UNRECOGNIZED_CMD        = 88,
-   BLE_MESSAGE_CODE_COMMAND_ERROR           = 89,
-
-   // Unsolicited Tx Msgs (90-99)
-   BLE_MESSAGE_CODE_APP                     = 90,     // Message from App
-   BLE_MESSAGE_CODE_APP_FIELD               = 91,     // App field updated
+   // Unsolicited Messages
+   BLE_MESSAGE_CODE_FIELD_UPDATE            = 97,     // Field update from client
+   BLE_MESSAGE_CODE_COMMAND                 = 98,     // Command data from client
    BLE_MESSAGE_CODE_LOG                     = 99,     // Log Msgs
 
 } BLE_MESSAGE_CODES_ENUM;

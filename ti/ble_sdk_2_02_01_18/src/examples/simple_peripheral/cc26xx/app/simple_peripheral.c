@@ -81,6 +81,7 @@
 // For UART
 #include "PhynUart.h"
 #include "PhynSerial.h"
+#include "PWD_Util.h"
 
 // For system tick access
 #include <driverlib\systick.h>
@@ -140,7 +141,7 @@ Char sbpTaskStack[SBP_TASK_STACK_SIZE];
 // Profile state and parameters
 //static gaprole_States_t gapProfileState = GAPROLE_INIT;
 
-/* GAP - SCAN RSP data (max size = 31 bytes)
+///* GAP - SCAN RSP data (max size = 31 bytes)
 uint8_t scanRspData[] =
 {
   // complete name
@@ -176,7 +177,7 @@ uint8_t scanRspData[] =
   0       // 0dBm
 
 };
-*/
+
 
 // GAP - Advertisement data (max size = 31 bytes, though this is
 // best kept short to conserve power while advertisting)
@@ -207,7 +208,7 @@ static uint8_t advertData[] =
 
 // GAP GATT Attributes
 //static uint8_t attDeviceName[GAP_DEVICE_NAME_LEN] = "Simple BLE Peripheral";
-I8 attDeviceName[] = "Phyn.Plus.yyy";
+I8 attDeviceName[] = "Test";
 
 
 // Globals used for ATT Response retransmission
@@ -244,7 +245,7 @@ static void     SimpleBLEPeripheral_freeAttRsp                  (uint8_t status)
 static void     SimpleBLEPeripheral_stateChangeCB               (gaprole_States_t newState);
 static void     SimpleBLEPeripheral_enqueueMsg                  (uint8_t event, uint8_t state);
 
-void Phyn_Set_Scan_Response_Name(I8 * sNewName);
+//void Phyn_Set_Scan_Response_Name(I8 * sNewName);
 
 
 void GAP_Setup();
@@ -400,11 +401,6 @@ void GAP_Setup()
        // until the enabler is set back to TRUE
        uint16_t volatile advertOffTime = 0;               // volatile to suppress no reference warning
 
-       uint8_t enableUpdateRequest = DEFAULT_ENABLE_UPDATE_REQUEST;
-       uint16_t desiredMinInterval = DEFAULT_DESIRED_MIN_CONN_INTERVAL;
-       uint16_t desiredMaxInterval = DEFAULT_DESIRED_MAX_CONN_INTERVAL;
-       uint16_t desiredSlaveLatency = DEFAULT_DESIRED_SLAVE_LATENCY;
-       uint16_t desiredConnTimeout = DEFAULT_DESIRED_CONN_TIMEOUT;
 
        // Set the GAP Role Parameters
 
@@ -413,21 +409,34 @@ void GAP_Setup()
        //GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, 1,   &FALSE_U8);
 
 
-       //GAPRole_SetParameter(GAPROLE_SCAN_RSP_DATA, sizeof(scanRspData), scanRspData);
-       Phyn_Set_Scan_Response_Name("Powered by Phyn");
+       // Scan response (device) name setup -
+       // Will use one in FLASH if stored, reve3rts to default name if not stored
+       I8 sName[DEVICENAME_PRESERVE_BYTES+1];
+       I8 sDefDevName[DEVICENAME_PRESERVE_BYTES+1];
 
-       GAPRole_SetParameter(GAPROLE_ADVERT_DATA, sizeof(advertData),  advertData);
+       strcpy(sDefDevName, DEFAULT_DEVICENAME);
 
-       GAPRole_SetParameter(GAPROLE_PARAM_UPDATE_ENABLE, sizeof(uint8_t),  &enableUpdateRequest);
-       GAPRole_SetParameter(GAPROLE_MIN_CONN_INTERVAL, sizeof(uint16_t),   &desiredMinInterval);
-       GAPRole_SetParameter(GAPROLE_MAX_CONN_INTERVAL, sizeof(uint16_t),   &desiredMaxInterval);
-       GAPRole_SetParameter(GAPROLE_SLAVE_LATENCY, sizeof(uint16_t),       &desiredSlaveLatency);
-       GAPRole_SetParameter(GAPROLE_TIMEOUT_MULTIPLIER, sizeof(uint16_t),  &desiredConnTimeout);
+       if (BLE_GetDeviceName(sName))
+           Set_Scan_Response_Name(sName);
+       else
+           Set_Scan_Response_Name(sDefDevName);
+
+       U8  enableUpdateRequest = DEFAULT_ENABLE_UPDATE_REQUEST;
+       U16 desiredMinInterval  = DEFAULT_DESIRED_MIN_CONN_INTERVAL;
+       U16 desiredMaxInterval  = DEFAULT_DESIRED_MAX_CONN_INTERVAL;
+       U16 desiredSlaveLatency = DEFAULT_DESIRED_SLAVE_LATENCY;
+       U16 desiredConnTimeout  = DEFAULT_DESIRED_CONN_TIMEOUT;
+
+       GAPRole_SetParameter(GAPROLE_ADVERT_DATA,            sizeof(advertData), advertData);
+       GAPRole_SetParameter(GAPROLE_PARAM_UPDATE_ENABLE,    sizeof(uint8_t),    &enableUpdateRequest);
+       GAPRole_SetParameter(GAPROLE_MIN_CONN_INTERVAL,      sizeof(uint16_t),   &desiredMinInterval);
+       GAPRole_SetParameter(GAPROLE_MAX_CONN_INTERVAL,      sizeof(uint16_t),   &desiredMaxInterval);
+       GAPRole_SetParameter(GAPROLE_SLAVE_LATENCY,          sizeof(uint16_t),   &desiredSlaveLatency);
+       GAPRole_SetParameter(GAPROLE_TIMEOUT_MULTIPLIER,     sizeof(uint16_t),   &desiredConnTimeout);
      }
 
      // Set the GAP Characteristics
-     // GGS_SetParameter(GGS_DEVICE_NAME_ATT, GAP_DEVICE_NAME_LEN, attDeviceName);
-     GGS_SetParameter(GGS_DEVICE_NAME_ATT, strlen(attDeviceName), attDeviceName);
+    // GGS_SetParameter(GGS_DEVICE_NAME_ATT, strlen(attDeviceName), attDeviceName);
 
 
      // Set advertising interval
@@ -440,28 +449,32 @@ void GAP_Setup()
        GAP_SetParamValue(TGAP_GEN_DISC_ADV_INT_MAX, advInt);
      }
 
-     // Setup the GAP Bond Manager
+     // Setup the GAP Bond Manager - BONDING IS DISABLED
      {
+       uint8_t bonding = FALSE;                                     // NO BONDING
+       GAPBondMgr_SetParameter(GAPBOND_BONDING_ENABLED, sizeof(uint8_t), &bonding);
+
+#if 0
        uint32_t passkey = 0; // passkey "000000"
        uint8_t pairMode = GAPBOND_PAIRING_MODE_WAIT_FOR_REQ;
        uint8_t mitm = TRUE;
        uint8_t ioCap = GAPBOND_IO_CAP_DISPLAY_ONLY;
-       uint8_t bonding = FALSE;
+       uint8_t bonding = FALSE;                                     // NO BONDING
 
        GAPBondMgr_SetParameter(GAPBOND_DEFAULT_PASSCODE, sizeof(uint32_t),
                                &passkey);
        GAPBondMgr_SetParameter(GAPBOND_PAIRING_MODE, sizeof(uint8_t), &pairMode);
        GAPBondMgr_SetParameter(GAPBOND_MITM_PROTECTION, sizeof(uint8_t), &mitm);
        GAPBondMgr_SetParameter(GAPBOND_IO_CAPABILITIES, sizeof(uint8_t), &ioCap);
-       GAPBondMgr_SetParameter(GAPBOND_BONDING_ENABLED, sizeof(uint8_t), &bonding);          // NO BONDING
-
+       GAPBondMgr_SetParameter(GAPBOND_BONDING_ENABLED, sizeof(uint8_t), &bonding);
+#endif
      }
 
     // GGS_AddService(GATT_ALL_SERVICES);           //
      //GATTServApp_AddService(GATT_ALL_SERVICES);   // GATT attributes
      //DevInfo_AddService();                        // Device Information Service
 
-    // Start the Device
+    // Start the Device, register characteristic read/write callbacks
     VOID GAPRole_StartDevice(&SimpleBLEPeripheral_gapRoleCBs);
 
     // Start Bond Manager
@@ -472,30 +485,28 @@ void GAP_Setup()
 
 }
 
-
-
+U8 sNewAdv[31];
 /*********************************************************************
-Phyn_Set_Scan_Response_Name
+Set_Scan_Response_Name
 
 **********************************************************************/
-void Phyn_Set_Scan_Response_Name(I8 * sNewName)
+void Set_Scan_Response_Name(I8 * sName)
 {
-    static I8 sNewAdv[31];
+    //static I8 sNewAdv[31];
     extern I8 sScanName[];
     U32 uIdx;
 
-    U32  uNameLen = strlen (sNewName);
+    U32  uNameLen = strlen (sName);
 
-    if (uNameLen > 20)
-        uNameLen = 20;
+    if (uNameLen > DEVICENAME_PRESERVE_BYTES)
+        uNameLen = DEVICENAME_PRESERVE_BYTES;
 
-    strncpy(sScanName, sNewName, uNameLen);
-    sScanName[uNameLen]=0;
+    sName[uNameLen]=0;
 
     // complete name
     sNewAdv[0] = uNameLen + 1;                               // size of name + sNewAdv[1]
     sNewAdv[1] = GAP_ADTYPE_LOCAL_NAME_COMPLETE;
-    strncpy(&sNewAdv[2], sScanName, uNameLen);
+    strncpy(&sNewAdv[2], sName, DEVICENAME_PRESERVE_BYTES);
 
     // connection interval range
     uIdx = uNameLen + 2;
@@ -511,8 +522,7 @@ void Phyn_Set_Scan_Response_Name(I8 * sNewName)
     sNewAdv[uIdx++] = GAP_ADTYPE_POWER_LEVEL;
     sNewAdv[uIdx++] = 0;                                                // 0dBm
 
-
-    GAPRole_SetParameter(GAPROLE_SCAN_RSP_DATA, uIdx, &sNewAdv);
+    GAPRole_SetParameter(GAPROLE_SCAN_RSP_DATA, uIdx, &sNewAdv[0]);
 }
 
 /*********************************************************************
@@ -556,7 +566,7 @@ static void SimpleBLEPeripheral_taskFxn(UArg a0, UArg a1)
   // Initialize application
    SimpleBLEPeripheral_init();
 
-   #ifdef WATCHDOG_ENABLED
+   #ifdef WD_ENABLE
        BLE_SetupAndStartWatchdog();
    #endif
 
@@ -1226,25 +1236,19 @@ void SimpleBLEPeripheral_performPeriodicTask(void)
     // New message from APP for MT
     if (bNewAppMsg)
     {
-        UART_Unsolicited_Tx(BLE_MESSAGE_CODE_APP, sMsgFromApp);
+        UART_Unsolicited_Tx(BLE_MESSAGE_CODE_COMMAND, sMsgFromApp);
         bNewAppMsg = bFALSE;
     }
 
     // New message from APP for MT
     if (bNewAppField)
     {
-
-        UART_Unsolicited_Tx(BLE_MESSAGE_CODE_APP, sAppUpdateMsg);
+        UART_Unsolicited_Tx(BLE_MESSAGE_CODE_FIELD_UPDATE, sAppUpdateMsg);
         bNewAppField = bFALSE;
     }
 
 }
-/*
-void Transmit_AppMsg()
-{
-    UART_Unsolicited_Tx(BLE_MESSAGE_CODE_APP, sMessageToApp);
-}
-*/
+
 /*********************************************************************
 Heartbeat_Service
 *********************************************************************/
@@ -1658,5 +1662,8 @@ void DelayAndBlockMs(uint64_t uMilliSec)
   GATTServApp_AddService(GATT_ALL_SERVICES);   // GATT attributes
  // DevInfo_AddService();                        // Device Information Service
 #endif
+
+
+
 
 #endif

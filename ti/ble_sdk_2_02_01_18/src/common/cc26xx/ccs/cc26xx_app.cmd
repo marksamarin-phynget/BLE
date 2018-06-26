@@ -101,7 +101,7 @@ MEMORY
     #endif
 
     // CCFG Page, contains .ccfg code section and some application code.
-    FLASH_LAST_PAGE (RX) :  origin = FLASH_LAST_PAGE_START, length = FLASH_PAGE_LEN
+    FLASH_LAST_PAGE (RX) :  origin = FLASH_LAST_PAGE_START, length = FLASH_PAGE_LEN, fill = 0xFFFFFFFF
 
     /* Application uses internal RAM for data */
     /* RAM Size 16 KB */

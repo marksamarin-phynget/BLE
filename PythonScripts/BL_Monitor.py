@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #********************************************************************************************************					
-# BLE_Regression_Test.py
+# BL_Monitor.py
 # 	
 #********************************************************************************************************
 import sys
@@ -17,26 +17,35 @@ import datetime
 #*********************************************************************************
 def OpenComPort(SerPort):
 
-	ser = serial.Serial(port=SerPort, baudrate=115200, timeout=0)
+	ser = serial.Serial(port=SerPort, baudrate=115200, timeout=0)  # open first serial port with 9600,8,N,1
 	print (ser.portstr)       # check which port was really used
 	return ser
 
 	
-if len(sys.argv) != 3:
-	print('\tUsage:  Python BL_SendScanResult.py <Port> <Msg>\n')
+#*********************************************************************************
+# START	
+#*********************************************************************************
+if len(sys.argv) != 2:
+	print('\tUsage:  python BL_Monitor.py <Port>\n')
 	print('\twhere: <port> is COM1, /dev/ttyUSB0, etc.\n')
-	print('\tex:    Python BL_SendScanResult.py COM7 10.5.5.222\n')
+	print('\tex:    python BL_Monitor.py COM7\n')
 	print('\nNothing Done.....exit\n\n')
 	sys.exit(1)
 
+#
 #*********************************************************************************
 # OPEN serial Channel to BLE board
 #*********************************************************************************
 SP = App_Msg.OpenComPort(sys.argv[1])
+print("\nMonitoring Incoming BLE Messages")
 
+while (True):
+	sleep(.500)
+	Rxm = SP.read(256)	
+	
+	if len(Rxm) != 0:
+		print ('Rx: ',Rxm.decode('utf-8'))
+		sys.stdout.flush()
+		
+		
 
-#*********************************************************************************
-# Send message, report results
-#*********************************************************************************
-CMReadback = App_Msg.SetScanResult(SP, sys.argv[2]).decode('utf-8')
-print(CMReadback)

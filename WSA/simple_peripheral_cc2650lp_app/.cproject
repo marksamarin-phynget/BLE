@@ -77,16 +77,16 @@
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_16.9.compilerID.DEFINE.478406494" name="Pre-define NAME (--define, -D)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_16.9.compilerID.DEFINE" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="${COM_TI_RTSC_TIRTOSCC13XX_CC26XX_SYMBOLS}"/>
-									<listOptionValue builtIn="false" value="NO_BOOTLOADER"/>
+									<listOptionValue builtIn="false" value="xNO_BOOTLOADER"/>
 									<listOptionValue builtIn="false" value="xWAIT_FOR_ID_CHANGE"/>
 									<listOptionValue builtIn="false" value="CC26XX"/>
 									<listOptionValue builtIn="false" value="CC2650DK_4XS"/>
 									<listOptionValue builtIn="false" value="PHYN_PWD"/>
 									<listOptionValue builtIn="false" value="USE_RCOSC"/>
 									<listOptionValue builtIn="false" value="xTERMINAL_INTERFACE"/>
-									<listOptionValue builtIn="false" value="DEBUG_MODE"/>
+									<listOptionValue builtIn="false" value="xDEBUG_MODE"/>
 									<listOptionValue builtIn="false" value="xBLINKY_TEST"/>
-									<listOptionValue builtIn="false" value="xWD_ENABLE"/>
+									<listOptionValue builtIn="false" value="WD_ENABLE"/>
 									<listOptionValue builtIn="false" value="xTRACK_STATES"/>
 									<listOptionValue builtIn="false" value="EXT_HAL_ASSERT"/>
 									<listOptionValue builtIn="false" value="BOARD_DISPLAY_EXCLUDE_LCD"/>
@@ -157,6 +157,7 @@
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.ROMWIDTH.606627514" name="Specify rom width (--romwidth, -romwidth=width)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.ROMWIDTH" value="8" valueType="string"/>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.MEMWIDTH.952716768" name="Specify memory width (--memwidth, -memwidth=width)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.MEMWIDTH" value="8" valueType="string"/>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.OUTPUT_FORMAT.931033466" name="Output format" superClass="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.OUTPUT_FORMAT" value="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.OUTPUT_FORMAT.INTEL" valueType="enumerated"/>
+								<option id="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.FILL.1565221268" name="Specify fill value (--fill, -fill=val)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_16.9.hex.FILL" value="0xff" valueType="string"/>
 							</tool>
 							<tool id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.1780583174" name="XDCtools" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool">
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.XDC_PATH.430266391" name="Package repositories (--xdcpath)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.XDC_PATH" valueType="stringList">
@@ -175,7 +176,7 @@
 					<fileInfo id="com.ti.ccstudio.buildDefinitions.TMS470.Default.67178137.1867331134.PROFILES/oad_target.h" name="oad_target.h" rcbsApplicability="disable" resourcePath="PROFILES/oad_target.h" toolsToInvoke=""/>
 					<fileInfo id="com.ti.ccstudio.buildDefinitions.TMS470.Default.67178137.1867331134.PROFILES/oad.h" name="oad.h" rcbsApplicability="disable" resourcePath="PROFILES/oad.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="PhynSrc/devinfoservice.c|TOOLS/app_ble.cfg|cc2640.cfg|src|app_ble.cfg|cc26x0f128.cmd|PROFILES/oad_target.h|PROFILES/oad.h|PROFILES/simple_gatt_profile.c|Startup/board.c|Middleware/extflash/ExtFlash.c|PROFILES/oad_target_external_flash.c|PROFILES/oad.c|Startup/ccfg_app_ble_rcosc.c|TOOLS/cc26xx_app_oad.cmd|Startup/ST|Board|PROFILES/simplekeys.h|PROFILES/simplekeys.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="PhynSrc/OldCharacteristics.c|PhynSrc/devinfoservice.c|TOOLS/app_ble.cfg|cc2640.cfg|src|app_ble.cfg|cc26x0f128.cmd|PROFILES/oad_target.h|PROFILES/oad.h|PROFILES/simple_gatt_profile.c|Startup/board.c|Middleware/extflash/ExtFlash.c|PROFILES/oad_target_external_flash.c|PROFILES/oad.c|Startup/ccfg_app_ble_rcosc.c|TOOLS/cc26xx_app_oad.cmd|Startup/ST|Board|PROFILES/simplekeys.h|PROFILES/simplekeys.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

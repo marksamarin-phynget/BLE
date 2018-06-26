@@ -23,13 +23,10 @@
 
 #include <driverlib/chipinfo.h>
 
-
-
 #include "PhynDefs.h"
 #include "PhynUart.h"
 #include "PhynSerial.h"
 #include "PWD_Util.h"
-
 
 #ifndef USE_DEFAULT_USER_CFG
 
@@ -47,23 +44,8 @@ U16 CRC16(U32 uStartAddr, U32 uLength, U16 uSeed);
 #include <GPTimerCC26XX.h>
 
 #include <inc/hw_types.h>
-
-#if 0
-
-typedef struct GPTimerCC26XX_Params
-{
-    GPTimerCC26XX_Width     width;          /*!< Timer configuration (32/16-bit)  */
-    GPTimerCC26XX_Mode      mode;           /*!< Timer mode */
-    GPTimerCC26XX_DebugMode debugStallMode; /*!< Timer debug stall mode */
-} GPTimerCC26XX_Params;
-
-GPTimerCC26XX_Params Timer_A_Params =
-{
-    .width          = GPT_CONFIG_16BIT,
-    .mode           = GPT_MODE_PERIODIC_UP,
-    .debugStallMode = GPTimerCC26XX_DEBUG_STALL_OFF
-};
-#endif
+#include <driverlib/sys_ctrl.h>
+#include <driverlib/PRCM.h>
 
 unsigned long ulTick;
 void GPTick (GPTimerCC26XX_Handle handle, GPTimerCC26XX_IntMask interruptMask);
@@ -82,8 +64,8 @@ U32 uAppCRC1;
 #include "PhynGatt.h"
 
 #define VERSION_ADDR (0x1FF80)
-#define VERSION  (0.10)
-I8 sBLE_FW_Version[BLE_VER_STR_LEN + 1] = "BLE App V0.11";
+#define VERSION  (0.20)
+I8 sBLE_FW_Version[BLE_VER_STR_LEN + 1] = "BLE App V0.20";
 I8 sMsg[256];
 
 U32 uCPURev;
@@ -94,6 +76,11 @@ const I8 sTerminalIfcMsg[] = "00,99,NO_RELEASE - Terminal Interface Enabled";
 const I8 sBlinkDemoMsg[]   = "00,99,NO_RELEASE - Blink Demo";
 
 I32 GapPri;
+U32 uResetMask;
+
+// TODO: Update Version Number
+// TODO: Add GP Fault Handler
+// TODO: Fix Asserts
 
 /*******************************************************************************
  main
@@ -109,34 +96,16 @@ int main()
         #else
             #warning ***** BOOTLOADER DISABLED - JTAG USE ONLY *****
         #endif
-#if 0
-        // TEST EVENT COUNTERS
-        U32 volatile uEventTest,i;
 
-        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
-        for (i=0; i < 10009; i++);
-        uEventTest = BLE_GetEventCount(EVENT_TEST);
-        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
-        for (i=0; i < 10009; i++);
-        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
-        for (i=0; i < 10009; i++);
-        uEventTest = BLE_GetEventCount(EVENT_TEST);
+        // Count total resets
+        BLE_IncrementEventCount(EVENT_RESET);
 
-//        for (i=0; i < 10; i++)
-//            uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        // Increment reset cause
+        uResetMask = SysCtrlResetSourceGet();
+        BLE_IncrementEventCount(POWER_ON_RESET + uResetMask);
 
-        uEventTest = BLE_GetEventCount(EVENT_TEST);
-        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
-        for (i=0; i < 10009; i++);
-        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
-        for (i=0; i < 10009; i++);
-        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
-        for (i=0; i < 10009; i++);
-        uEventTest = BLE_GetEventCount(EVENT_TEST);
-        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
-        for (i=0; i < 10009; i++);
-        uEventTest = BLE_GetEventCount(EVENT_TEST);
-#endif
+       // uWarmResetReg = HWREG(PRCM_BASE + PRCM_O_WARMRESET);
+        if (HWREG(PRCM_BASE + PRCM_O_WARMRESET) & 2) BLE_IncrementEventCount(LOCKUP_RESET);
 
         // Need Watchdog running immediately AFTER bootloader is enabled so that any setup fails got back to bootloader
         // Causes issues with RTOS setup so move to SimpleBLEPeripheral_taskFxn()
@@ -439,40 +408,6 @@ void smallErrorHook(Error_Block *eb)
   for (;;);
 }
 
-#if defined (CC1350_LAUNCHXL) && defined (POWER_SAVING)
-/*******************************************************************************
- * @fn          rFSwitchNotifyCb
- *
- * @brief       Power driver callback to toggle RF switch on Power state
- *              transitions.
- *
- * input parameters
- *
- * @param   eventType - The state change.
- * @param   eventArg  - Not used.
- * @param   clientArg - Not used.
- *
- * @return  Power_NOTIFYDONE to indicate success.
- */
-static uint8_t rFSwitchNotifyCb(uint8_t eventType, uint32_t *eventArg,
-                                uint32_t *clientArg)
-{
-  if (eventType == PowerCC26XX_ENTERING_STANDBY)
-  {
-    // Power down RF Switch
-    PIN_setOutputValue(radCtrlHandle, Board_DIO30_SWPWR, 0);
-  }
-  else if (eventType == PowerCC26XX_AWAKE_STANDBY)
-  {
-    // Power up RF Switch
-    PIN_setOutputValue(radCtrlHandle, Board_DIO30_SWPWR, 1);
-  }
-  
-  // Notification handled successfully
-  return Power_NOTIFYDONE;
-}
-#endif //CC1350_LAUNCHXL || POWER_SAVING
-
 
 /**********************************************************************************************************************
 CRC16
@@ -531,3 +466,88 @@ U16 CRC16(U32 uStartAddr, U32 uLength, U16 uSeed)
     return uCRC;
 }
 
+
+/********************************************************************************************************
+        UNUSED & TEST Code
+********************************************************************************************************/
+#if 0
+        // TEST EVENT COUNTERS
+        U32 volatile uEventTest,i;
+
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+
+//        for (i=0; i < 10; i++)
+//            uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+        uEventTest = BLE_IncrementEventCount(EVENT_TEST);
+        for (i=0; i < 10009; i++);
+        uEventTest = BLE_GetEventCount(EVENT_TEST);
+#endif
+
+
+#if defined (CC1350_LAUNCHXL) && defined (POWER_SAVING)
+/*******************************************************************************
+ * @fn          rFSwitchNotifyCb
+ *
+ * @brief       Power driver callback to toggle RF switch on Power state
+ *              transitions.
+ *
+ * input parameters
+ *
+ * @param   eventType - The state change.
+ * @param   eventArg  - Not used.
+ * @param   clientArg - Not used.
+ *
+ * @return  Power_NOTIFYDONE to indicate success.
+ */
+static uint8_t rFSwitchNotifyCb(uint8_t eventType, uint32_t *eventArg,
+                                uint32_t *clientArg)
+{
+  if (eventType == PowerCC26XX_ENTERING_STANDBY)
+  {
+    // Power down RF Switch
+    PIN_setOutputValue(radCtrlHandle, Board_DIO30_SWPWR, 0);
+  }
+  else if (eventType == PowerCC26XX_AWAKE_STANDBY)
+  {
+    // Power up RF Switch
+    PIN_setOutputValue(radCtrlHandle, Board_DIO30_SWPWR, 1);
+  }
+
+  // Notification handled successfully
+  return Power_NOTIFYDONE;
+}
+#endif //CC1350_LAUNCHXL || POWER_SAVING
+
+
+#if 0
+
+typedef struct GPTimerCC26XX_Params
+{
+    GPTimerCC26XX_Width     width;          /*!< Timer configuration (32/16-bit)  */
+    GPTimerCC26XX_Mode      mode;           /*!< Timer mode */
+    GPTimerCC26XX_DebugMode debugStallMode; /*!< Timer debug stall mode */
+} GPTimerCC26XX_Params;
+
+GPTimerCC26XX_Params Timer_A_Params =
+{
+    .width          = GPT_CONFIG_16BIT,
+    .mode           = GPT_MODE_PERIODIC_UP,
+    .debugStallMode = GPTimerCC26XX_DEBUG_STALL_OFF
+};
+#endif

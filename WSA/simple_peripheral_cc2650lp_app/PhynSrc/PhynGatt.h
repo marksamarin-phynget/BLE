@@ -5,21 +5,14 @@
 
 #define PHYNGATT_NUM_ATTR_SUPPORTED 1
 
-#define PHYNPROFILE_UUID                    (0xFFE0)
-//#define PHYNPROFILE_CHAR1_UUID              (0xFFE1)
+#define PHYNPROFILE_UUID                    (0xFFB0)
+#define MSG_FROM_APP_UUID                   (0xFFE8)
+#define MSG_TO_APP_COUNTER_UUID             (0xFFE9)
+#define MSG_TO_APP_UUID                     (0xFFEA)
 
-//#define PHYNPROFILE_PROGRAM_CRC_UUID        (0xFFE2)
-//#define PHYNPROFILE_VALIDATION_SEED_UUID    (0xFFE3)
-//#define PHYNPROFILE_VALIDATION_KEY_UUID     (0xFFE4)
 
-//#define PHYNPROFILE_STATUS_UUID             (0xFFE5)
-//#define PHYNPROFILE_COMMAND_UUID            (0xFFE6)
 
-//#define PHYNPROFILE_MESSAGE_COUNTER_UUID    (0xFFE7)
-
-#define MSG_FROM_APP_UUID            (0xFFE8)
-#define MSG_TO_APP_COUNTER_UUID   (0xFFE9)
-#define MSG_TO_APP_UUID           (0xFFEA)
+#define GATT_PERMIT_RW  ( GATT_PERMIT_READ | GATT_PERMIT_WRITE)
 
 
 #define PHYNPROFILE_SERVICE               0x00000002
@@ -65,10 +58,10 @@
 #define FIELD_CLOUD_ENV_SIZE        (3)
 #define FIELD_CLOUD_API_SIZE        (42)
 #define FIELD_APP_VERSION_SIZE      (6)
-#define FIELD_FIRMWARE_VERSION_SIZE (9)
+#define FIELD_WIFI_VERSION_SIZE     (9)
 #define FIELD_SERIAL_NUMBER_SIZE    (14)
 #define FIELD_SR_DATA_SIZE          (34)
-#define FIELD_SR_COUNT_SIZE         (2)
+#define FIELD_SR_COUNT_SIZE         (1)
 
 bStatus_t Phyn_AddServices();
 void InitAppFields();

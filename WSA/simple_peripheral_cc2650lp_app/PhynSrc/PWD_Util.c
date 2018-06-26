@@ -3,6 +3,8 @@
 
 #include <driverlib/flash.h>
 #include <driverlib/watchdog.h>
+#include <driverlib/vims.h>
+
 #include <ti/sysbios/family/arm/m3/Hwi.h>
 #include <string.h>
 
@@ -71,7 +73,7 @@ void UnsLongToAscii(U32 uUnsLong, char * sAsc)
 void BLE_EnableBootloader(void)
 {
 
-    U8  uCCFGArea[NVD_PRESERVE_BYTES];
+    U8  uCCFGArea[RESERVED_LAST_PAGE_BYTES];
     U32 volatile uFlashOpResult;   // volatile to avoid unused var warning
     U32 uSectorSize;
 
@@ -82,27 +84,25 @@ void BLE_EnableBootloader(void)
         UART_Naked_Tx("00, 99,NO_RELEASE **** FLASH SECTOR SIZE != 4K");
 
     // Read in last 128 bytes of config area (only last 88 bytes used)
-    memcpy (uCCFGArea, (U8 *)(0x20000 - NVD_PRESERVE_BYTES), NVD_PRESERVE_BYTES);
-    //memcpy (uCCFGArea, (U8 *)0x1FF80, 128);
+    memcpy (uCCFGArea, (U8 *)(0x20000 - RESERVED_LAST_PAGE_BYTES), RESERVED_LAST_PAGE_BYTES);
 
     // Set Enables
-    *(U32 *)(&uCCFGArea[NVD_PRESERVE_BYTES-20]) = 0xFFFFFFFF;                  // IMAGE _VALID @ Address: 0x1FFFEC
-    *(U32 *)(&uCCFGArea[NVD_PRESERVE_BYTES-0x28]) = BACKDOOR_ENABLE_PATTERN;   // BOOTLOADER_CONFIG @ Address: 0x1FFFD8
+    *(U32 *)(&uCCFGArea[RESERVED_LAST_PAGE_BYTES-20]) = 0xFFFFFFFF;                  // IMAGE _VALID @ Address: 0x1FFFEC - (Device does not allow manual erase)
+    *(U32 *)(&uCCFGArea[RESERVED_LAST_PAGE_BYTES-0x28]) = BACKDOOR_ENABLE_PATTERN;   // BOOTLOADER_CONFIG @ Address: 0x1FFFD8
 
 
+    // Clear the event flags if necessary
     if (bClearEvents)
     {
-        memset(&uCCFGArea, 0xFF, MAX_EVENT_OCCURANCES_LOGGED*4);
+        memset(&uCCFGArea, 0xFF, MAX_COUNT_PER_EVENT*4);
         bClearEvents = bFALSE;
     }
 
-    //*(U32 *)(&uCCFGArea[124]) = 0xFFFFFFFF;
-    //*(U32 *)(&uCCFGArea[BACKDOOR_ENABLE_ADDRESS]) = BACKDOOR_ENABLE_PATTERN;
-
     // Write back modifications - Destroys addresses 0x1F000 to (0x20000 - NVD_PRESERVE_BYTES)
+    VIMSModeSafeSet( VIMS_BASE,VIMS_MODE_OFF, TRUE);
     uFlashOpResult =  FlashSectorErase(0x1F000);
-    uFlashOpResult =  FlashProgram (uCCFGArea, 0x20000 - NVD_PRESERVE_BYTES, NVD_PRESERVE_BYTES);
-    //uFlashOpResult =  FlashProgram (uCCFGArea, 0x20000 - 128, 128);
+    uFlashOpResult =  FlashProgram (uCCFGArea, 0x20000 - RESERVED_LAST_PAGE_BYTES, RESERVED_LAST_PAGE_BYTES);
+    VIMSModeSafeSet( VIMS_BASE,VIMS_MODE_ENABLED, TRUE);
 }
 
 
@@ -128,14 +128,14 @@ B32 BLE_VerifyBootloaderIsEnabled(void)
 ***********************************************************************************************/
 I32 BLE_IncrementEventCount(EVENT_ENUM eEvent)
 {
-    U32 i, uBitMask, uLogWord, uAddr, uVal;
+    U32 i, uBitMask, uAddr, uVal;
 
     if (eEvent < 32)
     {
         uBitMask = 1 << (U32)eEvent;
 
         // Find first non-occurrence
-        for (i=0; i<MAX_EVENT_OCCURANCES_LOGGED; i++)
+        for (i=0; i<MAX_COUNT_PER_EVENT; i++)
         {
             uAddr = ONESHOT_EVENT_MASK_ADDR + i*4;
             uVal = *(U32 *)uAddr;
@@ -144,10 +144,12 @@ I32 BLE_IncrementEventCount(EVENT_ENUM eEvent)
               break;
         }
         // Clear the bit in the word in flash corresponding to the nth occurance of the event
-        if (i < MAX_EVENT_OCCURANCES_LOGGED)
+        if (i < MAX_COUNT_PER_EVENT)
         {
             uVal  &= ~uBitMask;
+            VIMSModeSafeSet( VIMS_BASE,VIMS_MODE_OFF, TRUE);
             FlashProgram (&uVal, uAddr, 4);
+            VIMSModeSafeSet( VIMS_BASE,VIMS_MODE_ENABLED, TRUE);
         }
 
         return i+1;
@@ -161,14 +163,14 @@ I32 BLE_IncrementEventCount(EVENT_ENUM eEvent)
 ***********************************************************************************************/
 I32 BLE_GetEventCount(EVENT_ENUM eEvent)
 {
-    U32 i, uBitMask, uLogWord, uAddr, uVal;
+    U32 i, uBitMask, uAddr, uVal;
 
     if (eEvent < 32)
     {
         uBitMask = 1 << (U32)eEvent;
 
         // Find first non-occurrence
-        for (i=0; i<MAX_EVENT_OCCURANCES_LOGGED; i++)
+        for (i=0; i<MAX_COUNT_PER_EVENT; i++)
         {
             uAddr = ONESHOT_EVENT_MASK_ADDR + i*4;
             uVal = *(U32 *)uAddr;
@@ -176,13 +178,6 @@ I32 BLE_GetEventCount(EVENT_ENUM eEvent)
             if ((uVal & uBitMask) == uBitMask)
               break;
          }
-
-
-
-        // Find first non-occurrence (flag not cleared)
-        //for (i=0; i<MAX_EVENT_OCCURANCES_LOGGED; i++)
-        //    if ((*((U32 *)ONESHOT_EVENT_MASK_ADDR + i) & uBitMask) == uBitMask)
-        //       break;
 
         return i;
     }
@@ -200,12 +195,61 @@ void BLE_ClearEvents()
     BLE_EnableBootloader();   // Erases NVD area and enables Bootloader
 }
 
+
+
+/***********************************************************************************************
+ BLE_SetDeviceName
+    Sets device name as stored in FLASH, but only if it has not been set yet (=FFs)
+***********************************************************************************************/
+B32 BLE_SetDeviceName(I8 *sDevName)
+{
+    I32  sOrigDevName[DEVICENAME_PRESERVE_BYTES + 1];
+
+    // Name can only be written once into FLASH
+    if (!BLE_GetDeviceName(sOrigDevName))
+    {
+        // Program new name into flash - disable cache to ensure readback is correct
+        VIMSModeSafeSet( VIMS_BASE,VIMS_MODE_OFF, TRUE);
+        FlashProgram (sDevName, DEVICENAME_PRESERVE_ADDR, DEVICENAME_PRESERVE_BYTES+1);
+        VIMSModeSafeSet( VIMS_BASE,VIMS_MODE_ENABLED, TRUE);
+
+        // Verify
+        if (!strncmp((I8 *)DEVICENAME_PRESERVE_ADDR, sDevName, DEVICENAME_PRESERVE_BYTES))
+           return bTRUE;
+    }
+
+    return bFALSE;
+}
+
+/***********************************************************************************************
+ BLE_GetDeviceName
+     Gets device name as stored in FLASH
+***********************************************************************************************/
+B32 BLE_GetDeviceName(I8 *sDevName)
+{
+    strncpy(sDevName, (I8 *)DEVICENAME_PRESERVE_ADDR, DEVICENAME_PRESERVE_BYTES);
+
+    if (*(U32 *)(&sDevName[0]) == 0xFFFFFFFF)
+        return bFALSE;
+
+    return bTRUE;
+}
+
+
+
 /***********************************************************************************************
  BLE_WatchdogExpired
 ***********************************************************************************************/
 __interrupt void BLE_WatchdogExpired()
 {
+    U32  i;
+    static F32 volatile f = 1.00;
+
     IntDisable(INT_WDT_IRQ);
+    BLE_IncrementEventCount(WD_RESET);
+
+    for (i=0; i<4000000; i++)f = f * 1.00001;
+
     HapiResetDevice();
 }
 
@@ -288,7 +332,7 @@ U32 *uUartTaskStackUsedPtr = (U32 *)&UartTaskStack[UART_TASK_STACK_SIZE-8];
 
 
 /***********************************************************************************************
- BLE_StackChecks
+ BLE_StackCheck
 ***********************************************************************************************/
 void BLE_StackCheck()
 {

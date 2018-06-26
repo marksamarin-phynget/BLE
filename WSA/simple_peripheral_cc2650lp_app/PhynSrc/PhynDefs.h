@@ -19,6 +19,9 @@ typedef double                  F64;
 typedef U8                      B8;
 typedef U32                     B32;
 
+#define DEFAULT_DEVICENAME "Powered By Phyn"
+
+
 #define bTRUE   1
 #define bFALSE  0
 
@@ -37,10 +40,26 @@ typedef U32                     B32;
 #define NVD_SIZE       (0x1000)
 
 
-#define MAX_EVENT_OCCURANCES_LOGGED (32)
+#define RESERVED_LAST_PAGE_BYTES  (512)     /* This has to be balanced against the system stack usage */
 
-#define NVD_PRESERVE_BYTES  (512)     /* This has to be balanced against the system stack usage */
-#define ONESHOT_EVENT_MASK_ADDR (0x20000 - NVD_PRESERVE_BYTES)
+// Define Event counter area - Flags that are cleared in FLASH to count events
+// Max 32 different events, each counted up to 32 times
+#define MAX_COUNT_PER_EVENT                 (32)
+#define ONESHOT_EVENT_MASK_SIZE_BYTES       (MAX_COUNT_PER_EVENT * 4)
+#define ONESHOT_EVENT_MASK_ADDR             (0x20000 - RESERVED_LAST_PAGE_BYTES)
+
+// Devicename is stored in FLASH - it can be written only once per program update
+#define DEVICENAME_PRESERVE_BYTES           (20)
+#define DEVICENAME_PRESERVE_ADDR            (ONESHOT_EVENT_MASK_ADDR + ONESHOT_EVENT_MASK_SIZE_BYTES)
+
+#define CCFG_SIZE_BYTES (0x100 - 0xF8)
+
+#define TOTAL_USED_PRESERVE_BYTES (ONESHOT_EVENT_MASK_SIZE_BYTES + DEVICENAME_PRESERVE_BYTES + CCFG_SIZE_BYTES)
+
+#if (TOTAL_USED_PRESERVE_BYTES > RESERVED_LAST_PAGE_BYTES)
+    #error TOTAL_USED_PRESERVE_BYTES > TOTAL_USED_NVM_BYTES
+#endif
+
 
 // Watchdog Service
 #ifdef WD_ENABLE

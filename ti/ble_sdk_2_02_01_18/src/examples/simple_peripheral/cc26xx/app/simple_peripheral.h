@@ -53,6 +53,10 @@ extern "C"
 {
 #endif
 
+#include "PhynDefs.h"
+
+
+
 // Advertising interval when device is discoverable (units of 625us, 160=100ms)
 #define DEFAULT_ADVERTISING_INTERVAL          160
 
@@ -112,6 +116,7 @@ extern "C"
  */
 extern void SimpleBLEPeripheral_createTask(void);
 
+void Set_Scan_Response_Name(I8 * sName);
 
 /*********************************************************************
 *********************************************************************/
